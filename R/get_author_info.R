@@ -1,45 +1,56 @@
-
-#' @title Get Author Information and ID from Scopus
+#' @title Get Complete Author Information and ID from Scopus
 #'
 #' @description Uses SCOPUS author search to identify author identification
-#' information for
+#' information
 #' @param last_name last name of author
 #' @param first_name first name of author
 #' @param api_key Elsvier API key
 #' @param http Author API http
 #' @import httr
 #' @export
-#' @return Data.frame of information
-get_author_info <- function(
-                          last_name, # last name of author
-                          first_name = NULL, # first name of author
-                          api_key, # Elsvier API key
-                          http = "http://api.elsevier.com/content/search/author" # Author API http
+#' @return List of information
+get_complete_author_info <- function(
+  last_name, # last name of author
+  first_name = NULL, # first name of author
+  api_key = NULL, # Elsvier API key
+  http = "http://api.elsevier.com/content/search/author" # Author API http
 ){
-  if (missing(api_key)){
-    api_key = getOption("elsevier_api_key")
-  }
-  if (is.null(api_key)){
-    stop("API key not found")
-  }
+  api_key = get_api_key(api_key)
+
   query = ""
-  if (!is.null(first_name)){
+  if (!is.null(first_name)) {
     query = paste0("AUTHFIRST(", first_name, ")+AND+")
   }
   query = paste0(query,
                  "AUTHLAST(", last_name, ")")
 
+  # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", query,
                "&APIKey=", api_key)
   cr = content(GET(url))
   # xcr = cr
-  if (!is.null(cr$`service-error`)){
+  if (!is.null(cr$`service-error`)) {
     print(cr)
     stop("Service Error\n")
   }
+  return(cr)
+}
 
+
+#' @title Get Relevant Author Information and ID from Scopus in DataFrame
+#'
+#' @description Uses SCOPUS author search to identify author identification
+#' information in a workable format
+#' @param ... Arguments passed to \code{\link{get_complete_author_info}}
+#' @import httr
+#' @seealso \code{\link{get_complete_author_info}}
+#' @export
+#' @return Data.frame of information
+get_author_info <- function(...){
+  cr = get_complete_author_info(...)
   cr = cr$`search-results`$entry
 
+  # Quick setup function
   auth_get_info = function(cr){
 
     auth_names = cr$`preferred-name`

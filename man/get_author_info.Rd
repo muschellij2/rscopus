@@ -2,25 +2,21 @@
 % Please edit documentation in R/get_author_info.R
 \name{get_author_info}
 \alias{get_author_info}
-\title{Get Author Information and ID from Scopus}
+\title{Get Relevant Author Information and ID from Scopus in DataFrame}
 \usage{
-get_author_info(last_name, first_name = NULL, api_key,
-  http = "http://api.elsevier.com/content/search/author")
+get_author_info(...)
 }
 \arguments{
-\item{last_name}{last name of author}
-
-\item{first_name}{first name of author}
-
-\item{api_key}{Elsvier API key}
-
-\item{http}{Author API http}
+\item{...}{Arguments passed to \code{\link{get_complete_author_info}}}
 }
 \value{
 Data.frame of information
 }
 \description{
 Uses SCOPUS author search to identify author identification
-information for
+information in a workable format
+}
+\seealso{
+\code{\link{get_complete_author_info}}
 }
 

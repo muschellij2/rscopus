@@ -13,19 +13,15 @@
 #' @return List of entries from SCOPUS
 author_search <- function(
   au_id, # Author ID number
-  api_key,
+  api_key = NULL,
   http = "http://api.elsevier.com/content/search/scopus",
   count = 100, # number of records to retrieve (below 100)
   verbose = TRUE,
   ...){
 
-  if (missing(api_key)){
-    api_key = getOption("elsevier_api_key")
-  }
-  if (is.null(api_key)){
-    stop("API key not found")
-  }
+  api_key = get_api_key(api_key)
 
+  # Wrapper to go through all the pages
   get_results = function(au_id, start = 0, count = count, ...){
     r = GET(http,
             query = list(
@@ -40,6 +36,7 @@ author_search <- function(
   }
 
   cr = get_results(au_id, start = 0, count = count)
+  # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
 #   start_index = as.numeric(cr$`opensearch:startIndex`)
 #   items_per_page = as.numeric(cr$`opensearch:itemsPerPage`)
@@ -48,6 +45,8 @@ author_search <- function(
     message(paste0("Total Entries are ",
       total_results, "\n"))
   }
+
+  ### Loop through all the other pages
   all_entries = cr$entry
   n_runs = ceiling(total_results / count)
   if (n_runs > 1){

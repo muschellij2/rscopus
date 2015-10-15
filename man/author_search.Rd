@@ -4,7 +4,7 @@
 \alias{author_search}
 \title{Search Author Content on SCOPUS}
 \usage{
-author_search(au_id, api_key,
+author_search(au_id, api_key = NULL,
   http = "http://api.elsevier.com/content/search/scopus", count = 100,
   verbose = TRUE, ...)
 }
