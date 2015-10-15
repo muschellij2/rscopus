@@ -33,8 +33,8 @@ author_df = function(au_id, last_name,
     if (NROW(auth_name) == 0) {
       stop("No author name found")
     }
-    if (NROW(auth_name) > 1 & verbose) {
-      message("Multiple authors found, first one used")
+    if (verbose) {
+      message("Authors found:")
       print(auth_name[1,])
     }
     au_id = auth_name$auth_id[1]
