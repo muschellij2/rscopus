@@ -6,6 +6,7 @@
 #' @param first_name first name of author
 #' @param api_key Elsvier API key
 #' @param http Author API http
+#' @param ... options to pass to \code{\link{GET}}
 #' @import httr
 #' @export
 #' @return List of information
@@ -13,7 +14,8 @@ get_complete_author_info <- function(
   last_name, # last name of author
   first_name = NULL, # first name of author
   api_key = NULL, # Elsvier API key
-  http = "http://api.elsevier.com/content/search/author" # Author API http
+  http = "http://api.elsevier.com/content/search/author", # Author API http
+  ...
 ){
   api_key = get_api_key(api_key)
 
@@ -27,7 +29,10 @@ get_complete_author_info <- function(
   # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", query,
                "&APIKey=", api_key)
-  cr = content(GET(url))
+  cr = content(GET(url,
+                   add_headers(
+                     "X-ELS-ResourceVersion" = "allexpand"),
+                   ...))
   # xcr = cr
   if (!is.null(cr$`service-error`)) {
     print(cr)

@@ -5,7 +5,7 @@
 \title{Get Complete Author Information and ID from Scopus}
 \usage{
 get_complete_author_info(last_name, first_name = NULL, api_key = NULL,
-  http = "http://api.elsevier.com/content/search/author")
+  http = "http://api.elsevier.com/content/search/author", ...)
 }
 \arguments{
 \item{last_name}{last name of author}
@@ -15,6 +15,8 @@ get_complete_author_info(last_name, first_name = NULL, api_key = NULL,
 \item{api_key}{Elsvier API key}
 
 \item{http}{Author API http}
+
+\item{...}{options to pass to \code{\link{GET}}}
 }
 \value{
 List of information
