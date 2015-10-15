@@ -3,6 +3,7 @@
 export(affil_search)
 export(author_df)
 export(author_search)
+export(get_api_key)
 export(get_author_info)
 export(get_complete_author_info)
 import(httr)

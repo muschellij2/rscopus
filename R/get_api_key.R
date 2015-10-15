@@ -7,6 +7,7 @@
 #' \code{option(elsevier_api_key)} or have it accessible by
 #' \code{api_key = Sys.getenv('Elsevier_API')}.
 #' @return API key
+#' @export
 get_api_key = function(api_key = NULL) {
   if (is.null(api_key)) {
     api_key = getOption("elsevier_api_key")
