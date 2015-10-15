@@ -6,6 +6,9 @@
 #' @param http Address for scopus api
 #' @param count number of records to retrieve (below 100)
 #' @param verbose Print diagnostic messages
+#' @param searcher Identifer for author ID.  Do not change unless you
+#' know exactly what the API calls for.
+#' @param max_count Maximum count of records to be returned.
 #' @param ... Arguments to be passed to \code{\link{GET}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -16,6 +19,8 @@ author_search <- function(
   http = "http://api.elsevier.com/content/search/scopus",
   count = 100, # number of records to retrieve (below 100)
   verbose = TRUE,
+  searcher = "AU-ID",
+  max_count = Inf,
   ...){
 
   api_key = get_api_key(api_key)
@@ -24,7 +29,7 @@ author_search <- function(
   get_results = function(au_id, start = 0, count = count, ...){
     r = GET(http,
             query = list(
-              query = paste0("AU-ID(", au_id, ")"),
+              query = paste0(searcher, "(", au_id, ")"),
               "APIKey" = api_key,
               count = count,
               start = start,
@@ -37,11 +42,15 @@ author_search <- function(
   cr = get_results(au_id, start = 0, count = count)
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
+
+  if (total_results > max_count){
+    total_results = max_count
+  }
 #   start_index = as.numeric(cr$`opensearch:startIndex`)
 #   items_per_page = as.numeric(cr$`opensearch:itemsPerPage`)
 
   if (verbose){
-    message(paste0("Total Entries are ",
+    message(paste0("Total Entries (or max_count) are ",
       total_results, "\n"))
   }
 
