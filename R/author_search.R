@@ -34,7 +34,10 @@ author_search <- function(
               count = count,
               start = start,
               view = "COMPLETE",
-              ...)
+              facets = "subjarea(sort=fd)",
+              ...),
+            add_headers(
+              "X-ELS-ResourceVersion" = "allexpand")
     )
     cr = content(r)$`search-results`
     return(cr)
