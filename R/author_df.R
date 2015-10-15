@@ -77,7 +77,8 @@ author_df = function(au_id, last_name,
   affils = as.data.frame(affils,
                          stringsAsFactors = FALSE)
 
-  auths = t(sapply(info, function(x){
+  ### Get All possible affiliations from collaborators
+  all_possible_affils = lapply(info, function(x){
 
     affs = t(sapply(x$affiliation, function(y){
       c(affid = nonull(y$afid),
@@ -86,11 +87,25 @@ author_df = function(au_id, last_name,
     affs = as.data.frame(affs,
                          stringsAsFactors = FALSE)
     affs = unique(affs)
+  })
+  all_possible_affils = do.call('rbind', all_possible_affils)
+  all_possible_affils = all_possible_affils[
+    !is.na(all_possible_affils$affid), ]
+  all_possible_affils = unique(all_possible_affils)
+
+
+  auths = lapply(info, function(x){
 
     people_affils = lapply(x$author, function(y){
+      if (is.null(y$afid)){
+        return(data.frame(affid = NA, affilname = NA))
+      }
       affs = lapply(y$afid, function(r){
-        xx = data.frame(affid = r$`$`, stringsAsFactors = FALSE)
-        xx = merge(xx, affs, all.x=)
+        xx = data.frame(affid = nonull(r$`$`), stringsAsFactors = FALSE)
+        if (all(is.na(xx$affid))){
+          return(data.frame(affid = NA, affilname = NA))
+        }
+        xx = merge(xx, all_possible_affils, all.x= TRUE)
       })
       affs = do.call("rbind", affs)
       affs = unique(affs)
@@ -116,10 +131,34 @@ author_df = function(au_id, last_name,
     res = unique(res)
 
     n_authors = max(as.numeric(res$seq))
-    print(n_authors)
-    res = res[ res$auth_id %in% au_id, , drop = FALSE]
-    print(res)
-  }))
+    # print(n_authors)
+    rres = res[ res$auth_id %in% au_id, , drop = FALSE]
+    auth_order = unique(as.numeric(rres$seq))
+
+    f_res = data.frame(
+      cbind(n_auth = n_authors, auth_order = auth_order),
+      stringsAsFactors = FALSE
+    )
+    rres = cbind(f_res, t(rres$affilname))
+    # print(head(rres))
+    colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres)-2))
+    if (nrow(rres) == 0){
+      # print(res)
+    }
+    return(rres)
+  })
+
+  total_auths = max(sapply(auths, ncol))
+
+  auths = lapply(auths, function(x){
+    if (ncol(x)< total_auths){
+      mat = matrix(rep(NA, total_auths - ncol(x)), nrow =1)
+      colnames(mat) = paste0("affil_", (ncol(x)+1):ncol(mat))
+      x = cbind(x, mat)
+    }
+    x
+  })
+  auths = do.call("rbind", auths)
 
   ##################################
   # Get Citation Information
@@ -180,6 +219,7 @@ author_df = function(au_id, last_name,
                   n_affiliations = n_affils
   )
   df = cbind(df, dates)
-  df = cbind(df, affils)
+  # df = cbind(df, affils)
+  df = cbind(df, auths)
   return(df)
 }
