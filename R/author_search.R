@@ -1,4 +1,3 @@
-
 #' @title Search Author Content on SCOPUS
 #'
 #' @description Searches SCOPUS to get information about documents on an author.
