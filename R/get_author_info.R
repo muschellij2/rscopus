@@ -42,7 +42,7 @@ get_author_info <- function(
 
   auth_get_info = function(cr){
 
-    auth_names = cr$`name-variant`[[1]]
+    auth_names = cr$`preferred-name`
     auth_names = paste(
       auth_names$`given-name`,
       auth_names$`surname`
@@ -54,12 +54,15 @@ get_author_info <- function(
     affil_name = affil$`affiliation-name`
     affil_id = affil$`affiliation-id`
 
-    c(auth_name = auth_names,
-      auth_id = auth_id,
-      affil_id = affil_id,
-      affil_name = affil_name)
+    nonull = function(x){
+      ifelse(is.null(x), "", x)
+    }
+    c(auth_name = nonull(auth_names),
+      auth_id = nonull(auth_id),
+      affil_id = nonull(affil_id),
+      affil_name = nonull(affil_name))
   }
 
-  info = lapply(cr, auth_get_info)
+  info = t(sapply(cr, auth_get_info))
   return(info)
 }
