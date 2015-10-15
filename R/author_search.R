@@ -43,16 +43,21 @@ author_search <- function(
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
 
-  if (total_results > max_count){
+
+  if (verbose) {
+    message(paste0("Total Entries are ",
+                   total_results, "\n"))
+  }
+  if (total_results > max_count) {
     total_results = max_count
+    if (verbose) {
+      message(paste0("Maximum Count is ",
+                     total_results, "\n"))
+    }
   }
 #   start_index = as.numeric(cr$`opensearch:startIndex`)
 #   items_per_page = as.numeric(cr$`opensearch:itemsPerPage`)
 
-  if (verbose){
-    message(paste0("Total Entries (or max_count) are ",
-      total_results, "\n"))
-  }
 
   ### Loop through all the other pages
   all_entries = cr$entry
