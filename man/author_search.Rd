@@ -6,7 +6,8 @@
 \usage{
 author_search(au_id, api_key = NULL,
   http = "http://api.elsevier.com/content/search/scopus", count = 100,
-  verbose = TRUE, searcher = "AU-ID", max_count = Inf, ...)
+  verbose = TRUE, facets = "subjarea(sort=fd)", searcher = "AU-ID",
+  max_count = Inf, ...)
 }
 \arguments{
 \item{au_id}{Author ID number}
@@ -18,6 +19,8 @@ author_search(au_id, api_key = NULL,
 \item{count}{number of records to retrieve (below 100)}
 
 \item{verbose}{Print diagnostic messages}
+
+\item{facets}{Facets sent in query.  See \url{http://api.elsevier.com/documentation/SCOPUSSearchAPI.wadl}}
 
 \item{searcher}{Identifer for author ID.  Do not change unless you
 know exactly what the API calls for.}

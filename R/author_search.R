@@ -6,6 +6,7 @@
 #' @param http Address for scopus api
 #' @param count number of records to retrieve (below 100)
 #' @param verbose Print diagnostic messages
+#' @param facets Facets sent in query.  See \url{http://api.elsevier.com/documentation/SCOPUSSearchAPI.wadl}
 #' @param searcher Identifer for author ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
@@ -19,6 +20,7 @@ author_search <- function(
   http = "http://api.elsevier.com/content/search/scopus",
   count = 100, # number of records to retrieve (below 100)
   verbose = TRUE,
+  facets =  "subjarea(sort=fd)",
   searcher = "AU-ID",
   max_count = Inf,
   ...){
@@ -43,7 +45,7 @@ author_search <- function(
   }
 
   cr = get_results(au_id, start = 0, count = count,
-                   facets = "subjarea(sort=fd)")
+                   facets = facets)
   facets = cr$facet
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
