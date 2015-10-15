@@ -43,7 +43,7 @@ author_df = function(au_id, last_name,
   ### Getting author information
   info = author_search(au_id = au_id, api_key = api_key,
                        verbose = verbose,
-                       ...)
+                       ...)$entries
 
   # Getting number of affilations to push out
   n_affils = sapply(info, function(x){

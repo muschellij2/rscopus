@@ -34,7 +34,6 @@ author_search <- function(
               count = count,
               start = start,
               view = "COMPLETE",
-              facets = "subjarea(sort=fd)",
               ...),
             add_headers(
               "X-ELS-ResourceVersion" = "allexpand")
@@ -43,7 +42,9 @@ author_search <- function(
     return(cr)
   }
 
-  cr = get_results(au_id, start = 0, count = count)
+  cr = get_results(au_id, start = 0, count = count,
+                   facets = "subjarea(sort=fd)")
+  facets = cr$facet
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
 
@@ -80,6 +81,6 @@ author_search <- function(
   if (total_results != length(all_entries)){
     warning("May not have received all entries")
   }
-  return(all_entries)
+  return(list(entries = all_entries, facets = facets))
 }
 
