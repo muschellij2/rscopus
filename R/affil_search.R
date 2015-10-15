@@ -6,6 +6,7 @@
 #' know exactly what the API calls for.
 #' @param ... Arguments to be passed to \code{\link{GET}}
 #' @seealso \code{\link{get_author_info}}
+#' @export
 #' @return List of entries from SCOPUS
 affil_search <- function(
   affil_id, # Author ID number
