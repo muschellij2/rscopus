@@ -33,6 +33,7 @@ author_search <- function(
               "APIKey" = api_key,
               count = count,
               start = start,
+              view = "COMPLETE",
               ...)
     )
     cr = content(r)$`search-results`
