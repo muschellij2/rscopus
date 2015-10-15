@@ -60,6 +60,6 @@ get_author_info <- function(
       affil_name = affil_name)
   }
 
-  info = t(sapply(cr, auth_get_info))
+  info = lapply(cr, auth_get_info)
   return(info)
 }
