@@ -4,6 +4,7 @@
 #' @description Searches SCOPUS to get information about documents on an author.
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
+#' @param api_key Elsvier API key
 #' @param first_name first name of author
 #' @param verbose Print diagnostic messages
 #' @param ... Arguments to be passed to \code{\link{author_search}}

@@ -13,6 +13,8 @@ author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE, ...)
 
 \item{first_name}{first name of author}
 
+\item{api_key}{Elsvier API key}
+
 \item{verbose}{Print diagnostic messages}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
