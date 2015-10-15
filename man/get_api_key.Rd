@@ -16,4 +16,9 @@ API key
 Determines if \code{option(elsevier_api_key)} is set.
 If not, it stops and returns an error.  If so, returns the value.
 }
+\note{
+You can either set the API key using
+\code{option(elsevier_api_key)} or have it accessible by
+\code{api_key = Sys.getenv('Elsevier_API')}.
+}
 
