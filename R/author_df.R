@@ -24,7 +24,7 @@ author_df = function(au_id, last_name,
   # Getting AU-ID
   if (
     ( !missing(last_name) | !missing(first_name) ) &
-      !missing(au_id)) {
+    !missing(au_id)) {
     warning("AU-ID overriding first/last name combination")
   }
   if (missing(au_id)){
@@ -69,6 +69,7 @@ author_df = function(au_id, last_name,
     x = c(x, rep("",
                  max_n_affils - length(x)))
   }))
+
   # replace all missing with NA
   affils[affils %in% ""] = NA
   colnames(affils) = paste0("affil_",
@@ -76,6 +77,49 @@ author_df = function(au_id, last_name,
   affils = as.data.frame(affils,
                          stringsAsFactors = FALSE)
 
+  auths = t(sapply(info, function(x){
+
+    affs = t(sapply(x$affiliation, function(y){
+      c(affid = nonull(y$afid),
+        affilname = nonull(y$affilname, replace = ""))
+    }))
+    affs = as.data.frame(affs,
+                         stringsAsFactors = FALSE)
+    affs = unique(affs)
+
+    people_affils = lapply(x$author, function(y){
+      affs = lapply(y$afid, function(r){
+        xx = data.frame(affid = r$`$`, stringsAsFactors = FALSE)
+        xx = merge(xx, affs, all.x=)
+      })
+      affs = do.call("rbind", affs)
+      affs = unique(affs)
+    })
+
+    persons = lapply(x$author, function(y){
+      y = y[c("@seq", "authid",
+              "given-name", "surname")]
+      y = unlist(y)
+      name = paste(y["given-name"], y['surname'])
+      y = y[c("@seq", "authid")]
+      y = c(y, name = name)
+      names(y) = c("seq", "auth_id", "name")
+      y = as.data.frame(t(y), stringsAsFactors = FALSE)
+      return(y)
+    })
+
+    res = mapply(function(person, affils){
+      x = merge(person, affils, all = TRUE)
+    }, persons, people_affils, SIMPLIFY = FALSE)
+
+    res = do.call("rbind", res)
+    res = unique(res)
+
+    n_authors = max(as.numeric(res$seq))
+    print(n_authors)
+    res = res[ res$auth_id %in% au_id, , drop = FALSE]
+    print(res)
+  }))
 
   ##################################
   # Get Citation Information
