@@ -17,7 +17,7 @@ get_author_info(last_name, first_name = NULL, api_key,
 \item{http}{Author API http}
 }
 \value{
-Matrix of data
+List of author entries
 }
 \description{
 Uses SCOPUS author search to identify author identification

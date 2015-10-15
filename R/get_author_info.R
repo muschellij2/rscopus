@@ -9,7 +9,7 @@
 #' @param http Author API http
 #' @import httr
 #' @export
-#' @return Matrix of data
+#' @return List of author entries
 get_author_info <- function(
                           last_name, # last name of author
                           first_name = NULL, # first name of author
