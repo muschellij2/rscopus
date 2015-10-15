@@ -126,7 +126,8 @@ author_df = function(au_id, last_name,
   ##################################
   # Put all into a data.frame
   ##################################
-  df = data.frame(citations = cites,
+  df = data.frame(au_id = au_id,
+                  citations = cites,
                   journal = journals,
                   description = desc,
                   title = titles,
