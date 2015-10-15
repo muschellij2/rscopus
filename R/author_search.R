@@ -46,7 +46,7 @@ author_search <- function(
 
   cr = get_results(au_id, start = 0, count = count,
                    facets = facets)
-  facets = cr$facet
+  all_facets = cr$facet
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
 
@@ -72,8 +72,10 @@ author_search <- function(
   if (n_runs > 1){
     for (irun in seq(n_runs - 1)){
       start = irun * count
-      cr = get_results(au_id, start = start, count = count)
+      cr = get_results(au_id, start = start, count = count,
+                       facets = facets)
       all_entries = c(all_entries, cr$entry)
+      all_facets = c(all_facets, cr$facet)
     }
   }
   if (verbose){
@@ -83,6 +85,6 @@ author_search <- function(
   if (total_results != length(all_entries)){
     warning("May not have received all entries")
   }
-  return(list(entries = all_entries, facets = facets))
+  return(list(entries = all_entries, facets = all_facets))
 }
 
