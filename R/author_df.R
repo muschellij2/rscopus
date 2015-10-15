@@ -153,7 +153,7 @@ author_df = function(au_id, last_name,
   auths = lapply(auths, function(x){
     if (ncol(x)< total_auths){
       mat = matrix(rep(NA, total_auths - ncol(x)), nrow =1)
-      colnames(mat) = paste0("affil_", (ncol(x)+1):ncol(mat))
+      colnames(mat) = paste0("affil_", ((ncol(x) +1):total_auths) - 2)
       x = cbind(x, mat)
     }
     x
