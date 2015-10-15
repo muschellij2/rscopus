@@ -17,7 +17,7 @@ get_author_info(last_name, first_name = NULL, api_key,
 \item{http}{Author API http}
 }
 \value{
-List of author entries
+Data.frame of information
 }
 \description{
 Uses SCOPUS author search to identify author identification

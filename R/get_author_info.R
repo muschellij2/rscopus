@@ -9,7 +9,7 @@
 #' @param http Author API http
 #' @import httr
 #' @export
-#' @return List of author entries
+#' @return Data.frame of information
 get_author_info <- function(
                           last_name, # last name of author
                           first_name = NULL, # first name of author
@@ -64,5 +64,6 @@ get_author_info <- function(
   }
 
   info = t(sapply(cr, auth_get_info))
+  info = as.data.frame(info, stringsAsFactors = FALSE)
   return(info)
 }
