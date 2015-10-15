@@ -1,0 +1,12 @@
+Package: rscopus
+Type: Package
+Title: SCOPUS Database Interface
+Version: 0.1
+Date: 2015-10-14
+Author: John Muschelli
+Maintainer: John Muschelli <muschellij2@gmail.com>
+Description: Uses Elsevier SCOPUS API to download information
+License: GPL-2
+Imports:
+  httr
+LazyData: TRUE
