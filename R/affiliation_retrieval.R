@@ -13,7 +13,7 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#' affiliation_retrieval("60006183", identifier = "affiliation_id")
+#'    x = affiliation_retrieval("60006183", identifier = "affiliation_id")
 #' }
 affiliation_retrieval <- function(
   id,
@@ -23,7 +23,7 @@ affiliation_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste(identifier, id, sep = "/")
+  ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")

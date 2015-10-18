@@ -27,7 +27,7 @@ retrieval of an article from the Elsevier Article Retrieval API
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
-article_retrieval("S1053811915002700", identifier = "pii")
+    x = article_retrieval("S1053811915002700", identifier = "pii")
 }
 }
 \seealso{

@@ -13,7 +13,7 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#' author_retrieval("40462056100", identifier = "author_id")
+#'    x = author_retrieval("40462056100", identifier = "author_id")
 #' }
 author_retrieval <- function(
   id,
@@ -23,7 +23,7 @@ author_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste(identifier, id, sep = "/")
+  ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")

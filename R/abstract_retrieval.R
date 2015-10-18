@@ -13,7 +13,7 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#'  abstract_retrieval("S1053811915002700", identifier = "pii")
+#'    x = abstract_retrieval("S1053811915002700", identifier = "pii")
 #' }
 abstract_retrieval <- function(
   id, # Identifier for abstract
@@ -23,7 +23,7 @@ abstract_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste(identifier, id, sep = "/")
+  ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)){
     ender = paste(ender, http_end, sep = "/")

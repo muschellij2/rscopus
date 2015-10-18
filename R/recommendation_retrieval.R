@@ -13,7 +13,7 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#'  recommendation_retrieval("S1053811915002700", identifier = "pii")
+#'    x = recommendation_retrieval("S1053811915002700", identifier = "pii")
 #' }
 recommendation_retrieval <- function(
   id, # Identifier for recommendation
@@ -23,7 +23,7 @@ recommendation_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste(identifier, id, sep = "/")
+  ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")

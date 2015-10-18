@@ -24,7 +24,7 @@ sort_tags <- function(x) {
 http = paste("http://www.elsevier.com/authors",
                  "author-schemas",
                  "elsevier-xml-dtds-and-transport-schemas", sep = "/")
-html_data = html(http)
+html_data = read_html(http)
 dtds = html_data %>% html_nodes("a")
 # corr_dtds = html_data %>%
 #   html_nodes("#content_container_22683 li a") %>%
