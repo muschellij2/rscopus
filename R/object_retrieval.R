@@ -28,8 +28,8 @@ object_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste0("/", paste(identifier, id, sep = "/"))
-  if (!is.null(http_end)){
+  ender = paste0(paste(identifier, id, sep = "/"))
+  if (!is.null(ref)){
     ender = paste(ender, "ref", ref, sep = "/")
   }
   if (!is.null(http_end)){
