@@ -97,15 +97,15 @@ author_df = function(au_id, last_name,
   auths = lapply(info, function(x){
 
     people_affils = lapply(x$author, function(y){
-      if (is.null(y$afid)){
+      if (is.null(y$afid)) {
         return(data.frame(affid = NA, affilname = NA))
       }
       affs = lapply(y$afid, function(r){
         xx = data.frame(affid = nonull(r$`$`), stringsAsFactors = FALSE)
-        if (all(is.na(xx$affid))){
+        if (all(is.na(xx$affid))) {
           return(data.frame(affid = NA, affilname = NA))
         }
-        xx = merge(xx, all_possible_affils, all.x= TRUE)
+        xx = merge(xx, all_possible_affils, all.x = TRUE)
       })
       affs = do.call("rbind", affs)
       affs = unique(affs)
@@ -141,8 +141,8 @@ author_df = function(au_id, last_name,
     )
     rres = cbind(f_res, t(rres$affilname))
     # print(head(rres))
-    colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres)-2))
-    if (nrow(rres) == 0){
+    colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
+    if (nrow(rres) == 0) {
       # print(res)
     }
     return(rres)
@@ -221,5 +221,8 @@ author_df = function(au_id, last_name,
   df = cbind(df, dates)
   # df = cbind(df, affils)
   df = cbind(df, auths)
+  for (icol in grep("affil_", colnames(df))) {
+    df[, icol] = as.character(df[, icol])
+  }
   return(df)
 }

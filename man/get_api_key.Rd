@@ -13,7 +13,8 @@ get_api_key(api_key = NULL)
 API key
 }
 \description{
-Determines if \code{option(elsevier_api_key)} is set.
+Determines if \code{option(elsevier_api_key)} or
+\code{option(elsevier_api_key_filename)} is set.
 If not, it stops and returns an error.  If so, returns the value.
 }
 \note{
