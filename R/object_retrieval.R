@@ -9,15 +9,34 @@
 #' See \code{\link{generic_elsevier_api}}
 #' @param ... Arguments to be passed to \code{\link{generic_elsevier_api}}
 #' @export
+#' @import httr
+#' @import rvest
 #' @seealso \code{\link{generic_elsevier_api}}
 #' @return List of elements, similar to \code{\link{generic_elsevier_api}}
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
 #'    x = object_retrieval("S1053811915002700", identifier = "pii")
-#'    img = object_retrieval("S1053811915002700",
-#'    identifier = "pii",
-#'    http_end = "thumbnail")
+#'    if (require(xml2) & require(httr)){
+#'        library(httr)
+#'        refs = httr::content(x$get_statement, "text")
+#'        refs = read_xml(refs)
+#'        refs = xml_nodes(refs, "choice")
+#'        texts = xml_text(refs)
+#'        types = xml_attr(refs, "type")
+#'        refs = xml_attr(refs, "ref")
+#'        refs = refs[ grepl("image/jpeg", texts) ]
+#'        texts = texts[ grepl("image/jpeg", texts) ]
+#'        r = GET(texts[1],
+#'                query = list(
+#'                  "apiKey" = api_key))
+#'        img = content(r)
+#'        dims = dim(img)[1:2]
+#'        mdim = max(dims)
+#'        plot(0:mdim, type='n')
+#'        rasterImage(img, 1, 1, ncol(img), nrow(img))
+#'    }
+#'  obj = object_retrieval('S1053811915002700', "pii")
 #' }
 object_retrieval <- function(
   id, # Identifier for abstract
