@@ -1,6 +1,7 @@
 #' @title Generic Elsevier Search
 #'
 #' @description Runs GET on generic Elsevier Search
+#' @param query Query to run
 #' @param type Type of search.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param search_type Type of search if \code{type = "search"}.
 #' See \url{http://dev.elsevier.com/api_docs.html}
@@ -17,6 +18,7 @@
 #' @import httr
 #' @export
 generic_elsevier_api <- function(
+  query = NULL,
   type = c("search", "article",
            "entitlement", "recommendation",
            "object", "fragment",
@@ -69,6 +71,7 @@ generic_elsevier_api <- function(
   r = GET(http,
           query = list(
             "apiKey" = api_key,
+            query = query,
             ...),
           add_headers(headers)
   )
