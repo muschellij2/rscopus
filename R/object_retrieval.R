@@ -25,15 +25,17 @@
 #'        texts = xml_text(refs)
 #'        types = xml_attr(refs, "type")
 #'        refs = xml_attr(refs, "ref")
-#'        refs = refs[ grepl("image/jpeg", texts) ]
-#'        texts = texts[ grepl("image/jpeg", texts) ]
-#'        r = GET(texts[1],
+#'        df = data.frame(ref = refs, type = types, text = texts,
+#'        stringsAsFactors = FALSE)
+#'        df = df[ grepl("image/jpeg", df$text),,drop = FALSE ]
+#'        df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
+#'        r = GET(df$text[1],
 #'                query = list(
 #'                  "apiKey" = api_key))
 #'        img = content(r)
 #'        dims = dim(img)[1:2]
 #'        mdim = max(dims)
-#'        plot(0:mdim, type='n')
+#'        plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
 #'        rasterImage(img, 1, 1, ncol(img), nrow(img))
 #'    }
 #'  obj = object_retrieval('S1053811915002700', "pii")
