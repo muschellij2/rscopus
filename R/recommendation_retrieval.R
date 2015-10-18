@@ -1,8 +1,8 @@
-#' @title SCOPUS Author Retrieval
+#' @title ScienceDirect Article Recommendation Retrieval
 #'
 #' @description This function wraps \code{\link{generic_elsevier_api}} to give a
-#' retrieval of an author from the Elsevier Author Retrieval API
-#' @param id Identifier for author
+#' retrieval of a recommendation from the Elsevier Article Recommendation API
+#' @param id Identifier for recommendation
 #' @param identifier Type of identifier to use
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}
@@ -13,11 +13,11 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#' author_retrieval("40462056100", identifier = "author_id")
+#'  recommendation_retrieval("S1053811915002700", identifier = "pii")
 #' }
-author_retrieval <- function(
-  id,
-  identifier = c("author_id", "eid"),
+recommendation_retrieval <- function(
+  id, # Identifier for recommendation
+  identifier = c("eid", "pii"), # type of identifier
   http_end = NULL,
   ...
 ){
@@ -28,9 +28,9 @@ author_retrieval <- function(
   if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")
   }
-  s = generic_elsevier_api( type = "author",
+
+  s = generic_elsevier_api( type = "recommendation",
                             http_end = ender, ...)
   return(s)
-
 }
 

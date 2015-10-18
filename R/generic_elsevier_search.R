@@ -39,7 +39,7 @@ generic_elsevier_api <- function(
   type = c("search", "article",
            "entitlement", "recommendation",
            "object", "fragment",
-           "abstract",
+           "abstract", "affiliation",
            "embase", "author",
            "serial", "nonserial",
            "subject", "holdings",

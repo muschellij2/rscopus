@@ -1,8 +1,8 @@
-#' @title SCOPUS Abstract Retrieval
+#' @title ScienceDirect Text Entitlement Retrieval
 #'
 #' @description This function wraps \code{\link{generic_elsevier_api}} to give a
-#' retrieval of an abstract from the Elsevier Abstract Retrieval API
-#' @param id Identifier for abstract
+#' retrieval of an entitlement from the Elsevier Text Entitlement API
+#' @param id Identifier for entitllement
 #' @param identifier Type of identifier to use
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}
@@ -13,11 +13,11 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#'  abstract_retrieval("S1053811915002700", identifier = "pii")
+#' entitlement_retrieval("S1053811915002700", identifier = "pii")
 #' }
-abstract_retrieval <- function(
-  id, # Identifier for abstract
-  identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id", "pui", "group_id"), # type of identifier
+entitlement_retrieval <- function(
+  id, # Identifier for article
+  identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id"), # type of identifier
   http_end = NULL, # any additional end to http statement.  See \code{\link{generic_elsevier_api}}
   ...
 ){
@@ -28,22 +28,9 @@ abstract_retrieval <- function(
   if (!is.null(http_end)){
     ender = paste(ender, http_end, sep = "/")
   }
-  ################################
-  #
-  ################################
-#   arguments <- list(...)
-#   n_args = names(arguments)
-#   l_args = length(arguments)
-#
-#   if (length(n_args) != l_args){
-#     warning("All arguments should be named in ..., may give unpredictable results")
-#   }
-#   if ("http_end" %in% n_args) {
-#     ender = paste(http_end, ender, sep = "/")
-#   }
-  s = generic_elsevier_api( type = "abstract",
+
+  s = generic_elsevier_api( type = "entitlement",
                             http_end = ender, ...)
   return(s)
-
 }
 

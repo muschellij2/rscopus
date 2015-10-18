@@ -4,10 +4,12 @@
 \alias{get_api_key}
 \title{Find API Key for Elsevier}
 \usage{
-get_api_key(api_key = NULL)
+get_api_key(api_key = NULL, error = TRUE)
 }
 \arguments{
 \item{api_key}{Elsvier API key}
+
+\item{error}{Should the function error if \code{api_key = NULL}?}
 }
 \value{
 API key

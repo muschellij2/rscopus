@@ -25,7 +25,8 @@ This function wraps \code{\link{generic_elsevier_api}} to give a
 retrieval of an author from the Elsevier Author Retrieval API
 }
 \examples{
-\dontrun{
+api_key = get_api_key(NULL, error = FALSE)
+if (!is.null(api_key)){
 author_retrieval("40462056100", identifier = "author_id")
 }
 }

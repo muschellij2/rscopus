@@ -4,12 +4,13 @@
 #' \code{option(elsevier_api_key_filename)} is set.
 #' If not, it stops and returns an error.  If so, returns the value.
 #' @param api_key Elsvier API key
+#' @param error Should the function error if \code{api_key = NULL}?
 #' @note You can either set the API key using
 #' \code{option(elsevier_api_key)} or have it accessible by
 #' \code{api_key = Sys.getenv('Elsevier_API')}.
 #' @return API key
 #' @export
-get_api_key = function(api_key = NULL) {
+get_api_key = function(api_key = NULL, error = TRUE) {
   if (is.null(api_key)) {
     api_key = getOption("elsevier_api_key")
   }
@@ -37,7 +38,7 @@ get_api_key = function(api_key = NULL) {
     }
   }
 
-  if (is.null(api_key)) {
+  if (is.null(api_key) & error) {
     stop(paste0("API key not found, please set ",
                 "option('elsevier_api_key_filename') or",
                 "option('elsevier_api_key') for general use or",

@@ -5,11 +5,11 @@
 \title{Generic Elsevier Search}
 \usage{
 generic_elsevier_api(query = NULL, type = c("search", "article",
-  "entitlement", "recommendation", "object", "fragment", "abstract", "embase",
-  "author", "serial", "nonserial", "subject", "holdings", "citation-count",
-  "citations"), search_type = c("affiliation", "author", "scopus", "scidir",
-  "scidir-object"), api_key = NULL, headers = NULL,
-  content_type = c("content", "feedback"),
+  "entitlement", "recommendation", "object", "fragment", "abstract",
+  "affiliation", "embase", "author", "serial", "nonserial", "subject",
+  "holdings", "citation-count", "citations"), search_type = c("affiliation",
+  "author", "scopus", "scidir", "scidir-object"), api_key = NULL,
+  headers = NULL, content_type = c("content", "feedback"),
   root_http = "http://api.elsevier.com", http_end = NULL, verbose = TRUE,
   ...)
 }

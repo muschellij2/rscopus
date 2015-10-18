@@ -1,8 +1,8 @@
-#' @title SCOPUS Author Retrieval
+#' @title SCOPUS Affiliation Retrieval
 #'
 #' @description This function wraps \code{\link{generic_elsevier_api}} to give a
-#' retrieval of an author from the Elsevier Author Retrieval API
-#' @param id Identifier for author
+#' retrieval of an affiliation from the Elsevier Affiliation Retrieval API
+#' @param id Identifier for affiliation
 #' @param identifier Type of identifier to use
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}
@@ -13,12 +13,12 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#' author_retrieval("40462056100", identifier = "author_id")
+#' affiliation_retrieval("60006183", identifier = "affiliation_id")
 #' }
-author_retrieval <- function(
+affiliation_retrieval <- function(
   id,
-  identifier = c("author_id", "eid"),
-  http_end = NULL,
+  identifier = c("affiliation_id", "eid"),
+  http_end = NULL, # any additional end to http statement.
   ...
 ){
 
@@ -28,9 +28,8 @@ author_retrieval <- function(
   if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")
   }
-  s = generic_elsevier_api( type = "author",
+  s = generic_elsevier_api( type = "affiliation",
                             http_end = ender, ...)
   return(s)
-
 }
 
