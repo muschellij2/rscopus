@@ -43,4 +43,23 @@ List of elements, content and the \code{GET} request
 \description{
 Runs GET on generic Elsevier Search
 }
+\examples{
+\dontrun{
+query_string = "affil(hopkins)"
+# Use affiliation query
+s = generic_elsevier_api(query = query_string,
+                         type = "search", search_type = "affiliation",
+                         api_key = api_key)
+
+# Use author query
+s = generic_elsevier_api(query = query_string,
+type = "search", search_type = "author",
+api_key = api_key)
+
+# Query abstract by pii
+s = generic_elsevier_api(query = "",
+                      type = "abstract", http_end = "pii/S1053811915002700",
+                      api_key = api_key)
+}
+}
 

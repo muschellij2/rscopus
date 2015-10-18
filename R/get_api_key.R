@@ -30,6 +30,8 @@ get_api_key = function(api_key = NULL) {
                   "had too many lines! Taking first \n"))
       api_key = api_key[1]
     }
+  }
+  if (!is.null(api_key)){
     if (api_key %in% ""){
       api_key = NULL
     }
