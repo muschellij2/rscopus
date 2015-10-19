@@ -6,6 +6,7 @@
 #' @param first_name first name of author
 #' @param api_key Elsvier API key
 #' @param http Author API http
+#' @param verbose Print messages from specification
 #' @param ... options to pass to \code{\link{GET}}
 #' @import httr
 #' @export
@@ -15,6 +16,7 @@ get_complete_author_info <- function(
   first_name = NULL, # first name of author
   api_key = NULL, # Elsvier API key
   http = "http://api.elsevier.com/content/search/author", # Author API http
+  verbose = TRUE,
   ...
 ){
   api_key = get_api_key(api_key)
@@ -29,6 +31,9 @@ get_complete_author_info <- function(
   # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", query,
                "&APIKey=", api_key)
+  if (verbose){
+    message(paste0("HTTP specified is:", url, "\n"))
+  }
   cr = content(GET(url,
                    add_headers(
                      "X-ELS-ResourceVersion" = "allexpand"),

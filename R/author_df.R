@@ -23,11 +23,13 @@ author_df = function(au_id, last_name,
 
   # Getting AU-ID
   if (
-    ( !missing(last_name) | !missing(first_name) ) &
+    (!missing(last_name) | !missing(first_name) ) &
     !missing(au_id)) {
     warning("AU-ID overriding first/last name combination")
   }
-  if (missing(au_id)){
+  if (missing(au_id)) {
+    last_name = replace_non_ascii(last_name)
+    first_name = replace_non_ascii(first_name)
     auth_name = get_author_info(last_name = last_name,
                                 first_name = first_name,
                                 api_key = api_key)
