@@ -8,8 +8,7 @@ Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Uses Elsevier SCOPUS API to download information about authors and their citations.
 License: GPL-2
 Imports:
-  httr,
-  RCurl
+  httr
 LazyData: TRUE
 Suggests:
   xml2
