@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 
 R/dtd_data.R
+^\.travis\.yml$
+
+README.md

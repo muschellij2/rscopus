@@ -11,4 +11,5 @@ Imports:
   httr
 LazyData: TRUE
 Suggests:
-  xml2
+  xml2,
+  rvest
