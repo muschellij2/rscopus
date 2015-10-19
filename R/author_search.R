@@ -53,13 +53,13 @@ author_search <- function(
 
   if (verbose) {
     message(paste0("Total Entries are ",
-                   total_results, "\n"))
+                   total_results))
   }
   if (total_results > max_count) {
     total_results = max_count
     if (verbose) {
       message(paste0("Maximum Count is ",
-                     total_results, "\n"))
+                     total_results))
     }
   }
 #   start_index = as.numeric(cr$`opensearch:startIndex`)

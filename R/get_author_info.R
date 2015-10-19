@@ -5,6 +5,7 @@
 #' @param last_name last name of author
 #' @param first_name first name of author
 #' @param api_key Elsvier API key
+#' @param query Additional query info, added using \code{+AND+} to original query
 #' @param http Author API http
 #' @param verbose Print messages from specification
 #' @param ... options to pass to \code{\link{GET}}
@@ -16,34 +17,39 @@ get_complete_author_info <- function(
   first_name = NULL, # first name of author
   api_key = NULL, # Elsvier API key
   http = "http://api.elsevier.com/content/search/author", # Author API http
+  query = NULL,
   verbose = TRUE,
   ...
 ){
   api_key = get_api_key(api_key)
 
-  query = ""
+  reg_query = ""
   if (!is.null(first_name)) {
-    query = paste0("AUTHFIRST(", first_name, ")+AND+")
+    reg_query = paste0("AUTHFIRST(", first_name, ")+AND+")
   }
-  query = paste0(query,
+  reg_query = paste0(reg_query,
                  "AUTHLAST(", last_name, ")")
+  if (!is.null(query)){
+    reg_query = paste0(paste0(reg_query, collapse = "+AND+"), "+AND+", query)
+  }
 
   # Need this way to not escape the `+` sign in the query
-  url = paste0(http, "?query=", query,
+  url = paste0(http, "?query=", reg_query,
                "&APIKey=", api_key)
   if (verbose){
     message(paste0("HTTP specified is:", url, "\n"))
   }
-  cr = content(GET(url,
-                   add_headers(
-                     "X-ELS-ResourceVersion" = "allexpand"),
-                   ...))
+  r = GET(url,
+          add_headers(
+            "X-ELS-ResourceVersion" = "allexpand"),
+          ...)
+  cr = content(r)
   # xcr = cr
   if (!is.null(cr$`service-error`)) {
     print(cr)
     stop("Service Error\n")
   }
-  return(cr)
+  return(list(get_statement = r, content = cr))
 }
 
 
@@ -57,7 +63,7 @@ get_complete_author_info <- function(
 #' @export
 #' @return Data.frame of information
 get_author_info <- function(...){
-  cr = get_complete_author_info(...)
+  cr = get_complete_author_info(...)$content
   cr = cr$`search-results`$entry
 
   # Quick setup function
