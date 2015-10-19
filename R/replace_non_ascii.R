@@ -35,12 +35,13 @@ replace_non_ascii <- function(string){
                                                                                            )), u = as.raw(c(0xc3, 0xb9)), u = as.raw(c(0xc3, 0xba)),
                         u = as.raw(c(0xc3, 0xbb)), y = as.raw(c(0xc3, 0xbd)), y = as.raw(c(0xc3,
                                                                                            0xbd)), b = as.raw(c(0xc3, 0xbe)), y = as.raw(c(0xc3, 0xbf
-                                                                                           ))), .Names = c("S", "s", "Z", "z", "A", "A", "A", "A", "A",
-                                                                                                           "A", "A", "C", "E", "E", "E", "E", "I", "I", "I", "I", "N", "O",
-                                                                                                           "O", "O", "O", "O", "O", "U", "U", "U", "U", "Y", "B", "Ss",
-                                                                                                           "a", "a", "a", "a", "a", "a", "a", "c", "e", "e", "e", "e", "i",
-                                                                                                           "i", "i", "i", "o", "n", "o", "o", "o", "o", "o", "o", "u", "u",
-                                                                                                           "u", "y", "y", "b", "y"))
+                                                                                           ))),
+                   .Names = c("S", "s", "Z", "z", "A", "A", "A", "A", "A",
+                              "A", "A", "C", "E", "E", "E", "E", "I", "I", "I", "I", "N", "O",
+                              "O", "O", "O", "O", "O", "U", "U", "U", "U", "Y", "B", "Ss",
+                              "a", "a", "a", "a", "a", "a", "a", "c", "e", "e", "e", "e", "i",
+                              "i", "i", "i", "o", "n", "o", "o", "o", "o", "o", "o", "u", "u",
+                              "u", "y", "y", "b", "y"))
 
   unwanted_array = names(raws)
   unwanted_array_names = sapply(raws, rawToChar)
