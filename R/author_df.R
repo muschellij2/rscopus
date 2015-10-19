@@ -146,7 +146,7 @@ author_df = function(au_id, last_name,
     rres = unique(rres)
     if (ncol(rres) > 2) {
       colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
-      print(rres)
+      # print(rres)
     }
     if (nrow(rres) == 0) {
       # print(res)
