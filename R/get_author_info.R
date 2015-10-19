@@ -10,6 +10,7 @@
 #' @param verbose Print messages from specification
 #' @param ... options to pass to \code{\link{GET}}
 #' @import httr
+#' @import RCurl
 #' @export
 #' @return List of information
 get_complete_author_info <- function(
@@ -33,6 +34,7 @@ get_complete_author_info <- function(
     reg_query = paste0(paste0(reg_query, collapse = "+AND+"), "+AND+", query)
   }
 
+  reg_query = curlEscape(reg_query)
   # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", reg_query,
                "&APIKey=", api_key)
