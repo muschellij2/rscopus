@@ -90,7 +90,7 @@ author_df = function(au_id, last_name,
   })
   all_possible_affils = do.call('rbind', all_possible_affils)
   all_possible_affils = all_possible_affils[
-    !is.na(all_possible_affils$affid), ]
+    !is.na(all_possible_affils$affid), , drop = FALSE]
   all_possible_affils = unique(all_possible_affils)
 
 
@@ -134,14 +134,19 @@ author_df = function(au_id, last_name,
     # print(n_authors)
     rres = res[ res$auth_id %in% au_id, , drop = FALSE]
     auth_order = unique(as.numeric(rres$seq))
+    if (nrow(rres) == 0){
+      auth_order = rep(NA, n_authors)
+    }
 
     f_res = data.frame(
       cbind(n_auth = n_authors, auth_order = auth_order),
       stringsAsFactors = FALSE
     )
     rres = cbind(f_res, t(rres$affilname))
+    rres = unique(rres)
     if (ncol(rres) > 2) {
       colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
+      print(rres)
     }
     if (nrow(rres) == 0) {
       # print(res)
@@ -151,10 +156,10 @@ author_df = function(au_id, last_name,
 
   total_auths = max(sapply(auths, ncol))
 
-  auths = lapply(auths, function(x){
-    if (ncol(x)< total_auths){
-      mat = matrix(rep(NA, total_auths - ncol(x)), nrow =1)
-      colnames(mat) = paste0("affil_", ((ncol(x) +1):total_auths) - 2)
+  auths = lapply(auths, function(x) {
+    if (ncol(x) < total_auths){
+      mat = matrix(rep(NA, total_auths - ncol(x)), nrow = 1)
+      colnames(mat) = paste0("affil_", ((ncol(x) + 1):total_auths) - 2)
       x = cbind(x, mat)
     }
     x
