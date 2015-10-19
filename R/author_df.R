@@ -34,12 +34,22 @@ author_df = function(au_id, last_name,
     if (NROW(auth_name) == 0) {
       stop("No author name found")
     }
+    if (all(is.na(auth_name$auth_id))) {
+      stop("No author name found")
+    }
     if (verbose) {
       message("Authors found:")
       print(auth_name[1,])
     }
     au_id = auth_name$auth_id[1]
   }
+  if (missing(last_name)) {
+    last_name = NULL
+  }
+  if (missing(first_name)) {
+    first_name = NULL
+  }
+
 
   ### Getting author information
   info = author_search(au_id = au_id, api_key = api_key,
@@ -224,11 +234,14 @@ author_df = function(au_id, last_name,
                   pii = sci_pii,
                   n_affiliations = n_affils
   )
+  df$first_name = first_name
+  df$last_name = last_name
   df = cbind(df, dates)
   # df = cbind(df, affils)
   df = cbind(df, auths)
   for (icol in grep("affil_", colnames(df))) {
     df[, icol] = as.character(df[, icol])
   }
+
   return(df)
 }
