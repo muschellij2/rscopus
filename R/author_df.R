@@ -140,8 +140,9 @@ author_df = function(au_id, last_name,
       stringsAsFactors = FALSE
     )
     rres = cbind(f_res, t(rres$affilname))
-    # print(head(rres))
-    colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
+    if (ncol(rres) > 2) {
+      colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
+    }
     if (nrow(rres) == 0) {
       # print(res)
     }
