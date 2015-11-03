@@ -10,6 +10,8 @@
 #' \code{api_key = Sys.getenv('Elsevier_API')}.
 #' @return API key
 #' @export
+#' @examples
+#' get_api_key(error = FALSE)
 get_api_key = function(api_key = NULL, error = TRUE) {
   if (is.null(api_key)) {
     api_key = getOption("elsevier_api_key")

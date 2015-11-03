@@ -2,7 +2,7 @@ Package: rscopus
 Type: Package
 Title: SCOPUS Database Interface
 Version: 0.1.1
-Date: 2015-10-19
+Date: 2015-11-02
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Uses Elsevier SCOPUS API to download information about authors and their citations.
