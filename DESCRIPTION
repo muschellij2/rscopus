@@ -1,14 +1,15 @@
 Package: rscopus
 Type: Package
-Title: SCOPUS Database API Interface
-Version: 0.1.1
+Title: Scopus Database API Interface
+Version: 0.1.2
 Date: 2015-11-02
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
-Description: Uses Elsevier SCOPUS API to download information about authors and their citations.
+Description: Uses Elsevier Scopus API to download information about authors and their citations.
 License: GPL-2
 Imports:
-  httr
+  httr,
+  utils
 LazyData: TRUE
 Suggests:
   xml2,
