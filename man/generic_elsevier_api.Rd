@@ -11,7 +11,7 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
   "author", "scopus", "scidir", "scidir-object"), api_key = NULL,
   headers = NULL, content_type = c("content", "feedback"),
   root_http = "http://api.elsevier.com", http_end = NULL, verbose = TRUE,
-  ...)
+  api_key_error = TRUE, ...)
 }
 \arguments{
 \item{query}{Query to run}
@@ -34,6 +34,8 @@ passed to \code{\link{GET}}}
 (done using \code{paste0})}
 
 \item{verbose}{Print messages from specification}
+
+\item{api_key_error}{Should there be an error if no API key?}
 
 \item{...}{Options passed to query for \code{\link{GET}}}
 }

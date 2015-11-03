@@ -14,6 +14,10 @@
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
 #'     x = article_retrieval("S1053811915002700", identifier = "pii")
+#' } else {
+#'  x = article_retrieval("S1053811915002700",
+#'    identifier = "pii",
+#'    api_key_error = FALSE)
 #' }
 article_retrieval <- function(
   id, # Identifier for article

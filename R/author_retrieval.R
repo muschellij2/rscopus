@@ -14,6 +14,11 @@
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
 #'    x = author_retrieval("40462056100", identifier = "author_id")
+#' } else {
+#'  x = author_retrieval(
+#'  "40462056100",
+#'  identifier = "author_id",
+#'    api_key_error = FALSE)
 #' }
 author_retrieval <- function(
   id,

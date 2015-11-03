@@ -13,6 +13,7 @@
 #' @param http_end string to add to end of http specification
 #' (done using \code{paste0})
 #' @param verbose Print messages from specification
+#' @param api_key_error Should there be an error if no API key?
 #' @param ... Options passed to query for \code{\link{GET}}
 #' @return List of elements, content and the \code{GET} request
 #' @import httr
@@ -52,10 +53,11 @@ generic_elsevier_api <- function(
   root_http = "http://api.elsevier.com",
   http_end = NULL,
   verbose = TRUE,
+  api_key_error = TRUE,
   ...
   ){
 
-  api_key = get_api_key(api_key)
+  api_key = get_api_key(api_key, error = api_key_error)
 
   type = match.arg(type)
   content_type = match.arg(content_type)
@@ -80,18 +82,34 @@ generic_elsevier_api <- function(
   }
 
   http = paste(root_http, type, search_type, sep = "/")
+  http = gsub("/$", "", http)
   http = paste0(http, http_end)
 
   if (verbose){
     message(paste0("HTTP specified is:", http, "\n"))
   }
-  r = GET(http,
-          query = list(
-            "apiKey" = api_key,
-            query = query,
-            ...),
-          add_headers(headers)
-  )
+  if (!is.null(api_key)){
+    qlist = list(
+      "apiKey" = api_key,
+      query = query,
+      ...)
+  } else {
+    qlist =  list(
+      query = query, ...)
+  }
+  if (is.null(query)){
+    qlist$query = NULL
+  }
+  if (length(qlist) > 0){
+    r = GET(http,
+            query = qlist,
+            add_headers(headers)
+    )
+  } else {
+    r = GET(http,
+            add_headers(headers)
+            )
+  }
   cr = content(r)
   return(list(get_statement = r, content = cr))
 }
