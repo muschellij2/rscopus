@@ -62,12 +62,6 @@ author_df = function(au_id, last_name,
   n_affils = sapply(info, function(x){
     length(x$affiliation)
   })
-  nonull = function(x, replace = NA){
-    if (is.null(x) | length(x) == 0){
-      x = replace
-    }
-    x
-  }
 
   ##################################
   # Get affiliation information
@@ -92,41 +86,20 @@ author_df = function(au_id, last_name,
   ### Get All possible affiliations from collaborators
   all_possible_affils = all_possible_affils(info)
 
+
+#   strip_info = lapply(info, function(x) {
+#     x[c("dc:title",
+#     "dc:creator", "prism:publicationName",
+#     "prism:volume", "prism:issueIdentifier", "prism:pageRange", "prism:coverDate",
+#     "prism:coverDisplayDate", "prism:doi", "citedby-count",
+#     "affiliation", "prism:aggregationType", "subtype", "subtypeDescription",
+#     "author-count", "author")]
+#   })
+
   auths = lapply(info, function(x){
 
-    people_affils = lapply(x$author, function(y){
-      if (is.null(y$afid)) {
-        return(data.frame(affid = NA, affilname = NA))
-      }
-      affs = lapply(y$afid, function(r){
-        xx = data.frame(affid = nonull(r$`$`), stringsAsFactors = FALSE)
-        if (all(is.na(xx$affid))) {
-          return(data.frame(affid = NA, affilname = NA))
-        }
-        xx = merge(xx, all_possible_affils, all.x = TRUE)
-      })
-      affs = do.call("rbind", affs)
-      affs = unique(affs)
-    })
-
-    persons = lapply(x$author, function(y){
-      y = y[c("@seq", "authid",
-              "given-name", "surname")]
-      y = unlist(y)
-      name = paste(y["given-name"], y['surname'])
-      y = y[c("@seq", "authid")]
-      y = c(y, name = name)
-      names(y) = c("seq", "auth_id", "name")
-      y = as.data.frame(t(y), stringsAsFactors = FALSE)
-      return(y)
-    })
-
-    res = mapply(function(person, affils){
-      x = merge(person, affils, all = TRUE)
-    }, persons, people_affils, SIMPLIFY = FALSE)
-
-    res = do.call("rbind", res)
-    res = unique(res)
+    res = entry_to_affil(x = x,
+                         all_affils = all_possible_affils)
 
     n_authors = max(as.numeric(res$seq))
     # print(n_authors)
@@ -164,67 +137,9 @@ author_df = function(au_id, last_name,
   })
   auths = do.call("rbind", auths)
 
-  ##################################
-  # Get Citation Information
-  ##################################
-  cites = sapply(info, function(x){
-    x = as.numeric(nonull(x$`citedby-count`))
-    x
-  })
-
-  ##################################
-  # Get Journal Information
-  ##################################
-  journals = sapply(info, function(x){
-    x = nonull(x$`prism:publicationName`)
-    x
-  })
-
-  ##################################
-  # Get Description of type of entry (article/presentation)
-  ##################################
-  desc = sapply(info, function(x){
-    x = nonull(x$subtypeDescription)
-    x
-  })
-  ##################################
-  # Get Dates of Publication
-  ##################################
-  dates = t(sapply(info, function(x){
-    cx = nonull(x$`prism:coverDate`)
-    cdx = nonull(x$`prism:coverDisplayDate`)
-    c(cover_date = cx,
-      cover_display_date = cdx)
-  }))
-
-  ##################################
-  # Get Titles of Publication
-  ##################################
-  titles = sapply(info, function(x){
-    x = nonull(x$`dc:title`)
-  })
-
-  ##################################
-  # Get pii number to grab pdf later
-  ##################################
-  sci_pii = sapply(info, function(x){
-    x = nonull(x$pii)
-  })
-
-  ##################################
-  # Put all into a data.frame
-  ##################################
-  df = data.frame(au_id = au_id,
-                  citations = cites,
-                  journal = journals,
-                  description = desc,
-                  title = titles,
-                  pii = sci_pii,
-                  n_affiliations = n_affils
-  )
+  df$n_affiliations = n_affils
   df$first_name = first_name
   df$last_name = last_name
-  df = cbind(df, dates)
   # df = cbind(df, affils)
   df = cbind(df, auths)
   for (icol in grep("affil_", colnames(df))) {

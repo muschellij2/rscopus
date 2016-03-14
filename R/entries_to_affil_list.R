@@ -76,3 +76,37 @@ entry_to_affil = function(x, all_affils) {
   res = unique(res)
   return(res)
 }
+
+
+
+
+#' @title Collapse Affiliations to one row
+#' @description Take an individual SCOPUS entry and transform it to a data frame of
+#' affiliations
+#' @param affils Data frame of affiliations to be collapsed
+#' usually from \code{\link{author_search}}
+#' @param collapse What should values be collapsed using as a separator
+#' @return A \code{data.frame} of affiliation information
+#' @importFrom plyr ddply
+#' @export
+collapse_affil = function(affils, collapse = ";") {
+
+  ###################################
+  # Get individual affiliations from each person
+  ###################################
+  df = affil_list_to_df(affils)
+  # cn = colnames(df)
+  df$seq = NULL
+
+  df[is.na(df)] = ""
+
+  df = ddply(df, .(index), function(x){
+    x = lapply(x, function(y) {
+      paste(y, collapse = collapse)
+    })
+    x = as.data.frame(x)
+    x$index = NULL
+    x
+  })
+  df
+}

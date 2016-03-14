@@ -10,7 +10,8 @@ Description: Uses Elsevier Scopus API to download information about authors and
 License: GPL-2
 Imports:
     httr,
-    utils
+    utils,
+    plyr
 LazyData: TRUE
 Suggests:
     xml2,
