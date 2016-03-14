@@ -1,4 +1,4 @@
-#' @title
+#' @title List of SCOPUS Entries to List of Affilations Data Frames
 #' @description Take a SCOPUS entry and transform it to a data frame of
 #' affiliations
 #' @param entries list of entries from SCOPUS,
