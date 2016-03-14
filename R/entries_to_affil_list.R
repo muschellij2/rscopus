@@ -56,7 +56,7 @@ entry_to_affil = function(x, all_affils) {
     name = paste(y["given-name"], y['surname'])
     y = y[c("@seq", "authid")]
     y = c(y, name = name)
-    names(y) = c("seq", "auth_id", "name")
+    names(y) = c("seq", "au_id", "name")
     y = as.data.frame(t(y), stringsAsFactors = FALSE)
     return(y)
   })

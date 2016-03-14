@@ -148,7 +148,7 @@ process_author_name = function(au_id, last_name,
     if (NROW(auth_name) == 0) {
       stop("No author name found")
     }
-    if (all(is.na(auth_name$auth_id))) {
+    if (all(is.na(auth_name$au_id))) {
       stop("No author name found")
     }
     if (verbose) {

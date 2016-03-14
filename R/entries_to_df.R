@@ -50,7 +50,7 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
     # affil_list_to_df[[1]]
     if (!is.null(au_id)) {
-      rres = res[ res$auth_id %in% au_id, , drop = FALSE]
+      rres = res[ res$au_id %in% au_id, , drop = FALSE]
       auth_order = unique(as.numeric(rres$seq))
       if (nrow(rres) == 0) {
         auth_order = rep(NA, n_authors)
