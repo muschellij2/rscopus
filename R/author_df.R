@@ -25,6 +25,31 @@ author_df = function(au_id, last_name,
                      verbose = TRUE,
                      all_author_info = FALSE,
                      ...){
+
+  L = author_data(au_id = au_id,
+                  last_name = last_name,
+                  first_name = first_name,
+                  api_key = api_key,
+                  verbose = verbose,
+                  all_author_info = all_author_info,
+                  ... = ...)
+  df = L$df
+
+  return(df)
+}
+
+
+
+
+#' @rdname author_df
+#' @export
+author_data = function(au_id, last_name,
+                     first_name,
+                     api_key = NULL,
+                     verbose = TRUE,
+                     all_author_info = FALSE,
+                     ...){
+
   api_key = get_api_key(api_key)
 
   L = process_author_name(au_id = au_id,
@@ -50,78 +75,25 @@ author_df = function(au_id, last_name,
   if ( all_author_info ) {
     df$indexer = seq(nrow(df))
     df2 = entries_to_df(entries = entries,
-                       au_id = NULL,
-                       verbose = verbose)
+                        au_id = NULL,
+                        verbose = verbose)
     df = merge(df, df2, sort = FALSE, all.x = TRUE)
     df = df[ order(df$indexer), ]
     df$indexer = NULL
   }
 
 
-  #   strip_info = lapply(info, function(x) {
-  #     x[c("dc:title",
-  #     "dc:creator", "prism:publicationName",
-  #     "prism:volume", "prism:issueIdentifier", "prism:pageRange", "prism:coverDate",
-  #     "prism:coverDisplayDate", "prism:doi", "citedby-count",
-  #     "affiliation", "prism:aggregationType", "subtype", "subtypeDescription",
-  #     "author-count", "author")]
-  #   })
-
-  # affils = entries_to_affil_list(info)
-
 
   # df$n_affiliations = n_affils
   df$first_name = first_name
   df$last_name = last_name
   df$au_id = au_id
-  # df = cbind(df, affils)
-  # df = cbind(df, auths)
-  #   for (icol in grep("affilname_", colnames(df))) {
-  #     df[, icol] = as.character(df[, icol])
-  #   }
+  L = list(entries = entries,
+           df = df)
 
-  return(df)
-}
-
-
-
-
-#' @rdname author_df
-#' @export
-author_data = function(au_id, last_name,
-                     first_name,
-                     api_key = NULL,
-                     verbose = TRUE,
-                     ...){
-  api_key = get_api_key(api_key)
-
-  L = process_author_name(au_id = au_id,
-                          first_name = first_name,
-                          last_name = last_name,
-                          api_key = api_key,
-                          verbose = verbose)
-
-  first_name = L$first_name
-  last_name = L$last_name
-  au_id = L$au_id
-
-  ### Getting author information
-  entries = author_search(au_id = au_id,
-                          api_key = api_key,
-                          verbose = verbose,
-                          ...)$entries
-
-
-  df = entries_to_df(entries = entries,
-                     au_id = au_id,
-                     verbose = verbose)
-  df$first_name = first_name
-  df$last_name = last_name
-  df$au_id = au_id
-
-  L = list(entries = entries, df = df)
   return(L)
 }
+
 
 
 

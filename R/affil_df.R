@@ -16,18 +16,11 @@ affil_df = function(
   verbose = TRUE,
   ...){
 
-#   au_id = NULL
-#   last_name = NULL
-#   first_name = NULL
-
-  entries = affil_search(
+  L = affil_data(
     affil_id = affil_id,
-    verbose = verbose, ...)$entries
-
-  df = entries_to_df(entries = entries,
-                     au_id = NULL,
-                     verbose = verbose)
-  df$affid = affil_id
+    verbose = verbose,
+    ... = ...)
+  df = L$df
 
   return(df)
 }

@@ -9,7 +9,7 @@ author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
   all_author_info = FALSE, ...)
 
 author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  ...)
+  all_author_info = FALSE, ...)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
