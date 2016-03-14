@@ -5,7 +5,8 @@
 \alias{author_df}
 \title{Search Author Content on SCOPUS}
 \usage{
-author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE, ...)
+author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
+  all_author_info = FALSE, ...)
 
 author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
   ...)
@@ -20,6 +21,9 @@ author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
 \item{api_key}{Elsvier API key}
 
 \item{verbose}{Print diagnostic messages}
+
+\item{all_author_info}{Should all author info be recorded instead of that just to the
+author given}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

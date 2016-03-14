@@ -60,7 +60,7 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
         auth_order = auth_order,
         stringsAsFactors = FALSE
       )
-      rres = cbind(f_res, t(rres$affilname))
+      rres = cbind(f_res, affil_1 = t(rres$affilname))
       rres = unique(rres)
       if (ncol(rres) > 2) {
         colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )

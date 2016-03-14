@@ -7,6 +7,8 @@
 #' @param api_key Elsvier API key
 #' @param first_name first name of author
 #' @param verbose Print diagnostic messages
+#' @param all_author_info Should all author info be recorded instead of that just to the
+#' author given
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -21,6 +23,7 @@ author_df = function(au_id, last_name,
                      first_name,
                      api_key = NULL,
                      verbose = TRUE,
+                     all_author_info = FALSE,
                      ...){
   api_key = get_api_key(api_key)
 
@@ -44,6 +47,12 @@ author_df = function(au_id, last_name,
   df = entries_to_df(entries = entries,
                      au_id = au_id,
                      verbose = verbose)
+#   if ( all_author_info ) {
+#     df2 = entries_to_df(entries = entries,
+#                        au_id = NULL,
+#                        verbose = verbose)
+#     df = merge(df, df2, sort = FALSE, all.x = TRUE)
+#   }
 
 
   #   strip_info = lapply(info, function(x) {
