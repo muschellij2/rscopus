@@ -90,20 +90,8 @@ author_df = function(au_id, last_name,
                          stringsAsFactors = FALSE)
 
   ### Get All possible affiliations from collaborators
-  all_possible_affils = lapply(info, function(x){
+  all_possible_affils = all_possible_affils(info)
 
-    affs = t(sapply(x$affiliation, function(y){
-      c(affid = nonull(y$afid),
-        affilname = nonull(y$affilname, replace = ""))
-    }))
-    affs = as.data.frame(affs,
-                         stringsAsFactors = FALSE)
-    affs = unique(affs)
-  })
-  all_possible_affils = do.call('rbind', all_possible_affils)
-  all_possible_affils = all_possible_affils[
-    !is.na(all_possible_affils$affid), , drop = FALSE]
-  all_possible_affils = unique(all_possible_affils)
 
 
   auths = lapply(info, function(x){

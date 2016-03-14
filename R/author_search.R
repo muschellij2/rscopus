@@ -6,7 +6,7 @@
 #' @param http Address for scopus api
 #' @param count number of records to retrieve (below 100)
 #' @param verbose Print diagnostic messages
-#' @param facets Facets sent in query.  See \url{http://api.elsevier.com/documentation/SCOPUSSearchAPI.wadl}
+#' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param searcher Identifer for author ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
@@ -70,12 +70,21 @@ author_search <- function(
   all_entries = cr$entry
   n_runs = ceiling(total_results / count)
   if (n_runs > 1){
+    if (verbose) {
+      message(paste0(n_runs, " runs need to be ",
+                     "sent with curent count"))
+    }
     for (irun in seq(n_runs - 1)){
       start = irun * count
       cr = get_results(au_id, start = start, count = count,
                        facets = facets)
       all_entries = c(all_entries, cr$entry)
       all_facets = c(all_facets, cr$facet)
+      if (verbose) {
+        if ((irun %% 10) == 0) {
+          message(paste0("Run #", irun))
+        }
+      }
     }
   }
   if (verbose){
