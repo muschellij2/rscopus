@@ -27,7 +27,7 @@ affil_df = function(
 
 
   df = entries_to_df(entries = entries,
-                     au_id = au_id,
+                     au_id = NULL,
                      verbose = verbose)
   df$affil_id = affil_id
 
