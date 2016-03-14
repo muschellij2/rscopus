@@ -92,8 +92,6 @@ author_df = function(au_id, last_name,
   ### Get All possible affiliations from collaborators
   all_possible_affils = all_possible_affils(info)
 
-
-
   auths = lapply(info, function(x){
 
     people_affils = lapply(x$author, function(y){
