@@ -55,37 +55,14 @@ author_df = function(au_id, last_name,
 
 
   ### Getting author information
-  info = author_search(au_id = au_id, api_key = api_key,
+  entries = author_search(au_id = au_id, api_key = api_key,
                        verbose = verbose,
                        ...)$entries
 
-  # Getting number of affilations to push out
-  n_affils = sapply(info, function(x){
-    length(x$affiliation)
-  })
 
-  ##################################
-  # Get affiliation information
-  ##################################
-  # Need to make sure 1 for consistency in df
-  max_n_affils = max(max(n_affils), 1)
-  affils = t(sapply(info, function(x){
-    x = sapply(x$affiliation, function(y){
-      nonull(y$affilname, replace = "")
-    })
-    x = c(x, rep("",
-                 max_n_affils - length(x)))
-  }))
-
-  # replace all missing with NA
-  affils[affils %in% ""] = NA
-  colnames(affils) = paste0("affil_",
-                            seq(ncol(affils)))
-  affils = as.data.frame(affils,
-                         stringsAsFactors = FALSE)
-
-  ### Get All possible affiliations from collaborators
-  all_possible_affils = all_possible_affils(info)
+  df = entries_to_df(entries = entries,
+                     au_id = au_id,
+                     verbose = verbose)
 
 
 #   strip_info = lapply(info, function(x) {
@@ -99,75 +76,16 @@ author_df = function(au_id, last_name,
 
   # affils = entries_to_affil_list(info)
 
-  auths = llply(info, function(x){
 
-    res = entry_to_affil(x = x,
-                         all_affils = all_possible_affils)
-
-    n_authors = max(as.numeric(res$seq))
-    # print(n_authors)
-    rres = res
-
-    # affil_list_to_df[[1]]
-    if (!is.null(au_id)) {
-      rres = res[ res$auth_id %in% au_id, , drop = FALSE]
-      auth_order = unique(as.numeric(rres$seq))
-      if (nrow(rres) == 0) {
-        auth_order = rep(NA, n_authors)
-      }
-
-      f_res = data.frame(
-        auth_order = auth_order,
-        stringsAsFactors = FALSE
-      )
-      rres = cbind(f_res, t(rres$affilname))
-      rres = unique(rres)
-      if (ncol(rres) > 2) {
-        colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
-        # print(rres)
-      }
-      if (nrow(rres) == 0) {
-        # print(res)
-      }
-    } else {
-      rres$seq = NULL
-
-      rres[is.na(rres)] = ""
-
-      rres = lapply(rres, function(y) {
-          paste(y, collapse = ";")
-        })
-      rres = as.data.frame(rres)
-      rres$index = NULL
-
-    }
-
-    rres$n_auth = n_authors
-
-
-    return(rres)
-  }, .progress = ifelse(verbose, "text", "none"))
-
-  total_auths = max(sapply(auths, ncol))
-
-  auths = lapply(auths, function(x) {
-    if (ncol(x) < total_auths){
-      mat = matrix(rep(NA, total_auths - ncol(x)), nrow = 1)
-      colnames(mat) = paste0("affil_", ((ncol(x) + 1):total_auths) - 2)
-      x = cbind(x, mat)
-    }
-    x
-  })
-  auths = do.call("rbind", auths)
-
-  df$n_affiliations = n_affils
+  # df$n_affiliations = n_affils
   df$first_name = first_name
   df$last_name = last_name
+  df$au_id = au_id
   # df = cbind(df, affils)
-  df = cbind(df, auths)
-  for (icol in grep("affil_", colnames(df))) {
-    df[, icol] = as.character(df[, icol])
-  }
+  # df = cbind(df, auths)
+#   for (icol in grep("affil_", colnames(df))) {
+#     df[, icol] = as.character(df[, icol])
+#   }
 
   return(df)
 }
