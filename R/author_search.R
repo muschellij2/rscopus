@@ -69,12 +69,14 @@ author_search <- function(
   ### Loop through all the other pages
   all_entries = cr$entry
   n_runs = ceiling(total_results / count)
-  if (n_runs > 1){
+  if (n_runs > 1) {
     if (verbose) {
       message(paste0(n_runs, " runs need to be ",
                      "sent with curent count"))
+      pb = txtProgressBar(min = 1, max = n_runs - 1,
+                          initial = 1, style = 3)
     }
-    for (irun in seq(n_runs - 1)){
+    for (irun in seq(n_runs - 1)) {
       start = irun * count
       cr = get_results(au_id, start = start, count = count,
                        facets = facets)
@@ -82,16 +84,18 @@ author_search <- function(
       all_facets = c(all_facets, cr$facet)
       if (verbose) {
         if ((irun %% 10) == 0) {
-          message(paste0("Run #", irun))
+          # message(paste0("Run #", irun))
+          setTxtProgressBar(pb, value = irun)
         }
       }
     }
   }
-  if (verbose){
+  if (verbose) {
     message(paste0("Number of Output Entries are ", length(all_entries),
                  "\n"))
+    close(pb)
   }
-  if (total_results != length(all_entries)){
+  if (total_results != length(all_entries)) {
     warning("May not have received all entries")
   }
   return(list(entries = all_entries, facets = all_facets))

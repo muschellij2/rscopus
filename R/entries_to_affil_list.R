@@ -90,7 +90,9 @@ entry_to_affil = function(x, all_affils) {
 #' @import plyr
 #' @export
 collapse_affil = function(affils, collapse = ";") {
-
+  # global variable crap
+  index = NULL
+  rm(list = "index")
   ###################################
   # Get individual affiliations from each person
   ###################################
