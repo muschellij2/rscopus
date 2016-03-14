@@ -4,7 +4,7 @@
 \alias{process_author_name}
 \title{Process Author Name}
 \usage{
-process_author_name(au_id, last_name, first_name, api_key)
+process_author_name(au_id, last_name, first_name, api_key, verbose = TRUE)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
@@ -14,6 +14,8 @@ process_author_name(au_id, last_name, first_name, api_key)
 \item{first_name}{first name of author}
 
 \item{api_key}{Elsvier API key}
+
+\item{verbose}{Print diagnostic messages}
 }
 \value{
 List of first/last name and author ID

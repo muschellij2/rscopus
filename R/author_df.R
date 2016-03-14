@@ -27,7 +27,8 @@ author_df = function(au_id, last_name,
   L = process_author_name(au_id = au_id,
                           first_name = first_name,
                           last_name = last_name,
-                          api_key = api_key)
+                          api_key = api_key,
+                          verbose = verbose)
 
   first_name = L$first_name
   last_name = L$last_name
@@ -85,7 +86,8 @@ author_data = function(au_id, last_name,
   L = process_author_name(au_id = au_id,
                           first_name = first_name,
                           last_name = last_name,
-                          api_key = api_key)
+                          api_key = api_key,
+                          verbose = verbose)
 
   first_name = L$first_name
   last_name = L$last_name
@@ -117,9 +119,11 @@ author_data = function(au_id, last_name,
 #' @param last_name last name of author
 #' @param first_name first name of author
 #' @param api_key Elsvier API key
+#' @param verbose Print diagnostic messages
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
-process_author_name = function(au_id, last_name, first_name, api_key) {
+process_author_name = function(au_id, last_name,
+                               first_name, api_key, verbose = TRUE) {
   # Getting AU-ID
   if (
     (!missing(last_name) | !missing(first_name) ) &
