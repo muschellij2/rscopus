@@ -73,7 +73,7 @@ author_search <- function(
     if (verbose) {
       message(paste0(n_runs, " runs need to be ",
                      "sent with curent count"))
-      pb = txtProgressBar(min = 1, max = n_runs - 1,
+      pb = txtProgressBar(min = ifelse(n_runs == 2, 0, 1), max = n_runs - 1,
                           initial = 1, style = 3)
     }
     for (irun in seq(n_runs - 1)) {
@@ -91,7 +91,7 @@ author_search <- function(
     }
    if (verbose) {
      close(pb)
-   } 
+   }
   }
   if (verbose) {
     message(paste0("Number of Output Entries are ", length(all_entries),
