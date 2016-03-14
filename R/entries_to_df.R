@@ -91,7 +91,7 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
   new_colnames = unlist(lapply(auths, colnames))
   new_colnames = unique(new_colnames)
 
-  auths = lapply(auths, function(x){
+  auths = llply(auths, function(x){
     cn = colnames(x)
     sd = setdiff(new_colnames, cn)
     if (length(sd) > 0) {
@@ -101,9 +101,12 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
     }
     x = x[, new_colnames]
     return(x)
-  })
+  }, .progress = ifelse(verbose, "text", "none"))
 
   df = do.call("rbind", auths)
   df$n_affils = n_affils
+  cites = entries_to_citation_df(entries = entries)
+  df = cbind(df, cites)
+
   return(df)
 }
