@@ -35,14 +35,11 @@ affil_df = function(
 
 
 #' @rdname affil_df
+#' @export
 affil_data = function(
   affil_id,
   verbose = TRUE,
   ...){
-
-  #   au_id = NULL
-  #   last_name = NULL
-  #   first_name = NULL
 
   entries = affil_search(
     affil_id = affil_id,
