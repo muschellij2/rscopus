@@ -60,12 +60,16 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
         auth_order = auth_order,
         stringsAsFactors = FALSE
       )
-      rres = cbind(f_res, affil_1 = t(rres$affilname))
+
+      mat = t(rres$affilname)
+      colnames(mat) = paste0("affil_", 1:ncol(mat))
+
+      rres = cbind(f_res, mat)
       rres = unique(rres)
-      if (ncol(rres) > 2) {
-        colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
-        # print(rres)
-      }
+#       if (ncol(rres) > 3) {
+#         colnames(rres)[3:ncol(rres)] = paste0("affil_", 2:(ncol(rres) - 2) )
+#         # print(rres)
+#       }
       if (nrow(rres) == 0) {
         # print(res)
       }
