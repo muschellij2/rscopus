@@ -28,6 +28,12 @@ entries_to_affil_list = function(entries) {
 #' @export
 entry_to_affil = function(x, all_affils) {
 
+  nonull = function(x, replace = NA){
+    if (is.null(x) | length(x) == 0){
+      x = replace
+    }
+    x
+  }
   ###################################
   # Get individual affiliations from each person
   ###################################
