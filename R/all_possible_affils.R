@@ -8,6 +8,13 @@
 #' @export
 all_possible_affils = function(entries) {
 
+  nonull = function(x, replace = NA){
+    if (is.null(x) | length(x) == 0){
+      x = replace
+    }
+    x
+  }
+
   all_possible_affils = lapply(entries, function(x){
 
     affs = t(sapply(x$affiliation, function(y){
