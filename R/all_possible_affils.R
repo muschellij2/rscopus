@@ -8,12 +8,6 @@
 #' @export
 all_possible_affils = function(entries) {
 
-  nonull = function(x, replace = NA){
-    if (is.null(x) | length(x) == 0){
-      x = replace
-    }
-    x
-  }
 
   all_possible_affils = lapply(entries, function(x){
 
@@ -30,4 +24,16 @@ all_possible_affils = function(entries) {
     !is.na(all_possible_affils$affid), , drop = FALSE]
   all_possible_affils = unique(all_possible_affils)
   return(all_possible_affils)
+}
+
+#' @title Remove NULL
+#' @description Removes NULL values from a vector from a list
+#' @param x Vector from a list
+#' @param replace Value to replace NULL with
+#' @return Vector
+nonull = function(x, replace = NA){
+  if (is.null(x) | length(x) == 0){
+    x = replace
+  }
+  x
 }
