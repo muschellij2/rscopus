@@ -47,12 +47,15 @@ author_df = function(au_id, last_name,
   df = entries_to_df(entries = entries,
                      au_id = au_id,
                      verbose = verbose)
-#   if ( all_author_info ) {
-#     df2 = entries_to_df(entries = entries,
-#                        au_id = NULL,
-#                        verbose = verbose)
-#     df = merge(df, df2, sort = FALSE, all.x = TRUE)
-#   }
+  if ( all_author_info ) {
+    df$indexer = seq(nrow(df))
+    df2 = entries_to_df(entries = entries,
+                       au_id = NULL,
+                       verbose = verbose)
+    df = merge(df, df2, sort = FALSE, all.x = TRUE)
+    df = df[ order(df$indexer), ]
+    df$indexer = NULL
+  }
 
 
   #   strip_info = lapply(info, function(x) {
