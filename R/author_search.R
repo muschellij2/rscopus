@@ -89,11 +89,13 @@ author_search <- function(
         }
       }
     }
+   if (verbose) {
+     close(pb)
+   } 
   }
   if (verbose) {
     message(paste0("Number of Output Entries are ", length(all_entries),
                  "\n"))
-    close(pb)
   }
   if (total_results != length(all_entries)) {
     warning("May not have received all entries")
