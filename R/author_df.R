@@ -11,6 +11,7 @@
 #' @export
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
+#' @import plyr
 #' @examples \dontrun{
 #' author_df(last_name = "Caffo", first_name = "Brian")
 #' }
@@ -96,34 +97,56 @@ author_df = function(au_id, last_name,
 #     "author-count", "author")]
 #   })
 
-  auths = lapply(info, function(x){
+  # affils = entries_to_affil_list(info)
+
+  auths = llply(info, function(x){
 
     res = entry_to_affil(x = x,
                          all_affils = all_possible_affils)
 
     n_authors = max(as.numeric(res$seq))
     # print(n_authors)
-    rres = res[ res$auth_id %in% au_id, , drop = FALSE]
-    auth_order = unique(as.numeric(rres$seq))
-    if (nrow(rres) == 0){
-      auth_order = rep(NA, n_authors)
+    rres = res
+
+    # affil_list_to_df[[1]]
+    if (!is.null(au_id)) {
+      rres = res[ res$auth_id %in% au_id, , drop = FALSE]
+      auth_order = unique(as.numeric(rres$seq))
+      if (nrow(rres) == 0) {
+        auth_order = rep(NA, n_authors)
+      }
+
+      f_res = data.frame(
+        auth_order = auth_order,
+        stringsAsFactors = FALSE
+      )
+      rres = cbind(f_res, t(rres$affilname))
+      rres = unique(rres)
+      if (ncol(rres) > 2) {
+        colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
+        # print(rres)
+      }
+      if (nrow(rres) == 0) {
+        # print(res)
+      }
+    } else {
+      rres$seq = NULL
+
+      rres[is.na(rres)] = ""
+
+      rres = lapply(rres, function(y) {
+          paste(y, collapse = ";")
+        })
+      rres = as.data.frame(rres)
+      rres$index = NULL
+
     }
 
-    f_res = data.frame(
-      cbind(n_auth = n_authors, auth_order = auth_order),
-      stringsAsFactors = FALSE
-    )
-    rres = cbind(f_res, t(rres$affilname))
-    rres = unique(rres)
-    if (ncol(rres) > 2) {
-      colnames(rres)[3:ncol(rres)] = paste0("affil_", 1:(ncol(rres) - 2) )
-      # print(rres)
-    }
-    if (nrow(rres) == 0) {
-      # print(res)
-    }
+    rres$n_auth = n_authors
+
+
     return(rres)
-  })
+  }, .progress = ifelse(verbose, "text", "none"))
 
   total_auths = max(sapply(auths, ncol))
 
