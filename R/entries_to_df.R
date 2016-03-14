@@ -62,7 +62,7 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
       )
 
       mat = t(rres$affilname)
-      colnames(mat) = paste0("affil_", 1:ncol(mat))
+      colnames(mat) = paste0("affilname_", 1:ncol(mat))
 
       rres = cbind(f_res, mat)
       rres = unique(rres)

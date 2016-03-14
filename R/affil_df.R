@@ -27,7 +27,7 @@ affil_df = function(
   df = entries_to_df(entries = entries,
                      au_id = NULL,
                      verbose = verbose)
-  df$affil_id = affil_id
+  df$affid = affil_id
 
   return(df)
 }
@@ -48,7 +48,7 @@ affil_data = function(
   df = entries_to_df(entries = entries,
                      au_id = NULL,
                      verbose = verbose)
-  df$affil_id = affil_id
+  df$affid = affil_id
 
   L = list(entries = entries, df = df)
   return(L)

@@ -73,7 +73,7 @@ author_df = function(au_id, last_name,
   df$au_id = au_id
   # df = cbind(df, affils)
   # df = cbind(df, auths)
-  #   for (icol in grep("affil_", colnames(df))) {
+  #   for (icol in grep("affilname_", colnames(df))) {
   #     df[, icol] = as.character(df[, icol])
   #   }
 
@@ -155,7 +155,7 @@ process_author_name = function(au_id, last_name,
       message("Authors found:")
       print(auth_name[1,])
     }
-    au_id = auth_name$auth_id[1]
+    au_id = auth_name$au_id[1]
   }
   if (missing(last_name)) {
     last_name = NULL
