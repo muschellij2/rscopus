@@ -31,6 +31,7 @@
 #'        df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
 #'        #r = httr::GET(url = df$text[1],
 #'        #        query = list("apiKey" = api_key))
+#'        query = paste0("apiKey=", api_key)
 #'        r = httr::GET(paste0(df$text[1], "&", query))
 #'        img = httr::content(r)
 #'        dims = dim(img)[1:2]
