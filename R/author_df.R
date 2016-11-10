@@ -106,8 +106,9 @@ author_data = function(au_id, last_name,
 #' @param verbose Print diagnostic messages
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
+#' @export
 process_author_name = function(au_id, last_name,
-                               first_name, api_key, verbose = TRUE) {
+                               first_name, api_key = NULL, verbose = TRUE) {
   # Getting AU-ID
   if (
     (!missing(last_name) | !missing(first_name) ) &

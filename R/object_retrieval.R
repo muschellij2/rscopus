@@ -16,26 +16,27 @@
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
 #'    x = object_retrieval("S1053811915002700", identifier = "pii")
-#'    if (require(xml2) & require(httr)){
-#'        library(httr)
+#'    if (requireNamespace("xml2") & requireNamespace("httr") &
+#'    requireNamespace("rvest")
+#'    ){
 #'        refs = httr::content(x$get_statement, "text")
-#'        refs = read_xml(refs)
-#'        refs = xml_nodes(refs, "choice")
-#'        texts = xml_text(refs)
-#'        types = xml_attr(refs, "type")
-#'        refs = xml_attr(refs, "ref")
+#'        refs = xml2::read_xml(refs)
+#'        refs = rvest::xml_nodes(refs, "choice")
+#'        texts = xml2::xml_text(refs)
+#'        types = xml2::xml_attr(refs, "type")
+#'        refs = xml2::xml_attr(refs, "ref")
 #'        df = data.frame(ref = refs, type = types, text = texts,
 #'        stringsAsFactors = FALSE)
 #'        df = df[ grepl("image/jpeg", df$text),,drop = FALSE ]
 #'        df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
-#'        r = GET(df$text[1],
-#'                query = list(
-#'                  "apiKey" = api_key))
-#'        img = content(r)
+#'        #r = httr::GET(url = df$text[1],
+#'        #        query = list("apiKey" = api_key))
+#'        r = httr::GET(paste0(df$text[1], "&", query))
+#'        img = httr::content(r)
 #'        dims = dim(img)[1:2]
 #'        mdim = max(dims)
-#'        plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
-#'        rasterImage(img, 1, 1, ncol(img), nrow(img))
+#'        graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
+#'        graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
 #'    }
 #'  obj = object_retrieval('S1053811915002700', "pii")
 #' }
@@ -48,7 +49,7 @@ object_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  ender = paste0(paste(identifier, id, sep = "/"))
+  ender = paste(identifier, id, sep = "/")
   if (!is.null(ref)){
     ender = paste(ender, "ref", ref, sep = "/")
   }

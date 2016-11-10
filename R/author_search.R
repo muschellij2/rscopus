@@ -4,7 +4,8 @@
 #' @param au_id Author ID number
 #' @param api_key API Key for Elsevier
 #' @param http Address for scopus api
-#' @param count number of records to retrieve (below 100)
+#' @param count number of records to retrieve (below 25, see
+#' \url{http://dev.elsevier.com/api_key_settings.html})
 #' @param verbose Print diagnostic messages
 #' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param searcher Identifer for author ID.  Do not change unless you
@@ -13,12 +14,14 @@
 #' @param ... Arguments to be passed to \code{\link{GET}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
+#' @importFrom httr stop_for_status
+#' @importFrom utils setTxtProgressBar txtProgressBar
 #' @return List of entries from SCOPUS
 author_search <- function(
   au_id, # Author ID number
   api_key = NULL,
   http = "http://api.elsevier.com/content/search/scopus",
-  count = 100, # number of records to retrieve (below 100)
+  count = 25, # number of records to retrieve (below 25)
   verbose = TRUE,
   facets =  "subjarea(sort=fd)",
   searcher = "AU-ID",
@@ -40,6 +43,7 @@ author_search <- function(
             add_headers(
               "X-ELS-ResourceVersion" = "allexpand")
     )
+    stop_for_status(r)
     cr = content(r)$`search-results`
     return(cr)
   }

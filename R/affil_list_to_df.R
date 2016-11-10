@@ -6,6 +6,7 @@
 #' \code{"index"} denotes the element of the object \code{affils} that the row
 #' corresponds to
 #' @export
+#' @importFrom stats reshape
 affil_list_to_df = function(affils) {
 
   ########################

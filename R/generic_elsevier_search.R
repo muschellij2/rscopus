@@ -82,8 +82,10 @@ generic_elsevier_api <- function(
   }
 
   http = paste(root_http, type, search_type, sep = "/")
+  if (!is.null(http_end)) {
+    http = paste0(http, http_end)
+  }
   http = gsub("/$", "", http)
-  http = paste0(http, http_end)
 
   if (verbose){
     message(paste0("HTTP specified is:", http, "\n"))

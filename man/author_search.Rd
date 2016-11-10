@@ -5,7 +5,7 @@
 \title{Search Author Content on SCOPUS}
 \usage{
 author_search(au_id, api_key = NULL,
-  http = "http://api.elsevier.com/content/search/scopus", count = 100,
+  http = "http://api.elsevier.com/content/search/scopus", count = 25,
   verbose = TRUE, facets = "subjarea(sort=fd)", searcher = "AU-ID",
   max_count = Inf, ...)
 }
@@ -16,7 +16,8 @@ author_search(au_id, api_key = NULL,
 
 \item{http}{Address for scopus api}
 
-\item{count}{number of records to retrieve (below 100)}
+\item{count}{number of records to retrieve (below 25, see
+\url{http://dev.elsevier.com/api_key_settings.html})}
 
 \item{verbose}{Print diagnostic messages}
 
