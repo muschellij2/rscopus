@@ -49,3 +49,15 @@ get_api_key = function(api_key = NULL, error = TRUE) {
   }
   return(api_key)
 }
+
+#' @title Set API Key for Elsevier
+#'
+#' @description Sets Elsevier API key using
+#' if \code{option(elsevier_api_key)}
+#' @param api_key Elsvier API key
+#' @return NULL
+#' @export
+set_api_key = function(api_key) {
+  options("elsevier_api_key" = api_key)
+  invisible(NULL)
+}
