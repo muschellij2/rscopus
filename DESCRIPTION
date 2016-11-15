@@ -19,6 +19,6 @@ LazyData: TRUE
 Suggests:
     xml2,
     rvest,
-    graphics,
+    graphics
 BugReports: https://github.com/muschellij2/rscopus/issues
 RoxygenNote: 5.0.1.9000
