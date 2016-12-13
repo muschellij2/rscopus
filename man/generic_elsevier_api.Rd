@@ -64,4 +64,3 @@ s = generic_elsevier_api(query = "",
                       api_key = api_key)
 }
 }
-

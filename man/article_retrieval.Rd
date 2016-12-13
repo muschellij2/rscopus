@@ -37,4 +37,3 @@ if (!is.null(api_key)){
 \seealso{
 \code{\link{generic_elsevier_api}}
 }
-

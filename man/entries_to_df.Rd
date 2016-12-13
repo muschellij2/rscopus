@@ -21,4 +21,3 @@ Data frame of records
 \description{
 Converts a list of entries into a \code{data.frame} of records
 }
-

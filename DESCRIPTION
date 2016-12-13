@@ -1,8 +1,8 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database API Interface
-Version: 0.3.1
-Date: 2016-11-10
+Version: 0.3.2
+Date: 2016-12-13
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
 Description: Uses Elsevier Scopus API 

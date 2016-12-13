@@ -17,4 +17,3 @@ A \code{data.frame} of affiliations
 Take a SCOPUS entry and transform it to a data frame of
 all affiliations listed in there
 }
-

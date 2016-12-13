@@ -19,4 +19,3 @@ information in a workable format
 \seealso{
 \code{\link{get_complete_author_info}}
 }
-

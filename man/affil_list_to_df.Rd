@@ -18,4 +18,3 @@ corresponds to
 Take a SCOPUS entry and transform it to a data frame of
 affiliations
 }
-

@@ -27,4 +27,3 @@ Process author ID and names for generic use
 \note{
 This function is really to avoid duplication
 }
-

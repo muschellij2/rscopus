@@ -17,4 +17,3 @@ Vector
 \description{
 Removes NULL values from a vector from a list
 }
-

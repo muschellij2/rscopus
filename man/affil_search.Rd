@@ -23,4 +23,3 @@ Searches SCOPUS to get information about documents on an author.
 \seealso{
 \code{\link{get_author_info}}
 }
-

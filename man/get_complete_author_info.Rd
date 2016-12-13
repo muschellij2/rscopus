@@ -30,4 +30,3 @@ List of information
 Uses SCOPUS author search to identify author identification
 information
 }
-

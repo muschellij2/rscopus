@@ -19,4 +19,3 @@ A \code{data.frame} of affiliation information
 Take an individual SCOPUS entry and transform it to a data frame of
 affiliations
 }
-

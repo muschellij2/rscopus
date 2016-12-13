@@ -13,4 +13,3 @@ set_api_key(api_key)
 Sets Elsevier API key using
 if \code{option(elsevier_api_key)}
 }
-

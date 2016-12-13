@@ -17,4 +17,3 @@ A \code{data.frame} of citation information
 Take a SCOPUS entry list and transform it to a data frame of
 citation and article information
 }
-

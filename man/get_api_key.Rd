@@ -27,4 +27,3 @@ You can either set the API key using
 \examples{
 get_api_key(error = FALSE)
 }
-
