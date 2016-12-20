@@ -87,10 +87,10 @@ author_search <- function(
       all_entries = c(all_entries, cr$entry)
       all_facets = c(all_facets, cr$facet)
       if (verbose) {
-        if ((irun %% 10) == 0) {
+        # if ((irun %% 10) == 0) {
           # message(paste0("Run #", irun))
           setTxtProgressBar(pb, value = irun)
-        }
+        # }
       }
     }
    if (verbose) {
