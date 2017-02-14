@@ -1,7 +1,7 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
-Version: 0.4.4
+Version: 0.4.5
 Date: 2017-02-14
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>
@@ -21,7 +21,8 @@ Suggests:
     xml2,
     rvest,
     graphics,
-    testthat
+    testthat,
+    jpeg
 URL: https://dev.elsevier.com/sc_apis.html, 
     https://github.com/muschellij2/rscopus
 BugReports: https://github.com/muschellij2/rscopus/issues

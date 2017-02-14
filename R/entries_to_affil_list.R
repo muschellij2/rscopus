@@ -88,7 +88,7 @@ entry_to_affil = function(x, all_affils) {
 #' @param collapse What should values be collapsed using as a separator
 #' @return A \code{data.frame} of affiliation information
 #' @export
-#' @importFrom plyr ddply
+#' @importFrom plyr ddply .
 collapse_affil = function(affils, collapse = ";") {
   # global variable crap
   index = NULL
