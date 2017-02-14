@@ -50,6 +50,13 @@ get_api_key = function(api_key = NULL, error = TRUE) {
   return(api_key)
 }
 
+#' @rdname get_api_key
+#' @export
+have_api_key = function(api_key = NULL) {
+  api_key = get_api_key(api_key = api_key, error = FALSE)
+  !is.null(api_key)
+}
+
 #' @title Set API Key for Elsevier
 #'
 #' @description Sets Elsevier API key using

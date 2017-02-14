@@ -87,8 +87,8 @@ entry_to_affil = function(x, all_affils) {
 #' usually from \code{\link{author_search}}
 #' @param collapse What should values be collapsed using as a separator
 #' @return A \code{data.frame} of affiliation information
-#' @import plyr
 #' @export
+#' @importFrom plyr ddply
 collapse_affil = function(affils, collapse = ";") {
   # global variable crap
   index = NULL

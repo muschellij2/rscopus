@@ -9,7 +9,6 @@
 #' See \code{\link{generic_elsevier_api}}
 #' @param ... Arguments to be passed to \code{\link{generic_elsevier_api}}
 #' @export
-#' @import httr
 #' @seealso \code{\link{generic_elsevier_api}}
 #' @return List of elements, similar to \code{\link{generic_elsevier_api}}
 #' @examples

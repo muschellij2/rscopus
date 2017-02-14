@@ -2,9 +2,12 @@
 % Please edit documentation in R/get_api_key.R
 \name{get_api_key}
 \alias{get_api_key}
+\alias{have_api_key}
 \title{Find API Key for Elsevier}
 \usage{
 get_api_key(api_key = NULL, error = TRUE)
+
+have_api_key(api_key = NULL)
 }
 \arguments{
 \item{api_key}{Elsvier API key}

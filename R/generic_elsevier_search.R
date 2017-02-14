@@ -16,7 +16,6 @@
 #' @param api_key_error Should there be an error if no API key?
 #' @param ... Options passed to query for \code{\link{GET}}
 #' @return List of elements, content and the \code{GET} request
-#' @import httr
 #' @export
 #' @examples \dontrun{
 #' query_string = "affil(hopkins)"
@@ -35,6 +34,7 @@
 #'                       type = "abstract", http_end = "pii/S1053811915002700",
 #'                       api_key = api_key)
 #' }
+#' @importFrom httr GET add_headers
 generic_elsevier_api <- function(
   query = NULL,
   type = c("search", "article",

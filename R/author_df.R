@@ -13,7 +13,6 @@
 #' @export
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
-#' @import plyr
 #' @examples \dontrun{
 #' author_df(last_name = "Muschelli", first_name = "John")
 #' }
@@ -69,17 +68,19 @@ author_data = function(au_id, last_name,
                           ...)$entries
 
 
-  df = entries_to_df(entries = entries,
-                     au_id = au_id,
-                     verbose = verbose)
+
   if ( all_author_info ) {
-    df$indexer = seq(nrow(df))
-    df2 = entries_to_df(entries = entries,
+    # df$indexer = seq(nrow(df))
+    df = entries_to_df(entries = entries,
                         au_id = NULL,
                         verbose = verbose)
-    df = merge(df, df2, sort = FALSE, all.x = TRUE)
-    df = df[ order(df$indexer), ]
-    df$indexer = NULL
+    # df = merge(df, df2, sort = FALSE, all.x = TRUE)
+    # df = df[ order(df$indexer), ]
+    # df$indexer = NULL
+  } else {
+    df = entries_to_df(entries = entries,
+                       au_id = au_id,
+                       verbose = verbose)
   }
 
 

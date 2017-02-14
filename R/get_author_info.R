@@ -9,7 +9,7 @@
 #' @param http Author API http
 #' @param verbose Print messages from specification
 #' @param ... options to pass to \code{\link{GET}}
-#' @import httr
+#' @importFrom httr GET content
 #' @importFrom utils URLencode
 #' @export
 #' @return List of information
@@ -60,7 +60,6 @@ get_complete_author_info <- function(
 #' @description Uses SCOPUS author search to identify author identification
 #' information in a workable format
 #' @param ... Arguments passed to \code{\link{get_complete_author_info}}
-#' @import httr
 #' @seealso \code{\link{get_complete_author_info}}
 #' @export
 #' @return Data.frame of information

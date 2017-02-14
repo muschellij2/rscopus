@@ -8,7 +8,6 @@
 #' @export
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
-#' @import plyr
 #' @note The \code{affil_data} command will return the list of all entries as well as
 #' the \code{data.frame}
 affil_df = function(

@@ -8,7 +8,7 @@
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @return Data frame of records
-#' @import plyr
+#' @importFrom plyr llply
 entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
   # Getting number of affilations to push out
@@ -62,7 +62,9 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
       )
 
       mat = t(rres$affilname)
-      colnames(mat) = paste0("affilname_", 1:ncol(mat))
+      if (ncol(mat) > 0) {
+        colnames(mat) = paste0("affilname_", 1:ncol(mat))
+      }
 
       rres = cbind(f_res, mat)
       rres = unique(rres)
