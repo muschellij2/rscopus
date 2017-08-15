@@ -28,7 +28,8 @@ know exactly what the API calls for.}
 
 \item{max_count}{Maximum count of records to be returned.}
 
-\item{...}{Arguments to be passed to \code{\link{GET}}}
+\item{...}{Arguments to be passed to the query list for
+\code{\link{GET}}}
 }
 \value{
 List of entries from SCOPUS
