@@ -10,4 +10,5 @@ sticker("icon.png",
         h_color = outline, 
         s_width = 0.7, 
         s_height = 0.25,
-        s_x = 1)
+        s_x = 1,
+        filename = "sticker.png")
