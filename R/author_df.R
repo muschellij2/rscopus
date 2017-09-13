@@ -140,6 +140,7 @@ process_author_name = function(au_id, last_name,
   if (missing(first_name)) {
     first_name = NULL
   }
+  au_id = as.character(au_id)
   L = list(first_name = first_name,
            last_name = last_name,
            au_id = au_id)

@@ -57,6 +57,7 @@ author_search <- function(
     cr = content(r)$`search-results`
     return(cr)
   }
+  au_id = as.character(au_id)
 
   cr = get_results(au_id, start = 0, count = count,
                    facets = facets,

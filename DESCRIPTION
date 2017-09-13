@@ -15,7 +15,8 @@ Imports:
     httr,
     utils,
     stats,
-    plyr
+    plyr,
+    tidyr
 LazyData: TRUE
 Suggests:
     xml2,
