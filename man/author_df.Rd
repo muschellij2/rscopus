@@ -39,7 +39,7 @@ the \code{data.frame}.
 }
 \examples{
 \dontrun{
-author_df(last_name = "Muschelli", first_name = "John")
+author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
 }
 }
 \seealso{

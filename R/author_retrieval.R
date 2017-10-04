@@ -16,12 +16,13 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#'    x = author_retrieval("40462056100", identifier = "author_id")
+#'    x = author_retrieval("40462056100", identifier = "author_id",
+#'    verbose = FALSE)
 #' } else {
 #'  x = author_retrieval(
 #'  "40462056100",
 #'  identifier = "author_id",
-#'    api_key_error = FALSE)
+#'    api_key_error = FALSE, verbose = FALSE)
 #' }
 #' @rdname author_retrieval
 #' @export

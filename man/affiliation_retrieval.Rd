@@ -27,7 +27,8 @@ retrieval of an affiliation from the Elsevier Affiliation Retrieval API
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
-   x = affiliation_retrieval("60006183", identifier = "affiliation_id")
+   x = affiliation_retrieval("60006183", identifier = "affiliation_id",
+   verbose = FALSE)
 }
 }
 \seealso{

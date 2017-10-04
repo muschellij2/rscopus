@@ -14,7 +14,7 @@
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
 #' @examples \dontrun{
-#' author_df(last_name = "Muschelli", first_name = "John")
+#' author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
 #' }
 #' @note The \code{author_data} command will return the list of all entries as well as
 #' the \code{data.frame}.

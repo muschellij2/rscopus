@@ -13,7 +13,8 @@
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
 #' if (!is.null(api_key)){
-#'    x = entitlement_retrieval("S1053811915002700", identifier = "pii")
+#'    x = entitlement_retrieval("S1053811915002700", identifier = "pii",
+#'    verbose = FALSE)
 #' }
 entitlement_retrieval <- function(
   id, # Identifier for article

@@ -11,3 +11,4 @@ sticker\.R
 sticker\.png
 ^appveyor\.yml$
 ^README\.Rmd$
+^docs$

@@ -29,7 +29,8 @@ retrieval of an object from the Elsevier Object Retrieval API
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
-   x = object_retrieval("S1053811915002700", identifier = "pii")
+   x = object_retrieval("S1053811915002700", identifier = "pii",
+   verbose = FALSE)
    if (requireNamespace("xml2") & requireNamespace("httr") &
    requireNamespace("rvest")
    ){
@@ -53,7 +54,7 @@ if (!is.null(api_key)){
        graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
        graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
    }
- obj = object_retrieval('S1053811915002700', "pii")
+ obj = object_retrieval('S1053811915002700', "pii", verbose = FALSE)
 }
 }
 \seealso{

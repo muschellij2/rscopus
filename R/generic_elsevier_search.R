@@ -22,17 +22,20 @@
 #' # Use affiliation query
 #' s = generic_elsevier_api(query = query_string,
 #'                          type = "search", search_type = "affiliation",
-#'                          api_key = api_key)
+#'                          api_key = api_key,
+#'                       verbose = FALSE)
 #'
 #' # Use author query
 #' s = generic_elsevier_api(query = query_string,
 #' type = "search", search_type = "author",
-#' api_key = api_key)
+#' api_key = api_key,
+#'                       verbose = FALSE)
 #'
 #' # Query abstract by pii
 #' s = generic_elsevier_api(query = "",
 #'                       type = "abstract", http_end = "pii/S1053811915002700",
-#'                       api_key = api_key)
+#'                       api_key = api_key,
+#'                       verbose = FALSE)
 #' }
 #' @importFrom httr GET add_headers
 generic_elsevier_api <- function(

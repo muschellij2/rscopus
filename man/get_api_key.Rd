@@ -28,5 +28,5 @@ You can either set the API key using
 \code{api_key = Sys.getenv('Elsevier_API')}.
 }
 \examples{
-get_api_key(error = FALSE)
+res = get_api_key(error = FALSE)
 }

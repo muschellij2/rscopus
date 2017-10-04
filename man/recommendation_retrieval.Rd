@@ -27,7 +27,8 @@ retrieval of a recommendation from the Elsevier Article Recommendation API
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
-   x = recommendation_retrieval("S1053811915002700", identifier = "pii")
+   x = recommendation_retrieval("S1053811915002700", identifier = "pii",
+   verbose = FALSE)
 }
 }
 \seealso{
