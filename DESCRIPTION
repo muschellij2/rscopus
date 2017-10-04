@@ -1,7 +1,7 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
-Version: 0.4.7
+Version: 0.5.0
 Date: 2017-02-14
 Author: John Muschelli
 Maintainer: John Muschelli <muschellij2@gmail.com>

@@ -9,3 +9,5 @@ icon\.psd
 icon_black\.png
 sticker\.R
 sticker\.png
+^appveyor\.yml$
+^README\.Rmd$

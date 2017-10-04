@@ -1,0 +1,53 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+R Package to interface with Elsevier and Scopus APIs
+
+![Sticker](sticker.png)
+
+[![Travis-CI Build Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-"
+)
+```
+# rscopus
+
+The goal of rscopus is to provide an R Scopus Database 'API' Interface.
+
+## Installation
+
+You can install rscopus from github with:
+
+```{r gh-installation, eval = FALSE}
+# install.packages("devtools")
+devtools::install_github("muschellij2/rscopus")
+```
+
+## API Keys
+
+
+In order to use this package, you need an API key from https://dev.elsevier.com/sc_apis.html.  You should login from your institution and go to Create API Key.  You need to provide a website URL and a label, but the website can be your personal website, and agree to the terms of service.  
+
+
+You can either get the API key using `option(elsevier_api_key)` or have it accessible by `api_key = Sys.getenv('Elsevier_API')`.  Once you have it, you can set it using `set_api_key`.
+
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example, eval = TRUE, message=FALSE}
+library(rscopus)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
+names(res)
+head(res[, c("title", "journal", "description")])
+unique(res$au_id)
+unique(as.character(res$affilname_1))
+```

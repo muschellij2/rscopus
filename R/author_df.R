@@ -43,11 +43,11 @@ author_df = function(au_id, last_name,
 #' @rdname author_df
 #' @export
 author_data = function(au_id, last_name,
-                     first_name,
-                     api_key = NULL,
-                     verbose = TRUE,
-                     all_author_info = FALSE,
-                     ...){
+                       first_name,
+                       api_key = NULL,
+                       verbose = TRUE,
+                       all_author_info = FALSE,
+                       ...){
 
   api_key = get_api_key(api_key)
 
@@ -72,8 +72,8 @@ author_data = function(au_id, last_name,
   if ( all_author_info ) {
     # df$indexer = seq(nrow(df))
     df = entries_to_df(entries = entries,
-                        au_id = NULL,
-                        verbose = verbose)
+                       au_id = NULL,
+                       verbose = verbose)
     # df = merge(df, df2, sort = FALSE, all.x = TRUE)
     # df = df[ order(df$indexer), ]
     # df$indexer = NULL
@@ -119,20 +119,21 @@ process_author_name = function(au_id, last_name,
   if (missing(au_id)) {
     last_name = replace_non_ascii(last_name)
     first_name = replace_non_ascii(first_name)
-    auth_name = get_author_info(last_name = last_name,
-                                first_name = first_name,
-                                api_key = api_key)
-    if (NROW(auth_name) == 0) {
-      stop("No author name found")
-    }
-    if (all(is.na(auth_name$au_id))) {
-      stop("No author name found")
-    }
-    if (verbose) {
-      message("Authors found:")
-      print(auth_name[1,])
-    }
-    au_id = auth_name$au_id[1]
+    auth_name = get_author_info(
+      last_name = last_name,
+      first_name = first_name,
+      api_key = api_key, verbose = verbose)
+if (NROW(auth_name) == 0) {
+  stop("No author name found")
+}
+if (all(is.na(auth_name$au_id))) {
+  stop("No author name found")
+}
+if (verbose) {
+  message("Authors found:")
+  print(auth_name[1,])
+}
+au_id = auth_name$au_id[1]
   }
   if (missing(last_name)) {
     last_name = NULL
