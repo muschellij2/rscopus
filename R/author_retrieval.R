@@ -9,7 +9,9 @@
 #' See \code{\link{generic_elsevier_api}}
 #' @param ... Arguments to be passed to
 #' \code{\link{generic_elsevier_api}}
-#'
+#' @note See
+#' \url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+#' for documentation
 #' @seealso \code{\link{generic_elsevier_api}}
 #' @return List of elements, similar to
 #' \code{\link{generic_elsevier_api}}
@@ -69,6 +71,15 @@ multi_author_retrieval <- function(
 }
 
 #' @rdname author_retrieval
+#' @param view Which view to see.  See
+#' \url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+#' @param self_cite Should self-citations be included?
+#' @param au_id Author ID number. Overrides any first/last name argument
+#' @param last_name last name of author
+#' @param first_name first name of author
+#' @param api_key Elsvier API key
+#' @param verbose Print diagnostic messages
+#'
 #' @export
 author_retrieval <- function(
   au_id,
@@ -103,6 +114,7 @@ author_retrieval <- function(
     api_key = api_key,
     view = view,
     `self-citation` = self_cite,
+    verbose = verbose,
     ...)
   return(s)
 

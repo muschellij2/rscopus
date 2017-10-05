@@ -26,6 +26,21 @@ See \code{\link{generic_elsevier_api}}}
 
 \item{...}{Arguments to be passed to
 \code{\link{generic_elsevier_api}}}
+
+\item{au_id}{Author ID number. Overrides any first/last name argument}
+
+\item{last_name}{last name of author}
+
+\item{first_name}{first name of author}
+
+\item{view}{Which view to see.  See
+\url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}}
+
+\item{self_cite}{Should self-citations be included?}
+
+\item{verbose}{Print diagnostic messages}
+
+\item{api_key}{Elsvier API key}
 }
 \value{
 List of elements, similar to
@@ -35,6 +50,11 @@ List of elements, similar to
 This function wraps \code{\link{generic_elsevier_api}}
 to give a
 retrieval of an author from the Elsevier Author Retrieval API
+}
+\note{
+See
+\url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+for documentation
 }
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
