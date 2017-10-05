@@ -41,10 +41,15 @@ api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
    x = author_retrieval("40462056100", identifier = "author_id",
    verbose = FALSE)
+   x = author_retrieval_id("40462056100", identifier = "author_id",
+   verbose = FALSE)
 } else {
- x = author_retrieval(
+ x = author_retrieval_id(
  "40462056100",
  identifier = "author_id",
+   api_key_error = FALSE, verbose = FALSE)
+ x = author_retrieval(
+ "40462056100",
    api_key_error = FALSE, verbose = FALSE)
 }
 }
