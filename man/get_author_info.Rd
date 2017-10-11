@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_author_info.R
 \name{get_author_info}
 \alias{get_author_info}
-\title{Get Relevant Author Information and ID from Scopus in DataFrame}
+\title{Get Relevant Author Information and ID from Scopus
+in Data Frame}
 \usage{
 get_author_info(...)
 }

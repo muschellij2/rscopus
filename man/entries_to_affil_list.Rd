@@ -2,7 +2,7 @@
 % Please edit documentation in R/entries_to_affil_list.R
 \name{entries_to_affil_list}
 \alias{entries_to_affil_list}
-\title{List of SCOPUS Entries to List of Affilations Data Frames}
+\title{List of SCOPUS Entries to List of Affiliations Data Frames}
 \usage{
 entries_to_affil_list(entries)
 }

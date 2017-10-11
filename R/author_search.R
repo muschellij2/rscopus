@@ -8,7 +8,7 @@
 #' \url{http://dev.elsevier.com/api_key_settings.html})
 #' @param verbose Print diagnostic messages
 #' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
-#' @param searcher Identifer for author ID.  Do not change unless you
+#' @param searcher Identifier for author ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
 #' @param ... Arguments to be passed to the query list for

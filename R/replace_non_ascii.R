@@ -1,11 +1,11 @@
 
 #' @title Replace non-ASCII characters
 #'
-#' @description Replaces non-ASCII chracters from a last or first name
+#' @description Replaces non-ASCII characters from a last or first name
 #' @param string Character vector of values to be replaced
 #' @export
 #' @seealso Taken from \url{http://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
-#' @return Chracter vector
+#' @return Character vector
 replace_non_ascii <- function(string){
   raws = structure(list(S = as.raw(c(0xc5, 0xa0)), s = as.raw(c(0xc5,
                                                                 0xa1)), Z = as.raw(c(0xc5, 0xbd)), z = as.raw(c(0xc5, 0xbe)),

@@ -9,7 +9,7 @@ affil_search(affil_id, searcher = "AF-ID", ...)
 \arguments{
 \item{affil_id}{Affiliation ID number}
 
-\item{searcher}{Identifer for Affiliation ID.  Do not change unless you
+\item{searcher}{Identifier for Affiliation ID.  Do not change unless you
 know exactly what the API calls for.}
 
 \item{...}{Arguments to be passed to \code{\link{GET}}}

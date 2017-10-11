@@ -4,7 +4,7 @@
 #' information
 #' @param last_name last name of author
 #' @param first_name first name of author
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @param query Additional query info, added using \code{+AND+} to original query
 #' @param http Author API http
 #' @param verbose Print messages from specification
@@ -16,7 +16,7 @@
 get_complete_author_info <- function(
   last_name, # last name of author
   first_name = NULL, # first name of author
-  api_key = NULL, # Elsvier API key
+  api_key = NULL, # Elsevier API key
   http = "http://api.elsevier.com/content/search/author", # Author API http
   query = NULL,
   verbose = TRUE,
@@ -55,7 +55,8 @@ get_complete_author_info <- function(
 }
 
 
-#' @title Get Relevant Author Information and ID from Scopus in DataFrame
+#' @title Get Relevant Author Information and ID from Scopus
+#' in Data Frame
 #'
 #' @description Uses SCOPUS author search to identify author identification
 #' information in a workable format

@@ -77,7 +77,7 @@ multi_author_retrieval <- function(
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
 #' @param first_name first name of author
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @param verbose Print diagnostic messages
 #'
 #' @export

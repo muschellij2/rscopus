@@ -10,10 +10,10 @@ replace_non_ascii(string)
 \item{string}{Character vector of values to be replaced}
 }
 \value{
-Chracter vector
+Character vector
 }
 \description{
-Replaces non-ASCII chracters from a last or first name
+Replaces non-ASCII characters from a last or first name
 }
 \seealso{
 Taken from \url{http://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}

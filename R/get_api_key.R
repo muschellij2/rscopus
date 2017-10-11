@@ -3,7 +3,7 @@
 #' @description Determines if \code{option(elsevier_api_key)} or
 #' \code{option(elsevier_api_key_filename)} is set.
 #' If not, it stops and returns an error.  If so, returns the value.
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @param error Should the function error if \code{api_key = NULL}?
 #' @note You can either set the API key using
 #' \code{option(elsevier_api_key)} or have it accessible by
@@ -61,7 +61,7 @@ have_api_key = function(api_key = NULL) {
 #'
 #' @description Sets Elsevier API key using
 #' if \code{option(elsevier_api_key)}
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @return NULL
 #' @export
 set_api_key = function(api_key) {

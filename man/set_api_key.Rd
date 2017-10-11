@@ -7,7 +7,7 @@
 set_api_key(api_key)
 }
 \arguments{
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 }
 \description{
 Sets Elsevier API key using

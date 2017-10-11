@@ -2,7 +2,7 @@
 % Please edit documentation in R/affil_list_to_df.R
 \name{affil_list_to_df}
 \alias{affil_list_to_df}
-\title{List of SCOPUS Entries to List of Affilations Data Frames}
+\title{List of SCOPUS Entries to List of Affiliations Data Frames}
 \usage{
 affil_list_to_df(affils)
 }

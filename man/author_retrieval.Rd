@@ -40,7 +40,7 @@ See \code{\link{generic_elsevier_api}}}
 
 \item{verbose}{Print diagnostic messages}
 
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 }
 \value{
 List of elements, similar to

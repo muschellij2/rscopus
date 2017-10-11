@@ -21,7 +21,7 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
 \item{search_type}{Type of search if \code{type = "search"}.
 See \url{http://dev.elsevier.com/api_docs.html}}
 
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 
 \item{headers}{Headers passed to \code{\link{add_headers}},
 passed to \code{\link{GET}}}

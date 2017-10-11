@@ -18,7 +18,7 @@ author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
 
 \item{first_name}{first name of author}
 
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 
 \item{verbose}{Print diagnostic messages}
 

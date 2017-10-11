@@ -13,7 +13,7 @@ get_complete_author_info(last_name, first_name = NULL, api_key = NULL,
 
 \item{first_name}{first name of author}
 
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 
 \item{http}{Author API http}
 

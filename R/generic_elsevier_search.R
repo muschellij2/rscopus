@@ -5,7 +5,7 @@
 #' @param type Type of search.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param search_type Type of search if \code{type = "search"}.
 #' See \url{http://dev.elsevier.com/api_docs.html}
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @param headers Headers passed to \code{\link{add_headers}},
 #' passed to \code{\link{GET}}
 #' @param content_type Is the data content or feedback?

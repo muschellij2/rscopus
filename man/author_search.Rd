@@ -23,7 +23,7 @@ author_search(au_id, api_key = NULL,
 
 \item{facets}{Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}}
 
-\item{searcher}{Identifer for author ID.  Do not change unless you
+\item{searcher}{Identifier for author ID.  Do not change unless you
 know exactly what the API calls for.}
 
 \item{max_count}{Maximum count of records to be returned.}

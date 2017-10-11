@@ -2,7 +2,7 @@
 #'
 #' @description Searches SCOPUS to get information about documents on an author.
 #' @param affil_id Affiliation ID number
-#' @param searcher Identifer for Affiliation ID.  Do not change unless you
+#' @param searcher Identifier for Affiliation ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param ... Arguments to be passed to \code{\link{GET}}
 #' @seealso \code{\link{get_author_info}}

@@ -10,7 +10,7 @@ get_api_key(api_key = NULL, error = TRUE)
 have_api_key(api_key = NULL)
 }
 \arguments{
-\item{api_key}{Elsvier API key}
+\item{api_key}{Elsevier API key}
 
 \item{error}{Should the function error if \code{api_key = NULL}?}
 }

@@ -4,7 +4,7 @@
 #' @description Searches SCOPUS to get information about documents on an author.
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
-#' @param api_key Elsvier API key
+#' @param api_key Elsevier API key
 #' @param first_name first name of author
 #' @param verbose Print diagnostic messages
 #' @param all_author_info Should all author info be recorded instead of that just to the
@@ -103,7 +103,7 @@ author_data = function(au_id, last_name,
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
 #' @param first_name first name of author
-#' @param api_key Elsvier API key
+  #' @param api_key Elsevier API key
 #' @param verbose Print diagnostic messages
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication

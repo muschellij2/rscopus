@@ -1,4 +1,4 @@
-#' @title List of SCOPUS Entries to List of Affilations Data Frames
+#' @title List of SCOPUS Entries to List of Affiliations Data Frames
 #' @description Take a SCOPUS entry and transform it to a data frame of
 #' affiliations
 #' @param affils List of affiliations, from \code{\link{entries_to_affil_list}}
