@@ -2,7 +2,7 @@
 #'
 #' @description This function wraps \code{\link{generic_elsevier_api}} to give a
 #' retrieval of an entitlement from the Elsevier Text Entitlement API
-#' @param id Identifier for entitllement
+#' @param id Identifier for entitlement
 #' @param identifier Type of identifier to use
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}

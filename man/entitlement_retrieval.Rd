@@ -8,7 +8,7 @@ entitlement_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
   "pubmed_id"), http_end = NULL, ...)
 }
 \arguments{
-\item{id}{Identifier for entitllement}
+\item{id}{Identifier for entitlement}
 
 \item{identifier}{Type of identifier to use}
 
