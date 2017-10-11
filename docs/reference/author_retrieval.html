@@ -60,6 +60,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -120,12 +123,47 @@ See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p
       <td><p>Arguments to be passed to
 <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
     </tr>
+    <tr>
+      <th>au_id</th>
+      <td><p>Author ID number. Overrides any first/last name argument</p></td>
+    </tr>
+    <tr>
+      <th>last_name</th>
+      <td><p>last name of author</p></td>
+    </tr>
+    <tr>
+      <th>first_name</th>
+      <td><p>first name of author</p></td>
+    </tr>
+    <tr>
+      <th>view</th>
+      <td><p>Which view to see.  See
+<a href='https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl'>https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl</a></p></td>
+    </tr>
+    <tr>
+      <th>self_cite</th>
+      <td><p>Should self-citations be included?</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Print diagnostic messages</p></td>
+    </tr>
+    <tr>
+      <th>api_key</th>
+      <td><p>Elsvier API key</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>List of elements, similar to
 <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p>
+    
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
+
+    <p>See
+<a href='https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl'>https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl</a>
+for documentation</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
@@ -135,13 +173,19 @@ See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>api_key</span> <span class='kw'>=</span> <span class='fu'><a href='get_api_key.html'>get_api_key</a></span>(<span class='kw'>NULL</span>, <span class='kw'>error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='kw'>if</span> (!<span class='fu'>is.null</span>(<span class='no'>api_key</span>)){
-   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval</span>(<span class='st'>"40462056100"</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='st'>"author_id"</span>)
+   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval</span>(<span class='kw'>au_id</span> <span class='kw'>=</span> <span class='st'>"40462056100"</span>,
+   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval_id</span>(<span class='st'>"40462056100"</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='st'>"author_id"</span>,
+   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 } <span class='kw'>else</span> {
- <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval</span>(
+ <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval_id</span>(
  <span class='st'>"40462056100"</span>,
  <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='st'>"author_id"</span>,
-   <span class='kw'>api_key_error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div><div class='output co'>#&gt; <span class='error'>Error in author_retrieval_id(id = au_id, identifier = "author_id", http_end = http_end,     api_key = api_key, view = view, `self-citation` = self_cite,     ...): formal argument "identifier" matched by multiple actual arguments</span></div></pre>
+   <span class='kw'>api_key_error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+ <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>author_retrieval</span>(
+ <span class='kw'>au_id</span> <span class='kw'>=</span> <span class='st'>"40462056100"</span>,
+   <span class='kw'>api_key_error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+}</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -149,6 +193,8 @@ See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#note">Note</a></li>
 
       <li><a href="#see-also">See also</a></li>
       

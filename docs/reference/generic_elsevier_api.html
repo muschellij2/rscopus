@@ -60,6 +60,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -159,17 +162,20 @@ passed to <code>GET</code></p></td>
 <span class='co'># Use affiliation query</span>
 <span class='no'>s</span> <span class='kw'>=</span> <span class='fu'>generic_elsevier_api</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query_string</span>,
                          <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"search"</span>, <span class='kw'>search_type</span> <span class='kw'>=</span> <span class='st'>"affiliation"</span>,
-                         <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>)
+                         <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>,
+                      <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># Use author query</span>
 <span class='no'>s</span> <span class='kw'>=</span> <span class='fu'>generic_elsevier_api</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='no'>query_string</span>,
 <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"search"</span>, <span class='kw'>search_type</span> <span class='kw'>=</span> <span class='st'>"author"</span>,
-<span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>)
+<span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>,
+                      <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
 <span class='co'># Query abstract by pii</span>
 <span class='no'>s</span> <span class='kw'>=</span> <span class='fu'>generic_elsevier_api</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>""</span>,
                       <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"abstract"</span>, <span class='kw'>http_end</span> <span class='kw'>=</span> <span class='st'>"pii/S1053811915002700"</span>,
-                      <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>)
+                      <span class='kw'>api_key</span> <span class='kw'>=</span> <span class='no'>api_key</span>,
+                      <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -59,7 +59,7 @@ for documentation
 \examples{
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
-   x = author_retrieval("40462056100", identifier = "author_id",
+   x = author_retrieval(au_id = "40462056100",
    verbose = FALSE)
    x = author_retrieval_id("40462056100", identifier = "author_id",
    verbose = FALSE)
@@ -69,7 +69,7 @@ if (!is.null(api_key)){
  identifier = "author_id",
    api_key_error = FALSE, verbose = FALSE)
  x = author_retrieval(
- "40462056100",
+ au_id = "40462056100",
    api_key_error = FALSE, verbose = FALSE)
 }
 }

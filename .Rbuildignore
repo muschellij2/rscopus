@@ -12,3 +12,4 @@ sticker\.png
 ^appveyor\.yml$
 ^README\.Rmd$
 ^docs$
+^cran-comments\.md$
