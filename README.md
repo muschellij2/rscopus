@@ -2,7 +2,8 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 R Package to interface with Elsevier and Scopus APIs
 
-![Sticker](sticker.png)
+<!-- ![Sticker](sticker.png) -->
+<img src="sticker.png" width="100">
 
 [![Travis-CI Build Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus) \[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)\](<https://ci.appveyor.com/project/muschellij2/rscopus>
 
@@ -59,7 +60,7 @@ unique(res$au_id)
 unique(as.character(res$affilname_1))
 #> [1] "Johns Hopkins Bloomberg School of Public Health"
 #> [2] "Departments of Biostatistics"                   
-#> [3] "Johns Hopkins Medical Institutions"             
-#> [4] "Kennedy Krieger Institute"                      
+#> [3] "Kennedy Krieger Institute"                      
+#> [4] "Johns Hopkins Medical Institutions"             
 #> [5] "The Johns Hopkins School of Medicine"
 ```

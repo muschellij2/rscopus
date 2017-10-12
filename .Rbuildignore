@@ -13,3 +13,6 @@ sticker\.png
 ^README\.Rmd$
 ^docs$
 ^cran-comments\.md$
+^icon\.png$
+^sticker\.R$
+^sticker\.png$
