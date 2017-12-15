@@ -6,10 +6,14 @@
 \title{Search Author Content on SCOPUS}
 \usage{
 author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  all_author_info = FALSE, ...)
+  all_author_info = FALSE,
+  http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
+  ...)
 
 author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  all_author_info = FALSE, ...)
+  all_author_info = FALSE,
+  http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
+  ...)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
@@ -24,6 +28,11 @@ author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
 
 \item{all_author_info}{Should all author info be recorded instead of that just to the
 author given}
+
+\item{http}{Address for scopus api}
+
+\item{view}{type of view to give, see
+\url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

@@ -14,7 +14,7 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
   api_key_error = TRUE, ...)
 }
 \arguments{
-\item{query}{Query to run}
+\item{query}{Query to run, not overall query, but queryParam query}
 
 \item{type}{Type of search.  See \url{http://dev.elsevier.com/api_docs.html}}
 
@@ -37,7 +37,7 @@ passed to \code{\link{GET}}}
 
 \item{api_key_error}{Should there be an error if no API key?}
 
-\item{...}{Options passed to query for \code{\link{GET}}}
+\item{...}{Options passed to queryParam for \code{\link{GET}}}
 }
 \value{
 List of elements, content and the \code{GET} request

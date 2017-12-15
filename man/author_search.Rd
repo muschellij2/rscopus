@@ -5,9 +5,9 @@
 \title{Search Author Content on SCOPUS}
 \usage{
 author_search(au_id, api_key = NULL,
-  http = "http://api.elsevier.com/content/search/scopus", count = 25,
+  http = "http://api.elsevier.com/content/search/author", count = 25,
   verbose = TRUE, facets = "subjarea(sort=fd)", searcher = "AU-ID",
-  max_count = Inf, ...)
+  max_count = Inf, view = "STANDARD", ...)
 }
 \arguments{
 \item{au_id}{Author ID number}
@@ -28,6 +28,9 @@ know exactly what the API calls for.}
 
 \item{max_count}{Maximum count of records to be returned.}
 
+\item{view}{type of view to give, see
+\url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}}
+
 \item{...}{Arguments to be passed to the query list for
 \code{\link{GET}}}
 }
@@ -36,6 +39,12 @@ List of entries from SCOPUS
 }
 \description{
 Searches SCOPUS to get information about documents on an author.
+}
+\examples{
+\dontrun{
+author_search(au_id = "Smith", searcher = "affil(princeton) and authlast")
+berk = author_search(au_id = "berkeley", searcher = "affil", count =100)
+}
 }
 \seealso{
 \code{\link{get_author_info}}

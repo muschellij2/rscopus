@@ -11,6 +11,8 @@
 #' @param searcher Identifier for author ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
+#' @param view type of view to give, see
+#' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
 #' @export
@@ -18,15 +20,20 @@
 #' @importFrom httr stop_for_status
 #' @importFrom utils setTxtProgressBar txtProgressBar
 #' @return List of entries from SCOPUS
+#' @examples \dontrun{
+#' author_search(au_id = "Smith", searcher = "affil(princeton) and authlast")
+#' berk = author_search(au_id = "berkeley", searcher = "affil", count =100)
+#' }
 author_search <- function(
   au_id, # Author ID number
   api_key = NULL,
-  http = "http://api.elsevier.com/content/search/scopus",
+  http = "http://api.elsevier.com/content/search/author",
   count = 25, # number of records to retrieve (below 25)
   verbose = TRUE,
   facets =  "subjarea(sort=fd)",
   searcher = "AU-ID",
   max_count = Inf,
+  view = "STANDARD",
   ...){
 
   api_key = get_api_key(api_key)
@@ -40,7 +47,7 @@ author_search <- function(
       "APIKey" = api_key,
       count = count,
       start = start,
-      view = "COMPLETE",
+      view = view,
       ...)
     print_q = q
     print_q$APIKey = NULL
@@ -53,6 +60,9 @@ author_search <- function(
             add_headers(
               "X-ELS-ResourceVersion" = "allexpand")
     )
+    if (verbose) {
+      print(r)
+    }
     stop_for_status(r)
     cr = content(r)$`search-results`
     return(cr)
@@ -63,6 +73,7 @@ author_search <- function(
                    facets = facets,
                    verbose = verbose,
                    ...)
+
   all_facets = cr$facet
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)

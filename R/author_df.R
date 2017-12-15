@@ -9,6 +9,9 @@
 #' @param verbose Print diagnostic messages
 #' @param all_author_info Should all author info be recorded instead of that just to the
 #' author given
+#' @param http Address for scopus api
+#' @param view type of view to give, see
+#' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -23,6 +26,8 @@ author_df = function(au_id, last_name,
                      api_key = NULL,
                      verbose = TRUE,
                      all_author_info = FALSE,
+                     http = "http://api.elsevier.com/content/search/scopus",
+                     view = "COMPLETE",
                      ...){
 
   L = author_data(au_id = au_id,
@@ -31,6 +36,8 @@ author_df = function(au_id, last_name,
                   api_key = api_key,
                   verbose = verbose,
                   all_author_info = all_author_info,
+                  http = http,
+                  view = view,
                   ... = ...)
   df = L$df
 
@@ -47,6 +54,8 @@ author_data = function(au_id, last_name,
                        api_key = NULL,
                        verbose = TRUE,
                        all_author_info = FALSE,
+                       http = "http://api.elsevier.com/content/search/scopus",
+                       view = "COMPLETE",
                        ...){
 
   api_key = get_api_key(api_key)
@@ -65,6 +74,8 @@ author_data = function(au_id, last_name,
   entries = author_search(au_id = au_id,
                           api_key = api_key,
                           verbose = verbose,
+                          view = view,
+                          http = http,
                           ...)$entries
 
 

@@ -1,7 +1,7 @@
 #' @title Generic Elsevier Search
 #'
 #' @description Runs GET on generic Elsevier Search
-#' @param query Query to run
+#' @param query Query to run, not overall query, but queryParam query
 #' @param type Type of search.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param search_type Type of search if \code{type = "search"}.
 #' See \url{http://dev.elsevier.com/api_docs.html}
@@ -14,7 +14,7 @@
 #' (done using \code{paste0})
 #' @param verbose Print messages from specification
 #' @param api_key_error Should there be an error if no API key?
-#' @param ... Options passed to query for \code{\link{GET}}
+#' @param ... Options passed to queryParam for \code{\link{GET}}
 #' @return List of elements, content and the \code{GET} request
 #' @export
 #' @examples \dontrun{
@@ -95,18 +95,9 @@ generic_elsevier_api <- function(
   if (verbose){
     message(paste0("HTTP specified is:", http, "\n"))
   }
-  if (!is.null(api_key)){
-    qlist = list(
-      "apiKey" = api_key,
-      query = query,
-      ...)
-  } else {
-    qlist =  list(
-      query = query, ...)
-  }
-  if (is.null(query)){
-    qlist$query = NULL
-  }
+  qlist = list(...)
+  qlist$query = query
+  qlist$apiKey = api_key
   if (length(qlist) > 0){
     r = GET(http,
             query = qlist,
