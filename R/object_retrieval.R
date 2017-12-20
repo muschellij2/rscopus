@@ -19,14 +19,15 @@
 #'    if (requireNamespace("xml2") & requireNamespace("httr") &
 #'    requireNamespace("rvest")
 #'    ){
-#'        refs = httr::content(x$get_statement, "text")
-#'        refs = xml2::read_xml(refs)
-#'        refs = rvest::xml_nodes(refs, "choice")
-#'        texts = xml2::xml_text(refs)
-#'        types = xml2::xml_attr(refs, "type")
-#'        refs = xml2::xml_attr(refs, "ref")
-#'        df = data.frame(ref = refs, type = types, text = texts,
-#'        stringsAsFactors = FALSE)
+#'        refs = httr::content(x$get_statement)
+#'        refs = refs$choices
+#'        df = t(sapply(refs$choice, c))
+#'        cn = colnames(df)
+#'        cn[ grep("ref", cn)] = "ref"
+#'        cn[ grep("type", cn)] = "type"
+#'        cn[cn =="$"] = "text"
+#'        colnames(df) = cn
+#'        df = as.data.frame(df, stringsAsFactors = FALSE)
 #'        df = df[ grepl("image/jpeg", df$text),,drop = FALSE ]
 #'        df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
 #'        #r = httr::GET(url = df$text[1],

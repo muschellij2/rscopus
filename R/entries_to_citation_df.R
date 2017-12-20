@@ -54,6 +54,18 @@ entries_to_citation_df = function(entries){
   })
 
   ##################################
+  # Get DOI
+  ##################################
+  doi = sapply(entries, function(x){
+    x = nonull(x$"prism:doi")
+  })
+
+  eid = sapply(entries, function(x){
+    x = nonull(x$eid)
+  })
+
+
+  ##################################
   # Put all into a data.frame
   ##################################
   df = data.frame(citations = cites,
@@ -61,9 +73,43 @@ entries_to_citation_df = function(entries){
                   description = desc,
                   title = titles,
                   pii = sci_pii,
+                  doi = doi,
+                  eid = eid,
                   stringsAsFactors = FALSE
   )
   df = cbind(df, dates)
+
+  # commented out are the ones we have
+  all_types = c("prism:url", "dc:identifier",
+                # "eid",
+                # "dc:title",
+                "dc:creator",
+                # "prism:publicationName",
+                "prism:issn", "prism:eIssn",
+                "prism:pageRange",
+                # "prism:coverDate", "prism:coverDisplayDate",
+                # "prism:doi",
+                "dc:description",
+                # "citedby-count",
+                "prism:aggregationType",
+                "subtype",
+                # "subtypeDescription",
+                "authkeywords",
+                "source-id")
+  all_names = gsub(":", "_", all_types)
+  all_names = gsub("-", "_", all_names)
+
+  res = sapply(all_types, function(type) {
+    x = sapply(entries, function(ent) {
+      nonull(ent[[type]])
+    })
+    return(x)
+  })
+  if (is.matrix(res)) {
+    colnames(res) = all_names
+    res = data.frame(res, stringsAsFactors = FALSE)
+    df = cbind(df, res)
+  }
 
   return(df)
 }
