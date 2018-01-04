@@ -8,6 +8,8 @@
 #' @param query Additional query info, added using \code{+AND+} to original query
 #' @param http Author API http
 #' @param verbose Print messages from specification
+#' @param au_id Author ID number, will override first/last combination if
+#' specified
 #' @param ... options to pass to \code{\link{GET}}
 #' @importFrom httr GET content
 #' @importFrom utils URLencode
@@ -20,25 +22,33 @@ get_complete_author_info <- function(
   http = "http://api.elsevier.com/content/search/author", # Author API http
   query = NULL,
   verbose = TRUE,
+  au_id = NULL,
   ...
 ){
   api_key = get_api_key(api_key)
 
   reg_query = ""
-  if (!is.null(first_name)) {
-    reg_query = paste0("AUTHFIRST(", first_name, ")+AND+")
-  }
-  reg_query = paste0(reg_query,
-                 "AUTHLAST(", last_name, ")")
-  if (!is.null(query)){
-    reg_query = paste0(paste0(reg_query, collapse = "+AND+"), "+AND+", query)
+  if (is.null(au_id)) {
+    if (!is.null(first_name)) {
+      reg_query = paste0("AUTHFIRST(", first_name, ")+AND+")
+    }
+    reg_query = paste0(reg_query,
+                       "AUTHLAST(", last_name, ")")
+    if (!is.null(query)) {
+      reg_query = paste0(paste0(reg_query, collapse = "+AND+"), "+AND+", query)
+    }
+  } else {
+    if (!missing(last_name) || !is.null(first_name)) {
+      warning("AU-ID will override this first/last name combo!")
+    }
+    reg_query = paste0("AU-ID(", au_id, ")")
   }
 
   reg_query = utils::URLencode(reg_query)
   # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", reg_query,
                "&APIKey=", api_key)
-  if (verbose){
+  if (verbose) {
     message(paste0("HTTP specified is:", url, "\n"))
   }
   r = GET(url,
@@ -64,6 +74,9 @@ get_complete_author_info <- function(
 #' @seealso \code{\link{get_complete_author_info}}
 #' @export
 #' @return Data.frame of information
+#' @examples \dontrun{
+#' get_author_info(au_id = "40462056100")
+#' }
 get_author_info <- function(...){
   cr = get_complete_author_info(...)$content
   cr = cr$`search-results`$entry

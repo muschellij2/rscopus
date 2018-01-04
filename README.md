@@ -1,19 +1,22 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 R Package to interface with Elsevier and Scopus APIs
 
 <!-- ![Sticker](sticker.png) -->
+
 <img src="sticker.png" width="100">
 
-[![Travis-CI Build Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus) \[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)\](<https://ci.appveyor.com/project/muschellij2/rscopus>
+[![Travis-CI Build
+Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus)
 
-rscopus
-=======
+# rscopus
 
-The goal of rscopus is to provide an R Scopus Database 'API' Interface.
+The goal of rscopus is to provide an R Scopus Database ‘API’ Interface.
 
-Installation
-------------
+## Installation
 
 You can install rscopus from github with:
 
@@ -22,12 +25,17 @@ You can install rscopus from github with:
 devtools::install_github("muschellij2/rscopus")
 ```
 
-API Keys
---------
+## API Keys
 
-In order to use this package, you need an API key from <https://dev.elsevier.com/sc_apis.html>. You should login from your institution and go to Create API Key. You need to provide a website URL and a label, but the website can be your personal website, and agree to the terms of service.
+In order to use this package, you need an API key from
+<https://dev.elsevier.com/sc_apis.html>. You should login from your
+institution and go to Create API Key. You need to provide a website URL
+and a label, but the website can be your personal website, and agree to
+the terms of service.
 
-You can either get the API key using `option(elsevier_api_key)` or have it accessible by `api_key = Sys.getenv('Elsevier_API')`. Once you have it, you can set it using `set_api_key`.
+You can either get the API key using `option(elsevier_api_key)` or have
+it accessible by `api_key = Sys.getenv('Elsevier_API')`. Once you have
+it, you can set it using `set_api_key`.
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -35,11 +43,20 @@ This is a basic example which shows you how to solve a common problem:
 library(rscopus)
 res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
 names(res)
-#>  [1] "auth_order"         "affilname_1"        "n_auth"            
-#>  [4] "affilname_2"        "n_affils"           "citations"         
-#>  [7] "journal"            "description"        "title"             
-#> [10] "pii"                "cover_date"         "cover_display_date"
-#> [13] "first_name"         "last_name"          "au_id"
+#>  [1] "auth_order"            "affilname_1"          
+#>  [3] "n_auth"                "affilname_2"          
+#>  [5] "n_affils"              "citations"            
+#>  [7] "journal"               "description"          
+#>  [9] "title"                 "pii"                  
+#> [11] "doi"                   "eid"                  
+#> [13] "cover_date"            "cover_display_date"   
+#> [15] "prism_url"             "dc_identifier"        
+#> [17] "dc_creator"            "prism_issn"           
+#> [19] "prism_eIssn"           "prism_pageRange"      
+#> [21] "dc_description"        "prism_aggregationType"
+#> [23] "subtype"               "authkeywords"         
+#> [25] "source_id"             "first_name"           
+#> [27] "last_name"             "au_id"
 head(res[, c("title", "journal", "description")])
 #>                                                                                                                                                                         title
 #> 1                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention

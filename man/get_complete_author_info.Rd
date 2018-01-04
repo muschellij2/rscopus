@@ -6,7 +6,7 @@
 \usage{
 get_complete_author_info(last_name, first_name = NULL, api_key = NULL,
   http = "http://api.elsevier.com/content/search/author", query = NULL,
-  verbose = TRUE, ...)
+  verbose = TRUE, au_id = NULL, ...)
 }
 \arguments{
 \item{last_name}{last name of author}
@@ -20,6 +20,9 @@ get_complete_author_info(last_name, first_name = NULL, api_key = NULL,
 \item{query}{Additional query info, added using \code{+AND+} to original query}
 
 \item{verbose}{Print messages from specification}
+
+\item{au_id}{Author ID number, will override first/last combination if
+specified}
 
 \item{...}{options to pass to \code{\link{GET}}}
 }

@@ -114,7 +114,7 @@ author_data = function(au_id, last_name,
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
 #' @param first_name first name of author
-  #' @param api_key Elsevier API key
+#' @param api_key Elsevier API key
 #' @param verbose Print diagnostic messages
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
@@ -134,17 +134,17 @@ process_author_name = function(au_id, last_name,
       last_name = last_name,
       first_name = first_name,
       api_key = api_key, verbose = verbose)
-if (NROW(auth_name) == 0) {
-  stop("No author name found")
-}
-if (all(is.na(auth_name$au_id))) {
-  stop("No author name found")
-}
-if (verbose) {
-  message("Authors found:")
-  print(auth_name[1,])
-}
-au_id = auth_name$au_id[1]
+    if (NROW(auth_name) == 0) {
+      stop("No author name found")
+    }
+    if (all(is.na(auth_name$au_id))) {
+      stop("No author name found")
+    }
+    if (verbose) {
+      message("Authors found:")
+      print(auth_name[1,])
+    }
+    au_id = auth_name$au_id[1]
   }
   if (missing(last_name)) {
     last_name = NULL

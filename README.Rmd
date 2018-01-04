@@ -11,7 +11,7 @@ R Package to interface with Elsevier and Scopus APIs
 
 
 [![Travis-CI Build Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus)
 
 
 ```{r setup, include = FALSE}
@@ -21,6 +21,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-"
 )
 ```
+
 # rscopus
 
 The goal of rscopus is to provide an R Scopus Database 'API' Interface.

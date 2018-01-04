@@ -17,6 +17,11 @@ Data.frame of information
 Uses SCOPUS author search to identify author identification
 information in a workable format
 }
+\examples{
+\dontrun{
+get_author_info(au_id = "40462056100")
+}
+}
 \seealso{
 \code{\link{get_complete_author_info}}
 }
