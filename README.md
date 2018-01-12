@@ -33,9 +33,34 @@ institution and go to Create API Key. You need to provide a website URL
 and a label, but the website can be your personal website, and agree to
 the terms of service.
 
-You can either get the API key using `option(elsevier_api_key)` or have
-it accessible by `api_key = Sys.getenv('Elsevier_API')`. Once you have
-it, you can set it using `set_api_key`.
+### Steps
+
+1.  Go to <https://dev.elsevier.com/user/login>. Login or create a free
+    account.
+2.  Click “Create API Key”. Put in a label, such as `rscopus key`. Add a
+    website. <http://example.com> is fine if you do not have a site.
+3.  **Read** and agree to the TOS if you do indeed agree.
+4.  Add `Elsevier_API = "API KEY GOES HERE"` to `~/.Renviron` file, or
+    add `export Elsevier_API=API KEY GOES HERE` to your
+    `~/.bash_profile`.
+
+Alternatively, you you can either set the API key using
+`rscopus::set_api_key` or by `options("elsevier_api_key" = api_key)`.
+You can access the API key using `rscopus::get_api_key`.
+
+You should be able to test out the API key using the [interactive Scopus
+APIs](https://dev.elsevier.com/scopus.html).
+
+### A note about API keys and IP addresses
+
+The API Key is bound to a set of IP addresses, usually bound to your
+institution. Therefore, if you are using this for a Shiny application,
+you must host the Shiny application from your institution servers in
+some way. Also, you cannot access the Scopus API with this key if you
+are offsite and must VPN into the server or use a computing cluster with
+an institution IP.
+
+## Example
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -77,7 +102,7 @@ unique(res$au_id)
 unique(as.character(res$affilname_1))
 #> [1] "Johns Hopkins Bloomberg School of Public Health"
 #> [2] "Departments of Biostatistics"                   
-#> [3] "Kennedy Krieger Institute"                      
-#> [4] "Johns Hopkins Medical Institutions"             
+#> [3] "Johns Hopkins Medical Institutions"             
+#> [4] "Kennedy Krieger Institute"                      
 #> [5] "The Johns Hopkins School of Medicine"
 ```
