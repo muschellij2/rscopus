@@ -25,15 +25,13 @@ You can install rscopus from github with:
 devtools::install_github("muschellij2/rscopus")
 ```
 
-## API Keys
+## Steps to get API key
 
 In order to use this package, you need an API key from
 <https://dev.elsevier.com/sc_apis.html>. You should login from your
 institution and go to Create API Key. You need to provide a website URL
 and a label, but the website can be your personal website, and agree to
 the terms of service.
-
-### Steps
 
 1.  Go to <https://dev.elsevier.com/user/login>. Login or create a free
     account.
