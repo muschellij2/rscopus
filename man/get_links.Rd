@@ -2,19 +2,51 @@
 % Please edit documentation in R/get_next.R
 \name{get_links}
 \alias{get_links}
+\alias{get_url}
 \alias{next_url}
+\alias{last_url}
+\alias{prev_url}
+\alias{self_url}
+\alias{first_url}
+\alias{get_link_type}
+\alias{get_first}
+\alias{get_last}
+\alias{get_prev}
 \alias{get_next}
+\alias{get_self}
 \title{Get Links for next/first/last query}
 \usage{
 get_links(result)
 
+get_url(result, type = c("self", "first", "prev", "next", "last"))
+
 next_url(result)
 
+last_url(result)
+
+prev_url(result)
+
+self_url(result)
+
+first_url(result)
+
+get_link_type(result, ..., type = c("self", "first", "prev", "next", "last"))
+
+get_first(result, ...)
+
+get_last(result, ...)
+
+get_prev(result, ...)
+
 get_next(result, ...)
+
+get_self(result, ...)
 }
 \arguments{
 \item{result}{Object (list) with an element named \code{content}, usually
 from \code{generic_elsevier_api}}
+
+\item{type}{The type of link requested}
 
 \item{...}{Options passed to \code{\link{GET}}}
 }
