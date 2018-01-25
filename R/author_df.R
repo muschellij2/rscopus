@@ -2,6 +2,8 @@
 #' @title Search Author Content on SCOPUS
 #'
 #' @description Searches SCOPUS to get information about documents on an author.
+#' Note, \code{author_list} returns a list of the entries from \code{author_search},
+#' but allows you to put in a name.
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
 #' @param api_key Elsevier API key
@@ -47,13 +49,13 @@ author_df = function(au_id, last_name,
 
 
 
+
 #' @rdname author_df
 #' @export
-author_data = function(au_id, last_name,
+author_list = function(au_id, last_name,
                        first_name,
                        api_key = NULL,
                        verbose = TRUE,
-                       all_author_info = FALSE,
                        http = "http://api.elsevier.com/content/search/scopus",
                        view = "COMPLETE",
                        ...){
@@ -76,8 +78,26 @@ author_data = function(au_id, last_name,
                           verbose = verbose,
                           view = view,
                           http = http,
-                          ...)$entries
+                          ...)
+  entries$au_id = au_id
+  entries$first_name = first_name
+  entries$last_name = last_name
 
+  return(entries)
+}
+
+
+#' @rdname author_df
+#' @export
+author_data = function(...,
+                       verbose = TRUE,
+                       all_author_info = FALSE){
+
+  entries = author_list(..., verbose = verbose)
+  au_id = entries$au_id
+  first_name = entries$first_name
+  last_name = entries$last_name
+  entries = entries$entries
 
 
   if ( all_author_info ) {

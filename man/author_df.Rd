@@ -2,6 +2,7 @@
 % Please edit documentation in R/author_df.R
 \name{author_df}
 \alias{author_df}
+\alias{author_list}
 \alias{author_data}
 \title{Search Author Content on SCOPUS}
 \usage{
@@ -10,10 +11,11 @@ author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
   http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
   ...)
 
-author_data(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  all_author_info = FALSE,
+author_list(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
   http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
   ...)
+
+author_data(..., verbose = TRUE, all_author_info = FALSE)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
@@ -41,6 +43,8 @@ List of entries from SCOPUS
 }
 \description{
 Searches SCOPUS to get information about documents on an author.
+Note, \code{author_list} returns a list of the entries from \code{author_search},
+but allows you to put in a name.
 }
 \note{
 The \code{author_data} command will return the list of all entries as well as
