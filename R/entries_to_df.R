@@ -5,7 +5,6 @@
 #' @param entries Author ID number. Overrides any first/last name argument
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param verbose Print diagnostic messages
-#' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @return Data frame of records
 #' @importFrom plyr llply
@@ -114,5 +113,77 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
   cites = entries_to_citation_df(entries = entries)
   df = cbind(df, cites)
 
+  return(df)
+}
+
+
+
+
+
+
+#' @rdname entries_to_df
+#' @importFrom dplyr left_join full_join bind_rows group_by_
+#' @importFrom tidyr nest
+#' @export
+entries_to_df2 = function(entries, verbose = TRUE) {
+
+
+
+  df = lapply(
+    entries, function(ent) {
+
+      ent$link = NULL
+      ent$author_count_limit =
+        ent$`author-count`$`@limit`
+      ent$author_count =
+        ent$`author-count`$`$`
+      ent$`author-count` = NULL
+
+
+      author = ent$author
+      if (!is.null(author)) {
+        auth = bind_list(author)
+        affil = ent$affil
+
+        cn = colnames(auth)
+        run = "afid.$" %in% cn
+        if (!run) {
+          auth$afid = NA_character_
+        } else {
+          cn[ cn == "afid.$" ] = "afid"
+          colnames(auth) = cn
+        }
+        if (!is.null(affil)) {
+          affil = lapply(affil, function(x) {
+            lapply(x, nonull)
+          })
+          affil = bind_list(affil)
+          affil$`@_fa` = auth$`@_fa` = NULL
+          auth = dplyr::left_join(auth, affil, by = "afid")
+        }
+      }
+      ent$author = ent$affiliation = NULL
+      ent = lapply(ent, nonull)
+
+      ddf = as.data.frame(ent,
+                          stringsAsFactors=FALSE)
+      cn = colnames(ddf)
+      if (!is.null(author)) {
+        ddf$id = auth$id = 1
+        auth = unique(auth)
+        ddf = dplyr::full_join(auth, ddf, by ="id")
+        ddf$id = NULL
+        ddf = dplyr::group_by_(ddf, .dots = cn)
+        ddf = tidyr::nest(ddf)
+      }
+      ddf
+    })
+
+  df = lapply(seq_along(df), function(i) {
+    df[[i]]$id = i
+    df[[i]]
+  })
+
+  df = dplyr::bind_rows(df)
   return(df)
 }

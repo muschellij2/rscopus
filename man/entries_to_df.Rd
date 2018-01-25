@@ -2,9 +2,12 @@
 % Please edit documentation in R/entries_to_df.R
 \name{entries_to_df}
 \alias{entries_to_df}
+\alias{entries_to_df2}
 \title{Convert Entries into a data.frame}
 \usage{
 entries_to_df(entries, au_id = NULL, verbose = TRUE)
+
+entries_to_df2(entries, verbose = TRUE)
 }
 \arguments{
 \item{entries}{Author ID number. Overrides any first/last name argument}
@@ -12,8 +15,6 @@ entries_to_df(entries, au_id = NULL, verbose = TRUE)
 \item{au_id}{Author ID number. Overrides any first/last name argument}
 
 \item{verbose}{Print diagnostic messages}
-
-\item{...}{Arguments to be passed to \code{\link{author_search}}}
 }
 \value{
 Data frame of records
