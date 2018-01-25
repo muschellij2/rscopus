@@ -1,8 +1,11 @@
 ensure_names = function(x, cn) {
-  sd = c(setdiff(names(x), cn),
-         setdiff(cn, names(x)))
+  sd = c(setdiff(names(x), cn))
   for (isd in sd) {
-    x[[sd]] = NA
+    x[[isd]] = NA
+  }
+  sd = setdiff(cn, names(x))
+  for (isd in sd) {
+    x[[isd]] = NA
   }
   return(x)
 }
