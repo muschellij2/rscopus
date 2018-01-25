@@ -13,8 +13,9 @@ ensure_names = function(x, cn) {
 bind_list = function(L) {
   L = lapply(L, function(x) {
     if (!is.data.frame(x)) {
-      unlist(x)
+      x = unlist(x)
     }
+    x
   })
   cn = sapply(L, names)
   cn = unique(c(unlist(cn)))
@@ -23,7 +24,9 @@ bind_list = function(L) {
     x[cn]
   })
   L = do.call("rbind", L)
-  L = as.data.frame(L, stringsAsFactors = FALSE)
+  if (!is.data.frame(L)) {
+    L = as.data.frame(L, stringsAsFactors = FALSE)
+  }
   return(L)
 }
 
