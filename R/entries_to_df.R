@@ -122,7 +122,8 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
 
 #' @rdname entries_to_df
-#' @importFrom dplyr left_join full_join bind_rows group_by_
+#' @importFrom dplyr left_join full_join bind_rows
+#' @importFrom dplyr as_tibble
 #' @importFrom tidyr nest
 #' @export
 entries_to_df2 = function(entries, verbose = TRUE) {
@@ -161,20 +162,25 @@ entries_to_df2 = function(entries, verbose = TRUE) {
           affil$`@_fa` = auth$`@_fa` = NULL
           auth = dplyr::left_join(auth, affil, by = "afid")
         }
+        auth = dplyr::as_tibble(auth)
       }
       ent$author = ent$affiliation = NULL
       ent = lapply(ent, nonull)
 
-      ddf = as.data.frame(ent,
-                          stringsAsFactors=FALSE)
+      cn = names(ent)
+      ddf = as.data.frame(ent, stringsAsFactors = FALSE)
+      colnames(ddf) = cn
+      ddf = dplyr::as_tibble(ddf)
       cn = colnames(ddf)
+      id = NULL
+      rm(list = "id")
       if (!is.null(author)) {
         ddf$id = auth$id = 1
         auth = unique(auth)
-        ddf = dplyr::full_join(auth, ddf, by ="id")
+        auth = tidyr::nest(auth, -id)
+        ddf = dplyr::full_join(auth, ddf, by = "id")
+        ddf = dplyr::as_tibble(ddf)
         ddf$id = NULL
-        ddf = dplyr::group_by_(ddf, .dots = cn)
-        ddf = tidyr::nest(ddf)
       }
       ddf
     })
