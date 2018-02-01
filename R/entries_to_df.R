@@ -2,7 +2,7 @@
 #' @title Convert Entries into a data.frame
 #'
 #' @description Converts a list of entries into a \code{data.frame} of records
-#' @param entries Author ID number. Overrides any first/last name argument
+#' @param entries Entries from the output of a command
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param verbose Print diagnostic messages
 #' @export

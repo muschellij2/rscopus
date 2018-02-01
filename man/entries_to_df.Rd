@@ -10,7 +10,7 @@ entries_to_df(entries, au_id = NULL, verbose = TRUE)
 entries_to_df2(entries, verbose = TRUE)
 }
 \arguments{
-\item{entries}{Author ID number. Overrides any first/last name argument}
+\item{entries}{Entries from the output of a command}
 
 \item{au_id}{Author ID number. Overrides any first/last name argument}
 
