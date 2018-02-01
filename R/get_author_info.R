@@ -94,14 +94,14 @@ get_author_info <- function(...){
                    auth_id, fixed = TRUE)
     affil = cr$`affiliation-current`
     affil_name = affil$`affiliation-name`
-    affid = affil$`affiliation-id`
+    affil_id = affil$`affiliation-id`
 
     nonull2 = function(x){
       ifelse(is.null(x), "", x)
     }
     c(auth_name = nonull2(auth_names),
       au_id = nonull2(auth_id),
-      affid = nonull2(affid),
+      affil_id = nonull2(affil_id),
       affil_name = nonull2(affil_name))
   }
 

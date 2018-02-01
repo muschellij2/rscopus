@@ -33,12 +33,12 @@ entry_to_affil = function(x, all_affils) {
   ###################################
   people_affils = lapply(x$author, function(y){
     if (is.null(y$afid)) {
-      return(data.frame(affid = NA, affilname = NA))
+      return(data.frame(affil_id = NA, affilname = NA))
     }
     affs = lapply(y$afid, function(r){
-      xx = data.frame(affid = nonull(r$`$`), stringsAsFactors = FALSE)
-      if (all(is.na(xx$affid))) {
-        return(data.frame(affid = NA, affilname = NA))
+      xx = data.frame(affil_id = nonull(r$`$`), stringsAsFactors = FALSE)
+      if (all(is.na(xx$affil_id))) {
+        return(data.frame(affil_id = NA, affilname = NA))
       }
       xx = merge(xx, all_affils, all.x = TRUE)
     })

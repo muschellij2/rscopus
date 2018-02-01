@@ -12,7 +12,7 @@ all_possible_affils = function(entries) {
   all_possible_affils = lapply(entries, function(x){
 
     affs = t(sapply(x$affiliation, function(y){
-      c(affid = nonull(y$afid),
+      c(affil_id = nonull(y$afid),
         affilname = nonull(y$affilname, replace = ""))
     }))
     affs = as.data.frame(affs,
@@ -21,7 +21,7 @@ all_possible_affils = function(entries) {
   })
   all_possible_affils = do.call('rbind', all_possible_affils)
   all_possible_affils = all_possible_affils[
-    !is.na(all_possible_affils$affid), , drop = FALSE]
+    !is.na(all_possible_affils$affil_id), , drop = FALSE]
   all_possible_affils = unique(all_possible_affils)
   return(all_possible_affils)
 }

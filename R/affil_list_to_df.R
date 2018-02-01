@@ -27,7 +27,7 @@ affil_list_to_df = function(affils) {
   ncols = max(n_reps)
 
   idvars = c("seq", "au_id", "name")
-  all_colnames = c(idvars, "ind", "affid", "affilname")
+  all_colnames = c(idvars, "ind", "affil_id", "affilname")
   check = sapply(affils, function(x) {
     all(colnames(x) %in% all_colnames)
   })
@@ -45,7 +45,7 @@ affil_list_to_df = function(affils) {
             direction = "wide", sep = "_")
   })
 
-  new_colnames = c(idvars, c(outer(c("affid", "affilname"),
+  new_colnames = c(idvars, c(outer(c("affil_id", "affilname"),
                                  seq(ncols),
                                  paste, sep = "_"))
                                  )
