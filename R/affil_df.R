@@ -7,6 +7,8 @@
 #' specified
 #' @param verbose Print diagnostic messages
 #' @param api_key Elsevier API key
+#' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
+#' @param sort sorting sent to query
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -18,12 +20,16 @@ affil_df = function(
   affil_name = NULL,
   api_key = NULL,
   verbose = TRUE,
+  facets =  NULL,
+  sort = "document-count",
   ...){
 
   L = affil_data(
     affil_id = affil_id,
     affil_name = affil_name,
     verbose = verbose,
+    facets = facets,
+    sort = sort,
     ... = ...)
   df = L$df
 
@@ -39,6 +45,8 @@ affil_data = function(
   affil_name = NULL,
   api_key = NULL,
   verbose = TRUE,
+  facets =  NULL,
+  sort = "document-count",
   ...){
 
   #   entries = affil_search(
@@ -54,7 +62,10 @@ affil_data = function(
   }
   entries = author_search_by_affil(
     affil_id = affil_id,
-    verbose = verbose, ...)$entries
+    verbose = verbose,
+    facets = facets,
+    sort = sort,
+    ...)$entries
 
 
   df = gen_entries_to_df(

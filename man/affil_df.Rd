@@ -6,10 +6,10 @@
 \title{Search Affiliation Content on SCOPUS}
 \usage{
 affil_df(affil_id = NULL, affil_name = NULL, api_key = NULL,
-  verbose = TRUE, ...)
+  verbose = TRUE, facets = NULL, sort = "document-count", ...)
 
 affil_data(affil_id = NULL, affil_name = NULL, api_key = NULL,
-  verbose = TRUE, ...)
+  verbose = TRUE, facets = NULL, sort = "document-count", ...)
 }
 \arguments{
 \item{affil_id}{Affiliation ID number.}
@@ -20,6 +20,10 @@ specified}
 \item{api_key}{Elsevier API key}
 
 \item{verbose}{Print diagnostic messages}
+
+\item{facets}{Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}}
+
+\item{sort}{sorting sent to query}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }
