@@ -72,7 +72,7 @@ author_search <- function(
   }
   au_id = as.character(au_id)
 
-  cr = get_results(au_id, start = 0, count = count,
+  cr = get_results(au_id, start = init_start, count = count,
                    facets = facets,
                    verbose = verbose,
                    ...)
@@ -84,7 +84,7 @@ author_search <- function(
   if (verbose) {
     message(paste0("Total Entries are ",
                    total_results,
-            ifelse(init_start > 0, paste0(", but starting at",
+            ifelse(init_start > 0, paste0(", but starting at ",
                    init_start), "")
             ))
   }
