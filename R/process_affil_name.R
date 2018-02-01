@@ -24,7 +24,7 @@ process_affiliation_name = function(
       stop("No affiliation name found")
     }
     if (verbose) {
-      message("Authors found:")
+      message("Affilations found:")
       print(affil_name)
     }
   }
@@ -43,10 +43,10 @@ process_affiliation_name = function(
     }
     affil_id = affil_id[[1]]
     affil_id = sub(".*:", "", affil_id)
-    aff_names = sapply(res$entries, `[[`, "`affiliation-name`")
+    aff_names = sapply(res$entries, `[[`, "affiliation-name")
     affil_name = aff_names[[1]]
     if (verbose) {
-      message("Authors found:")
+      message("Affiliation IDs found:")
       print(affil_id)
     }
   }
