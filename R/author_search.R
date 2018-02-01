@@ -81,11 +81,15 @@ author_search <- function(
   # Find total counts
   total_results = as.numeric(cr$`opensearch:totalResults`)
 
-
   if (verbose) {
     message(paste0("Total Entries are ",
-                   total_results))
+                   total_results,
+            ifelse(init_start > 0, paste0(", but starting at",
+                   init_start), "")
+            ))
   }
+  total_results = total_results - init_start
+
   if (total_results > max_count) {
     total_results = max_count
     if (verbose) {
@@ -108,7 +112,7 @@ author_search <- function(
                           initial = 1, style = 3)
     }
     for (irun in seq(n_runs - 1)) {
-      start = irun * count
+      start = irun * count + init_start
       cr = get_results(au_id, start = start, count = count,
                        facets = facets,
                        verbose = FALSE,
