@@ -133,3 +133,23 @@ author_search <- function(
   return(list(entries = all_entries, facets = all_facets))
 }
 
+
+#' @title Search Authors by Affiliation on SCOPUS
+#'
+#' @description Searches SCOPUS to get information about authors with
+#' a certain affiliation
+#' @param affil_id Affiliation ID number
+#' @param searcher Identifier for Affiliation ID.  Do not change unless you
+#' know exactly what the API calls for.
+#' @param ... Arguments to be passed to \code{\link{GET}}
+#' @seealso \code{\link{get_author_info}}
+#' @export
+#' @return List of entries from SCOPUS
+author_search_by_affil <- function(
+  affil_id, # Author ID number
+  searcher = "AF-ID",
+  ...){
+  all_entries = author_search(au_id = affil_id,
+                              searcher = searcher, ...)
+  return(all_entries)
+}
