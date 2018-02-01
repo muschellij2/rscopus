@@ -88,6 +88,7 @@ author_search <- function(
                    init_start), "")
             ))
   }
+  xtotal_results = total_results
   total_results = total_results - init_start
 
   if (total_results > max_count) {
@@ -137,7 +138,8 @@ author_search <- function(
   if (total_results != length(all_entries)) {
     warning("May not have received all entries")
   }
-  return(list(entries = all_entries, facets = all_facets))
+  return(list(entries = all_entries, facets = all_facets,
+              total_results = xtotal_results))
 }
 
 
