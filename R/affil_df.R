@@ -33,9 +33,14 @@ affil_data = function(
   verbose = TRUE,
   ...){
 
-  entries = affil_search(
+#   entries = affil_search(
+#     affil_id = affil_id,
+#     verbose = verbose, ...)$entries
+
+  entries = author_search_by_affil(
     affil_id = affil_id,
     verbose = verbose, ...)$entries
+
 
   df = entries_to_df(entries = entries,
                      au_id = NULL,
