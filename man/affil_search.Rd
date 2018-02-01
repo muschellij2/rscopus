@@ -6,7 +6,7 @@
 \usage{
 affil_search(affil_id, searcher = "AF-ID",
   http = "http://api.elsevier.com/content/search/affiliation",
-  facets = "affilcountry(sort=affiliation-name)", ...)
+  facets = "affilcountry(sort=document-count)", ...)
 }
 \arguments{
 \item{affil_id}{Affiliation ID number}

@@ -14,7 +14,7 @@ affil_search <- function(
   affil_id, # Author ID number
   searcher = "AF-ID",
   http = "http://api.elsevier.com/content/search/affiliation",
-  facets = "affilcountry(sort=affiliation-name)",
+  facets = "affilcountry(sort=document-count)",
   ...){
   all_entries = author_search(au_id = affil_id,
                               searcher = searcher,
