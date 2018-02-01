@@ -12,3 +12,6 @@ gen_entries_to_df(entries)
 \value{
 List of \code{data.frame}s from entries
 }
+\description{
+Generally Convert Entries into a list of \code{data.frame}s
+}

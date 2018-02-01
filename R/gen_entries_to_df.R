@@ -1,4 +1,4 @@
-#' @title Generally Convert Entries into a list of \code{data.frame}s
+#' Generally Convert Entries into a list of \code{data.frame}s
 #'
 #' @param entries Entries from the output of a command
 #' @export
