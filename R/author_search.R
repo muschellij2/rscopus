@@ -6,6 +6,7 @@
 #' @param http Address for scopus api
 #' @param count number of records to retrieve (below 25, see
 #' \url{http://dev.elsevier.com/api_key_settings.html})
+#' @param start where should the records start gathering
 #' @param verbose Print diagnostic messages
 #' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param searcher Identifier for author ID.  Do not change unless you
@@ -29,6 +30,7 @@ author_search <- function(
   api_key = NULL,
   http = "http://api.elsevier.com/content/search/author",
   count = 25, # number of records to retrieve (below 25)
+  start = 0,
   verbose = TRUE,
   facets =  "subjarea(sort=fd)",
   searcher = "AU-ID",
@@ -38,6 +40,7 @@ author_search <- function(
 
   api_key = get_api_key(api_key)
 
+  init_start = start
   # Wrapper to go through all the pages
   get_results = function(au_id, start = 0,
                          count = count,
