@@ -58,9 +58,7 @@ affil_data = function(
 
 
   df = gen_entries_to_df(
-    entries = entries,
-    au_id = NULL,
-    verbose = verbose)
+    entries = entries)
   df$df$affil_id = affil_id
 
   L = list(entries = entries, df = df)
