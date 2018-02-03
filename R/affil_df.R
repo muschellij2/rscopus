@@ -65,7 +65,9 @@ affil_data = function(
     verbose = verbose,
     facets = facets,
     sort = sort,
-    ...)$entries
+    ...)
+  total_results = entries$total_results
+  entries = entries$entries
 
 
   df = gen_entries_to_df(
@@ -73,5 +75,6 @@ affil_data = function(
   df$df$affil_id = affil_id
 
   L = list(entries = entries, df = df)
+  L$total_results = total_results
   return(L)
 }
