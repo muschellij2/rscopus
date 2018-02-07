@@ -67,8 +67,8 @@ affil_data = function(
     sort = sort,
     ...)
   total_results = entries$total_results
-  entries = entries$entries
   facets = entries$facets
+  entries = entries$entries
 
   df = gen_entries_to_df(
     entries = entries)
