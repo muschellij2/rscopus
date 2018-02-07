@@ -68,7 +68,7 @@ affil_data = function(
     ...)
   total_results = entries$total_results
   entries = entries$entries
-
+  facets = entries$facets
 
   df = gen_entries_to_df(
     entries = entries)
@@ -76,5 +76,6 @@ affil_data = function(
 
   L = list(entries = entries, df = df)
   L$total_results = total_results
+  L$facets = facets
   return(L)
 }
