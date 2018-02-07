@@ -14,6 +14,7 @@
 #' @param max_count Maximum count of records to be returned.
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
+#' @param add_query Things to add to the query parameter for the request
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
 #' @export
@@ -36,6 +37,7 @@ author_search <- function(
   searcher = "AU-ID",
   max_count = Inf,
   view = "STANDARD",
+  add_query = NULL,
   ...){
 
   api_key = get_api_key(api_key)
@@ -46,7 +48,7 @@ author_search <- function(
                          count = count,
                          verbose = TRUE, ...){
     q = list(
-      query = paste0(searcher, "(", au_id, ")"),
+      query = paste0(searcher, "(", au_id, ")", add_query),
       "APIKey" = api_key,
       count = count,
       start = start,
