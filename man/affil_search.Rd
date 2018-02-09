@@ -6,7 +6,7 @@
 \usage{
 affil_search(affil_id, searcher = "AF-ID",
   http = "http://api.elsevier.com/content/search/affiliation",
-  facets = "affilcountry(sort=document-count)", ...)
+  facets = "affilcountry(sort=document-count)", count = 200, ...)
 }
 \arguments{
 \item{affil_id}{Affiliation ID number}
@@ -17,6 +17,9 @@ know exactly what the API calls for.}
 \item{http}{Address for scopus api}
 
 \item{facets}{Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}}
+
+\item{count}{number of records to retrieve (below 200, see
+\url{http://dev.elsevier.com/api_key_settings.html})}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

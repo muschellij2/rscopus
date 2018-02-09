@@ -8,6 +8,8 @@
 #' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @seealso \code{\link{get_author_info}}
+#' @param count number of records to retrieve (below 200, see
+#' \url{http://dev.elsevier.com/api_key_settings.html})
 #' @export
 #' @return List of entries from SCOPUS
 affil_search <- function(
@@ -15,10 +17,12 @@ affil_search <- function(
   searcher = "AF-ID",
   http = "http://api.elsevier.com/content/search/affiliation",
   facets = "affilcountry(sort=document-count)",
+  count = 200,
   ...){
   all_entries = author_search(au_id = affil_id,
                               searcher = searcher,
                               http = http,
+                              count = count,
                               facets = facets, ...)
   return(all_entries)
 }

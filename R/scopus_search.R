@@ -1,52 +1,45 @@
+#' @title SCOPUS Search
+#'
+#' @description This function wraps \code{\link{generic_elsevier_api}} to give a
+#' scopus search from the Elsevier Scopus Search API
 #' @title Search Author Content on SCOPUS
 #'
 #' @description Searches SCOPUS to get information about documents on an author.
-#' @param au_id Author ID number
+#' @param query Query string to search on SCOPUS
 #' @param api_key API Key for Elsevier
-#' @param http Address for scopus api
-#' @param count number of records to retrieve (below 200, see
+#' @param http Address for scopus API
+#' @param count number of records to retrieve (below 200 for STANDARD,
+#' below 25 for COMPLETE views, see
 #' \url{http://dev.elsevier.com/api_key_settings.html})
 #' @param start where should the records start gathering
 #' @param verbose Print diagnostic messages
-#' @param facets Facets sent in query.  See
-#' \url{http://dev.elsevier.com/api_docs.html}
-#' @param searcher Identifier for author ID.  Do not change unless you
-#' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
 #' @param view type of view to give, see
-#' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
-#' @param add_query Things to add to the query parameter for the request
+#' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
 #' @export
-#' @seealso \code{\link{get_author_info}}
-#' @importFrom httr stop_for_status parse_url build_url
-#' @importFrom utils setTxtProgressBar txtProgressBar
 #' @return List of entries from SCOPUS
 #' @examples \dontrun{
-#' author_search(au_id = "Smith", searcher = "affil(princeton) and authlast")
-#' berk = author_search(au_id = "berkeley", searcher = "affil", count =100)
+#' res = scopus_search(query = "all(gene)", max_count = 200)
+#' df = gen_entries_to_df(res$entries)
 #' }
-author_search <- function(
-  au_id, # Author ID number
+scopus_search <- function(
+  query, # Author ID number
   api_key = NULL,
-  http = "http://api.elsevier.com/content/search/author",
   count = 200, # number of records to retrieve (below 25)
+  view = c("STANDARD", "COMPLETE"),
   start = 0,
   verbose = TRUE,
-  facets =  "subjarea(sort=fd)",
-  searcher = "AU-ID",
-  max_count = Inf,
-  view = c("STANDARD", "COMPLETE"),
-  add_query = NULL,
+  max_count = 20000,
+  http = "https://api.elsevier.com/content/search/scopus",
   ...){
 
   api_key = get_api_key(api_key)
   view = match.arg(view)
-  max_count_acceptable = switch(
-    view,
-    STANDARD = 200,
-    COMPLETE = 25)
+  max_count_acceptable = switch(view,
+                                STANDARD = 200,
+                                COMPLETE = 25)
 
   if (count > max_count_acceptable) {
     warning("STANDARD view can have a max count of 200 and COMPLETE 25")
@@ -55,11 +48,11 @@ author_search <- function(
 
   init_start = start
   # Wrapper to go through all the pages
-  get_results = function(au_id, start = 0,
+  get_results = function(query, start = 0,
                          count = count,
                          verbose = TRUE, ...){
     q = list(
-      query = paste0(searcher, "(", au_id, ")", add_query),
+      query = query,
       "APIKey" = api_key,
       count = count,
       start = start,
@@ -86,10 +79,8 @@ author_search <- function(
     cr = content(r)$`search-results`
     return(cr)
   }
-  au_id = as.character(au_id)
 
-  cr = get_results(au_id, start = init_start, count = count,
-                   facets = facets,
+  cr = get_results(query, start = init_start, count = count,
                    verbose = verbose,
                    ...)
 
@@ -100,9 +91,9 @@ author_search <- function(
   if (verbose) {
     message(paste0("Total Entries are ",
                    total_results,
-            ifelse(init_start > 0, paste0(", but starting at ",
-                   init_start), "")
-            ))
+                   ifelse(init_start > 0, paste0(", but starting at ",
+                                                 init_start), "")
+    ))
   }
   xtotal_results = total_results
   total_results = total_results - init_start
@@ -114,8 +105,8 @@ author_search <- function(
                      total_results))
     }
   }
-#   start_index = as.numeric(cr$`opensearch:startIndex`)
-#   items_per_page = as.numeric(cr$`opensearch:itemsPerPage`)
+  #   start_index = as.numeric(cr$`opensearch:startIndex`)
+  #   items_per_page = as.numeric(cr$`opensearch:itemsPerPage`)
 
 
   ### Loop through all the other pages
@@ -130,51 +121,32 @@ author_search <- function(
     }
     for (irun in seq(n_runs - 1)) {
       start = irun * count + init_start
-      cr = get_results(au_id, start = start, count = count,
-                       facets = facets,
+      cr = get_results(query, start = start, count = count,
                        verbose = FALSE,
                        ...)
       all_entries = c(all_entries, cr$entry)
       all_facets = c(all_facets, cr$facet)
       if (verbose) {
         # if ((irun %% 10) == 0) {
-          # message(paste0("Run #", irun))
-          setTxtProgressBar(pb, value = irun)
+        # message(paste0("Run #", irun))
+        setTxtProgressBar(pb, value = irun)
         # }
       }
     }
-   if (verbose) {
-     close(pb)
-   }
+    if (verbose) {
+      close(pb)
+    }
   }
   if (verbose) {
     message(paste0("Number of Output Entries are ", length(all_entries),
-                 "\n"))
+                   "\n"))
   }
   if (total_results != length(all_entries)) {
     warning("May not have received all entries")
   }
-  return(list(entries = all_entries, facets = all_facets,
-              total_results = xtotal_results))
+  L = list(entries = all_entries, total_results = xtotal_results)
+  L$facets = all_facets
+  return(L)
 }
 
 
-#' @title Search Authors by Affiliation on SCOPUS
-#'
-#' @description Searches SCOPUS to get information about authors with
-#' a certain affiliation
-#' @param affil_id Affiliation ID number
-#' @param searcher Identifier for Affiliation ID.  Do not change unless you
-#' know exactly what the API calls for.
-#' @param ... Arguments to be passed to \code{\link{GET}}
-#' @seealso \code{\link{get_author_info}}
-#' @export
-#' @return List of entries from SCOPUS
-author_search_by_affil <- function(
-  affil_id, # Author ID number
-  searcher = "AF-ID",
-  ...){
-  all_entries = author_search(au_id = affil_id,
-                              searcher = searcher, ...)
-  return(all_entries)
-}

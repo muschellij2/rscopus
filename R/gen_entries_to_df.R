@@ -4,6 +4,10 @@
 #' @export
 #' @return List of \code{data.frame}s from entries
 gen_entries_to_df = function(entries) {
+  if ("entries" %in% names(entries)) {
+    warning(paste0("You may not be passing in entries, but a list",
+                   " of output, which has a entries element"))
+  }
   is.named = function(x) {
     if (is.character(x)) {
       return(TRUE)
