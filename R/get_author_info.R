@@ -4,6 +4,7 @@
 #' information
 #' @param last_name last name of author
 #' @param first_name first name of author
+#' @param affil_id ID of affiliation (optional)
 #' @param api_key Elsevier API key
 #' @param query Additional query info, added using \code{+AND+} to original query
 #' @param http Author API http
@@ -18,6 +19,7 @@
 get_complete_author_info <- function(
   last_name, # last name of author
   first_name = NULL, # first name of author
+  affil_id = NULL,
   api_key = NULL, # Elsevier API key
   http = "http://api.elsevier.com/content/search/author", # Author API http
   query = NULL,
@@ -42,6 +44,10 @@ get_complete_author_info <- function(
       warning("AU-ID will override this first/last name combo!")
     }
     reg_query = paste0("AU-ID(", au_id, ")")
+  }
+
+  if (!is.null(affil_id)) {
+    reg_query = paste0(reg_query, "+AND+", "AF-ID(", affil_id, ")")
   }
 
   reg_query = utils::URLencode(reg_query)

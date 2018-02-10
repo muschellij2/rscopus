@@ -1,19 +1,24 @@
 
 #' @title Search Author Content on SCOPUS
 #'
-#' @description Searches SCOPUS to get information about documents on an author.
-#' Note, \code{author_list} returns a list of the entries from \code{author_search},
+#' @description Searches SCOPUS to get information about documents
+#' on an author.
+#' Note, \code{author_list} returns a list of the entries from
+#' \code{author_search},
 #' but allows you to put in a name.
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author
 #' @param api_key Elsevier API key
 #' @param first_name first name of author
 #' @param verbose Print diagnostic messages
-#' @param all_author_info Should all author info be recorded instead of that just to the
+#' @param all_author_info Should all author info be recorded instead of
+#' that just to the
 #' author given
 #' @param http Address for scopus api
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
+#' @param count number of records to retrieve (below 25, see
+#' \url{http://dev.elsevier.com/api_key_settings.html})
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -21,16 +26,19 @@
 #' @examples \dontrun{
 #' author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
 #' }
-#' @note The \code{author_data} command will return the list of all entries as well as
+#' @note The \code{author_data} command will return the list of all
+#' entries as well as
 #' the \code{data.frame}.
-author_df = function(au_id, last_name,
-                     first_name,
-                     api_key = NULL,
-                     verbose = TRUE,
-                     all_author_info = FALSE,
-                     http = "http://api.elsevier.com/content/search/scopus",
-                     view = "COMPLETE",
-                     ...){
+author_df = function(
+  au_id, last_name,
+  first_name,
+  api_key = NULL,
+  verbose = TRUE,
+  all_author_info = FALSE,
+  http = "http://api.elsevier.com/content/search/scopus",
+  view = "COMPLETE",
+  count = 25,
+  ...){
 
   L = author_data(au_id = au_id,
                   last_name = last_name,
@@ -40,6 +48,7 @@ author_df = function(au_id, last_name,
                   all_author_info = all_author_info,
                   http = http,
                   view = view,
+                  count = count,
                   ... = ...)
   df = L$df
 
@@ -58,6 +67,7 @@ author_list = function(au_id, last_name,
                        verbose = TRUE,
                        http = "http://api.elsevier.com/content/search/scopus",
                        view = "COMPLETE",
+                       count = 25,
                        ...){
 
   api_key = get_api_key(api_key)
@@ -78,6 +88,7 @@ author_list = function(au_id, last_name,
                           verbose = verbose,
                           view = view,
                           http = http,
+                          count = count,
                           ...)
   entries$au_id = au_id
   entries$first_name = first_name
@@ -139,8 +150,9 @@ author_data = function(...,
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
 #' @export
-process_author_name = function(au_id, last_name,
-                               first_name, api_key = NULL, verbose = TRUE) {
+process_author_name = function(
+  au_id, last_name,
+  first_name, api_key = NULL, verbose = TRUE) {
   # Getting AU-ID
   if (
     (!missing(last_name) | !missing(first_name) ) &
