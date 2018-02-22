@@ -4,7 +4,7 @@
 #' @description Replaces non-ASCII characters from a last or first name
 #' @param string Character vector of values to be replaced
 #' @export
-#' @seealso Taken from \url{http://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
+#' @seealso Taken from \url{https://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
 #' @return Character vector
 replace_non_ascii <- function(string){
   raws = structure(list(S = as.raw(c(0xc5, 0xa0)), s = as.raw(c(0xc5,

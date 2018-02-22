@@ -18,7 +18,9 @@
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param count number of records to retrieve (below 25, see
-#' \url{http://dev.elsevier.com/api_key_settings.html})
+#' \url{https://dev.elsevier.com/api_key_settings.html})
+#' @param general Should \code{\link{gen_entries_to_df}} instead of the
+#' way before version 0.5.10.9001
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -35,9 +37,10 @@ author_df = function(
   api_key = NULL,
   verbose = TRUE,
   all_author_info = FALSE,
-  http = "http://api.elsevier.com/content/search/scopus",
+  http = "https://api.elsevier.com/content/search/scopus",
   view = "COMPLETE",
   count = 25,
+  general = TRUE,
   ...){
 
   L = author_data(au_id = au_id,
@@ -49,6 +52,7 @@ author_df = function(
                   http = http,
                   view = view,
                   count = count,
+                  general = general,
                   ... = ...)
   df = L$df
 
@@ -56,8 +60,11 @@ author_df = function(
 }
 
 
-
-
+#' @rdname author_df
+#' @export
+author_df_orig = function(..., general = FALSE) {
+  author_df(..., general = general)
+}
 
 #' @rdname author_df
 #' @export
@@ -65,7 +72,7 @@ author_list = function(au_id, last_name,
                        first_name,
                        api_key = NULL,
                        verbose = TRUE,
-                       http = "http://api.elsevier.com/content/search/scopus",
+                       http = "https://api.elsevier.com/content/search/scopus",
                        view = "COMPLETE",
                        count = 25,
                        ...){
@@ -102,7 +109,8 @@ author_list = function(au_id, last_name,
 #' @export
 author_data = function(...,
                        verbose = TRUE,
-                       all_author_info = FALSE){
+                       all_author_info = FALSE,
+                       general = TRUE){
 
   entries = author_list(..., verbose = verbose)
   au_id = entries$au_id
@@ -111,20 +119,26 @@ author_data = function(...,
   entries = entries$entries
 
 
-  if ( all_author_info ) {
-    # df$indexer = seq(nrow(df))
-    df = entries_to_df(entries = entries,
-                       au_id = NULL,
-                       verbose = verbose)
-    # df = merge(df, df2, sort = FALSE, all.x = TRUE)
-    # df = df[ order(df$indexer), ]
-    # df$indexer = NULL
+  if (general) {
+    xdf = gen_entries_to_df(entries)
+    df = xdf$df
   } else {
-    df = entries_to_df(entries = entries,
-                       au_id = au_id,
-                       verbose = verbose)
-  }
+    if ( all_author_info ) {
+      # df$indexer = seq(nrow(df))
+      df = entries_to_df(entries = entries,
+                         au_id = NULL,
+                         verbose = verbose)
+      # df = merge(df, df2, sort = FALSE, all.x = TRUE)
+      # df = df[ order(df$indexer), ]
+      # df$indexer = NULL
+    } else {
+      df = entries_to_df(entries = entries,
+                         au_id = au_id,
+                         verbose = verbose)
 
+    }
+    xdf = NULL
+  }
 
 
   # df$n_affiliations = n_affils
@@ -133,6 +147,7 @@ author_data = function(...,
   df$au_id = au_id
   L = list(entries = entries,
            df = df)
+  L$full_data = xdf
 
   return(L)
 }

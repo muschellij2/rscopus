@@ -5,11 +5,11 @@
 #' @param api_key API Key for Elsevier
 #' @param http Address for scopus api
 #' @param count number of records to retrieve (below 200, see
-#' \url{http://dev.elsevier.com/api_key_settings.html})
+#' \url{https://dev.elsevier.com/api_key_settings.html})
 #' @param start where should the records start gathering
 #' @param verbose Print diagnostic messages
 #' @param facets Facets sent in query.  See
-#' \url{http://dev.elsevier.com/api_docs.html}
+#' \url{https://dev.elsevier.com/api_docs.html}
 #' @param searcher Identifier for author ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
@@ -30,7 +30,7 @@
 author_search <- function(
   au_id, # Author ID number
   api_key = NULL,
-  http = "http://api.elsevier.com/content/search/author",
+  http = "https://api.elsevier.com/content/search/author",
   count = 200, # number of records to retrieve (below 25)
   start = 0,
   verbose = TRUE,

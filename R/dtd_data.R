@@ -1,7 +1,7 @@
 library(rvest)
 library(dplyr)
 
-#from http://r.789695.n4.nabble.com/r-release-r-oldrel-td4699220.html
+#from https://r.789695.n4.nabble.com/r-release-r-oldrel-td4699220.html
 ## Split a version number to major, minor, patch
 split_versions <- function(x) {
   x %>%
@@ -21,7 +21,7 @@ sort_tags <- function(x) {
 }
 
 # Get the HTML data
-http = paste("http://www.elsevier.com/authors",
+http = paste("https://www.elsevier.com/authors",
                  "author-schemas",
                  "elsevier-xml-dtds-and-transport-schemas", sep = "/")
 html_data = read_html(http)

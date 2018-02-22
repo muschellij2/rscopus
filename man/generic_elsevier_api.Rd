@@ -10,16 +10,16 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
   "holdings", "citation-count", "citations"), search_type = c("affiliation",
   "author", "scopus", "scidir", "scidir-object"), api_key = NULL,
   headers = NULL, content_type = c("content", "feedback"),
-  root_http = "http://api.elsevier.com", http_end = NULL, verbose = TRUE,
+  root_http = "https://api.elsevier.com", http_end = NULL, verbose = TRUE,
   api_key_error = TRUE, ...)
 }
 \arguments{
 \item{query}{Query to run, not overall query, but queryParam query}
 
-\item{type}{Type of search.  See \url{http://dev.elsevier.com/api_docs.html}}
+\item{type}{Type of search.  See \url{https://dev.elsevier.com/api_docs.html}}
 
 \item{search_type}{Type of search if \code{type = "search"}.
-See \url{http://dev.elsevier.com/api_docs.html}}
+See \url{https://dev.elsevier.com/api_docs.html}}
 
 \item{api_key}{Elsevier API key}
 

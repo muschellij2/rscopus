@@ -21,7 +21,7 @@ specified}
 
 \item{verbose}{Print diagnostic messages}
 
-\item{facets}{Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}}
+\item{facets}{Facets sent in query.  See \url{https://dev.elsevier.com/api_docs.html}}
 
 \item{sort}{sorting sent to query}
 

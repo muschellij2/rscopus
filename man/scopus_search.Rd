@@ -15,7 +15,7 @@ scopus_search(query, api_key = NULL, count = 200, view = c("STANDARD",
 
 \item{count}{number of records to retrieve (below 200 for STANDARD,
 below 25 for COMPLETE views, see
-\url{http://dev.elsevier.com/api_key_settings.html})}
+\url{https://dev.elsevier.com/api_key_settings.html})}
 
 \item{view}{type of view to give, see
 \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}

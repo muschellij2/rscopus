@@ -2,9 +2,9 @@
 #'
 #' @description Runs GET on generic Elsevier Search
 #' @param query Query to run, not overall query, but queryParam query
-#' @param type Type of search.  See \url{http://dev.elsevier.com/api_docs.html}
+#' @param type Type of search.  See \url{https://dev.elsevier.com/api_docs.html}
 #' @param search_type Type of search if \code{type = "search"}.
-#' See \url{http://dev.elsevier.com/api_docs.html}
+#' See \url{https://dev.elsevier.com/api_docs.html}
 #' @param api_key Elsevier API key
 #' @param headers Headers passed to \code{\link{add_headers}},
 #' passed to \code{\link{GET}}
@@ -53,7 +53,7 @@ generic_elsevier_api <- function(
   api_key = NULL,
   headers = NULL,
   content_type = c("content", "feedback"),
-  root_http = "http://api.elsevier.com",
+  root_http = "https://api.elsevier.com",
   http_end = NULL,
   verbose = TRUE,
   api_key_error = TRUE,

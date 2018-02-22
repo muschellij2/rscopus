@@ -2,20 +2,23 @@
 % Please edit documentation in R/author_df.R
 \name{author_df}
 \alias{author_df}
+\alias{author_df_orig}
 \alias{author_list}
 \alias{author_data}
 \title{Search Author Content on SCOPUS}
 \usage{
 author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
   all_author_info = FALSE,
-  http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
-  count = 25, ...)
+  http = "https://api.elsevier.com/content/search/scopus",
+  view = "COMPLETE", count = 25, general = TRUE, ...)
+
+author_df_orig(..., general = FALSE)
 
 author_list(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  http = "http://api.elsevier.com/content/search/scopus", view = "COMPLETE",
-  count = 25, ...)
+  http = "https://api.elsevier.com/content/search/scopus",
+  view = "COMPLETE", count = 25, ...)
 
-author_data(..., verbose = TRUE, all_author_info = FALSE)
+author_data(..., verbose = TRUE, all_author_info = FALSE, general = TRUE)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
@@ -38,7 +41,10 @@ author given}
 \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}
 
 \item{count}{number of records to retrieve (below 25, see
-\url{http://dev.elsevier.com/api_key_settings.html})}
+\url{https://dev.elsevier.com/api_key_settings.html})}
+
+\item{general}{Should \code{\link{gen_entries_to_df}} instead of the
+way before version 0.5.10.9001}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

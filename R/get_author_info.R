@@ -21,7 +21,7 @@ get_complete_author_info <- function(
   first_name = NULL, # first name of author
   affil_id = NULL,
   api_key = NULL, # Elsevier API key
-  http = "http://api.elsevier.com/content/search/author", # Author API http
+  http = "https://api.elsevier.com/content/search/author", # Author API http
   query = NULL,
   verbose = TRUE,
   au_id = NULL,

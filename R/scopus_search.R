@@ -10,7 +10,7 @@
 #' @param http Address for scopus API
 #' @param count number of records to retrieve (below 200 for STANDARD,
 #' below 25 for COMPLETE views, see
-#' \url{http://dev.elsevier.com/api_key_settings.html})
+#' \url{https://dev.elsevier.com/api_key_settings.html})
 #' @param start where should the records start gathering
 #' @param verbose Print diagnostic messages
 #' @param max_count Maximum count of records to be returned.

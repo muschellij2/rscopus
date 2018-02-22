@@ -16,5 +16,5 @@ Character vector
 Replaces non-ASCII characters from a last or first name
 }
 \seealso{
-Taken from \url{http://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
+Taken from \url{https://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
 }

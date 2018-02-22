@@ -7,7 +7,7 @@
 #' specified
 #' @param verbose Print diagnostic messages
 #' @param api_key Elsevier API key
-#' @param facets Facets sent in query.  See \url{http://dev.elsevier.com/api_docs.html}
+#' @param facets Facets sent in query.  See \url{https://dev.elsevier.com/api_docs.html}
 #' @param sort sorting sent to query
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
