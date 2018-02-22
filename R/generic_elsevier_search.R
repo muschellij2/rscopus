@@ -92,13 +92,16 @@ generic_elsevier_api <- function(
   http = gsub("//", "/", http)
   http = paste(root_http, http, sep = "/")
 
-  if (verbose){
-    message(paste0("HTTP specified is:", http, "\n"))
+  if (verbose) {
+    parsed_url = httr::parse_url(http)
+    parsed_url$query$APIKey = NULL
+    parsed_url = httr::build_url(parsed_url)
+    message(paste0("HTTP specified is:", parsed_url, "\n"))
   }
   qlist = list(...)
   qlist$query = query
   qlist$apiKey = api_key
-  if (length(qlist) > 0){
+  if (length(qlist) > 0) {
     r = GET(http,
             query = qlist,
             add_headers(headers)

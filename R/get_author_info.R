@@ -55,7 +55,11 @@ get_complete_author_info <- function(
   url = paste0(http, "?query=", reg_query,
                "&APIKey=", api_key)
   if (verbose) {
-    message(paste0("HTTP specified is:", url, "\n"))
+    parsed_url = httr::parse_url(url)
+    parsed_url$query$APIKey = NULL
+    parsed_url = httr::build_url(parsed_url)
+    message(paste0("HTTP specified is (without API key): ",
+                   parsed_url, "\n"))
   }
   r = GET(url,
           add_headers(
