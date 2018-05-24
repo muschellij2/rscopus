@@ -1,7 +1,7 @@
 #' @title Generic Elsevier Search
 #'
 #' @description Runs GET on generic Elsevier Search
-#' @param query Query to run, not overall query, but queryParam query
+#' @param query Query to run, not overall query, but `queryParam` query
 #' @param type Type of search.  See \url{https://dev.elsevier.com/api_docs.html}
 #' @param search_type Type of search if \code{type = "search"}.
 #' See \url{https://dev.elsevier.com/api_docs.html}

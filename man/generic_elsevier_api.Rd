@@ -14,7 +14,7 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
   api_key_error = TRUE, ...)
 }
 \arguments{
-\item{query}{Query to run, not overall query, but queryParam query}
+\item{query}{Query to run, not overall query, but `queryParam` query}
 
 \item{type}{Type of search.  See \url{https://dev.elsevier.com/api_docs.html}}
 

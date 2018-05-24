@@ -10,7 +10,7 @@ entry_to_affil(x, all_affils)
 \item{x}{individual entry from SCOPUS,
 usually from \code{\link{author_search}}}
 
-\item{all_affils}{Affilation data.frame from \code{\link{all_possible_affils}}}
+\item{all_affils}{Affiliation data.frame from \code{\link{all_possible_affils}}}
 }
 \value{
 A \code{data.frame} of affiliation information

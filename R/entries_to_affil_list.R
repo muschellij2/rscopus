@@ -23,7 +23,7 @@ entries_to_affil_list = function(entries) {
 #' affiliations
 #' @param x individual entry from SCOPUS,
 #' usually from \code{\link{author_search}}
-#' @param all_affils Affilation data.frame from \code{\link{all_possible_affils}}
+#' @param all_affils Affiliation data.frame from \code{\link{all_possible_affils}}
 #' @return A \code{data.frame} of affiliation information
 #' @export
 entry_to_affil = function(x, all_affils) {
