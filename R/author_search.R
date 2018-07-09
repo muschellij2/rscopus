@@ -34,7 +34,7 @@ author_search <- function(
   count = 200, # number of records to retrieve (below 25)
   start = 0,
   verbose = TRUE,
-  facets =  "subjarea(sort=fd)",
+  facets =  "subjarea(sort=fd,count=350)",
   searcher = "AU-ID",
   max_count = Inf,
   view = c("STANDARD", "COMPLETE"),

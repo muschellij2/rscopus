@@ -2,13 +2,20 @@
 % Please edit documentation in R/subject_areas.R
 \name{subject_areas}
 \alias{subject_areas}
+\alias{subject_area_codes}
 \title{Subject Areas}
 \usage{
 subject_areas()
+
+subject_area_codes()
 }
 \value{
 Character vector of subject areas
 }
 \description{
 Subject Areas
+}
+\note{
+See
+\url{https://service.elsevier.com/app/answers/detail/a_id/15181/supporthub/scopus/related/1/}
 }
