@@ -22,12 +22,14 @@ complete_multi_author_info <- function(
   ...
 ){
 
+  au_id = unique(au_id)
   au_id = trimws(au_id)
   au_id = unique(au_id)
   pasted_au_id = paste(au_id, collapse = ",")
 
   n = length(au_id)
   run_res = function(au_id, verbose, api_key, ...) {
+    au_id = paste(au_id, collapse = ",")
     res = generic_elsevier_api(
       author_id = au_id,
       verbose = verbose,
