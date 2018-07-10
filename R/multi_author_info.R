@@ -25,6 +25,7 @@ complete_multi_author_info <- function(
   au_id = unique(au_id)
   au_id = trimws(au_id)
   au_id = unique(au_id)
+  au_id = au_id[ !au_id %in% "" ]
   pasted_au_id = paste(au_id, collapse = ",")
 
   n = length(au_id)
@@ -51,7 +52,9 @@ complete_multi_author_info <- function(
     }
   }
 
-  all_res = NULL
+  all_res = vector(mode = "list",
+                   length = 2)
+  names(all_res) = c("get_statement", "content")
 
   for (iy in uy) {
     keep = y == iy
@@ -64,14 +67,14 @@ complete_multi_author_info <- function(
                         verbose = verbose,
                         api_key = api_key,
                         ... = ...)
-    all_res = c(all_res, res$get_statement)
+    all_res$get_statement = c(all_res$get_statement, list(res$get_statement))
+    all_res$content$`author-retrieval-response-list`$`author-retrieval-response` =
+      c(all_res$content$`author-retrieval-response-list`$`author-retrieval-response`,
+        res$content$`author-retrieval-response-list`$`author-retrieval-response`)
   }
-  all_res = list(
-    get_statement = all_res,
-    content = lapply(all_res, httr::content))
   all_res$au_id = pasted_au_id
 
-  return(all_res)
+  return(res)
 }
 
 
