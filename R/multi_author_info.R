@@ -177,14 +177,13 @@ process_complete_multi_author_info = function(res) {
     if (is.null(sa)) {
       return(NULL)
     }
-    sa = t(sapply(sa, unlist))
+    sa = bind_rows(sa)
     cn = colnames(sa)
     cn = setdiff(cn, "@_fa")
     sa = sa[, cn]
     cn = gsub("@", "", cn, fixed = TRUE)
     cn[ cn == "$"] = "longname"
     colnames(sa) = cn
-    sa = as.data.frame(sa, stringsAsFactors = FALSE)
     return(sa)
   }
 
@@ -227,12 +226,19 @@ process_complete_multi_author_info = function(res) {
     y
   }
 
+
   other_names = function(x) {
     r = x$`author-profile`$`name-variant`
     if (is.null(r)) {
       return(NULL)
     }
+    if (!is.null(names(r))) {
+      r = list(r)
+    }
     r = lapply(r, nonull)
+    r = lapply(r, function(xx) {
+      lapply(xx, nonull)
+    })
     r = bind_rows(r)
     r = no_at_colnames(r)
     # r = sapply(r, function(y) {
@@ -264,9 +270,12 @@ process_complete_multi_author_info = function(res) {
   }
 
 
+  i = 1
+
+  x = cr[[i]]
   # Quick setup function
   auth_get_info = function(x){
-
+    print(i)
     core = get_core(x)
     core = c(core, affil = curr_affil(x), run_years(x),
              pref_name(x))
@@ -294,6 +303,7 @@ process_complete_multi_author_info = function(res) {
              subject_areas = sa,
              affiliation_history = ahist,
              journals = journ)
+    i <<- i + 1
     return(L)
   }
 
