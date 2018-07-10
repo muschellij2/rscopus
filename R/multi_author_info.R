@@ -68,8 +68,8 @@ complete_multi_author_info <- function(
                         api_key = api_key,
                         ... = ...)
     all_res$get_statement = c(all_res$get_statement, list(res$get_statement))
-    all_res$content$`author-retrieval-response-list`$`author-retrieval-response` =
-      c(all_res$content$`author-retrieval-response-list`$`author-retrieval-response`,
+    all_res$content =
+      c(all_res$content,
         res$content$`author-retrieval-response-list`$`author-retrieval-response`)
   }
   all_res$au_id = pasted_au_id
@@ -93,7 +93,6 @@ multi_author_info <- function(...){
   au_id = res$au_id
   au_id = strsplit(au_id, split = ",")[[1]]
   au_id = au_id[ !au_id %in% "" ]
-  cr = cr$`author-retrieval-response-list`$`author-retrieval-response`
 
   no_at = function(y) {
     cn = names(y)
