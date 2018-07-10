@@ -232,6 +232,7 @@ process_complete_multi_author_info = function(res) {
     if (is.null(r)) {
       return(NULL)
     }
+    r = lapply(r, nonull)
     r = bind_rows(r)
     r = no_at_colnames(r)
     # r = sapply(r, function(y) {
