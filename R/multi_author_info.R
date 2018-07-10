@@ -74,7 +74,7 @@ complete_multi_author_info <- function(
   }
   all_res$au_id = pasted_au_id
 
-  return(res)
+  return(all_res)
 }
 
 
