@@ -117,14 +117,16 @@ process_complete_multi_author_info = function(res) {
 
   get_core = function(x) {
     cd = x$coredata
-    sd = setdiff(names(cd), "link")
-    cd = cd[sd]
+    cd$link = NULL
     cd = unlist(cd)
     return(cd)
   }
 
   make_affil = function(affil) {
     affil = unlist(affil)
+    # need this for duplication
+    names(affil) = sub("@country", "_country", names(affil),
+                       fixed = TRUE)
     affil = no_at(affil)
     cn = names(affil)
     cn = sub("\\$$", "", cn)
@@ -276,9 +278,21 @@ process_complete_multi_author_info = function(res) {
   # i = 1
   # x = cr[[i]]
 
+  core_links = function(x) {
+    gen_entries_to_df(x$coredata$link)$df
+  }
+
+  start_year = function(x) {
+    r = x$`author-profile`$`date-created`
+    if (is.null(r)) {
+      return(r)
+    }
+    r = no_at(r)
+  }
   # Quick setup function
   auth_get_info = function(x){
     # print(i)
+    this_core_links = core_links(x)
     core = get_core(x)
     core = c(core, affil = curr_affil(x), run_years(x),
              pref_name(x))
@@ -302,6 +316,7 @@ process_complete_multi_author_info = function(res) {
 
     journ = journals(x)
     L = list(info = core,
+             links = this_core_links,
              other_names = onames,
              subject_areas = sa,
              affiliation_history = ahist,
