@@ -55,13 +55,20 @@ complete_multi_author_info <- function(
 
   for (iy in uy) {
     keep = y == iy
+    if (n > chunk_size) {
+      if (verbose) {
+        message(paste0("Running chunk ", iy))
+      }
+    }
     res = run_res(au_id = au_id[keep],
                         verbose = verbose,
                         api_key = api_key,
                         ... = ...)
-    all_res$content = c(all_res$content, res$content)
-    all_res$get_statement = c(all_res$get_statement, res$get_statement)
+    all_res = c(all_res, res$get_statement)
   }
+  all_res = list(
+    get_statement = all_res,
+    content = lapply(all_res, httr::content))
   all_res$au_id = pasted_au_id
 
   return(all_res)
