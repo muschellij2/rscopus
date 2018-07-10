@@ -83,11 +83,12 @@ complete_multi_author_info <- function(
 #' @seealso \code{\link{get_complete_author_info}}
 #' @return Data.frame of information
 #' @examples \dontrun{
-#' multi_author_info(au_id =  "22968535800", "40462056100"))
+#' multi_author_info(au_id =  c("22968535800", "40462056100"))
 #' }
 #' @export
 multi_author_info <- function(...){
   res = complete_multi_author_info(...)
+  res = process_complete_multi_author_info(res)
   return(res)
 }
 
@@ -167,7 +168,8 @@ process_complete_multi_author_info = function(res) {
       names(r) = keep
       r
     }))
-
+    affil = as.data.frame(affil, stringsAsFactors = FALSE)
+    return(affil)
   }
 
   # sapply(cr, function(x) sapply(x$`author-profile`$`affiliation-history`$affiliation, unlist))
@@ -266,16 +268,17 @@ process_complete_multi_author_info = function(res) {
       names(y) = keep
       y
     }))
+    j = as.data.frame(j, stringsAsFactors = FALSE)
     return(j)
   }
 
 
-  i = 1
+  # i = 1
+  # x = cr[[i]]
 
-  x = cr[[i]]
   # Quick setup function
   auth_get_info = function(x){
-    print(i)
+    # print(i)
     core = get_core(x)
     core = c(core, affil = curr_affil(x), run_years(x),
              pref_name(x))
@@ -303,7 +306,7 @@ process_complete_multi_author_info = function(res) {
              subject_areas = sa,
              affiliation_history = ahist,
              journals = journ)
-    i <<- i + 1
+    # i <<- i + 1
     return(L)
   }
 

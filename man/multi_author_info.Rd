@@ -22,7 +22,7 @@ Get Relevant Authors Information from IDs from Scopus
 }
 \examples{
 \dontrun{
-multi_author_info(au_id =  "22968535800", "40462056100"))
+multi_author_info(au_id =  c("22968535800", "40462056100"))
 }
 }
 \seealso{
