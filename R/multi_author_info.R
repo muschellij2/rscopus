@@ -11,7 +11,6 @@ create_chunks = function(x, chunk_size = 25) {
 #' @param au_id vector of Author IDs
 #' @param api_key Elsevier API key
 #' @param verbose Print messages from specification
-
 #' @param ... options to pass to \code{\link{generic_elsevier_api}}
 #' @export
 #' @return List of information
@@ -89,6 +88,13 @@ complete_multi_author_info <- function(
 #' @export
 multi_author_info <- function(...){
   res = complete_multi_author_info(...)
+  return(res)
+}
+
+#' @export
+#' @param res result from \code{\link{complete_multi_author_info}}
+#' @rdname multi_author_info
+process_complete_multi_author_info = function(res) {
   cr = res$content
   au_id = res$au_id
   au_id = strsplit(au_id, split = ",")[[1]]
@@ -288,4 +294,3 @@ multi_author_info <- function(...){
   }
   return(info)
 }
-

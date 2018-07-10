@@ -2,12 +2,17 @@
 % Please edit documentation in R/multi_author_info.R
 \name{multi_author_info}
 \alias{multi_author_info}
+\alias{process_complete_multi_author_info}
 \title{Get Relevant Authors Information from IDs from Scopus}
 \usage{
 multi_author_info(...)
+
+process_complete_multi_author_info(res)
 }
 \arguments{
 \item{...}{Arguments passed to \code{\link{get_complete_author_info}}}
+
+\item{res}{result from \code{\link{complete_multi_author_info}}}
 }
 \value{
 Data.frame of information
