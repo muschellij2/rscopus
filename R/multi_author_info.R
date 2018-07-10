@@ -59,7 +59,6 @@ complete_multi_author_info <- function(
                         verbose = verbose,
                         api_key = api_key,
                         ... = ...)
-    all_res$au_id = c(all_res$au_id, res$au_id)
     all_res$content = c(all_res$content, res$content)
     all_res$get_statement = c(all_res$get_statement, res$get_statement)
   }
