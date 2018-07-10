@@ -107,6 +107,13 @@ process_complete_multi_author_info = function(res) {
     y
   }
 
+  no_at_colnames = function(y) {
+    cn = colnames(y)
+    cn = gsub("@", "", cn, fixed = TRUE)
+    colnames(y) = cn
+    y
+  }
+
   get_core = function(x) {
     cd = x$coredata
     sd = setdiff(names(cd), "link")
@@ -225,17 +232,20 @@ process_complete_multi_author_info = function(res) {
     if (is.null(r)) {
       return(NULL)
     }
-    r = sapply(r, function(y) {
-      unlist(y)
-      y = no_at(y)
-      keep = c("doc-count", "initials",
-               "indexed-name", "surname",
-               "given-name")
-      y = y[keep]
-      names(y) = keep
-      y
-    })
-    r = t(r)
+    r = bind_rows(r)
+    r = no_at_colnames(r)
+    # r = sapply(r, function(y) {
+    #   unlist(y)
+    #   y = no_at(y)
+    #   keep = c("doc-count", "initials",
+    #            "indexed-name", "surname",
+    #            "given-name")
+    #   y = y[keep]
+    #   names(y) = keep
+    #   y
+    # })
+    # r = t(r)
+    return(r)
   }
 
 
