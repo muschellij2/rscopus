@@ -22,17 +22,18 @@ complete_multi_author_info <- function(
   ...
 ){
 
+  au_id = trimws(au_id)
   au_id = unique(au_id)
+  pasted_au_id = paste(au_id, collapse = ",")
+
   n = length(au_id)
   run_res = function(au_id, verbose, api_key, ...) {
-    au_id = paste(au_id, collapse = ",")
     res = generic_elsevier_api(
       author_id = au_id,
       verbose = verbose,
       type = "author",
       api_key = api_key,
       ...)
-    res$au_id = au_id
     return(res)
   }
   chunk_size = 25
@@ -60,7 +61,7 @@ complete_multi_author_info <- function(
     all_res$content = c(all_res$content, res$content)
     all_res$get_statement = c(all_res$get_statement, res$get_statement)
   }
-  all_res$au_id = paste(all_res$au_id, collapse = ",")
+  all_res$au_id = pasted_au_id
 
   return(all_res)
 }
