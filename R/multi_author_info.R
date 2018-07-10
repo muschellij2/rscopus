@@ -36,6 +36,8 @@ complete_multi_author_info <- function(
     return(res)
   }
   chunk_size = 25
+  y = create_chunks(au_id, chunk_size = chunk_size)
+  uy = unique(y)
   if (n > chunk_size) {
     if (verbose) {
       message(paste0(
@@ -45,8 +47,7 @@ complete_multi_author_info <- function(
       )
     }
   }
-  y = create_chunks(au_id, chunk_size = chunk_size)
-  uy = unique(y)
+
   all_res = NULL
 
   for (iy in uy) {
