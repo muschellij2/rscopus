@@ -1,3 +1,11 @@
+create_chunks = function(x, chunk_size = 25) {
+  n = length(x)
+  cuts <- ceiling(n/chunk_size)
+  y <- rep(1:cuts, each = chunk_size)
+  y = y[1:n]
+  return(y)
+}
+
 #' Get Complete Author Information and ID from Scopus
 #'
 #' @param au_id vector of Author IDs
@@ -14,15 +22,46 @@ complete_multi_author_info <- function(
   ...
 ){
 
-  au_id = paste(au_id, collapse = ",")
-  res = generic_elsevier_api(
-    author_id = au_id,
-    verbose = verbose,
-    type = "author",
-    api_key = api_key,
-    ...)
-  res$au_id = au_id
-  return(res)
+  au_id = unique(au_id)
+  n = length(au_id)
+  run_res = function(au_id, verbose, api_key, ...) {
+    au_id = paste(au_id, collapse = ",")
+    res = generic_elsevier_api(
+      author_id = au_id,
+      verbose = verbose,
+      type = "author",
+      api_key = api_key,
+      ...)
+    res$au_id = au_id
+    return(res)
+  }
+  chunk_size = 25
+  if (n > chunk_size) {
+    if (verbose) {
+      message(paste0(
+        "Over ", chunk_size,
+        " authors requested, chunking into ",
+        max(uy), " chunks")
+      )
+    }
+  }
+  y = create_chunks(au_id, chunk_size = chunk_size)
+  uy = unique(y)
+  all_res = NULL
+
+  for (iy in uy) {
+    keep = y == iy
+    res = run_res(au_id = au_id[keep],
+                        verbose = verbose,
+                        api_key = api_key,
+                        ... = ...)
+    all_res$au_id = c(all_res$au_id, res$au_id)
+    all_res$content = c(all_res$content, res$content)
+    all_res$get_statement = c(all_res$get_statement, res$get_statement)
+  }
+  all_res$au_id = paste(all_res$au_id, collapse = ",")
+
+  return(all_res)
 }
 
 
@@ -69,12 +108,18 @@ multi_author_info <- function(...){
   }
   curr_affil = function(x) {
     affil = x$`author-profile`$`affiliation-current`$affiliation
+    if (is.null(affil)) {
+      return(NULL)
+    }
     make_affil(affil)
   }
 
   affil_hist = function(x) {
     affil = sapply(x$`author-profile`$`affiliation-history`$affiliation,
                    make_affil)
+    if (length(affil) == 0) {
+      return(NULL)
+    }
     keep = c("affiliation-id", "parent", "source", "ip-doc.id", "ip-doc.type",
              "ip-doc.relationship", "ip-doc.afdispname",
              "ip-doc.preferred-name.source",
@@ -104,6 +149,9 @@ multi_author_info <- function(...){
 
   subjareas = function(x) {
     sa = x$`subject-areas`$`subject-area`
+    if (is.null(sa)) {
+      return(NULL)
+    }
     sa = t(sapply(sa, unlist))
     cn = colnames(sa)
     cn = setdiff(cn, "@_fa")
@@ -118,6 +166,9 @@ multi_author_info <- function(...){
   classes = function(x) {
     class_freq = x$`author-profile`$classificationgroup
     class_freq = class_freq$classifications$classification
+    if (is.null(class_freq)) {
+      return(NULL)
+    }
     class_freq = t(sapply(class_freq, unlist))
     cn = colnames(class_freq)
     cn = gsub("@", "", cn, fixed = TRUE)
@@ -129,6 +180,9 @@ multi_author_info <- function(...){
 
   run_years = function(x) {
     y = x$`author-profile`$`publication-range`
+    if (is.null(y)) {
+      return(NULL)
+    }
     y = unlist(y)
     y = no_at(y)
     y
@@ -136,6 +190,9 @@ multi_author_info <- function(...){
 
   pref_name = function(x) {
     y = x$`author-profile`$`preferred-name`
+    if (is.null(y)) {
+      return(NULL)
+    }
     y = unlist(y)
     cn = names(y)
     cn = gsub("@", "", cn, fixed = TRUE)
@@ -147,6 +204,9 @@ multi_author_info <- function(...){
 
   other_names = function(x) {
     r = x$`author-profile`$`name-variant`
+    if (is.null(r)) {
+      return(NULL)
+    }
     r = sapply(r, function(y) {
       unlist(y)
       y = no_at(y)
@@ -187,7 +247,15 @@ multi_author_info <- function(...){
     # merge subject areas and frequency
     sa = subjareas(x)
     class_freq = classes(x)
-    sa = merge(sa, class_freq, by = "code", all = TRUE)
+    if (!is.null(sa) && !is.null(class_freq)) {
+      sa = merge(sa, class_freq, by = "code", all = TRUE)
+    }
+    if (is.null(sa) && !is.null(class_freq)) {
+      sa = class_freq
+    }
+    if (!is.null(sa) && is.null(class_freq)) {
+      sa = sa
+    }
 
     ahist = affil_hist(x)
 
