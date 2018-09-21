@@ -52,6 +52,8 @@ You should be able to test out the API key using the [interactive Scopus APIs](h
 ### A note about API keys and IP addresses
 The API Key is bound to a set of IP addresses, usually bound to your institution.  Therefore, if you are using this for a Shiny application, you must host the Shiny application from your institution servers in some way.  Also, you cannot access the Scopus API with this key if you are offsite and must VPN into the server or use a computing cluster with an institution IP.
 
+See https://dev.elsevier.com/tecdoc_api_authentication.html
+
 
 ## Example
 
@@ -59,9 +61,20 @@ This is a basic example which shows you how to solve a common problem:
 
 ```{r example, eval = TRUE, message=FALSE}
 library(rscopus)
-res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
+library(dplyr)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE)
 names(res)
 head(res[, c("title", "journal", "description")])
 unique(res$au_id)
 unique(as.character(res$affilname_1))
+
+all_dat = author_data(last_name = "Muschelli", 
+                 first_name = "John", verbose = FALSE, general = TRUE)
+res2 = all_dat$df
+res2 = res2 %>% 
+  rename(journal = `prism:publicationName`,
+         title = `dc:title`,
+         description = `dc:description`)
+head(res[, c("title", "journal", "description")])
+
 ```

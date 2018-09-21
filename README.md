@@ -58,13 +58,16 @@ some way. Also, you cannot access the Scopus API with this key if you
 are offsite and must VPN into the server or use a computing cluster with
 an institution IP.
 
+See <https://dev.elsevier.com/tecdoc_api_authentication.html>
+
 ## Example
 
 This is a basic example which shows you how to solve a common problem:
 
 ``` r
 library(rscopus)
-res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE)
+library(dplyr)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE)
 names(res)
 #>  [1] "auth_order"            "affilname_1"          
 #>  [3] "n_auth"                "affilname_2"          
@@ -82,19 +85,19 @@ names(res)
 #> [27] "last_name"             "au_id"
 head(res[, c("title", "journal", "description")])
 #>                                                                                                                                                                         title
-#> 1                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#> 2 Thrombolytic removal of intraventricular haemorrhage in treatment of severe stroke: results of the randomised, multicentre, multiregion, placebo-controlled CLEAR III trial
-#> 3                                                                             PItcHPERFeCT: Primary Intracranial Hemorrhage Probability Estimation using Random Forests on CT
-#> 4                                                                   ISLES 2015 - A public evaluation benchmark for ischemic stroke lesion segmentation from multispectral MRI
-#> 5                                 Large-scale radiomic profiling of recurrent glioblastoma identifies an imaging predictor for stratifying anti-angiogenic treatment response
-#> 6      Safety and efficacy of minimally invasive surgery plus alteplase in intracerebral haemorrhage evacuation (MISTIE): a randomised, controlled, open-label, phase 2 trial
-#>                         journal      description
-#> 1 Journal of Genetic Counseling Article in Press
-#> 2                    The Lancet          Article
-#> 3          NeuroImage: Clinical          Article
-#> 4        Medical Image Analysis          Article
-#> 5      Clinical Cancer Research          Article
-#> 6          The Lancet Neurology          Article
+#> 1                                                        Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 2                                                                        MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 3                       Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 4                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#> 5                                                                                     Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
+#> 6 Thrombolytic removal of intraventricular haemorrhage in treatment of severe stroke: results of the randomised, multicentre, multiregion, placebo-controlled CLEAR III trial
+#>                         journal description
+#> 1            Scientific Reports     Article
+#> 2       Journal of Neuroimaging     Article
+#> 3                Neuro-Oncology     Article
+#> 4 Journal of Genetic Counseling     Article
+#> 5                 F1000Research     Article
+#> 6                    The Lancet     Article
 unique(res$au_id)
 #> [1] "40462056100"
 unique(as.character(res$affilname_1))
@@ -103,4 +106,27 @@ unique(as.character(res$affilname_1))
 #> [3] "Johns Hopkins Medical Institutions"             
 #> [4] "Kennedy Krieger Institute"                      
 #> [5] "The Johns Hopkins School of Medicine"
+
+all_dat = author_data(last_name = "Muschelli", 
+                 first_name = "John", verbose = FALSE, general = TRUE)
+res2 = all_dat$df
+res2 = res2 %>% 
+  rename(journal = `prism:publicationName`,
+         title = `dc:title`,
+         description = `dc:description`)
+head(res[, c("title", "journal", "description")])
+#>                                                                                                                                                                         title
+#> 1                                                        Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 2                                                                        MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 3                       Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 4                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#> 5                                                                                     Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
+#> 6 Thrombolytic removal of intraventricular haemorrhage in treatment of severe stroke: results of the randomised, multicentre, multiregion, placebo-controlled CLEAR III trial
+#>                         journal description
+#> 1            Scientific Reports     Article
+#> 2       Journal of Neuroimaging     Article
+#> 3                Neuro-Oncology     Article
+#> 4 Journal of Genetic Counseling     Article
+#> 5                 F1000Research     Article
+#> 6                    The Lancet     Article
 ```
