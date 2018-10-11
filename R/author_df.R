@@ -161,13 +161,16 @@ author_data = function(...,
 #' @param last_name last name of author
 #' @param first_name first name of author
 #' @param api_key Elsevier API key
+#' @param affil_id ID of affiliation (optional)
 #' @param verbose Print diagnostic messages
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
 #' @export
 process_author_name = function(
   au_id = NULL, last_name = NULL,
-  first_name = NULL, api_key = NULL, verbose = TRUE) {
+  first_name = NULL,
+  affil_id = NULL,
+  api_key = NULL, verbose = TRUE) {
 
   if (is.null(last_name) &
       is.null(first_name) &
@@ -191,7 +194,8 @@ process_author_name = function(
     auth_name = get_author_info(
       last_name = last_name,
       first_name = first_name,
-      api_key = api_key, verbose = verbose)
+      api_key = api_key, verbose = verbose,
+      affil_id = affil_id)
     if (NROW(auth_name) == 0) {
       stop("No author name found")
     }
