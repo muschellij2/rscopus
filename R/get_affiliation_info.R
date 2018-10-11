@@ -5,7 +5,7 @@
 #' @param affil_name name of affiliation
 #' @param affil_id ID of affiliation
 #' @param api_key Elsevier API key
-#' @param http Author API http
+#' @param verbose Print messages from specification
 #' @export
 #' @return A \code{data.frame} of affiliation information
 get_affiliation_info <- function(

@@ -14,7 +14,7 @@ get_affiliation_info(affil_id = NULL, affil_name = NULL,
 
 \item{api_key}{Elsevier API key}
 
-\item{http}{Author API http}
+\item{verbose}{Print messages from specification}
 }
 \value{
 A \code{data.frame} of affiliation information

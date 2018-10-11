@@ -17,7 +17,7 @@
 #' @export
 #' @return List of information
 get_complete_author_info <- function(
-  last_name, # last name of author
+  last_name= NULL, # last name of author
   first_name = NULL, # first name of author
   affil_id = NULL,
   api_key = NULL, # Elsevier API key

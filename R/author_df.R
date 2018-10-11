@@ -32,8 +32,8 @@
 #' entries as well as
 #' the \code{data.frame}.
 author_df = function(
-  au_id, last_name,
-  first_name,
+  au_id = NULL, last_name = NULL,
+  first_name = NULL,
   api_key = NULL,
   verbose = TRUE,
   all_author_info = FALSE,
@@ -68,8 +68,8 @@ author_df_orig = function(..., general = FALSE) {
 
 #' @rdname author_df
 #' @export
-author_list = function(au_id, last_name,
-                       first_name,
+author_list = function(au_id = NULL, last_name = NULL,
+                       first_name = NULL,
                        api_key = NULL,
                        verbose = TRUE,
                        http = "https://api.elsevier.com/content/search/scopus",
@@ -166,17 +166,28 @@ author_data = function(...,
 #' @note This function is really to avoid duplication
 #' @export
 process_author_name = function(
-  au_id, last_name,
-  first_name, api_key = NULL, verbose = TRUE) {
+  au_id = NULL, last_name = NULL,
+  first_name = NULL, api_key = NULL, verbose = TRUE) {
+
+  if (is.null(last_name) &
+      is.null(first_name) &
+      is.null(au_id)) {
+    stop("au_id or names must be specified!")
+  }
   # Getting AU-ID
   if (
-    (!missing(last_name) | !missing(first_name) ) &
-    !missing(au_id)) {
+    (!is.null(last_name) | !is.null(first_name) ) &
+    !is.null(au_id)) {
     warning("AU-ID overriding first/last name combination")
   }
-  if (missing(au_id)) {
+  if (is.null(au_id)) {
     last_name = replace_non_ascii(last_name)
     first_name = replace_non_ascii(first_name)
+    if (length(first_name) == 0) {
+      first_name = NULL
+    } else if (first_name %in% c("", NA)) {
+      first_name = NULL
+    }
     auth_name = get_author_info(
       last_name = last_name,
       first_name = first_name,
@@ -193,11 +204,8 @@ process_author_name = function(
     }
     au_id = auth_name$au_id[1]
   }
-  if (missing(last_name)) {
-    last_name = NULL
-  }
-  if (missing(first_name)) {
-    first_name = NULL
+  if (is.na(au_id) | is.null(au_id)) {
+    stop("AU-ID not found, must be specified - names didn't work")
   }
   au_id = as.character(au_id)
   L = list(first_name = first_name,

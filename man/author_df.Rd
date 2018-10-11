@@ -7,15 +7,15 @@
 \alias{author_data}
 \title{Search Author Content on SCOPUS}
 \usage{
-author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
-  all_author_info = FALSE,
+author_df(au_id = NULL, last_name = NULL, first_name = NULL,
+  api_key = NULL, verbose = TRUE, all_author_info = FALSE,
   http = "https://api.elsevier.com/content/search/scopus",
   view = "COMPLETE", count = 25, general = TRUE, ...)
 
 author_df_orig(..., general = FALSE)
 
-author_list(au_id, last_name, first_name, api_key = NULL,
-  verbose = TRUE,
+author_list(au_id = NULL, last_name = NULL, first_name = NULL,
+  api_key = NULL, verbose = TRUE,
   http = "https://api.elsevier.com/content/search/scopus",
   view = "COMPLETE", count = 25, ...)
 

@@ -8,6 +8,9 @@
 #' @seealso Taken from \url{https://stackoverflow.com/questions/20495598/replace-accented-characters-in-r-with-non-accented-counterpart-utf-8-encoding}
 #' @return Character vector
 replace_non_ascii <- function(string) {
+  if (is.null(string)) {
+    return(NULL)
+  }
   raws = structure(
     list(
       S = as.raw(c(0xc5, 0xa0)),
