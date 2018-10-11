@@ -40,7 +40,7 @@ get_complete_author_info <- function(
       reg_query = paste0(paste0(reg_query, collapse = "+AND+"), "+AND+", query)
     }
   } else {
-    if (!missing(last_name) || !is.null(first_name)) {
+    if (!is.null(last_name) || !is.null(first_name)) {
       warning("AU-ID will override this first/last name combo!")
     }
     reg_query = paste0("AU-ID(", au_id, ")")

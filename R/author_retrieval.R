@@ -82,9 +82,9 @@ multi_author_retrieval <- function(
 #'
 #' @export
 author_retrieval <- function(
-  au_id,
-  last_name,
-  first_name,
+  au_id = NULL,
+  last_name = NULL,
+  first_name = NULL,
   view = c("LIGHT", "STANDARD",
            "ENHANCED", "METRICS", "ENTITLED"),
   self_cite = c("include", "exclude"),

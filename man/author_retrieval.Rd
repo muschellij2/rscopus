@@ -12,8 +12,8 @@ author_retrieval_id(id, identifier = c("author_id", "eid"),
 multi_author_retrieval(id, identifier = c("author_id", "eid"),
   http_end = NULL, ...)
 
-author_retrieval(au_id, last_name, first_name, view = c("LIGHT",
-  "STANDARD", "ENHANCED", "METRICS", "ENTITLED"),
+author_retrieval(au_id = NULL, last_name = NULL, first_name = NULL,
+  view = c("LIGHT", "STANDARD", "ENHANCED", "METRICS", "ENTITLED"),
   self_cite = c("include", "exclude"), http_end = NULL,
   verbose = TRUE, api_key = NULL, ...)
 }
