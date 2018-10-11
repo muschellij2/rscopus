@@ -4,8 +4,9 @@
 \alias{scopus_search}
 \title{SCOPUS Search}
 \usage{
-scopus_search(query, api_key = NULL, count = 200, view = c("STANDARD",
-  "COMPLETE"), start = 0, verbose = TRUE, max_count = 20000,
+scopus_search(query, api_key = NULL, count = 200,
+  view = c("STANDARD", "COMPLETE"), start = 0, verbose = TRUE,
+  max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus", ...)
 }
 \arguments{

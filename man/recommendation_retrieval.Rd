@@ -4,8 +4,8 @@
 \alias{recommendation_retrieval}
 \title{ScienceDirect Article Recommendation Retrieval}
 \usage{
-recommendation_retrieval(id, identifier = c("eid", "pii"), http_end = NULL,
-  ...)
+recommendation_retrieval(id, identifier = c("eid", "pii"),
+  http_end = NULL, ...)
 }
 \arguments{
 \item{id}{Identifier for recommendation}

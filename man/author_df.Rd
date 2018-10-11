@@ -14,11 +14,13 @@ author_df(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
 
 author_df_orig(..., general = FALSE)
 
-author_list(au_id, last_name, first_name, api_key = NULL, verbose = TRUE,
+author_list(au_id, last_name, first_name, api_key = NULL,
+  verbose = TRUE,
   http = "https://api.elsevier.com/content/search/scopus",
   view = "COMPLETE", count = 25, ...)
 
-author_data(..., verbose = TRUE, all_author_info = FALSE, general = TRUE)
+author_data(..., verbose = TRUE, all_author_info = FALSE,
+  general = TRUE)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}

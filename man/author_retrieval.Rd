@@ -6,15 +6,16 @@
 \alias{author_retrieval}
 \title{SCOPUS Author Retrieval}
 \usage{
-author_retrieval_id(id, identifier = c("author_id", "eid"), http_end = NULL,
-  ...)
+author_retrieval_id(id, identifier = c("author_id", "eid"),
+  http_end = NULL, ...)
 
 multi_author_retrieval(id, identifier = c("author_id", "eid"),
   http_end = NULL, ...)
 
-author_retrieval(au_id, last_name, first_name, view = c("LIGHT", "STANDARD",
-  "ENHANCED", "METRICS", "ENTITLED"), self_cite = c("include", "exclude"),
-  http_end = NULL, verbose = TRUE, api_key = NULL, ...)
+author_retrieval(au_id, last_name, first_name, view = c("LIGHT",
+  "STANDARD", "ENHANCED", "METRICS", "ENTITLED"),
+  self_cite = c("include", "exclude"), http_end = NULL,
+  verbose = TRUE, api_key = NULL, ...)
 }
 \arguments{
 \item{id}{Identifier for author}

@@ -4,8 +4,8 @@
 \alias{entitlement_retrieval}
 \title{ScienceDirect Text Entitlement Retrieval}
 \usage{
-entitlement_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
-  "pubmed_id"), http_end = NULL, ...)
+entitlement_retrieval(id, identifier = c("scopus_id", "eid", "doi",
+  "pii", "pubmed_id"), http_end = NULL, ...)
 }
 \arguments{
 \item{id}{Identifier for entitlement}

@@ -5,7 +5,8 @@
 \title{Get Complete Author Information and ID from Scopus}
 \usage{
 get_complete_author_info(last_name, first_name = NULL, affil_id = NULL,
-  api_key = NULL, http = "https://api.elsevier.com/content/search/author",
+  api_key = NULL,
+  http = "https://api.elsevier.com/content/search/author",
   query = NULL, verbose = TRUE, au_id = NULL, ...)
 }
 \arguments{
