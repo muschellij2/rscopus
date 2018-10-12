@@ -47,7 +47,8 @@ generic_elsevier_api <- function(
            "embase", "author",
            "serial", "nonserial",
            "subject", "holdings",
-           "citation-count", "citations"),
+           "citation-count", "citations",
+           "metadata"),
   search_type = c("affiliation", "author", "scopus",
            "scidir", "scidir-object"),
   api_key = NULL,
@@ -75,7 +76,8 @@ generic_elsevier_api <- function(
     entitlement = "entitlement",
     holdings = "report.url",
     "citation-count" = "citation-count",
-    citations = "citations"
+    citations = "citations",
+    metadata = "article"
   )
   if (type %in% c("entitlement","recommendation")) {
     type = "article"
