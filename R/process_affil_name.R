@@ -11,10 +11,14 @@ process_affiliation_name = function(
   affil_name = NULL,
   api_key = NULL, verbose = TRUE) {
   # Getting AU-ID
-  if (is.null(affil_id) && is.null(affil_name)) {
-    warning("Affiliation name and ID are not specified")
+  if (is.null(affil_id) & is.null(affil_name)) {
+    stop("Neither affiliation name nor ID are specified")
   }
   if (is.null(affil_name)) {
+    affil_id = gsub("AFFILIATION_ID:", "", affil_id, fixed = TRUE)
+    if (length(affil_id) == 0) {
+      affil_id = NULL
+    }
     res = affiliation_retrieval(
       id = affil_id,
       identifier = "affiliation_id",

@@ -24,6 +24,7 @@ affiliation_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
+  id = gsub("AFFILIATION_ID:", "", id, fixed = TRUE)
   ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {

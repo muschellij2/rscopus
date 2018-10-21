@@ -17,6 +17,13 @@
 #' @importFrom utils URLencode
 #' @export
 #' @return List of information
+#' @examples
+#' if (have_api_key()) {
+#' res = get_complete_author_info(
+#' last_name = "Muschelli",
+#' first_name = "John",
+#' verbose = FALSE)
+#' }
 get_complete_author_info <- function(
   last_name= NULL, # last name of author
   first_name = NULL, # first name of author

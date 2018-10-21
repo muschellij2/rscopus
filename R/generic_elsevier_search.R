@@ -51,7 +51,7 @@ generic_elsevier_api <- function(
            "metadata", "ev",
            "ev_records"),
   search_type = c("affiliation", "author", "scopus",
-           "scidir", "scidir-object"),
+           "scidir", "scidir-object", "sciencedirect"),
   api_key = NULL,
   headers = NULL,
   content_type = c("content", "feedback"),
@@ -110,15 +110,16 @@ generic_elsevier_api <- function(
   qlist = list(...)
   qlist$query = query
   qlist$apiKey = api_key
+  hdrs = do.call(httr::add_headers, args = as.list(headers))
   if (length(qlist) > 0) {
     r = GET(http,
             query = qlist,
-            add_headers(headers)
+            hdrs,
     )
   } else {
     r = GET(http,
             add_headers(headers)
-            )
+    )
   }
   cr = content(r)
   return(list(get_statement = r, content = cr))

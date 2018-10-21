@@ -10,7 +10,7 @@
 #' @param http Address for scopus API
 #' @param count number of records to retrieve (below 200 for STANDARD,
 #' below 25 for COMPLETE views, see
-#' \url{https://dev.elsevier.com/api_key_settings.html})
+#' \url{https://dev.elsevier.com/api_key_settings.html}).
 #' @param start where should the records start gathering
 #' @param verbose Print diagnostic messages
 #' @param max_count Maximum count of records to be returned.
@@ -20,9 +20,15 @@
 #' \code{\link{GET}}
 #' @export
 #' @return List of entries from SCOPUS
-#' @examples \dontrun{
-#' res = scopus_search(query = "all(gene)", max_count = 200)
+#' @examples
+#' if (have_api_key()) {
+#' res = scopus_search(query = "all(gene)", max_count = 20,
+#' count = 10)
 #' df = gen_entries_to_df(res$entries)
+#' head(df$df)
+#' sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
+#' max_count = 20,
+#' count = 10)
 #' }
 scopus_search <- function(
   query, # Author ID number
@@ -150,3 +156,18 @@ scopus_search <- function(
 }
 
 
+
+#' @rdname scopus_search
+#' @export
+sciencedirect_search = function(
+  ...){
+
+  res <- scopus_search(
+    ...,
+    http = "https://api.elsevier.com/content/search/sciencedirect")
+  return(res)
+}
+
+#' @rdname scopus_search
+#' @export
+scidir_search = sciencedirect_search

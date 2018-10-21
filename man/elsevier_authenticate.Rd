@@ -5,14 +5,19 @@
 \title{Authenticate API Key and get Token}
 \usage{
 elsevier_authenticate(api_key = NULL, api_key_error = TRUE,
-  verbose = TRUE)
+  choice = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{api_key}{Elsevier API key}
 
 \item{api_key_error}{Should there be an error if no API key?}
 
+\item{choice}{Choice of which registered
+See \url{https://dev.elsevier.com/tecdoc_api_authentication.html}}
+
 \item{verbose}{Print messages from specification}
+
+\item{...}{Additional arguments to send to \code{\link{GET}}.}
 }
 \value{
 List of content, the \code{GET} request,

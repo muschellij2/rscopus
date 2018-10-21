@@ -26,7 +26,7 @@ embase_retrieval <- function(
   identifier = match.arg(identifier)
   ender = paste0("/", paste(identifier, id, sep = "/"))
 
-  if (!is.null(http_end)){
+  if (!is.null(http_end)) {
     ender = paste(ender, http_end, sep = "/")
   }
 

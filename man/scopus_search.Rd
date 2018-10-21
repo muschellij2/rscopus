@@ -2,12 +2,18 @@
 % Please edit documentation in R/scopus_search.R
 \name{scopus_search}
 \alias{scopus_search}
+\alias{sciencedirect_search}
+\alias{scidir_search}
 \title{SCOPUS Search}
 \usage{
 scopus_search(query, api_key = NULL, count = 200,
   view = c("STANDARD", "COMPLETE"), start = 0, verbose = TRUE,
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus", ...)
+
+sciencedirect_search(...)
+
+scidir_search(...)
 }
 \arguments{
 \item{query}{Query string to search on SCOPUS}
@@ -16,7 +22,7 @@ scopus_search(query, api_key = NULL, count = 200,
 
 \item{count}{number of records to retrieve (below 200 for STANDARD,
 below 25 for COMPLETE views, see
-\url{https://dev.elsevier.com/api_key_settings.html})}
+\url{https://dev.elsevier.com/api_key_settings.html}).}
 
 \item{view}{type of view to give, see
 \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}
@@ -42,8 +48,13 @@ scopus search from the Elsevier Scopus Search API
 Searches SCOPUS to get information about documents on an author.
 }
 \examples{
-\dontrun{
-res = scopus_search(query = "all(gene)", max_count = 200)
+if (have_api_key()) {
+res = scopus_search(query = "all(gene)", max_count = 20,
+count = 10)
 df = gen_entries_to_df(res$entries)
+head(df$df)
+sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
+max_count = 20,
+count = 10)
 }
 }

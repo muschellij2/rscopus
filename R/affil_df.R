@@ -60,6 +60,8 @@ affil_data = function(
     )
     affil_id = res$affil_id
   }
+
+  affil_id = gsub("AFFILIATION_ID:", "", affil_id, fixed = TRUE)
   entries = author_search_by_affil(
     affil_id = affil_id,
     verbose = verbose,

@@ -71,3 +71,22 @@ set_api_key = function(api_key) {
   options("elsevier_api_key" = api_key)
   invisible(NULL)
 }
+
+#' Add Institution or Authorization Token
+#'
+#' @param token Elsevier API token, usually from
+#' \code{\link{elsevier_authenticate}}
+#'
+#' @return An object of class \code{request}
+#' @export
+inst_token_header = function(token) {
+  list("X-ELS-Insttoken" = token)
+}
+
+
+#' @rdname inst_token_header
+#' @export
+auth_token_header = function(token) {
+  list("X-ELS-Authtoken" = token)
+}
+

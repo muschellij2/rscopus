@@ -24,6 +24,7 @@ citation_retrieval <- function(
 
 
   query = list()
+  scopus_id = gsub("SCOPUS_ID:", "", scopus_id, fixed = TRUE)
   query$scopus_id = scopus_id
   query$pii = pii
   query$doi = doi

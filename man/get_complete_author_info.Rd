@@ -38,3 +38,11 @@ List of information
 Uses SCOPUS author search to identify author identification
 information
 }
+\examples{
+if (have_api_key()) {
+res = get_complete_author_info(
+last_name = "Muschelli",
+first_name = "John",
+verbose = FALSE)
+}
+}

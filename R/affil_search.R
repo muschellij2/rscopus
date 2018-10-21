@@ -19,6 +19,8 @@ affil_search <- function(
   facets = "affilcountry(sort=document-count)",
   count = 200,
   ...){
+
+  affil_id = gsub("AFFILIATION_ID:", "", affil_id, fixed = TRUE)
   all_entries = author_search(au_id = affil_id,
                               searcher = searcher,
                               http = http,

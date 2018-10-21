@@ -30,6 +30,7 @@ get_affiliation_info <- function(
   }
 
   if (!is.null(affil_id)) {
+    affil_id = gsub("AFFILIATION_ID:", "", affil_id, fixed = TRUE)
     res = run_search(affil_id, searcher = "AF-ID")
   }
   if (!is.null(affil_name)) {
@@ -37,7 +38,7 @@ get_affiliation_info <- function(
   }
 
   res$affil_id = gsub("AFFILIATION_ID:", "", res$`dc:identifier`)
-  res$affil_id  = trimws(  res$affil_id )
+  res$affil_id  = trimws( res$affil_id )
   res$affil_name = res$"affiliation-name"
   return(res)
 }

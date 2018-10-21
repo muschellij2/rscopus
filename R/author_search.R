@@ -86,7 +86,11 @@ author_search <- function(
     cr = content(r)$`search-results`
     return(cr)
   }
+
+
   au_id = as.character(au_id)
+  au_id = gsub("AUTHOR_ID:", "", au_id, fixed = TRUE)
+  au_id = gsub("AFFILIATION_ID:", "", au_id, fixed = TRUE)
 
   cr = get_results(au_id, start = init_start, count = count,
                    facets = facets,
