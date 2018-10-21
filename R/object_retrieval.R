@@ -92,6 +92,7 @@ process_object_retrieval = function(res) {
 #' @export
 #' @param url url to download from \code{\link{object_retrieval}}
 #' @param verbose Print messages from specification
+#' @param api_key Elsevier API key
 #' @param api_key_error Should there be an error if no API key?
 #' @rdname object_retrieval
 download_object = function(

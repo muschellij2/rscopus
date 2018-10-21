@@ -34,6 +34,8 @@ or \code{\link{GET}}}
 
 \item{url}{url to download from \code{\link{object_retrieval}}}
 
+\item{api_key}{Elsevier API key}
+
 \item{api_key_error}{Should there be an error if no API key?}
 
 \item{verbose}{Print messages from specification}

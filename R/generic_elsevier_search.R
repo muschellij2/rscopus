@@ -114,7 +114,7 @@ generic_elsevier_api <- function(
   if (length(qlist) > 0) {
     r = GET(http,
             query = qlist,
-            hdrs,
+            hdrs
     )
   } else {
     r = GET(http,
