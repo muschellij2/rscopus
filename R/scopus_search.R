@@ -165,11 +165,12 @@ scopus_search <- function(
 #' @rdname scopus_search
 #' @export
 sciencedirect_search = function(
-  count = c(10, 25, 50, 100),
+  count = 100,
   ...){
 
+  count_choices = as.character(c(10, 25, 50, 100))
   count = as.character(count)
-  count = match.arg(count)
+  count = match.arg(count, choices = count_choices)
   count = as.numeric(count)
   res <- scopus_search(
     count = count,

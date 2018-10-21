@@ -11,9 +11,9 @@ scopus_search(query, api_key = NULL, count = 200,
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus", ...)
 
-sciencedirect_search(count = c(10, 25, 50, 100), ...)
+sciencedirect_search(count = 100, ...)
 
-scidir_search(count = c(10, 25, 50, 100), ...)
+scidir_search(count = 100, ...)
 }
 \arguments{
 \item{query}{Query string to search on SCOPUS}
