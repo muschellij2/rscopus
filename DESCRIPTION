@@ -1,7 +1,7 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
-Version: 0.5.13
+Version: 0.6.0
 Date: 2018-10-10
 Authors@R: person(given = "John", family = "Muschelli", 
     role = c("aut", "cre"), email = "muschellij2@gmail.com")
@@ -18,7 +18,8 @@ Imports:
     stats,
     plyr,
     tidyr,
-    dplyr
+    dplyr,
+    tools
 LazyData: TRUE
 Suggests:
     xml2,

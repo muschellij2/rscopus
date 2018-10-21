@@ -2,10 +2,20 @@
 % Please edit documentation in R/object_retrieval.R
 \name{object_retrieval}
 \alias{object_retrieval}
+\alias{process_object_retrieval}
+\alias{download_object}
+\alias{download_objects}
 \title{ScienceDirect Object Retrieval}
 \usage{
 object_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
   "pubmed_id"), ref = NULL, http_end = NULL, ...)
+
+process_object_retrieval(res)
+
+download_object(url, api_key = NULL, api_key_error = TRUE,
+  verbose = TRUE, ...)
+
+download_objects(url, ...)
 }
 \arguments{
 \item{id}{Identifier for object}
@@ -17,7 +27,16 @@ object_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
 \item{http_end}{any additional end to http statement.
 See \code{\link{generic_elsevier_api}}}
 
-\item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}}
+\item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}
+or \code{\link{GET}}}
+
+\item{res}{result from \code{\link{object_retrieval}}}
+
+\item{url}{url to download from \code{\link{object_retrieval}}}
+
+\item{api_key_error}{Should there be an error if no API key?}
+
+\item{verbose}{Print messages from specification}
 }
 \value{
 List of elements, similar to \code{\link{generic_elsevier_api}}
@@ -31,31 +50,19 @@ api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
    x = object_retrieval("S1053811915002700", identifier = "pii",
    verbose = FALSE)
-   if (requireNamespace("xml2") & requireNamespace("httr") &
-   requireNamespace("rvest")
-   ){
-       refs = httr::content(x$get_statement)
-       refs = refs$choices
-       df = t(sapply(refs$choice, c))
-       cn = colnames(df)
-       cn[ grep("ref", cn)] = "ref"
-       cn[ grep("type", cn)] = "type"
-       cn[cn =="$"] = "text"
-       colnames(df) = cn
-       df = as.data.frame(df, stringsAsFactors = FALSE)
-       df = df[ grepl("image/jpeg", df$text),,drop = FALSE ]
-       df = df[ df$type \%in\% "IMAGE-HIGH-RES",,drop = FALSE ]
-       #r = httr::GET(url = df$text[1],
-       #        query = list("apiKey" = api_key))
-       query = paste0("apiKey=", api_key)
-       r = httr::GET(paste0(df$text[1], "&", query))
-       img = httr::content(r)
-       dims = dim(img)[1:2]
-       mdim = max(dims)
-       graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
-       graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
+   df = process_object_retrieval(x)
+   df = df[ grepl("image/jpeg", df$mime_type),,drop = FALSE ]
+   df = df[ df$type \%in\% "IMAGE-HIGH-RES",,drop = FALSE ]
+   res = download_object(df$url[1])
+   img = res$content
+   dims = dim(img)[1:2]
+   mdim = max(dims)
+   if (interactive()) {
+      browseURL(res$outfile)
+   } else {
+   graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
+   graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
    }
- obj = object_retrieval('S1053811915002700', "pii", verbose = FALSE)
 }
 }
 \seealso{

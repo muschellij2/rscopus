@@ -1,3 +1,10 @@
+# rscopus 0.6.0
+
+* Added multiple author support using `multi_author_info` and `multi_author_retrieval`.  
+* API Key now is hidden when printed.
+* `read_cto` function and example CTO CSV are now included.
+* `gen_entries_to_df` is now the default for most functions
+
 # rscopus 0.5.11
 
 * `author_df` now has an option for `general` to use `gen_entries_to_df` instead of `entries_to_df`, which is more general.  

@@ -41,6 +41,7 @@ author_retrieval_id <- function(
 ){
 
   identifier = match.arg(identifier)
+  id = gsub("AUTHOR_ID:", "", id, fixed = TRUE)
   ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {
@@ -62,6 +63,7 @@ multi_author_retrieval <- function(
   ...
 ){
 
+  id = gsub("AUTHOR_ID:", "", id, fixed = TRUE)
   id = paste(id, collapse = ",")
 
   s = generic_elsevier_api(

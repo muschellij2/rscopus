@@ -212,8 +212,10 @@ process_author_name = function(
     stop("AU-ID not found, must be specified - names didn't work")
   }
   au_id = as.character(au_id)
-  L = list(first_name = first_name,
-           last_name = last_name,
-           au_id = au_id)
+  au_id = gsub("AUTHOR_ID:", "", au_id, fixed = TRUE)
+  L = list(au_id = au_id)
+  L$first_name = first_name
+  L$last_name = last_name
+
   return(L)
 }

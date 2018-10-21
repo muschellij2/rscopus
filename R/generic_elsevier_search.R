@@ -48,7 +48,8 @@ generic_elsevier_api <- function(
            "serial", "nonserial",
            "subject", "holdings",
            "citation-count", "citations",
-           "metadata"),
+           "metadata", "ev",
+           "ev_records"),
   search_type = c("affiliation", "author", "scopus",
            "scidir", "scidir-object"),
   api_key = NULL,
@@ -77,7 +78,9 @@ generic_elsevier_api <- function(
     holdings = "report.url",
     "citation-count" = "citation-count",
     citations = "citations",
-    metadata = "article"
+    metadata = "article",
+    ev = "results",
+    ev_records = "records"
   )
   if (type %in% c("entitlement","recommendation")) {
     type = "article"
@@ -85,6 +88,10 @@ generic_elsevier_api <- function(
   if (type %in% c("citation-count", "citations")) {
     type = "abstract"
   }
+  if (type %in% c("ev_records")) {
+    type = "ev"
+  }
+
 
   http = paste(type, search_type, sep = "/")
   if (!is.null(http_end)) {

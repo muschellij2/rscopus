@@ -7,9 +7,9 @@
 generic_elsevier_api(query = NULL, type = c("search", "article",
   "entitlement", "recommendation", "object", "fragment", "abstract",
   "affiliation", "embase", "author", "serial", "nonserial", "subject",
-  "holdings", "citation-count", "citations", "metadata"),
-  search_type = c("affiliation", "author", "scopus", "scidir",
-  "scidir-object"), api_key = NULL, headers = NULL,
+  "holdings", "citation-count", "citations", "metadata", "ev",
+  "ev_records"), search_type = c("affiliation", "author", "scopus",
+  "scidir", "scidir-object"), api_key = NULL, headers = NULL,
   content_type = c("content", "feedback"),
   root_http = "https://api.elsevier.com", http_end = NULL,
   verbose = TRUE, api_key_error = TRUE, ...)
