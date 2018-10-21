@@ -24,9 +24,14 @@ citation_retrieval <- function(
 
 
   query = list()
-  scopus_id = gsub("SCOPUS_ID:", "", scopus_id, fixed = TRUE)
+  if (!is.null(scopus_id)) {
+    scopus_id = gsub("SCOPUS_ID:", "", scopus_id, fixed = TRUE)
+  }
   query$scopus_id = scopus_id
   query$pii = pii
+  if (!is.null(doi)) {
+    doi = gsub("DOI:", "", doi, fixed = TRUE)
+  }
   query$doi = doi
   query$pubmed_id = pubmed_id
   if (length(query) == 0) {

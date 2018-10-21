@@ -41,7 +41,9 @@ object_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
-  identifier = gsub("SCOPUS_ID:", "", identifier)
+  id = gsub("SCOPUS_ID:", "", id, fixed = TRUE)
+  id = gsub("DOI:", "", id, fixed = TRUE)
+
   ender = paste(identifier, id, sep = "/")
   if (!is.null(ref)) {
     ender = paste(ender, "ref", ref, sep = "/")

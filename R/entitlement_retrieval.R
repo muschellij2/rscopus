@@ -24,7 +24,9 @@ entitlement_retrieval <- function(
 ){
 
   identifier = match.arg(identifier)
+
   id = gsub("SCOPUS_ID:", "", id, fixed = TRUE)
+  id = gsub("DOI:", "", id, fixed = TRUE)
   ender = paste0("/", paste(identifier, id, sep = "/"))
 
   if (!is.null(http_end)) {

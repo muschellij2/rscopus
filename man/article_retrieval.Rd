@@ -4,11 +4,15 @@
 \alias{article_retrieval}
 \title{ScienceDirect Article Retrieval}
 \usage{
-article_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
-  "pubmed_id"), http_end = NULL, ...)
+article_retrieval(id, view = c("META", "META_ABS", "META_ABS_REF",
+  "FULL", "REF", "ENTITLED"), identifier = c("scopus_id", "eid", "doi",
+  "pii", "pubmed_id"), http_end = NULL, ...)
 }
 \arguments{
 \item{id}{Identifier for article}
+
+\item{view}{Which view to see.  See
+\url{https://dev.elsevier.com/guides/ArticleRetrievalViews.htm}}
 
 \item{identifier}{Type of identifier to use}
 
@@ -28,7 +32,9 @@ retrieval of an article from the Elsevier Article Retrieval API
 api_key = get_api_key(NULL, error = FALSE)
 if (!is.null(api_key)){
     x = article_retrieval("S1053811915002700", identifier = "pii",
-    verbose = FALSE)
+    verbose = FALSE, view = "FULL")
+    gen = x$content$`full-text-retrieval-response`
+    ot = gen$originalText
 } else {
  x = article_retrieval("S1053811915002700",
    identifier = "pii",
