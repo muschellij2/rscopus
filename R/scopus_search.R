@@ -27,8 +27,7 @@
 #' df = gen_entries_to_df(res$entries)
 #' head(df$df)
 #' sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
-#' max_count = 20,
-#' count = 10)
+#' max_count = 30, count = 25)
 #' }
 scopus_search <- function(
   query, # Author ID number
@@ -83,12 +82,15 @@ scopus_search <- function(
     }
     stop_for_status(r)
     cr = content(r)$`search-results`
+    L = list(get_statement = r, content = cr)
     return(cr)
   }
 
   cr = get_results(query, start = init_start, count = count,
                    verbose = verbose,
                    ...)
+  all_get = cr$get_statement
+  cr = cr$content
 
   all_facets = cr$facet
   # Find total counts
@@ -121,7 +123,7 @@ scopus_search <- function(
   if (n_runs > 1) {
     if (verbose) {
       message(paste0(n_runs, " runs need to be ",
-                     "sent with curent count"))
+                     "sent with current count"))
       pb = txtProgressBar(min = ifelse(n_runs == 2, 0, 1), max = n_runs - 1,
                           initial = 1, style = 3)
     }
@@ -130,6 +132,8 @@ scopus_search <- function(
       cr = get_results(query, start = start, count = count,
                        verbose = FALSE,
                        ...)
+      all_get = c(all_get, cr$get_statement)
+      cr = cr$content
       all_entries = c(all_entries, cr$entry)
       all_facets = c(all_facets, cr$facet)
       if (verbose) {
@@ -151,6 +155,7 @@ scopus_search <- function(
     warning("May not have received all entries")
   }
   L = list(entries = all_entries, total_results = xtotal_results)
+  L$get_statements = all_get
   L$facets = all_facets
   return(L)
 }

@@ -54,7 +54,6 @@ count = 10)
 df = gen_entries_to_df(res$entries)
 head(df$df)
 sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
-max_count = 20,
-count = 10)
+max_count = 30, count = 25)
 }
 }
