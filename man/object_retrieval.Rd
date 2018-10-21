@@ -44,7 +44,8 @@ or \code{\link{GET}}}
 List of elements, similar to \code{\link{generic_elsevier_api}}
 }
 \description{
-This function wraps \code{\link{generic_elsevier_api}} to give a
+This function wraps \code{\link{generic_elsevier_api}} to
+give a
 retrieval of an object from the Elsevier Object Retrieval API
 }
 \examples{
@@ -56,14 +57,14 @@ if (!is.null(api_key)){
    df = df[ grepl("image/jpeg", df$mime_type),,drop = FALSE ]
    df = df[ df$type \%in\% "IMAGE-HIGH-RES",,drop = FALSE ]
    res = download_object(df$url[1])
-   img = res$content
-   dims = dim(img)[1:2]
-   mdim = max(dims)
    if (interactive()) {
       browseURL(res$outfile)
    } else {
-   graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
-   graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
+     img = res$content
+     dims = dim(img)[1:2]
+     mdim = max(dims)
+     graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
+     graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
    }
 }
 }

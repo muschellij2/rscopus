@@ -1,6 +1,7 @@
 #' @title ScienceDirect Object Retrieval
 #'
-#' @description This function wraps \code{\link{generic_elsevier_api}} to give a
+#' @description This function wraps \code{\link{generic_elsevier_api}} to
+#' give a
 #' retrieval of an object from the Elsevier Object Retrieval API
 #' @param id Identifier for object
 #' @param identifier Type of identifier to use
@@ -21,21 +22,21 @@
 #'    df = df[ grepl("image/jpeg", df$mime_type),,drop = FALSE ]
 #'    df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
 #'    res = download_object(df$url[1])
-#'    img = res$content
-#'    dims = dim(img)[1:2]
-#'    mdim = max(dims)
 #'    if (interactive()) {
 #'       browseURL(res$outfile)
 #'    } else {
-#'    graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
-#'    graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
+#'      img = res$content
+#'      dims = dim(img)[1:2]
+#'      mdim = max(dims)
+#'      graphics::plot(c(0, ncol(img)), c(0, nrow(img)), type='n')
+#'      graphics::rasterImage(img, 1, 1, ncol(img), nrow(img))
 #'    }
 #' }
 object_retrieval <- function(
   id, # Identifier for abstract
   identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id"),
   ref = NULL,
-  http_end = NULL, # any additional end to http statement.  See \code{\link{generic_elsevier_api}}
+  http_end = NULL,
   ...
 ){
 
@@ -56,7 +57,8 @@ object_retrieval <- function(
   #   l_args = length(arguments)
   #
   #   if (length(n_args) != l_args){
-  #     warning("All arguments should be named in ..., may give unpredictable results")
+  #     warning(paste0("All arguments should be named in ..., ",
+  #     "may give unpredictable results")
   #   }
   #   if ("http_end" %in% n_args) {
   #     ender = paste(http_end, ender, sep = "/")

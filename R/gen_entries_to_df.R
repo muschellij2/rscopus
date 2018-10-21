@@ -12,6 +12,10 @@ gen_entries_to_df = function(entries) {
     if (is.character(x)) {
       return(TRUE)
     }
+    if (is.logical(x)) {
+      return(TRUE)
+    }
+    # maybe is.atomic?
     length(names(x)) == length(x)
   }
   ind = 1
