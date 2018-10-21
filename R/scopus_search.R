@@ -83,7 +83,7 @@ scopus_search <- function(
     stop_for_status(r)
     cr = content(r)$`search-results`
     L = list(get_statement = r, content = cr)
-    return(cr)
+    return(L)
   }
 
   cr = get_results(query, start = init_start, count = count,
