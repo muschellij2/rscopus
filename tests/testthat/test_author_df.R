@@ -24,14 +24,17 @@ test_that("author_df_works", {
     })
   }
 
-  testthat::expect_warning({
-    dd = author_df(au_id = "8858259000", count = 25,
-                   all_author_info = FALSE
-                   )
-  })
-
-  testthat::expect_warning({
-    dd = author_list(au_id = "8858259000", count = 25)
-  })
+  if (have_api_key()) {
+    testthat::expect_warning({
+      dd = author_df(au_id = "8858259000", count = 25,
+                     all_author_info = FALSE
+      )
+    })
+  }
+  if (have_api_key()) {
+    testthat::expect_warning({
+      dd = author_list(au_id = "8858259000", count = 25)
+    })
+  }
 
 })
