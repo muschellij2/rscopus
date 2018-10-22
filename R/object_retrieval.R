@@ -88,6 +88,7 @@ process_object_retrieval = function(res) {
   colnames(df) = cn
   df$mime_type = sub(".*httpAccept=", "", df$url)
   df$no_mime_url = sub("httpAccept=.*", "", df$url)
+  df$no_mime_url = sub("\\?$", "", df$no_mime_url)
   df$extension = tools::file_ext(df$no_mime_url)
   return(df)
 }
