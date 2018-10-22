@@ -49,7 +49,7 @@ author given}
 \item{general}{Should \code{\link{gen_entries_to_df}} instead of the
 way before version 0.5.10.9001}
 
-\item{scrub}{Should `scrub_identifier` be run on the identifer?}
+\item{scrub}{Should `scrub_identifier` be run on the identifier?}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

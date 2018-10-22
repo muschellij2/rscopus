@@ -1,7 +1,7 @@
 #' Generally Convert Entries into a list of \code{data.frame}s
 #'
 #' @param entries Entries from the output of a command
-#' @param scrub Should `scrub_identifier` be run on the identifer?
+#' @param scrub Should `scrub_identifier` be run on the identifier?
 #' @export
 #' @return List of \code{data.frame}s from entries
 gen_entries_to_df = function(entries, scrub = FALSE) {

@@ -21,7 +21,7 @@
 #' \url{https://dev.elsevier.com/api_key_settings.html})
 #' @param general Should \code{\link{gen_entries_to_df}} instead of the
 #' way before version 0.5.10.9001
-#' @param scrub Should `scrub_identifier` be run on the identifer?
+#' @param scrub Should `scrub_identifier` be run on the identifier?
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
