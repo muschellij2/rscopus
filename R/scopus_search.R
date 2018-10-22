@@ -30,7 +30,6 @@
 #' max_count = 30, count = 25)
 #' sci_df = gen_entries_to_df(sci_res$entries)
 #'
-#' sci_res = sciencedirect_search(query = "heart attack", max_count = 20)
 #' nt = sciencedirect_search(query = "title(neurotoxin)", max_count = 20,
 #' count = 10)
 #' nt_df = gen_entries_to_df(nt$entries)
