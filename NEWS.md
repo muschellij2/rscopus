@@ -5,6 +5,7 @@
 * `read_cto` function and example CTO CSV are now included.
 * `gen_entries_to_df` is now the default for most functions.
 * Run `gsub` to replace identifier information such as `SCOPUS_ID:`.
+* Added `scrub_identifer` to the `gen_entries_to_df`.
 
 # rscopus 0.5.11
 
