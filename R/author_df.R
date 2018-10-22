@@ -153,6 +153,9 @@ author_data = function(...,
   df$au_id = au_id
   L = list(entries = entries,
            df = df)
+  L$first_name = first_name
+  L$last_name = last_name
+  L$au_id = au_id
   L$full_data = xdf
 
   return(L)
