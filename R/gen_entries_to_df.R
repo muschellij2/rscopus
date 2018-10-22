@@ -1,9 +1,10 @@
 #' Generally Convert Entries into a list of \code{data.frame}s
 #'
 #' @param entries Entries from the output of a command
+#' @param scrub Should `scrub_identifier` be run on the identifer?
 #' @export
 #' @return List of \code{data.frame}s from entries
-gen_entries_to_df = function(entries) {
+gen_entries_to_df = function(entries, scrub = FALSE) {
   if ("entries" %in% names(entries)) {
     warning(paste0("You may not be passing in entries, but a list",
                    " of output, which has a entries element"))
@@ -40,7 +41,11 @@ gen_entries_to_df = function(entries) {
   })
   one_df = lapply(e2, "[[", "one_df")
   one_df = bind_list(one_df)
-
+  if ("dc:identifier" %in% colnames(one_df)) {
+    if (scrub) {
+      one_df$"dc:identifier" = scrub_identifier(one_df$"dc:identifier")
+    }
+  }
   L = list(df = one_df)
   multi_df_names = unique(unlist(lapply(e2, function(x){
     names(x$multi_df)

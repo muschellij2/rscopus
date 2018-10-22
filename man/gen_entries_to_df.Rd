@@ -4,10 +4,12 @@
 \alias{gen_entries_to_df}
 \title{Generally Convert Entries into a list of \code{data.frame}s}
 \usage{
-gen_entries_to_df(entries)
+gen_entries_to_df(entries, scrub = FALSE)
 }
 \arguments{
 \item{entries}{Entries from the output of a command}
+
+\item{scrub}{Should `scrub_identifier` be run on the identifer?}
 }
 \value{
 List of \code{data.frame}s from entries

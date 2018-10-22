@@ -30,3 +30,12 @@ bind_list = function(L) {
   return(L)
 }
 
+
+
+scrub_identifier = function(id) {
+  id = gsub("SCOPUS_ID:", "", id, fixed = TRUE)
+  id = gsub("DOI:", "", id, fixed = TRUE)
+  id = gsub("AFFILIATION_ID:", "", id, fixed = TRUE)
+  id = gsub("AUTHOR_ID:", "", id, fixed = TRUE)
+  return(id)
+}

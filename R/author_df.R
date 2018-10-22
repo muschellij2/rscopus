@@ -21,6 +21,7 @@
 #' \url{https://dev.elsevier.com/api_key_settings.html})
 #' @param general Should \code{\link{gen_entries_to_df}} instead of the
 #' way before version 0.5.10.9001
+#' @param scrub Should `scrub_identifier` be run on the identifer?
 #' @param ... Arguments to be passed to \code{\link{author_search}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -43,6 +44,7 @@ author_df = function(
   view = "COMPLETE",
   count = 25,
   general = TRUE,
+  scrub = FALSE,
   ...){
 
   L = author_data(au_id = au_id,
@@ -55,6 +57,7 @@ author_df = function(
                   view = view,
                   count = count,
                   general = general,
+                  scrub = scrub,
                   ... = ...)
   df = L$df
 
@@ -112,7 +115,8 @@ author_list = function(au_id = NULL, last_name = NULL,
 author_data = function(...,
                        verbose = TRUE,
                        all_author_info = FALSE,
-                       general = TRUE){
+                       general = TRUE,
+                       scrub = FALSE){
 
   entries = author_list(..., verbose = verbose)
   au_id = entries$au_id
@@ -122,7 +126,7 @@ author_data = function(...,
 
 
   if (general) {
-    xdf = gen_entries_to_df(entries)
+    xdf = gen_entries_to_df(entries, scrub = scrub)
     df = xdf$df
   } else {
     if ( all_author_info ) {
