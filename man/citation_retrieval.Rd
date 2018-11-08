@@ -5,7 +5,7 @@
 \title{SCOPUS Citation Retrieval}
 \usage{
 citation_retrieval(scopus_id = NULL, pii = NULL, doi = NULL,
-  pubmed_id = NULL, ...)
+  pubmed_id = NULL, date_range = NULL, ...)
 }
 \arguments{
 \item{scopus_id}{Scopus Identifier}
@@ -16,6 +16,8 @@ citation_retrieval(scopus_id = NULL, pii = NULL, doi = NULL,
 
 \item{pubmed_id}{Scopus Identifier}
 
+\item{date_range}{date range to specify, must be length 2}
+
 \item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}}
 }
 \value{
@@ -25,11 +27,16 @@ List of elements, similar to \code{\link{generic_elsevier_api}}
 SCOPUS Citation Retrieval
 }
 \examples{
-api_key = get_api_key(NULL, error = FALSE)
-if (!is.null(api_key)){
-   x = citation_retrieval(pii = "S1053811915002700",
+api_key = Sys.getenv("Elsevier_API_Interactive")
+set_api_key(api_key)
+if (!is.null(api_key) & nchar(api_key) > 0){
+   result = citation_retrieval(pii = c("S0140673616324102",
+   "S0014579301033130"),
    verbose = FALSE)
+   res = parse_citation_retrieval(result)
+
 }
+set_api_key(NULL)
 }
 \seealso{
 \code{\link{generic_elsevier_api}}
