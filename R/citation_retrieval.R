@@ -71,6 +71,7 @@ citation_retrieval <- function(
 #' @export
 #' @param result result from \code{\link{citation_retrieval}}, which
 #' has an element of \code{content}
+#' @rdname citation_retrieval
 parse_citation_retrieval = function(result) {
   x = result$content$`abstract-citations-response`
   ident = x$`identifier-legend`$identifier
