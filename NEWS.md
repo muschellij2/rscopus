@@ -1,3 +1,8 @@
+# rscopus 0.6.3
+
+* Added `citation_retrieval` for example of the Citation Retrieval example.  
+* Fixed output of functions.  Should look into `jsonlite::fromJSON(flatten = TRUE)` for some content.
+
 # rscopus 0.6.0
 
 * Added multiple author support using `multi_author_info` and `multi_author_retrieval`.  

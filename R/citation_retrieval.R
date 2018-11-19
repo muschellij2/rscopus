@@ -16,7 +16,9 @@
 #'    result = citation_retrieval(pii = c("S0140673616324102",
 #'    "S0014579301033130"),
 #'    verbose = FALSE)
-#'    res = parse_citation_retrieval(result)
+#'    if (httr::status_code(result$get_statement) < 400) {
+#'       res = parse_citation_retrieval(result)
+#'    }
 #'
 #' }
 #' set_api_key(NULL)
