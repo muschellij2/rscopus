@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SCOPUS Embase Retrieval — embase_retrieval • rscopus</title>
+<title>Authenticate API Key and get Token — elsevier_authenticate • rscopus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="SCOPUS Embase Retrieval — embase_retrieval" />
+<meta property="og:title" content="Authenticate API Key and get Token — elsevier_authenticate" />
 
-<meta property="og:description" content="This function wraps generic_elsevier_api to give a
-retrieval of an Embase Entry from the Elsevier Embase Retrieval API" />
+<meta property="og:description" content="Authenticate API Key and get Token" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,58 +100,56 @@ retrieval of an Embase Entry from the Elsevier Embase Retrieval API" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>SCOPUS Embase Retrieval</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/embase_retrieval.R'><code>R/embase_retrieval.R</code></a></small>
-    <div class="hidden name"><code>embase_retrieval.Rd</code></div>
+    <h1>Authenticate API Key and get Token</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/elsevier_authenticate.R'><code>R/elsevier_authenticate.R</code></a></small>
+    <div class="hidden name"><code>elsevier_authenticate.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function wraps <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code> to give a
-retrieval of an Embase Entry from the Elsevier Embase Retrieval API</p>
+    <p>Authenticate API Key and get Token</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>embase_retrieval</span>(<span class='no'>id</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lui"</span>, <span class='st'>"pii"</span>, <span class='st'>"doi"</span>, <span class='st'>"embase"</span>,
-  <span class='st'>"pubmed_id"</span>, <span class='st'>"medline"</span>), <span class='kw'>http_end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>elsevier_authenticate</span>(<span class='kw'>api_key</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>api_key_error</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>choice</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>Identifier for abstract</p></td>
+      <th>api_key</th>
+      <td><p>Elsevier API key</p></td>
     </tr>
     <tr>
-      <th>identifier</th>
-      <td><p>Type of identifier to use</p></td>
+      <th>api_key_error</th>
+      <td><p>Should there be an error if no API key?</p></td>
     </tr>
     <tr>
-      <th>http_end</th>
-      <td><p>any additional end to http statement.
-See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
+      <th>choice</th>
+      <td><p>Choice of which registered
+See <a href='https://dev.elsevier.com/tecdoc_api_authentication.html'>https://dev.elsevier.com/tecdoc_api_authentication.html</a></p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Print messages from specification</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
+      <td><p>Additional arguments to send to <code>GET</code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>List of elements, similar to <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p>
-    
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></div>
+    <p>List of content, the <code>GET</code> request,
+and the token</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>api_key</span> <span class='kw'>=</span> <span class='fu'><a href='get_api_key.html'>get_api_key</a></span>(<span class='kw'>NULL</span>, <span class='kw'>error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw'>if</span> (!<span class='fu'>is.null</span>(<span class='no'>api_key</span>)){
-   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>embase_retrieval</span>(<span class='st'>"S1053811915002700"</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='st'>"pii"</span>,
-   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='kw'>if</span> (<span class='fu'><a href='get_api_key.html'>have_api_key</a></span>()) {
+   <span class='no'>auth</span> <span class='kw'>=</span> <span class='fu'>elsevier_authenticate</span>()
+}</div><div class='output co'>#&gt; <span class='message'>HTTP specified is: https://api.elsevier.com/authenticate</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -160,8 +157,6 @@ See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p
       <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-
-      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

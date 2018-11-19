@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SCOPUS Embase Retrieval — embase_retrieval • rscopus</title>
+<title>SCOPUS Citation Retrieval — citation_retrieval • rscopus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -30,10 +30,9 @@
 
 
 
-<meta property="og:title" content="SCOPUS Embase Retrieval — embase_retrieval" />
+<meta property="og:title" content="SCOPUS Citation Retrieval — citation_retrieval" />
 
-<meta property="og:description" content="This function wraps generic_elsevier_api to give a
-retrieval of an Embase Entry from the Elsevier Embase Retrieval API" />
+<meta property="og:description" content="SCOPUS Citation Retrieval" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -101,40 +100,53 @@ retrieval of an Embase Entry from the Elsevier Embase Retrieval API" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>SCOPUS Embase Retrieval</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/embase_retrieval.R'><code>R/embase_retrieval.R</code></a></small>
-    <div class="hidden name"><code>embase_retrieval.Rd</code></div>
+    <h1>SCOPUS Citation Retrieval</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/citation_retrieval.R'><code>R/citation_retrieval.R</code></a></small>
+    <div class="hidden name"><code>citation_retrieval.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function wraps <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code> to give a
-retrieval of an Embase Entry from the Elsevier Embase Retrieval API</p>
+    <p>SCOPUS Citation Retrieval</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>embase_retrieval</span>(<span class='no'>id</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"lui"</span>, <span class='st'>"pii"</span>, <span class='st'>"doi"</span>, <span class='st'>"embase"</span>,
-  <span class='st'>"pubmed_id"</span>, <span class='st'>"medline"</span>), <span class='kw'>http_end</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>citation_retrieval</span>(<span class='kw'>scopus_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pii</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>doi</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>pubmed_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>date_range</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)
+
+<span class='fu'>parse_citation_retrieval</span>(<span class='no'>result</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>Identifier for abstract</p></td>
+      <th>scopus_id</th>
+      <td><p>Scopus Identifier</p></td>
     </tr>
     <tr>
-      <th>identifier</th>
-      <td><p>Type of identifier to use</p></td>
+      <th>pii</th>
+      <td><p>Scopus Identifier</p></td>
     </tr>
     <tr>
-      <th>http_end</th>
-      <td><p>any additional end to http statement.
-See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
+      <th>doi</th>
+      <td><p>Scopus Identifier</p></td>
+    </tr>
+    <tr>
+      <th>pubmed_id</th>
+      <td><p>Scopus Identifier</p></td>
+    </tr>
+    <tr>
+      <th>date_range</th>
+      <td><p>date range to specify, must be length 2</p></td>
     </tr>
     <tr>
       <th>...</th>
       <td><p>Arguments to be passed to <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
+    </tr>
+    <tr>
+      <th>result</th>
+      <td><p>result from <code>citation_retrieval</code>, which
+has an element of <code>content</code></p></td>
     </tr>
     </table>
     
@@ -148,11 +160,18 @@ See <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>api_key</span> <span class='kw'>=</span> <span class='fu'><a href='get_api_key.html'>get_api_key</a></span>(<span class='kw'>NULL</span>, <span class='kw'>error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw'>if</span> (!<span class='fu'>is.null</span>(<span class='no'>api_key</span>)){
-   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>embase_retrieval</span>(<span class='st'>"S1053811915002700"</span>, <span class='kw'>identifier</span> <span class='kw'>=</span> <span class='st'>"pii"</span>,
+    <pre class="examples"><div class='input'><span class='no'>api_key</span> <span class='kw'>=</span> <span class='fu'>Sys.getenv</span>(<span class='st'>"Elsevier_API_Interactive"</span>)
+<span class='fu'><a href='set_api_key.html'>set_api_key</a></span>(<span class='no'>api_key</span>)
+<span class='kw'>if</span> (!<span class='fu'>is.null</span>(<span class='no'>api_key</span>) <span class='kw'>&amp;</span> <span class='fu'>nchar</span>(<span class='no'>api_key</span>) <span class='kw'>&gt;</span> <span class='fl'>0</span>){
+   <span class='no'>result</span> <span class='kw'>=</span> <span class='fu'>citation_retrieval</span>(<span class='kw'>pii</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"S0140673616324102"</span>,
+   <span class='st'>"S0014579301033130"</span>),
    <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+   <span class='kw'>if</span> (<span class='kw pkg'>httr</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/httr/topics/status_code'>status_code</a></span>(<span class='no'>result</span>$<span class='no'>get_statement</span>) <span class='kw'>&lt;</span> <span class='fl'>400</span>) {
+      <span class='no'>res</span> <span class='kw'>=</span> <span class='fu'>parse_citation_retrieval</span>(<span class='no'>result</span>)
+   }
+
+}
+<span class='fu'><a href='set_api_key.html'>set_api_key</a></span>(<span class='kw'>NULL</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

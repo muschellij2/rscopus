@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • rscopus</title>
+<title>Changelog • rscopus</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,12 +56,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">rscopus</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">rscopus</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -61,7 +74,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +86,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,28 +94,69 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/muschellij2/rscopus/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="contents">
-    <div id="rscopus-0-5-2" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rscopus-0-5-2" class="anchor"></a>rscopus 0.5.2</h1>
+    <div id="rscopus-0-6-3" class="section level1">
+<h1 class="page-header">
+<a href="#rscopus-0-6-3" class="anchor"></a>rscopus 0.6.3<small> Unreleased </small>
+</h1>
 <ul>
-<li>Added a <code>NEWS.md</code> file to track changes to the package.</li>
+<li>Added <code>citation_retrieval</code> for example of the Citation Retrieval example.<br>
+</li>
+<li>Fixed output of functions. Should look into <code><a href="http://www.rdocumentation.org/packages/jsonlite/topics/fromJSON">jsonlite::fromJSON(flatten = TRUE)</a></code> for some content.</li>
 </ul>
 </div>
-    </div>
+    <div id="rscopus-0-6-0" class="section level1">
+<h1 class="page-header">
+<a href="#rscopus-0-6-0" class="anchor"></a>rscopus 0.6.0<small> Unreleased </small>
+</h1>
+<ul>
+<li>Added multiple author support using <code>multi_author_info</code> and <code>multi_author_retrieval</code>.<br>
+</li>
+<li>API Key now is hidden when printed.</li>
+<li>
+<code>read_cto</code> function and example CTO CSV are now included.</li>
+<li>
+<code>gen_entries_to_df</code> is now the default for most functions.</li>
+<li>Run <code>gsub</code> to replace identifier information such as <code>SCOPUS_ID:</code>.</li>
+<li>Added <code>scrub_identifer</code> to the <code>gen_entries_to_df</code>.</li>
+</ul>
+</div>
+    <div id="rscopus-0-5-11" class="section level1">
+<h1 class="page-header">
+<a href="#rscopus-0-5-11" class="anchor"></a>rscopus 0.5.11<small> 2018-05-24 </small>
+</h1>
+<ul>
+<li>
+<code>author_df</code> now has an option for <code>general</code> to use <code>gen_entries_to_df</code> instead of <code>entries_to_df</code>, which is more general.<br>
+</li>
+<li>
+<code>author_df_orig</code> is there for the old way of getting the data.frame</li>
+</ul>
+</div>
+    <div id="rscopus-0-5-2" class="section level1">
+<h1 class="page-header">
+<a href="#rscopus-0-5-2" class="anchor"></a>rscopus 0.5.2<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Added a <code>NEWS.md</code> file to track changes to the package.</p></li>
+<li><p>Author retrieval is now able to pass a person’s name instead of an ID always.</p></li>
+</ul>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#rscopus-0-6-3">0.6.3</a></li>
+        <li><a href="#rscopus-0-6-0">0.6.0</a></li>
+        <li><a href="#rscopus-0-5-11">0.5.11</a></li>
         <li><a href="#rscopus-0-5-2">0.5.2</a></li>
       </ul>
     </div>
@@ -115,11 +170,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

@@ -18,13 +18,22 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
+
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+<meta property="og:title" content="Function reference" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -47,12 +56,16 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">rscopus</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">rscopus</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.6.3</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -61,7 +74,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -73,6 +86,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -80,196 +94,283 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.5.2</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="abstract_retrieval.html">abstract_retrieval</a></code> </p>
-          </td>
-          <td><p>SCOPUS Abstract Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="affil_df.html">affil_df</a></code> <code><a href="affil_df.html">affil_data</a></code> </p>
-          </td>
-          <td><p>Search Affiliation Content on SCOPUS</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="affil_list_to_df.html">affil_list_to_df</a></code> </p>
-          </td>
-          <td><p>List of SCOPUS Entries to List of Affilations Data Frames</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="affil_search.html">affil_search</a></code> </p>
-          </td>
-          <td><p>Search Author Content on SCOPUS</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="affiliation_retrieval.html">affiliation_retrieval</a></code> </p>
-          </td>
-          <td><p>SCOPUS Affiliation Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="all_possible_affils.html">all_possible_affils</a></code> </p>
-          </td>
-          <td><p>Find all affiliations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="article_retrieval.html">article_retrieval</a></code> </p>
-          </td>
-          <td><p>ScienceDirect Article Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="author_df.html">author_df</a></code> <code><a href="author_df.html">author_data</a></code> </p>
-          </td>
-          <td><p>Search Author Content on SCOPUS</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="author_retrieval.html">author_retrieval_id</a></code> <code><a href="author_retrieval.html">multi_author_retrieval</a></code> <code><a href="author_retrieval.html">author_retrieval</a></code> </p>
-          </td>
-          <td><p>SCOPUS Author Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="author_search.html">author_search</a></code> </p>
-          </td>
-          <td><p>Search Author Content on SCOPUS</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="collapse_affil.html">collapse_affil</a></code> </p>
-          </td>
-          <td><p>Collapse Affiliations to one row</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="embase_retrieval.html">embase_retrieval</a></code> </p>
-          </td>
-          <td><p>SCOPUS Embase Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="entitlement_retrieval.html">entitlement_retrieval</a></code> </p>
-          </td>
-          <td><p>ScienceDirect Text Entitlement Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="entries_to_affil_list.html">entries_to_affil_list</a></code> </p>
-          </td>
-          <td><p>List of SCOPUS Entries to List of Affilations Data Frames</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="entries_to_citation_df.html">entries_to_citation_df</a></code> </p>
-          </td>
-          <td><p>List of SCOPUS Entries to Data Frame of Citations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="entries_to_df.html">entries_to_df</a></code> </p>
-          </td>
-          <td><p>Convert Entries into a data.frame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="entry_to_affil.html">entry_to_affil</a></code> </p>
-          </td>
-          <td><p>SCOPUS Entry to Affiliation</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="generic_elsevier_api.html">generic_elsevier_api</a></code> </p>
-          </td>
-          <td><p>Generic Elsevier Search</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_api_key.html">get_api_key</a></code> <code><a href="get_api_key.html">have_api_key</a></code> </p>
-          </td>
-          <td><p>Find API Key for Elsevier</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_author_info.html">get_author_info</a></code> </p>
-          </td>
-          <td><p>Get Relevant Author Information and ID from Scopus in DataFrame</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_complete_author_info.html">get_complete_author_info</a></code> </p>
-          </td>
-          <td><p>Get Complete Author Information and ID from Scopus</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="nonull.html">nonull</a></code> </p>
-          </td>
-          <td><p>Remove NULL</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="object_retrieval.html">object_retrieval</a></code> </p>
-          </td>
-          <td><p>ScienceDirect Object Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="process_author_name.html">process_author_name</a></code> </p>
-          </td>
-          <td><p>Process Author Name</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="recommendation_retrieval.html">recommendation_retrieval</a></code> </p>
-          </td>
-          <td><p>ScienceDirect Article Recommendation Retrieval</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="replace_non_ascii.html">replace_non_ascii</a></code> </p>
-          </td>
-          <td><p>Replace non-ASCII characters</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="set_api_key.html">set_api_key</a></code> </p>
-          </td>
-          <td><p>Set API Key for Elsevier</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        
+        <td>
+          <p><code><a href="abstract_retrieval.html">abstract_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Abstract Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="affil_df.html">affil_df()</a></code> <code><a href="affil_df.html">affil_data()</a></code> </p>
+        </td>
+        <td><p>Search Affiliation Content on SCOPUS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="affil_list_to_df.html">affil_list_to_df()</a></code> </p>
+        </td>
+        <td><p>List of SCOPUS Entries to List of Affiliations Data Frames</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="affil_search.html">affil_search()</a></code> </p>
+        </td>
+        <td><p>Search Author Content on SCOPUS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="affiliation_retrieval.html">affiliation_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Affiliation Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="all_possible_affils.html">all_possible_affils()</a></code> </p>
+        </td>
+        <td><p>Find all affiliations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="article_retrieval.html">article_retrieval()</a></code> </p>
+        </td>
+        <td><p>ScienceDirect Article Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="author_df.html">author_df()</a></code> <code><a href="author_df.html">author_df_orig()</a></code> <code><a href="author_df.html">author_list()</a></code> <code><a href="author_df.html">author_data()</a></code> </p>
+        </td>
+        <td><p>Search Author Content on SCOPUS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="author_retrieval.html">author_retrieval_id()</a></code> <code><a href="author_retrieval.html">multi_author_retrieval()</a></code> <code><a href="author_retrieval.html">author_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Author Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="author_search.html">author_search()</a></code> </p>
+        </td>
+        <td><p>Search Author Content on SCOPUS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="author_search_by_affil.html">author_search_by_affil()</a></code> </p>
+        </td>
+        <td><p>Search Authors by Affiliation on SCOPUS</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="citation_retrieval.html">citation_retrieval()</a></code> <code><a href="citation_retrieval.html">parse_citation_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Citation Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="collapse_affil.html">collapse_affil()</a></code> </p>
+        </td>
+        <td><p>Collapse Affiliations to one row</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="complete_multi_author_info.html">complete_multi_author_info()</a></code> </p>
+        </td>
+        <td><p>Get Complete Author Information and ID from Scopus</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="elsevier_authenticate.html">elsevier_authenticate()</a></code> </p>
+        </td>
+        <td><p>Authenticate API Key and get Token</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="embase_retrieval.html">embase_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Embase Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entitlement_retrieval.html">entitlement_retrieval()</a></code> </p>
+        </td>
+        <td><p>ScienceDirect Text Entitlement Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entries_to_affil_list.html">entries_to_affil_list()</a></code> </p>
+        </td>
+        <td><p>List of SCOPUS Entries to List of Affiliations Data Frames</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entries_to_citation_df.html">entries_to_citation_df()</a></code> </p>
+        </td>
+        <td><p>List of SCOPUS Entries to Data Frame of Citations</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entries_to_df.html">entries_to_df()</a></code> <code><a href="entries_to_df.html">entries_to_df2()</a></code> </p>
+        </td>
+        <td><p>Convert Entries into a data.frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="entry_to_affil.html">entry_to_affil()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Entry to Affiliation</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="gen_entries_to_df.html">gen_entries_to_df()</a></code> </p>
+        </td>
+        <td><p>Generally Convert Entries into a list of <code>data.frame</code>s</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="generic_elsevier_api.html">generic_elsevier_api()</a></code> </p>
+        </td>
+        <td><p>Generic Elsevier Search</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_affiliation_info.html">get_affiliation_info()</a></code> </p>
+        </td>
+        <td><p>Get Affiliation Information and ID from Scopus</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_api_key.html">get_api_key()</a></code> <code><a href="get_api_key.html">have_api_key()</a></code> </p>
+        </td>
+        <td><p>Find API Key for Elsevier</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_author_info.html">get_author_info()</a></code> </p>
+        </td>
+        <td><p>Get Relevant Author Information and ID from Scopus
+in Data Frame</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_complete_author_info.html">get_complete_author_info()</a></code> </p>
+        </td>
+        <td><p>Get Complete Author Information and ID from Scopus</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="get_links.html">get_links()</a></code> <code><a href="get_links.html">get_url()</a></code> <code><a href="get_links.html">next_url()</a></code> <code><a href="get_links.html">last_url()</a></code> <code><a href="get_links.html">prev_url()</a></code> <code><a href="get_links.html">self_url()</a></code> <code><a href="get_links.html">first_url()</a></code> <code><a href="get_links.html">get_link_type()</a></code> <code><a href="get_links.html">get_first()</a></code> <code><a href="get_links.html">get_last()</a></code> <code><a href="get_links.html">get_prev()</a></code> <code><a href="get_links.html">get_next()</a></code> <code><a href="get_links.html">get_self()</a></code> </p>
+        </td>
+        <td><p>Get Links for next/first/last query</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="inst_token_header.html">inst_token_header()</a></code> <code><a href="inst_token_header.html">auth_token_header()</a></code> </p>
+        </td>
+        <td><p>Add Institution or Authorization Token</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="metadata_retrieval.html">metadata_retrieval()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Citation Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="multi_author_info.html">multi_author_info()</a></code> <code><a href="multi_author_info.html">process_complete_multi_author_info()</a></code> </p>
+        </td>
+        <td><p>Get Relevant Authors Information from IDs from Scopus</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="nonull.html">nonull()</a></code> </p>
+        </td>
+        <td><p>Remove NULL</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="object_retrieval.html">object_retrieval()</a></code> <code><a href="object_retrieval.html">process_object_retrieval()</a></code> <code><a href="object_retrieval.html">download_object()</a></code> <code><a href="object_retrieval.html">download_objects()</a></code> </p>
+        </td>
+        <td><p>ScienceDirect Object Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="print.scopus_api_key.html">print(<i>&lt;scopus_api_key&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Print method for Scopus API key</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="process_affiliation_name.html">process_affiliation_name()</a></code> </p>
+        </td>
+        <td><p>Process Affiliation Name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="process_author_name.html">process_author_name()</a></code> </p>
+        </td>
+        <td><p>Process Author Name</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="read_cto.html">read_cto()</a></code> <code><a href="read_cto.html">read_cto_long()</a></code> </p>
+        </td>
+        <td><p>Read Citation Overview (CTO) File</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="recommendation_retrieval.html">recommendation_retrieval()</a></code> </p>
+        </td>
+        <td><p>ScienceDirect Article Recommendation Retrieval</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="replace_non_ascii.html">replace_non_ascii()</a></code> </p>
+        </td>
+        <td><p>Replace non-ASCII characters</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="scopus_search.html">scopus_search()</a></code> <code><a href="scopus_search.html">sciencedirect_search()</a></code> <code><a href="scopus_search.html">scidir_search()</a></code> </p>
+        </td>
+        <td><p>SCOPUS Search</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="set_api_key.html">set_api_key()</a></code> </p>
+        </td>
+        <td><p>Set API Key for Elsevier</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="subject_areas.html">subject_areas()</a></code> <code><a href="subject_areas.html">subject_area_codes()</a></code> </p>
+        </td>
+        <td><p>Subject Areas</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -286,11 +387,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
