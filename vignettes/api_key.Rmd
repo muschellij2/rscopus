@@ -1,6 +1,6 @@
 ---
 title: "Setting up the Scopus API Key"
-author: "Vignette Author"
+author: "John Muschelli"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
