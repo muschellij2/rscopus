@@ -170,21 +170,23 @@ At the end of the day, we have the author-level information for each paper.  The
 Here we look at the funding agencies listed on all the papers.  This can show us if there is a pattern in the funding sponsor and the open-access publications.  Overall, though, we would like to see the funding of all the papers if a specific funder requires open access.  This checking allows libraries and researchers ensure they are following the guidelines of the funding agency.
 
 ```{r}
-cn = colnames(MainEntry)
-cn[grep("fund", tolower(cn))]
-
-tail(sort(table(MainEntry$`fund-sponsor`)))
-
-funderPoland <- filter(
-  MainEntry, 
-  `fund-sponsor` == "Ministerstwo Nauki i Szkolnictwa Wyższego" )  
-dim(funderPoland)
-
-osuFunders <- MainEntry %>%
-  group_by(`fund-sponsor`) %>%
-  tally() %>% 
-  arrange(desc(n))
-osuFunders
+if (total_results > 0) {
+  cn = colnames(MainEntry)
+  cn[grep("fund", tolower(cn))]
+  
+  tail(sort(table(MainEntry$`fund-sponsor`)))
+  
+  funderPoland <- filter(
+    MainEntry, 
+    `fund-sponsor` == "Ministerstwo Nauki i Szkolnictwa Wyższego" )  
+  dim(funderPoland)
+  
+  osuFunders <- MainEntry %>%
+    group_by(`fund-sponsor`) %>%
+    tally() %>% 
+    arrange(desc(n))
+  osuFunders
+}
 ```
 ## Number of author limits
 
