@@ -1,5 +1,7 @@
-pandoc: 2.2.3.2
+pandoc: '2.4'
 pkgdown: 1.1.0
 pkgdown_sha: ~
-articles: []
+articles:
+  api_key: api_key.html
+  multi_author: multi_author.html
 

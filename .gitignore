@@ -3,3 +3,5 @@ inst/doc
 .Rhistory
 .RData
 /revdep/.cache.rds
+.DS_Store
+
