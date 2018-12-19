@@ -26,9 +26,13 @@ Suggests:
     rvest,
     graphics,
     testthat,
-    jpeg
+    jpeg,
+    knitr,
+    rmarkdown,
+    purrr
 URL: https://dev.elsevier.com/sc_apis.html, 
     https://github.com/muschellij2/rscopus
 BugReports: https://github.com/muschellij2/rscopus/issues
 RoxygenNote: 6.1.0
 Encoding: UTF-8
+VignetteBuilder: knitr
