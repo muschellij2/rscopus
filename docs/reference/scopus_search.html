@@ -78,6 +78,21 @@ Searches SCOPUS to get information about documents on an author." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/api_key.html">Vignette Title</a>
+    </li>
+    <li>
+      <a href="../articles/multi_author.html">Gathering Multiple Subject Queries with Large Numbers of Authors</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
@@ -202,11 +217,11 @@ below 25 for COMPLETE views, see
 #&gt; [1] "STANDARD"
 #&gt; 
 #&gt; Response [https://api.elsevier.com/content/search/scopus?query=all%28gene%29&amp;count=10&amp;start=0&amp;view=STANDARD]
-#&gt;   Date: 2018-11-19 21:21
+#&gt;   Date: 2018-12-19 23:30
 #&gt;   Status: 200
 #&gt;   Content-Type: application/json;charset=UTF-8
-#&gt;   Size: 16.5 kB
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Total Entries are 6289140</span></div><div class='output co'>#&gt; <span class='message'>Maximum Count is 20</span></div><div class='output co'>#&gt; <span class='message'>2 runs need to be sent with current count</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt; <span class='message'>Number of Output Entries are 20</span></div><div class='output co'>#&gt; <span class='message'>The query list is: </span></div><div class='output co'>#&gt; list(query = "heart+attack AND text(liver)", count = 25, start = 0, 
+#&gt;   Size: 16.4 kB
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Total Entries are 6327229</span></div><div class='output co'>#&gt; <span class='message'>Maximum Count is 20</span></div><div class='output co'>#&gt; <span class='message'>2 runs need to be sent with current count</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt; <span class='message'>Number of Output Entries are 20</span></div><div class='output co'>#&gt; <span class='message'>The query list is: </span></div><div class='output co'>#&gt; list(query = "heart+attack AND text(liver)", count = 25, start = 0, 
 #&gt;     view = "STANDARD")
 #&gt; $query
 #&gt; [1] "heart+attack AND text(liver)"
@@ -221,7 +236,7 @@ below 25 for COMPLETE views, see
 #&gt; [1] "STANDARD"
 #&gt; 
 #&gt; Response [https://api.elsevier.com/content/search/sciencedirect?query=heart%2Battack%20AND%20text%28liver%29&amp;count=25&amp;start=0&amp;view=STANDARD]
-#&gt;   Date: 2018-11-19 21:21
+#&gt;   Date: 2018-12-19 23:30
 #&gt;   Status: 200
 #&gt;   Content-Type: application/json;charset=UTF-8
 #&gt;   Size: 9.07 kB
@@ -239,11 +254,11 @@ below 25 for COMPLETE views, see
 #&gt; [1] "STANDARD"
 #&gt; 
 #&gt; Response [https://api.elsevier.com/content/search/sciencedirect?query=title%28neurotoxin%29&amp;count=10&amp;start=0&amp;view=STANDARD]
-#&gt;   Date: 2018-11-19 21:21
+#&gt;   Date: 2018-12-19 23:30
 #&gt;   Status: 200
 #&gt;   Content-Type: application/json;charset=UTF-8
 #&gt;   Size: 9.31 kB
-#&gt; </div><div class='output co'>#&gt; <span class='message'>Total Entries are 2524</span></div><div class='output co'>#&gt; <span class='message'>Maximum Count is 20</span></div><div class='output co'>#&gt; <span class='message'>2 runs need to be sent with current count</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt; <span class='message'>Number of Output Entries are 20</span></div></pre>
+#&gt; </div><div class='output co'>#&gt; <span class='message'>Total Entries are 2525</span></div><div class='output co'>#&gt; <span class='message'>Maximum Count is 20</span></div><div class='output co'>#&gt; <span class='message'>2 runs need to be sent with current count</span></div><div class='output co'>#&gt;   |                                                                              |======================================================================| 100%</div><div class='output co'>#&gt; <span class='message'>Number of Output Entries are 20</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
