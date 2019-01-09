@@ -7,7 +7,8 @@
 get_complete_author_info(last_name = NULL, first_name = NULL,
   affil_id = NULL, affil_name = NULL, api_key = NULL,
   http = "https://api.elsevier.com/content/search/author",
-  query = NULL, verbose = TRUE, au_id = NULL, ...)
+  query = NULL, count = 200, start = 0, verbose = TRUE,
+  au_id = NULL, ...)
 }
 \arguments{
 \item{last_name}{last name of author}
@@ -23,6 +24,11 @@ get_complete_author_info(last_name = NULL, first_name = NULL,
 \item{http}{Author API http}
 
 \item{query}{Additional query info, added using \code{+AND+} to original query}
+
+\item{count}{maximum number of records to retrieve}
+
+\item{start}{index to start on.  Only necessary if a large number of
+records retrieved}
 
 \item{verbose}{Print messages from specification}
 

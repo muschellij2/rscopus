@@ -106,6 +106,8 @@ author_list = function(au_id = NULL, last_name = NULL,
   entries$first_name = first_name
   entries$last_name = last_name
 
+
+
   return(entries)
 }
 
@@ -179,7 +181,8 @@ process_author_name = function(
   au_id = NULL, last_name = NULL,
   first_name = NULL,
   affil_id = NULL,
-  api_key = NULL, verbose = TRUE) {
+  api_key = NULL,
+  verbose = TRUE) {
 
   if (is.null(last_name) &
       is.null(first_name) &
@@ -200,22 +203,27 @@ process_author_name = function(
     } else if (first_name %in% c("", NA)) {
       first_name = NULL
     }
-    auth_name = get_author_info(
+    if (length(last_name) == 0) {
+      last_name = NULL
+    } else if (last_name %in% c("", NA)) {
+      last_name = NULL
+    }
+    author_name = get_author_info(
       last_name = last_name,
       first_name = first_name,
       api_key = api_key, verbose = verbose,
       affil_id = affil_id)
-    if (NROW(auth_name) == 0) {
+    if (NROW(author_name) == 0) {
       stop("No author name found")
     }
-    if (all(is.na(auth_name$au_id))) {
+    if (all(is.na(author_name$au_id))) {
       stop("No author name found")
     }
     if (verbose) {
       message("Authors found:")
-      print(auth_name[1,])
+      print(author_name[1,])
     }
-    au_id = auth_name$au_id[1]
+    au_id = author_name$au_id[1]
   }
   if (is.na(au_id) | is.null(au_id)) {
     stop("AU-ID not found, must be specified - names didn't work")

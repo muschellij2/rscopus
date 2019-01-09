@@ -12,6 +12,9 @@
 #' @param au_id Author ID number, will override first/last combination if
 #' specified
 #' @param affil_name name of affiliation
+#' @param count maximum number of records to retrieve
+#' @param start index to start on.  Only necessary if a large number of
+#' records retrieved
 #' @param ... options to pass to \code{\link{GET}}
 #' @importFrom httr GET content
 #' @importFrom utils URLencode
@@ -32,6 +35,8 @@ get_complete_author_info <- function(
   api_key = NULL, # Elsevier API key
   http = "https://api.elsevier.com/content/search/author", # Author API http
   query = NULL,
+  count = 200,
+  start = 0,
   verbose = TRUE,
   au_id = NULL,
   ...
@@ -80,6 +85,8 @@ get_complete_author_info <- function(
   # Need this way to not escape the `+` sign in the query
   url = paste0(http, "?query=", reg_query,
                "&APIKey=", api_key)
+  url = paste0(url, "&count=", count)
+  url = paste0(url, "&start=", start)
   if (verbose) {
     parsed_url = httr::parse_url(url)
     parsed_url$query$APIKey = NULL
@@ -92,6 +99,16 @@ get_complete_author_info <- function(
             "X-ELS-ResourceVersion" = "allexpand"),
           ...)
   cr = content(r)
+  tr = cr$`search-results`$`opensearch:totalResults`
+  if (!is.null(tr)) {
+    tr = as.numeric(tr)
+    if (tr > count) {
+      warning(paste0(
+        "Total number of results > count, may need to run",
+        "again with start different to retrieve all results")
+      )
+    }
+  }
   # xcr = cr
   if (!is.null(cr$`service-error`)) {
     print(cr)
