@@ -28,6 +28,11 @@ entries_to_affil_list = function(entries) {
 #' @export
 entry_to_affil = function(x, all_affils) {
 
+  if (!"author" %in% names(x)) {
+    warning("author not in this entry, returning nothing\n")
+    return(dplyr::tibble())
+    # return(NULL)
+  }
   ###################################
   # Get individual affiliations from each person
   ###################################

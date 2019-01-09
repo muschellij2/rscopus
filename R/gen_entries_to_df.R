@@ -54,8 +54,14 @@ gen_entries_to_df = function(entries, scrub = FALSE) {
   if (length(multi_df_names) > 0) {
 
     multi_df = lapply(multi_df_names, function(n) {
+      ind = 1
       res = lapply(e2, function(ent) {
-        ent$multi_df[[n]]
+        result = ent$multi_df[[n]]
+        ind <<- ind + 1
+        if (is.null(result)) {
+          result = data.frame(entry_number = ind)
+        }
+        return(result)
       })
       bind_list(res)
     })

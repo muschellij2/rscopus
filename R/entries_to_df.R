@@ -19,22 +19,22 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
   # Get affiliation information
   ##################################
   # Need to make sure 1 for consistency in df
-#   max_n_affils = max(max(n_affils), 1)
-#   affils = t(sapply(entries, function(x){
-#     x = sapply(x$affiliation, function(y){
-#       nonull(y$affilname, replace = "")
-#     })
-#     x = c(x, rep("",
-#                  max_n_affils - length(x)))
-#   }))
-#
-#   # replace all missing with NA
-#   affils[affils %in% ""] = NA
-#   colnames(affils) = paste0("affil_",
-#                             seq(ncol(affils)))
-#   affils = as.data.frame(affils,
-#                          stringsAsFactors = FALSE)
-#
+  #   max_n_affils = max(max(n_affils), 1)
+  #   affils = t(sapply(entries, function(x){
+  #     x = sapply(x$affiliation, function(y){
+  #       nonull(y$affilname, replace = "")
+  #     })
+  #     x = c(x, rep("",
+  #                  max_n_affils - length(x)))
+  #   }))
+  #
+  #   # replace all missing with NA
+  #   affils[affils %in% ""] = NA
+  #   colnames(affils) = paste0("affil_",
+  #                             seq(ncol(affils)))
+  #   affils = as.data.frame(affils,
+  #                          stringsAsFactors = FALSE)
+  #
   ### Get All possible affiliations from collaborators
   all_possible_affils = all_possible_affils(entries)
 
@@ -42,17 +42,23 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
     res = entry_to_affil(x = x,
                          all_affils = all_possible_affils)
+    if (nrow(res) == 0) {
+      return(dplyr::tibble())
+      # n_authors = 0
+    }
 
     n_authors = max(as.numeric(res$seq))
+
     # print(n_authors)
     rres = res
 
     # affil_list_to_df[[1]]
     if (!is.null(au_id)) {
       rres = res[ res$au_id %in% au_id, , drop = FALSE]
-      auth_order = unique(as.numeric(rres$seq))
       if (nrow(rres) == 0) {
         auth_order = rep(NA, n_authors)
+      } else {
+        auth_order = unique(as.numeric(rres$seq))
       }
 
       f_res = data.frame(
@@ -67,10 +73,10 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
       rres = cbind(f_res, mat)
       rres = unique(rres)
-#       if (ncol(rres) > 3) {
-#         colnames(rres)[3:ncol(rres)] = paste0("affil_", 2:(ncol(rres) - 2) )
-#         # print(rres)
-#       }
+      #       if (ncol(rres) > 3) {
+      #         colnames(rres)[3:ncol(rres)] = paste0("affil_", 2:(ncol(rres) - 2) )
+      #         # print(rres)
+      #       }
       if (nrow(rres) == 0) {
         # print(res)
       }
@@ -97,6 +103,12 @@ entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
   new_colnames = unique(new_colnames)
 
   auths = llply(auths, function(x){
+    if (nrow(x) == 0 ) {
+      mat = matrix(NA, nrow = 1, ncol = length(new_colnames))
+      colnames(mat) = new_colnames
+      mat = as.data.frame(mat)
+      return(mat)
+    }
     cn = colnames(x)
     sd = setdiff(new_colnames, cn)
     if (length(sd) > 0) {
