@@ -25,14 +25,21 @@ test_that("author_df_works", {
   }
 
   if (have_api_key()) {
-    testthat::expect_warning({
+    expect_pass({
       dd = author_df(au_id = "8858259000", count = 25,
                      all_author_info = FALSE
       )
     })
   }
+
   if (have_api_key()) {
     testthat::expect_warning({
+      dd = author_df(au_id = "8858259000", count = 25,
+                     general = FALSE)
+    })
+  }
+  if (have_api_key()) {
+    expect_pass({
       dd = author_list(au_id = "8858259000", count = 25)
     })
   }
