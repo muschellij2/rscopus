@@ -55,9 +55,6 @@ way before version 0.5.10.9001}
 passed to \code{\link{GET}}}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
-
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
 }
 \value{
 List of entries from SCOPUS

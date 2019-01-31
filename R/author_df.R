@@ -77,8 +77,6 @@ author_df_orig = function(..., general = FALSE) {
 }
 
 #' @rdname author_df
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
 #' @export
 author_list = function(au_id = NULL, last_name = NULL,
                        first_name = NULL,

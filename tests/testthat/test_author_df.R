@@ -33,7 +33,8 @@ test_that("author_df_works", {
   }
 
   if (have_api_key()) {
-    testthat::expect_warning({
+    # testthat::expect_warning({
+    expect_pass({
       dd = author_df(au_id = "8858259000", count = 25,
                      general = FALSE)
     })

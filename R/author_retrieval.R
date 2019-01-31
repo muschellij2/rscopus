@@ -7,6 +7,7 @@
 #' @param identifier Type of identifier to use
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}
+#'
 #' @param ... Arguments to be passed to
 #' \code{\link{generic_elsevier_api}}
 #' @note See
@@ -81,6 +82,8 @@ multi_author_retrieval <- function(
 #' @param first_name first name of author
 #' @param api_key Elsevier API key
 #' @param verbose Print diagnostic messages
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
 #'
 #' @export
 author_retrieval <- function(
