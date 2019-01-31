@@ -14,7 +14,7 @@ auth_token_header(token)
 \code{\link{elsevier_authenticate}}}
 }
 \value{
-An object of class \code{request}
+An object of class \code{token}, but really a character
 }
 \description{
 Add Institution or Authorization Token

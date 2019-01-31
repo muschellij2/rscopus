@@ -13,7 +13,7 @@ object_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
 process_object_retrieval(res)
 
 download_object(url, api_key = NULL, api_key_error = TRUE,
-  verbose = TRUE, ...)
+  verbose = TRUE, headers = NULL, ...)
 
 download_objects(url, ...)
 }
@@ -39,6 +39,9 @@ or \code{\link{GET}}}
 \item{api_key_error}{Should there be an error if no API key?}
 
 \item{verbose}{Print messages from specification}
+
+\item{headers}{Headers passed to \code{\link{add_headers}},
+passed to \code{\link{GET}}}
 }
 \value{
 List of elements, similar to \code{\link{generic_elsevier_api}}

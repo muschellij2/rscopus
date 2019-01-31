@@ -5,18 +5,23 @@
 #' @param affil_name name of affiliation
 #' @param affil_id ID of affiliation
 #' @param api_key Elsevier API key
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
 #' @param verbose Print messages from specification
 #' @export
 #' @return A \code{data.frame} of affiliation information
 get_affiliation_info <- function(
   affil_id = NULL,
   affil_name = NULL,
-  api_key = NULL, verbose = FALSE) {
+  api_key = NULL, verbose = FALSE,
+  headers = NULL) {
 
   run_search = function(id, searcher = "AF-ID") {
     res = affil_search(affil_id = id, searcher = searcher,
-                       identifier = "affiliation_id", count = 25, max_count = 25,
-                       verbose = verbose, api_key = api_key)
+                       identifier = "affiliation_id", count = 25,
+                       max_count = 25,
+                       verbose = verbose, api_key = api_key,
+                       headers = headers)
     res = gen_entries_to_df(res$entries)
     res$df
   }

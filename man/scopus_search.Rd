@@ -9,7 +9,8 @@
 scopus_search(query, api_key = NULL, count = 200,
   view = c("STANDARD", "COMPLETE"), start = 0, verbose = TRUE,
   max_count = 20000,
-  http = "https://api.elsevier.com/content/search/scopus", ...)
+  http = "https://api.elsevier.com/content/search/scopus",
+  headers = NULL, ...)
 
 sciencedirect_search(count = 100, ...)
 
@@ -34,6 +35,9 @@ below 25 for COMPLETE views, see
 \item{max_count}{Maximum count of records to be returned.}
 
 \item{http}{Address for scopus API}
+
+\item{headers}{additional headers to be added to
+\code{\link{add_headers}}}
 
 \item{...}{Arguments to be passed to the query list for
 \code{\link{GET}}}

@@ -16,8 +16,11 @@
 #' @param max_count Maximum count of records to be returned.
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
+#' @param headers additional headers to be added to
+#' \code{\link{add_headers}}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
+#'
 #' @export
 #' @return List of entries from SCOPUS
 #' @examples
@@ -44,6 +47,7 @@ scopus_search <- function(
   verbose = TRUE,
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus",
+  headers = NULL,
   ...){
 
   api_key = get_api_key(api_key)
@@ -61,7 +65,8 @@ scopus_search <- function(
   # Wrapper to go through all the pages
   get_results = function(query, start = 0,
                          count = count,
-                         verbose = TRUE, ...){
+                         verbose = TRUE,
+                         headers = NULL, ...){
     q = list(
       query = query,
       "APIKey" = api_key,
@@ -75,10 +80,13 @@ scopus_search <- function(
       message("The query list is: ")
       print(dput(print_q))
     }
+    hdrs = c(
+      "X-ELS-ResourceVersion" = "allexpand",
+      headers
+    )
     r = GET(http,
             query = q,
-            add_headers(
-              "X-ELS-ResourceVersion" = "allexpand")
+            add_headers(hdrs)
     )
     if (verbose) {
       parsed_url = httr::parse_url(r$url)
@@ -94,6 +102,7 @@ scopus_search <- function(
 
   cr = get_results(query, start = init_start, count = count,
                    verbose = verbose,
+                   headers = headers,
                    ...)
   all_get = cr$get_statement
   cr = cr$content
@@ -137,6 +146,7 @@ scopus_search <- function(
       start = irun * count + init_start
       cr = get_results(query, start = start, count = count,
                        verbose = FALSE,
+                       headers = headers,
                        ...)
       all_get = c(all_get, cr$get_statement)
       cr = cr$content

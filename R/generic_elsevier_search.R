@@ -118,7 +118,7 @@ generic_elsevier_api <- function(
     )
   } else {
     r = GET(http,
-            add_headers(headers)
+            hdrs
     )
   }
   cr = content(r)

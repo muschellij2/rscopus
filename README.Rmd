@@ -76,5 +76,16 @@ res2 = res2 %>%
          title = `dc:title`,
          description = `dc:description`)
 head(res[, c("title", "journal", "description")])
+```
+
+## Using an Institution Token
+
+```{r}
+token_result = elsevier_authenticate()
+token = token_result$token
+token
+hdr = auth_token_header(token)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE, )
 
 ```
+

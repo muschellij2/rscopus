@@ -10,6 +10,8 @@ sc_authenticated = function(...) {
 #' @param verbose Print messages from specification
 #' @param choice Choice of which registered
 #' See \url{https://dev.elsevier.com/tecdoc_api_authentication.html}
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
 #' @param ... Additional arguments to send to \code{\link{GET}}.
 #'
 #' @return List of content, the \code{GET} request,
@@ -25,6 +27,7 @@ elsevier_authenticate = function(
   api_key_error = TRUE,
   choice = NULL,
   verbose = TRUE,
+  headers = NULL,
   ...) {
 
   api_key = get_api_key(api_key, error = api_key_error)
@@ -41,14 +44,18 @@ elsevier_authenticate = function(
   qlist = list()
   qlist$apiKey = api_key
   qlist$choice = choice
+  hdrs = do.call(httr::add_headers, args = as.list(headers))
 
   r = httr::GET(http,
                 query = qlist,
+                hdrs,
                 ...
   )
   cr = httr::content(r)
   L = list(get_statement = r, content = cr)
-  L$token = cr$`authenticate-response`$authtoken
+  token = cr$`authenticate-response`$authtoken
+  class(token) = "token"
+  L$token = token
   L$auth_type = cr$`authenticate-response`$`@type`
   return(L)
 }

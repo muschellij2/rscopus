@@ -6,7 +6,7 @@
 \usage{
 process_author_name(au_id = NULL, last_name = NULL,
   first_name = NULL, affil_id = NULL, api_key = NULL,
-  verbose = TRUE)
+  verbose = TRUE, headers = NULL)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}
@@ -20,6 +20,9 @@ process_author_name(au_id = NULL, last_name = NULL,
 \item{api_key}{Elsevier API key}
 
 \item{verbose}{Print diagnostic messages}
+
+\item{headers}{Headers passed to \code{\link{add_headers}},
+passed to \code{\link{GET}}}
 }
 \value{
 List of first/last name and author ID

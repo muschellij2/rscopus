@@ -23,6 +23,9 @@
 #' way before version 0.5.10.9001
 #' @param scrub Should `scrub_identifier` be run on the identifier?
 #' @param ... Arguments to be passed to \code{\link{author_search}}
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
+#'
 #' @export
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
@@ -45,6 +48,7 @@ author_df = function(
   count = 25,
   general = TRUE,
   scrub = FALSE,
+  headers = NULL,
   ...){
 
   L = author_data(au_id = au_id,
@@ -58,6 +62,7 @@ author_df = function(
                   count = count,
                   general = general,
                   scrub = scrub,
+                  headers = headers,
                   ... = ...)
   df = L$df
 
@@ -72,6 +77,8 @@ author_df_orig = function(..., general = FALSE) {
 }
 
 #' @rdname author_df
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
 #' @export
 author_list = function(au_id = NULL, last_name = NULL,
                        first_name = NULL,
@@ -80,6 +87,7 @@ author_list = function(au_id = NULL, last_name = NULL,
                        http = "https://api.elsevier.com/content/search/scopus",
                        view = "COMPLETE",
                        count = 25,
+                       headers = NULL,
                        ...){
 
   api_key = get_api_key(api_key)
@@ -88,7 +96,8 @@ author_list = function(au_id = NULL, last_name = NULL,
                           first_name = first_name,
                           last_name = last_name,
                           api_key = api_key,
-                          verbose = verbose)
+                          verbose = verbose,
+                          headers = headers)
 
   first_name = L$first_name
   last_name = L$last_name
@@ -101,6 +110,7 @@ author_list = function(au_id = NULL, last_name = NULL,
                           view = view,
                           http = http,
                           count = count,
+                          headers = headers,
                           ...)
   entries$au_id = au_id
   entries$first_name = first_name
@@ -174,6 +184,9 @@ author_data = function(...,
 #' @param api_key Elsevier API key
 #' @param affil_id ID of affiliation (optional)
 #' @param verbose Print diagnostic messages
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
+#'
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication
 #' @export
@@ -182,7 +195,8 @@ process_author_name = function(
   first_name = NULL,
   affil_id = NULL,
   api_key = NULL,
-  verbose = TRUE) {
+  verbose = TRUE,
+  headers = NULL) {
 
   if (is.null(last_name) &
       is.null(first_name) &
@@ -212,7 +226,8 @@ process_author_name = function(
       last_name = last_name,
       first_name = first_name,
       api_key = api_key, verbose = verbose,
-      affil_id = affil_id)
+      affil_id = affil_id,
+      headers = headers)
     if (NROW(author_name) == 0) {
       stop("No author name found")
     }

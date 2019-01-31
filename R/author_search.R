@@ -16,6 +16,8 @@
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
 #' @param add_query Things to add to the query parameter for the request
+#' @param headers additional headers to be added to
+#' \code{\link{add_headers}}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
 #' @export
@@ -39,6 +41,7 @@ author_search <- function(
   max_count = Inf,
   view = c("STANDARD", "COMPLETE"),
   add_query = NULL,
+  headers = NULL,
   ...){
 
   api_key = get_api_key(api_key)
@@ -57,7 +60,8 @@ author_search <- function(
   # Wrapper to go through all the pages
   get_results = function(au_id, start = 0,
                          count = count,
-                         verbose = TRUE, ...){
+                         verbose = TRUE,
+                         headers = NULL, ...){
     q = list(
       query = paste0(searcher, "(", au_id, ")", add_query),
       "APIKey" = api_key,
@@ -71,10 +75,13 @@ author_search <- function(
       message("The query list is: ")
       print(dput(print_q))
     }
+    hdrs = c(
+      "X-ELS-ResourceVersion" = "allexpand",
+      headers
+      )
     r = GET(http,
             query = q,
-            add_headers(
-              "X-ELS-ResourceVersion" = "allexpand")
+            add_headers(hdrs)
     )
     if (verbose) {
       parsed_url = httr::parse_url(r$url)
@@ -95,6 +102,7 @@ author_search <- function(
   cr = get_results(au_id, start = init_start, count = count,
                    facets = facets,
                    verbose = verbose,
+                   headers = headers,
                    ...)
 
   all_facets = cr$facet
@@ -137,6 +145,7 @@ author_search <- function(
       cr = get_results(au_id, start = start, count = count,
                        facets = facets,
                        verbose = FALSE,
+                       headers = headers,
                        ...)
       all_entries = c(all_entries, cr$entry)
       all_facets = c(all_facets, cr$facet)

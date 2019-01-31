@@ -8,7 +8,7 @@ get_complete_author_info(last_name = NULL, first_name = NULL,
   affil_id = NULL, affil_name = NULL, api_key = NULL,
   http = "https://api.elsevier.com/content/search/author",
   query = NULL, count = 200, start = 0, verbose = TRUE,
-  au_id = NULL, ...)
+  au_id = NULL, headers = NULL, ...)
 }
 \arguments{
 \item{last_name}{last name of author}
@@ -34,6 +34,9 @@ records retrieved}
 
 \item{au_id}{Author ID number, will override first/last combination if
 specified}
+
+\item{headers}{Headers passed to \code{\link{add_headers}},
+passed to \code{\link{GET}}}
 
 \item{...}{options to pass to \code{\link{GET}}}
 }

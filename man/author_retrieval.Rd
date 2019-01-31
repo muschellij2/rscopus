@@ -15,7 +15,7 @@ multi_author_retrieval(id, identifier = c("author_id", "eid"),
 author_retrieval(au_id = NULL, last_name = NULL, first_name = NULL,
   view = c("LIGHT", "STANDARD", "ENHANCED", "METRICS", "ENTITLED"),
   self_cite = c("include", "exclude"), http_end = NULL,
-  verbose = TRUE, api_key = NULL, ...)
+  verbose = TRUE, api_key = NULL, headers = NULL, ...)
 }
 \arguments{
 \item{id}{Identifier for author}

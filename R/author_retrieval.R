@@ -93,6 +93,7 @@ author_retrieval <- function(
   http_end = NULL,
   verbose = TRUE,
   api_key = NULL,
+  headers = NULL,
   ...
 ){
 
@@ -103,7 +104,8 @@ author_retrieval <- function(
     first_name = first_name,
     last_name = last_name,
     api_key = api_key,
-    verbose = verbose)
+    verbose = verbose,
+    headers = headers)
 
   first_name = L$first_name
   last_name = L$last_name
@@ -117,6 +119,7 @@ author_retrieval <- function(
     view = view,
     `self-citation` = self_cite,
     verbose = verbose,
+    headers = headers,
     ...)
   return(s)
 

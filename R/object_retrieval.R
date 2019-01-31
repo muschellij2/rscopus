@@ -99,12 +99,15 @@ process_object_retrieval = function(res) {
 #' @param verbose Print messages from specification
 #' @param api_key Elsevier API key
 #' @param api_key_error Should there be an error if no API key?
+#' @param headers Headers passed to \code{\link{add_headers}},
+#' passed to \code{\link{GET}}
 #' @rdname object_retrieval
 download_object = function(
   url,
   api_key = NULL,
   api_key_error = TRUE,
   verbose = TRUE,
+  headers = NULL,
   ...) {
 
   api_key = get_api_key(api_key, error = api_key_error)
@@ -122,9 +125,11 @@ download_object = function(
   }
 
   outfile = tempfile(fileext = paste0(".", extension))
+  hdrs = do.call(httr::add_headers, args = as.list(headers))
   r = httr::GET(
     url,
-    httr::write_disk(path = outfile, overwrite = TRUE))
+    httr::write_disk(path = outfile, overwrite = TRUE),
+    hdrs)
   httr::warn_for_status(r)
   cr = content(r)
   return(list(get_statement = r, content = cr,

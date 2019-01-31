@@ -77,16 +77,20 @@ set_api_key = function(api_key) {
 #' @param token Elsevier API token, usually from
 #' \code{\link{elsevier_authenticate}}
 #'
-#' @return An object of class \code{request}
+#' @return An object of class \code{token}, but really a character
 #' @export
 inst_token_header = function(token) {
-  list("X-ELS-Insttoken" = token)
+  x = c("X-ELS-Insttoken" = token)
+  class(x) = "token"
+  x
 }
 
 
 #' @rdname inst_token_header
 #' @export
 auth_token_header = function(token) {
-  list("X-ELS-Authtoken" = token)
+  x = c("X-ELS-Authtoken" = token)
+  class(x) = "token"
+  x
 }
 
