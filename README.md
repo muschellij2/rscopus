@@ -84,28 +84,29 @@ names(res)
 #> [25] "source_id"             "first_name"           
 #> [27] "last_name"             "au_id"
 head(res[, c("title", "journal", "description")])
-#>                                                                                                                                                                         title
-#> 1                                                        Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 2                                                                        MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 3                       Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 4                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#> 5                                                                                     Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
-#> 6 Thrombolytic removal of intraventricular haemorrhage in treatment of severe stroke: results of the randomised, multicentre, multiregion, placebo-controlled CLEAR III trial
+#>                                                                                                                                                   title
+#> 1                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 2                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 3 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 4              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#> 5                                                               Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
+#> 6                           A dual modeling approach to automatic segmentation of cerebral T2 hyperintensities and T1 black holes in multiple sclerosis
 #>                         journal description
 #> 1            Scientific Reports     Article
 #> 2       Journal of Neuroimaging     Article
 #> 3                Neuro-Oncology     Article
 #> 4 Journal of Genetic Counseling     Article
 #> 5                 F1000Research     Article
-#> 6                    The Lancet     Article
+#> 6          NeuroImage: Clinical     Article
 unique(res$au_id)
 #> [1] "40462056100"
 unique(as.character(res$affilname_1))
 #> [1] "Johns Hopkins Bloomberg School of Public Health"
-#> [2] "Departments of Biostatistics"                   
-#> [3] "Johns Hopkins Medical Institutions"             
+#> [2] "Johns Hopkins University"                       
+#> [3] "Departments of Biostatistics"                   
 #> [4] "Kennedy Krieger Institute"                      
-#> [5] "The Johns Hopkins School of Medicine"
+#> [5] "Johns Hopkins Medical Institutions"             
+#> [6] "The Johns Hopkins School of Medicine"
 
 all_dat = author_data(last_name = "Muschelli", 
                  first_name = "John", verbose = FALSE, general = TRUE)
@@ -115,18 +116,34 @@ res2 = res2 %>%
          title = `dc:title`,
          description = `dc:description`)
 head(res[, c("title", "journal", "description")])
-#>                                                                                                                                                                         title
-#> 1                                                        Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 2                                                                        MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 3                       Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 4                                    Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#> 5                                                                                     Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
-#> 6 Thrombolytic removal of intraventricular haemorrhage in treatment of severe stroke: results of the randomised, multicentre, multiregion, placebo-controlled CLEAR III trial
+#>                                                                                                                                                   title
+#> 1                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 2                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 3 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 4              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#> 5                                                               Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
+#> 6                           A dual modeling approach to automatic segmentation of cerebral T2 hyperintensities and T1 black holes in multiple sclerosis
 #>                         journal description
 #> 1            Scientific Reports     Article
 #> 2       Journal of Neuroimaging     Article
 #> 3                Neuro-Oncology     Article
 #> 4 Journal of Genetic Counseling     Article
 #> 5                 F1000Research     Article
-#> 6                    The Lancet     Article
+#> 6          NeuroImage: Clinical     Article
 ```
+
+## Using an Institution Token
+
+As per <https://dev.elsevier.com/tecdoc_api_authentication.html>: “Using
+a proprietary token (an”Institutional Token“) created for you by our
+integration support team”, so you need to contact Scopus to get one. If
+you have one and it’s located in an object called `token`, you should be
+able to use it as:
+
+``` r
+# token is from Scopus dev
+hdr = inst_token_header(token)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE, headers = hdr)
+```
+
+but I have not tried it extensively.

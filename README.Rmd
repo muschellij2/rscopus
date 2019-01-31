@@ -80,12 +80,11 @@ head(res[, c("title", "journal", "description")])
 
 ## Using an Institution Token
 
-```{r}
-token_result = elsevier_authenticate()
-token = token_result$token
-token
-hdr = auth_token_header(token)
-res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE, )
+As per https://dev.elsevier.com/tecdoc_api_authentication.html: "Using a proprietary token (an "Institutional Token") created for you by our integration support team", so you need to contact Scopus to get one.  If you have one and it's located in an object called `token`, you should be able to use it as:
 
+```{r, eval = FALSE}
+# token is from Scopus dev
+hdr = inst_token_header(token)
+res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE, headers = hdr)
 ```
-
+but I have not tried it extensively.
