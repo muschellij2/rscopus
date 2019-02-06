@@ -18,6 +18,7 @@
 #' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param headers additional headers to be added to
 #' \code{\link{add_headers}}
+#' @param wait_time The time in seconds to wait accross consecutive requests of a single search (when records > 25)
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
 #'
@@ -48,6 +49,7 @@ scopus_search <- function(
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus",
   headers = NULL,
+  wait_time = 0,
   ...){
 
   api_key = get_api_key(api_key)
@@ -158,6 +160,7 @@ scopus_search <- function(
         setTxtProgressBar(pb, value = irun)
         # }
       }
+      if(wait_time>0) {Sys.sleep(wait_time);}
     }
     if (verbose) {
       close(pb)
