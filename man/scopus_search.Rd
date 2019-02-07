@@ -10,7 +10,7 @@ scopus_search(query, api_key = NULL, count = 200,
   view = c("STANDARD", "COMPLETE"), start = 0, verbose = TRUE,
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus",
-  headers = NULL, ...)
+  headers = NULL, wait_time = 0, ...)
 
 sciencedirect_search(count = 100, ...)
 
@@ -38,6 +38,9 @@ below 25 for COMPLETE views, see
 
 \item{headers}{additional headers to be added to
 \code{\link{add_headers}}}
+
+\item{wait_time}{The time in seconds to wait accross consecutive
+requests of a single search (when records > 25)}
 
 \item{...}{Arguments to be passed to the query list for
 \code{\link{GET}}}

@@ -20,6 +20,8 @@
 #' \code{\link{add_headers}}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
+#' @param wait_time The time in seconds to wait accross consecutive
+#' requests of a single search (when records > 25)
 #'
 #' @export
 #' @return List of entries from SCOPUS
@@ -48,6 +50,7 @@ scopus_search <- function(
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus",
   headers = NULL,
+  wait_time = 0,
   ...){
 
   api_key = get_api_key(api_key)
@@ -157,6 +160,9 @@ scopus_search <- function(
         # message(paste0("Run #", irun))
         setTxtProgressBar(pb, value = irun)
         # }
+      }
+      if (wait_time > 0) {
+        Sys.sleep(wait_time)
       }
     }
     if (verbose) {
