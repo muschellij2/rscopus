@@ -49,9 +49,9 @@ generic_elsevier_api <- function(
            "subject", "holdings",
            "citation-count", "citations",
            "metadata", "ev",
-           "ev_records"),
+           "ev_records", "analytics"),
   search_type = c("affiliation", "author", "scopus",
-           "scidir", "scidir-object", "sciencedirect"),
+           "scidir", "scidir-object", "sciencedirect", "plumx"),
   api_key = NULL,
   headers = NULL,
   content_type = c("content", "feedback"),
@@ -65,12 +65,14 @@ generic_elsevier_api <- function(
   api_key = get_api_key(api_key, error = api_key_error)
 
   type = match.arg(type)
-  content_type = match.arg(content_type)
-
-  root_http = paste(root_http, content_type, sep = "/")
+  if (!is.na(content_type)) {
+    content_type = match.arg(content_type)
+    root_http = paste(root_http, content_type, sep = "/")
+  }
 
   search_type = switch(type,
     search = match.arg(search_type),
+    analytics = match.arg(search_type),
     embase = "article",
     serial = "title",
     nonserial = "title",

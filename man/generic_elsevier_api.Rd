@@ -8,10 +8,10 @@ generic_elsevier_api(query = NULL, type = c("search", "article",
   "entitlement", "recommendation", "object", "fragment", "abstract",
   "affiliation", "embase", "author", "serial", "nonserial", "subject",
   "holdings", "citation-count", "citations", "metadata", "ev",
-  "ev_records"), search_type = c("affiliation", "author", "scopus",
-  "scidir", "scidir-object", "sciencedirect"), api_key = NULL,
-  headers = NULL, content_type = c("content", "feedback"),
-  root_http = "https://api.elsevier.com", http_end = NULL,
+  "ev_records", "analytics"), search_type = c("affiliation", "author",
+  "scopus", "scidir", "scidir-object", "sciencedirect", "plumx"),
+  api_key = NULL, headers = NULL, content_type = c("content",
+  "feedback"), root_http = "https://api.elsevier.com", http_end = NULL,
   verbose = TRUE, api_key_error = TRUE, ...)
 }
 \arguments{

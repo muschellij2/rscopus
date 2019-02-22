@@ -1,3 +1,10 @@
+# rscopus 0.6.5
+
+* Added `wait_time` for scopus search for requested by @dkremmydas.
+* Tried adding the ability to pass an Institution Token, but not sure if it worked.
+* Added `plumx_metrics` function for API: https://dev.elsevier.com/documentation/PlumXMetricsAPI.wadl.
+
+
 # rscopus 0.6.3
 
 * Added `citation_retrieval` for example of the Citation Retrieval example.  
