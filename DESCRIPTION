@@ -14,12 +14,14 @@ Depends:
     R (>= 3.2.0)
 Imports:
     httr,
+    jsonlite,
     utils,
     stats,
     plyr,
     tidyr,
     dplyr,
-    tools
+    tools,
+    glue
 LazyData: TRUE
 Suggests:
     xml2,

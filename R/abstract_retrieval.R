@@ -15,6 +15,9 @@
 #' if (!is.null(api_key)){
 #'    x = abstract_retrieval("S1053811915002700", identifier = "pii",
 #'    verbose = FALSE)
+#'    x = abstract_retrieval("S1053811915002700", identifier = "pii",
+#'    view = "FULL",
+#'    verbose = FALSE)
 #' }
 abstract_retrieval <- function(
   id, # Identifier for abstract

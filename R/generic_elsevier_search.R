@@ -65,7 +65,7 @@ generic_elsevier_api <- function(
   api_key = get_api_key(api_key, error = api_key_error)
 
   type = match.arg(type)
-  if (!is.na(content_type)) {
+  if (!all(is.na(content_type))) {
     content_type = match.arg(content_type)
     root_http = paste(root_http, content_type, sep = "/")
   }
