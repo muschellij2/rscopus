@@ -118,9 +118,14 @@ if (have_api_key()) {
   MainEntry = purrr::map_df(df, function(x) {
     x$df
   }, .id = "subj_area")
-  print(head(MainEntry %>%
-               filter(as.numeric(`author-count.$`) > 99) %>% 
-               select(message, `author-count.$`)))  
+  
+  ddf = MainEntry %>%
+               filter(as.numeric(`author-count.$`) > 99)
+  if ("message" %in% colnames(ddf)) {
+    ddf =  ddf %>% 
+               select(message, `author-count.$`)
+    print(head(ddf))
+  }
   
   MainEntry = MainEntry %>% 
     mutate(

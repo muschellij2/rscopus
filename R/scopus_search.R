@@ -173,7 +173,7 @@ scopus_search <- function(
     message(paste0("Number of Output Entries are ", length(all_entries),
                    "\n"))
   }
-  if (total_results != length(all_entries)) {
+  if (total_results != length(all_entries) & total_results > 0) {
     warning("May not have received all entries")
   }
   L = list(entries = all_entries, total_results = xtotal_results)
