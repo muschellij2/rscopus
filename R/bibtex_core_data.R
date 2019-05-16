@@ -41,9 +41,13 @@ bibtex_core_data = function(x) {
 
   first_auth_last_name = authors$`ce:surname`[1]
   key = paste0(first_auth_last_name, year, first, last)
+  
+  abstract = self$`dc:description`
 
   authors = paste(authors$`ce:given-name`, authors$`ce:surname`)
   authors = paste(authors, collapse = " and ")
+  
+  address = (paste(content$`abstracts-retrieval-response`$affiliation$affilname, collapse = ";"))
 
   pages = self$`prism:pageRange`
   if (is.null(pages)) {
@@ -69,6 +73,7 @@ bibtex_core_data = function(x) {
   # All information
   bib = glue::glue(paste(" <key>,",
                    "  author = {<auth>},",
+                   "  address = {<address>},",
                    "  title = {<title>},",
                    "  journal = {<jour>},",
                    "  year = {<year>},",
@@ -76,9 +81,11 @@ bibtex_core_data = function(x) {
                    "  number = {<number>},",
                    "  pages = {<pages>},",
                    "  doi = {<doi>}",
+                   "  abstract = {<abstract>}",
                    sep = "\n"),
              key=key,
              auth=authors,
+             address=address,
              title=title,
              year=year,
              jour=self$`prism:publicationName`,
@@ -86,6 +93,7 @@ bibtex_core_data = function(x) {
              number=self$`prism:issueIdentifier`,
              pages=pages,
              doi = self$`prism:doi`,
+             abstract = abstract,
              .open = "<", .close = ">")
   bib = paste0("@article{", bib, "}")
 
