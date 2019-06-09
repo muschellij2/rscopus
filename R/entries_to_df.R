@@ -10,6 +10,7 @@
 #' @importFrom plyr llply
 entries_to_df = function(entries, au_id = NULL, verbose = TRUE) {
 
+  .Deprecated("gen_entries_to_df")
   # Getting number of affilations to push out
   n_affils = sapply(entries, function(x){
     length(x$affiliation)

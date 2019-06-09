@@ -1,8 +1,8 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
-Version: 0.6.5
-Date: 2019-01-31
+Version: 0.6.6
+Date: 2019-06-05
 Authors@R: person(given = "John", family = "Muschelli", 
     role = c("aut", "cre"), email = "muschellij2@gmail.com")
 Maintainer: John Muschelli <muschellij2@gmail.com>
@@ -11,7 +11,7 @@ Description: Uses Elsevier 'Scopus' API
     information about authors and their citations.
 License: GPL-2
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.0.0)
 Imports:
     httr,
     jsonlite,

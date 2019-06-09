@@ -8,7 +8,7 @@ author_search(au_id, api_key = NULL,
   http = "https://api.elsevier.com/content/search/author", count = 200,
   start = 0, verbose = TRUE, facets = "subjarea(sort=fd,count=350)",
   searcher = "AU-ID", max_count = Inf, view = c("STANDARD",
-  "COMPLETE"), add_query = NULL, headers = NULL, ...)
+  "COMPLETE"), add_query = NULL, headers = NULL, wait_time = 0, ...)
 }
 \arguments{
 \item{au_id}{Author ID number}
@@ -39,6 +39,9 @@ know exactly what the API calls for.}
 
 \item{headers}{additional headers to be added to
 \code{\link{add_headers}}}
+
+\item{wait_time}{The time in seconds to wait accross consecutive
+requests of a single search (when records > 25)}
 
 \item{...}{Arguments to be passed to the query list for
 \code{\link{GET}}}

@@ -1,3 +1,8 @@
+# rscopus 0.6.6
+
+* Deprecated `entries_to_df`, addresses #27.
+
+
 # rscopus 0.6.5
 
 * Added `wait_time` for scopus search for requested by @dkremmydas.
