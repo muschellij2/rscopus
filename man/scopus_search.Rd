@@ -63,9 +63,9 @@ head(df$df)
 sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
 max_count = 30, count = 25)
 sci_df = gen_entries_to_df(sci_res$entries)
-Sys.sleep(0.5)
+Sys.sleep(2)
 nt = sciencedirect_search(query = "title(neurotoxin)", max_count = 20,
-count = 10, wait_time = 0.5)
+count = 10, wait_time = 1)
 nt_df = gen_entries_to_df(nt$entries)
 nt_df = nt_df$df
 }

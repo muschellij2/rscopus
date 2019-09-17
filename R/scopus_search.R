@@ -34,9 +34,9 @@
 #' sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
 #' max_count = 30, count = 25)
 #' sci_df = gen_entries_to_df(sci_res$entries)
-#' Sys.sleep(0.5)
+#' Sys.sleep(2)
 #' nt = sciencedirect_search(query = "title(neurotoxin)", max_count = 20,
-#' count = 10, wait_time = 0.5)
+#' count = 10, wait_time = 1)
 #' nt_df = gen_entries_to_df(nt$entries)
 #' nt_df = nt_df$df
 #' }
@@ -146,6 +146,9 @@ scopus_search <- function(
                           initial = 1, style = 3)
     }
     for (irun in seq(n_runs - 1)) {
+      if (wait_time > 0) {
+        Sys.sleep(wait_time)
+      }
       start = irun * count + init_start
       cr = get_results(query, start = start, count = count,
                        verbose = FALSE,
@@ -160,9 +163,6 @@ scopus_search <- function(
         # message(paste0("Run #", irun))
         setTxtProgressBar(pb, value = irun)
         # }
-      }
-      if (wait_time > 0) {
-        Sys.sleep(wait_time)
       }
     }
     if (verbose) {
