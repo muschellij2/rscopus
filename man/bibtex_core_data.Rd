@@ -21,7 +21,7 @@ Makes a \code{bibtex} entry from an output of
 }
 \note{
 Adapted from
-\url{https://github.com/scopus-api/scopus/blob/master/scopus/abstract_retrieval.py#L598}
+\url{https://github.com/pybliometrics-dev/pybliometrics/blob/master/pybliometrics/scopus/abstract_retrieval.py}
 }
 \examples{
 api_key = get_api_key(NULL, error = FALSE)

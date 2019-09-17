@@ -9,7 +9,7 @@
 #' @return A character vector of bibtex values
 #' @export
 #' @note Adapted from
-#' \url{https://github.com/scopus-api/scopus/blob/master/scopus/abstract_retrieval.py#L598}
+#' \url{https://github.com/pybliometrics-dev/pybliometrics/blob/master/pybliometrics/scopus/abstract_retrieval.py}
 #' @importFrom glue glue
 #' @importFrom jsonlite fromJSON
 #'
@@ -41,12 +41,12 @@ bibtex_core_data = function(x) {
 
   first_auth_last_name = authors$`ce:surname`[1]
   key = paste0(first_auth_last_name, year, first, last)
-  
+
   abstract = self$`dc:description`
 
   authors = paste(authors$`ce:given-name`, authors$`ce:surname`)
   authors = paste(authors, collapse = " and ")
-  
+
   address = (paste(content$`abstracts-retrieval-response`$affiliation$affilname, collapse = ";"))
 
   pages = self$`prism:pageRange`

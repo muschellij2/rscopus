@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>SCOPUS Citation Retrieval — metadata_retrieval • rscopus</title>
+<title>Print method for token — print.token • rscopus</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="SCOPUS Citation Retrieval — metadata_retrieval" />
-<meta property="og:description" content="SCOPUS Citation Retrieval" />
+<meta property="og:title" content="Print method for token — print.token" />
+<meta property="og:description" content="Print method for token" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -123,56 +123,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>SCOPUS Citation Retrieval</h1>
-    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/metadata_retrieval.R'><code>R/metadata_retrieval.R</code></a></small>
-    <div class="hidden name"><code>metadata_retrieval.Rd</code></div>
+    <h1>Print method for token</h1>
+    <small class="dont-index">Source: <a href='https://github.com/muschellij2/rscopus/blob/master/R/show.token.R'><code>R/show.token.R</code></a></small>
+    <div class="hidden name"><code>print.token.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>SCOPUS Citation Retrieval</p>
+    <p>Print method for token</p>
     </div>
 
-    <pre class="usage"><span class='fu'>metadata_retrieval</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>view</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"STANDARD"</span>, <span class='st'>"COMPLETE"</span>), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='co'># S3 method for token</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>reveal</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='fu'>reveal</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>query</th>
-      <td><p>Query to run, not overall query, but `queryParam` query</p></td>
+      <th>x</th>
+      <td><p>an object used to select a method.</p></td>
     </tr>
     <tr>
-      <th>view</th>
-      <td><p>Type of view to have.  See
-<a href='https://dev.elsevier.com/guides/ArticleMetadataViews.htm'>https://dev.elsevier.com/guides/ArticleMetadataViews.htm</a></p></td>
+      <th>reveal</th>
+      <td><p>Should the token be revealed</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Arguments to be passed to <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p></td>
+      <td><p>further arguments passed to or from other methods</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>List of elements, similar to <code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code></p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
-
-    <div class='dont-index'><p><code><a href='generic_elsevier_api.html'>generic_elsevier_api</a></code>,
-<a href='https://dev.elsevier.com/documentation/ArticleMetadataAPI.wadl'>https://dev.elsevier.com/documentation/ArticleMetadataAPI.wadl</a></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>api_key</span> <span class='kw'>=</span> <span class='fu'><a href='get_api_key.html'>get_api_key</a></span>(<span class='kw'>NULL</span>, <span class='kw'>error</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='kw'>if</span> (!<span class='fu'><a href='https://rdrr.io/r/base/NULL.html'>is.null</a></span>(<span class='no'>api_key</span>)){
-   <span class='no'>x</span> <span class='kw'>=</span> <span class='fu'>metadata_retrieval</span>(<span class='kw'>query</span> <span class='kw'>=</span> <span class='st'>"heart attack"</span>,
-   <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-}</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>x</span> <span class='kw'>=</span> <span class='st'>"asdf"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/class.html'>class</a></span>(<span class='no'>x</span>) <span class='kw'>=</span> <span class='st'>"token"</span>
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>)</div><div class='output co'>#&gt; &lt;hidden token&gt;</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='kw'>reveal</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; [1] "asdf"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#see-also">See also</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 

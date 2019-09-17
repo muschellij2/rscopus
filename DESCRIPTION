@@ -2,7 +2,7 @@ Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
 Version: 0.6.6
-Date: 2019-06-05
+Date: 2019-09-17
 Authors@R: person(given = "John", family = "Muschelli", 
     role = c("aut", "cre"), email = "muschellij2@gmail.com")
 Maintainer: John Muschelli <muschellij2@gmail.com>
