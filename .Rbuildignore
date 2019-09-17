@@ -2,7 +2,6 @@
 ^CRAN-RELEASE$
 ^.*\.Rproj$
 ^\.Rproj\.user$
-
 R/dtd_data.R
 ^\.travis\.yml$
 README.md
@@ -19,3 +18,4 @@ sticker\.png
 ^sticker\.R$
 ^sticker\.png$
 ^revdep$
+^vignettes/multi_author_cache$
