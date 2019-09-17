@@ -28,7 +28,7 @@ The goal of rscopus is to provide an R Scopus Database 'API' Interface.
 
 ## Installation
 
-You can install rscopus from github with:
+You can install `rscopus` from github with:
 
 ```{r gh-installation, eval = FALSE}
 # install.packages("devtools")
@@ -87,4 +87,5 @@ As per https://dev.elsevier.com/tecdoc_api_authentication.html: "Using a proprie
 hdr = inst_token_header(token)
 res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE, headers = hdr)
 ```
+
 but I have not tried it extensively.

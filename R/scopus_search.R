@@ -20,7 +20,7 @@
 #' \code{\link{add_headers}}
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}
-#' @param wait_time The time in seconds to wait accross consecutive
+#' @param wait_time The time in seconds to wait across consecutive
 #' requests of a single search (when records > 25)
 #'
 #' @export

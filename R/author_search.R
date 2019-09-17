@@ -18,7 +18,7 @@
 #' @param add_query Things to add to the query parameter for the request
 #' @param headers additional headers to be added to
 #' \code{\link{add_headers}}
-#' @param wait_time The time in seconds to wait accross consecutive
+#' @param wait_time The time in seconds to wait across consecutive
 #' requests of a single search (when records > 25)
 #' @param ... Arguments to be passed to the query list for
 #' \code{\link{GET}}

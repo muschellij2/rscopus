@@ -18,7 +18,7 @@ The goal of rscopus is to provide an R Scopus Database ‘API’ Interface.
 
 ## Installation
 
-You can install rscopus from github with:
+You can install `rscopus` from github with:
 
 ``` r
 # install.packages("devtools")
@@ -85,19 +85,26 @@ names(res)
 #> [27] "last_name"             "au_id"
 head(res[, c("title", "journal", "description")])
 #>                                                                                                                                                   title
-#> 1                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 2                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 3 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 4              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#> 5                                                               Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
-#> 6                           A dual modeling approach to automatic segmentation of cerebral T2 hyperintensities and T1 black holes in multiple sclerosis
-#>                         journal description
-#> 1            Scientific Reports     Article
-#> 2       Journal of Neuroimaging     Article
-#> 3                Neuro-Oncology     Article
-#> 4 Journal of Genetic Counseling     Article
-#> 5                 F1000Research     Article
-#> 6          NeuroImage: Clinical     Article
+#> 1                                                                                            Neuroconductor: An R platform for medical imaging analysis
+#> 2                                         MIMoSA: An Approach to automatically segment T2 hyperintense and T1 hypointense lesions in multiple sclerosis
+#> 3                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 4                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 5 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 6              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#>                                                                                                                                journal
+#> 1                                                                                                                        Biostatistics
+#> 2 Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
+#> 3                                                                                                                   Scientific Reports
+#> 4                                                                                                              Journal of Neuroimaging
+#> 5                                                                                                                       Neuro-Oncology
+#> 6                                                                                                        Journal of Genetic Counseling
+#>        description
+#> 1          Article
+#> 2 Conference Paper
+#> 3          Article
+#> 4          Article
+#> 5          Article
+#> 6          Article
 unique(res$au_id)
 #> [1] "40462056100"
 unique(as.character(res$affilname_1))
@@ -117,19 +124,26 @@ res2 = res2 %>%
          description = `dc:description`)
 head(res[, c("title", "journal", "description")])
 #>                                                                                                                                                   title
-#> 1                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 2                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 3 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 4              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#> 5                                                               Freesurfer: Connecting the Freesurfer software with R [version 1; referees: 2 approved]
-#> 6                           A dual modeling approach to automatic segmentation of cerebral T2 hyperintensities and T1 black holes in multiple sclerosis
-#>                         journal description
-#> 1            Scientific Reports     Article
-#> 2       Journal of Neuroimaging     Article
-#> 3                Neuro-Oncology     Article
-#> 4 Journal of Genetic Counseling     Article
-#> 5                 F1000Research     Article
-#> 6          NeuroImage: Clinical     Article
+#> 1                                                                                            Neuroconductor: An R platform for medical imaging analysis
+#> 2                                         MIMoSA: An Approach to automatically segment T2 hyperintense and T1 hypointense lesions in multiple sclerosis
+#> 3                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
+#> 4                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
+#> 5 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
+#> 6              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
+#>                                                                                                                                journal
+#> 1                                                                                                                        Biostatistics
+#> 2 Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
+#> 3                                                                                                                   Scientific Reports
+#> 4                                                                                                              Journal of Neuroimaging
+#> 5                                                                                                                       Neuro-Oncology
+#> 6                                                                                                        Journal of Genetic Counseling
+#>        description
+#> 1          Article
+#> 2 Conference Paper
+#> 3          Article
+#> 4          Article
+#> 5          Article
+#> 6          Article
 ```
 
 ## Using an Institution Token
