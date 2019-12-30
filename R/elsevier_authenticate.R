@@ -66,3 +66,9 @@ is_elsevier_guest = function(...) {
   auth = elsevier_authenticate(...)
   toupper(auth$auth_type) == "GUEST"
 }
+
+#' @export
+#' @rdname elsevier_authenticate
+is_elsevier_authorized = function(...) {
+  have_api_key() && !is_elsevier_guest(...)
+}

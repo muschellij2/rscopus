@@ -3,6 +3,7 @@
 \name{elsevier_authenticate}
 \alias{elsevier_authenticate}
 \alias{is_elsevier_guest}
+\alias{is_elsevier_authorized}
 \title{Authenticate API Key and get Token}
 \usage{
 elsevier_authenticate(
@@ -15,6 +16,8 @@ elsevier_authenticate(
 )
 
 is_elsevier_guest(...)
+
+is_elsevier_authorized(...)
 }
 \arguments{
 \item{api_key}{Elsevier API key}
