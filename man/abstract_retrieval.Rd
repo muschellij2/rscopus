@@ -4,8 +4,12 @@
 \alias{abstract_retrieval}
 \title{SCOPUS Abstract Retrieval}
 \usage{
-abstract_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
-  "pubmed_id", "pui", "group_id"), http_end = NULL, ...)
+abstract_retrieval(
+  id,
+  identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id", "pui", "group_id"),
+  http_end = NULL,
+  ...
+)
 }
 \arguments{
 \item{id}{Identifier for abstract}

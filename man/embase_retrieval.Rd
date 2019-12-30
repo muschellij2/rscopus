@@ -4,8 +4,12 @@
 \alias{embase_retrieval}
 \title{SCOPUS Embase Retrieval}
 \usage{
-embase_retrieval(id, identifier = c("lui", "pii", "doi", "embase",
-  "pubmed_id", "medline"), http_end = NULL, ...)
+embase_retrieval(
+  id,
+  identifier = c("lui", "pii", "doi", "embase", "pubmed_id", "medline"),
+  http_end = NULL,
+  ...
+)
 }
 \arguments{
 \item{id}{Identifier for abstract}

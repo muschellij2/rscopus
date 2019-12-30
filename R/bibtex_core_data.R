@@ -33,6 +33,16 @@ bibtex_core_data = function(x) {
   authors = content$`abstracts-retrieval-response`$authors$author
 
   self =  content$`abstracts-retrieval-response`$coredata
+  bad_authors = FALSE
+  if (is.null(authors)) {
+    warning(
+      paste0("Most likely not fully authenticated, see ",
+             "rscopus::elsevier_authenticate() to make ",
+             "sure not GUEST")
+    )
+    bad_authors = TRUE
+    authors = self$`dc:creator`$author
+  }
   year = substr(self$`prism:coverDate`, 1, 4)
   title = self$`dc:title`
   split_title = strsplit(title, " ")[[1]]
@@ -43,16 +53,26 @@ bibtex_core_data = function(x) {
   key = paste0(first_auth_last_name, year, first, last)
 
   abstract = self$`dc:description`
+  if (is.null(abstract)) {
+    abstract = ""
+  }
 
   authors = paste(authors$`ce:given-name`, authors$`ce:surname`)
   authors = paste(authors, collapse = " and ")
+  if (bad_authors) {
+    authors = ""
+  }
 
-  address = (paste(content$`abstracts-retrieval-response`$affiliation$affilname, collapse = ";"))
+  address = paste(
+    content$`abstracts-retrieval-response`$affiliation$affilname,
+    collapse = "; ")
 
   pages = self$`prism:pageRange`
   if (is.null(pages)) {
-    if (!is.null(self$`prism:startingPage`) & !is.null(self$`prism:endingPage`)) {
-      pages = paste0(self$`prism:startingPage`, "-", self$`prism:endingPage`)
+    if (!is.null(self$`prism:startingPage`) &
+        !is.null(self$`prism:endingPage`)) {
+      pages = paste0(self$`prism:startingPage`, "-",
+                     self$`prism:endingPage`)
     } else {
       pages = "-"
     }
@@ -72,29 +92,29 @@ bibtex_core_data = function(x) {
 
   # All information
   bib = glue::glue(paste(" <key>,",
-                   "  author = {<auth>},",
-                   "  address = {<address>},",
-                   "  title = {<title>},",
-                   "  journal = {<jour>},",
-                   "  year = {<year>},",
-                   "  volume = {<vol>},",
-                   "  number = {<number>},",
-                   "  pages = {<pages>},",
-                   "  doi = {<doi>}",
-                   "  abstract = {<abstract>}",
-                   sep = "\n"),
-             key=key,
-             auth=authors,
-             address=address,
-             title=title,
-             year=year,
-             jour=self$`prism:publicationName`,
-             vol= self$`prism:volume`,
-             number=self$`prism:issueIdentifier`,
-             pages=pages,
-             doi = self$`prism:doi`,
-             abstract = abstract,
-             .open = "<", .close = ">")
+                         "  author = {<auth>},",
+                         "  address = {<address>},",
+                         "  title = {<title>},",
+                         "  journal = {<jour>},",
+                         "  year = {<year>},",
+                         "  volume = {<vol>},",
+                         "  number = {<number>},",
+                         "  pages = {<pages>},",
+                         "  doi = {<doi>}",
+                         "  abstract = {<abstract>}",
+                         sep = "\n"),
+                   key=key,
+                   auth=authors,
+                   address=address,
+                   title=title,
+                   year=year,
+                   jour=self$`prism:publicationName`,
+                   vol= self$`prism:volume`,
+                   number=self$`prism:issueIdentifier`,
+                   pages=pages,
+                   doi = self$`prism:doi`,
+                   abstract = abstract,
+                   .open = "<", .close = ">")
   bib = paste0("@article{", bib, "}")
 
 }

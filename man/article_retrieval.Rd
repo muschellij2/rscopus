@@ -4,9 +4,13 @@
 \alias{article_retrieval}
 \title{ScienceDirect Article Retrieval}
 \usage{
-article_retrieval(id, view = c("META", "META_ABS", "META_ABS_REF",
-  "FULL", "REF", "ENTITLED"), identifier = c("scopus_id", "eid", "doi",
-  "pii", "pubmed_id"), http_end = NULL, ...)
+article_retrieval(
+  id,
+  view = c("META", "META_ABS", "META_ABS_REF", "FULL", "REF", "ENTITLED"),
+  identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id"),
+  http_end = NULL,
+  ...
+)
 }
 \arguments{
 \item{id}{Identifier for article}

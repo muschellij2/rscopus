@@ -4,9 +4,15 @@
 \alias{process_author_name}
 \title{Process Author Name}
 \usage{
-process_author_name(au_id = NULL, last_name = NULL,
-  first_name = NULL, affil_id = NULL, api_key = NULL,
-  verbose = TRUE, headers = NULL)
+process_author_name(
+  au_id = NULL,
+  last_name = NULL,
+  first_name = NULL,
+  affil_id = NULL,
+  api_key = NULL,
+  verbose = TRUE,
+  headers = NULL
+)
 }
 \arguments{
 \item{au_id}{Author ID number. Overrides any first/last name argument}

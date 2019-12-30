@@ -2,10 +2,19 @@
 % Please edit documentation in R/elsevier_authenticate.R
 \name{elsevier_authenticate}
 \alias{elsevier_authenticate}
+\alias{is_elsevier_guest}
 \title{Authenticate API Key and get Token}
 \usage{
-elsevier_authenticate(api_key = NULL, api_key_error = TRUE,
-  choice = NULL, verbose = TRUE, headers = NULL, ...)
+elsevier_authenticate(
+  api_key = NULL,
+  api_key_error = TRUE,
+  choice = NULL,
+  verbose = TRUE,
+  headers = NULL,
+  ...
+)
+
+is_elsevier_guest(...)
 }
 \arguments{
 \item{api_key}{Elsevier API key}

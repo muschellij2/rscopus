@@ -7,13 +7,24 @@
 \alias{download_objects}
 \title{ScienceDirect Object Retrieval}
 \usage{
-object_retrieval(id, identifier = c("scopus_id", "eid", "doi", "pii",
-  "pubmed_id"), ref = NULL, http_end = NULL, ...)
+object_retrieval(
+  id,
+  identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id"),
+  ref = NULL,
+  http_end = NULL,
+  ...
+)
 
 process_object_retrieval(res)
 
-download_object(url, api_key = NULL, api_key_error = TRUE,
-  verbose = TRUE, headers = NULL, ...)
+download_object(
+  url,
+  api_key = NULL,
+  api_key_error = TRUE,
+  verbose = TRUE,
+  headers = NULL,
+  ...
+)
 
 download_objects(url, ...)
 }

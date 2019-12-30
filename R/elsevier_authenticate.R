@@ -60,3 +60,9 @@ elsevier_authenticate = function(
   return(L)
 }
 
+#' @export
+#' @rdname elsevier_authenticate
+is_elsevier_guest = function(...) {
+  auth = elsevier_authenticate(...)
+  toupper(auth$auth_type) == "GUEST"
+}

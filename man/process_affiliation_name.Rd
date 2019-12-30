@@ -4,8 +4,12 @@
 \alias{process_affiliation_name}
 \title{Process Affiliation Name}
 \usage{
-process_affiliation_name(affil_id = NULL, affil_name = NULL,
-  api_key = NULL, verbose = TRUE)
+process_affiliation_name(
+  affil_id = NULL,
+  affil_name = NULL,
+  api_key = NULL,
+  verbose = TRUE
+)
 }
 \arguments{
 \item{affil_id}{Affiliation ID number.}

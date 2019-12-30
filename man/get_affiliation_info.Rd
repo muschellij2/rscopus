@@ -4,8 +4,13 @@
 \alias{get_affiliation_info}
 \title{Get Affiliation Information and ID from Scopus}
 \usage{
-get_affiliation_info(affil_id = NULL, affil_name = NULL,
-  api_key = NULL, verbose = FALSE, headers = NULL)
+get_affiliation_info(
+  affil_id = NULL,
+  affil_name = NULL,
+  api_key = NULL,
+  verbose = FALSE,
+  headers = NULL
+)
 }
 \arguments{
 \item{affil_id}{ID of affiliation}

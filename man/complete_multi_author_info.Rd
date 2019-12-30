@@ -4,8 +4,7 @@
 \alias{complete_multi_author_info}
 \title{Get Complete Author Information and ID from Scopus}
 \usage{
-complete_multi_author_info(au_id = NULL, api_key = NULL,
-  verbose = TRUE, ...)
+complete_multi_author_info(au_id = NULL, api_key = NULL, verbose = TRUE, ...)
 }
 \arguments{
 \item{au_id}{vector of Author IDs}

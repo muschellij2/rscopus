@@ -4,9 +4,14 @@
 \alias{affil_search}
 \title{Search Author Content on SCOPUS}
 \usage{
-affil_search(affil_id, searcher = "AF-ID",
+affil_search(
+  affil_id,
+  searcher = "AF-ID",
   http = "https://api.elsevier.com/content/search/affiliation",
-  facets = "affilcountry(sort=document-count)", count = 200, ...)
+  facets = "affilcountry(sort=document-count)",
+  count = 200,
+  ...
+)
 }
 \arguments{
 \item{affil_id}{Affiliation ID number}

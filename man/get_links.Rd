@@ -30,8 +30,7 @@ self_url(result)
 
 first_url(result)
 
-get_link_type(result, ..., type = c("self", "first", "prev", "next",
-  "last"))
+get_link_type(result, ..., type = c("self", "first", "prev", "next", "last"))
 
 get_first(result, ...)
 

@@ -6,11 +6,19 @@
 \alias{scidir_search}
 \title{SCOPUS Search}
 \usage{
-scopus_search(query, api_key = NULL, count = 200,
-  view = c("STANDARD", "COMPLETE"), start = 0, verbose = TRUE,
+scopus_search(
+  query,
+  api_key = NULL,
+  count = 200,
+  view = c("STANDARD", "COMPLETE"),
+  start = 0,
+  verbose = TRUE,
   max_count = 20000,
   http = "https://api.elsevier.com/content/search/scopus",
-  headers = NULL, wait_time = 0, ...)
+  headers = NULL,
+  wait_time = 0,
+  ...
+)
 
 sciencedirect_search(count = 100, ...)
 

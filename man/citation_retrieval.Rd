@@ -5,8 +5,14 @@
 \alias{parse_citation_retrieval}
 \title{SCOPUS Citation Retrieval}
 \usage{
-citation_retrieval(scopus_id = NULL, pii = NULL, doi = NULL,
-  pubmed_id = NULL, date_range = NULL, ...)
+citation_retrieval(
+  scopus_id = NULL,
+  pii = NULL,
+  doi = NULL,
+  pubmed_id = NULL,
+  date_range = NULL,
+  ...
+)
 
 parse_citation_retrieval(result)
 }

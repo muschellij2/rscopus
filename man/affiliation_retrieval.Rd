@@ -4,8 +4,12 @@
 \alias{affiliation_retrieval}
 \title{SCOPUS Affiliation Retrieval}
 \usage{
-affiliation_retrieval(id, identifier = c("affiliation_id", "eid"),
-  http_end = NULL, ...)
+affiliation_retrieval(
+  id,
+  identifier = c("affiliation_id", "eid"),
+  http_end = NULL,
+  ...
+)
 }
 \arguments{
 \item{id}{Identifier for affiliation}
