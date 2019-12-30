@@ -23,7 +23,7 @@
 #' @export
 #' @return List of information
 #' @examples
-#' if (have_api_key()) {
+#' if (get_complete_author_info()) {
 #' res = get_complete_author_info(
 #' last_name = "Muschelli",
 #' first_name = "John",
