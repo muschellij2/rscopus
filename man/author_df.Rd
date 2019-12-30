@@ -95,7 +95,7 @@ entries as well as
 the \code{data.frame}.
 }
 \examples{
-if (have_api_key()) {
+if (is_elsevier_authorized()) {
 res = author_df(last_name = "Muschelli", first_name = "John",
 verbose = FALSE)
 }

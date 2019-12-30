@@ -30,7 +30,7 @@
 #' @seealso \code{\link{get_author_info}}
 #' @return List of entries from SCOPUS
 #' @examples
-#' if (have_api_key()) {
+#' if (is_elsevier_authorized()) {
 #' res = author_df(last_name = "Muschelli", first_name = "John",
 #' verbose = FALSE)
 #' }
