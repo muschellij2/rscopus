@@ -58,7 +58,7 @@ Uses SCOPUS author search to identify author identification
 information
 }
 \examples{
-if (get_complete_author_info()) {
+if (is_elsevier_authorized()) {
 res = get_complete_author_info(
 last_name = "Muschelli",
 first_name = "John",

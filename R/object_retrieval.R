@@ -15,12 +15,15 @@
 #' @return List of elements, similar to \code{\link{generic_elsevier_api}}
 #' @examples
 #' api_key = get_api_key(NULL, error = FALSE)
-#' if (!is.null(api_key)){
+#' authorized = is_elsevier_authorized()
+#' if (have_api_key()){
 #'    x = object_retrieval("S1053811915002700", identifier = "pii",
 #'    verbose = FALSE)
 #'    df = process_object_retrieval(x)
 #'    df = df[ grepl("image/jpeg", df$mime_type),,drop = FALSE ]
 #'    df = df[ df$type %in% "IMAGE-HIGH-RES",,drop = FALSE ]
+#' }
+#' if (authorized) {
 #'    res = download_object(df$url[1])
 #'    if (interactive()) {
 #'       browseURL(res$outfile)
