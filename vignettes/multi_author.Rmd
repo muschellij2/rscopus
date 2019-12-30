@@ -36,6 +36,12 @@ Next, we need to see if we have an API key available.  See the API key vignette 
 have_api_key()
 ```
 
+We also need to make sure you are authorized to search Scopus with ` is_elsevier_authorized`.  If you have an API key, but ` is_elsevier_authorized()` is `FALSE`, then it's likely due to the fact that you're not on the necessary IP that the key needs:
+
+```{r}
+authorized = is_elsevier_authorized()
+```
+
 ## Creating a query
 Here we will create a query of a specific affiliation, subject area, publication year, and type of access (OA = open access).  Let's look at the different types of subject areas:
 
@@ -60,7 +66,7 @@ Query <- paste0("AF-ID(60006514) AND SUBJAREA(",
 Let's pull the first subject area information.  Note, the count may depend on your API key limits.  We also are asking for a complete view, rather than the standard view.  The `max_count` is set to $20000$, so this may not be enough for your query and you need to adjust.  
 
 ```{r}
-if (have_api_key()) {
+if (authorized) {
   make_query = function(subj_area) {
     paste0("AF-ID(60006514) AND SUBJAREA(", 
            subj_area,
@@ -90,7 +96,7 @@ The `gen_entries_to_df` function is an attempt at turning the parsed JSON to som
 These are all alternative options, but we will use `rscopous::gen_entries_to_df`.  The output is a list of `data.frame`s after we pass in the `entries` elements from the list.
 
 ```{r}
-if (have_api_key()) {
+if (authorized) {
   
   # areas = subject_areas()[12:13]  
   areas = c("ENER", "ENGI")
