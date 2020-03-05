@@ -7,10 +7,16 @@ R Package to interface with Elsevier and Scopus APIs
 
 <img src="sticker.png" width="100">
 
+<!-- badges: start -->
+
 [![Travis-CI Build
 Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus)
 [![AppVeyor Build
 Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rscopus)](https://CRAN.R-project.org/package=rscopus)
+[![](https://cranlogs.r-pkg.org/badges/rscopus)](https://cran.rstudio.com/web/packages/rscopus/index.html)
+<!-- badges: end -->
 
 # rscopus
 
@@ -68,43 +74,35 @@ This is a basic example which shows you how to solve a common problem:
 library(rscopus)
 library(dplyr)
 res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE)
+#> Warning: 'entries_to_df' is deprecated.
+#> Use 'gen_entries_to_df' instead.
+#> See help("Deprecated")
 names(res)
-#>  [1] "auth_order"            "affilname_1"          
-#>  [3] "n_auth"                "affilname_2"          
-#>  [5] "n_affils"              "citations"            
-#>  [7] "journal"               "description"          
-#>  [9] "title"                 "pii"                  
-#> [11] "doi"                   "eid"                  
-#> [13] "cover_date"            "cover_display_date"   
-#> [15] "prism_url"             "dc_identifier"        
-#> [17] "dc_creator"            "prism_issn"           
-#> [19] "prism_eIssn"           "prism_pageRange"      
-#> [21] "dc_description"        "prism_aggregationType"
-#> [23] "subtype"               "authkeywords"         
-#> [25] "source_id"             "first_name"           
-#> [27] "last_name"             "au_id"
+#>  [1] "auth_order"            "affilname_1"           "n_auth"               
+#>  [4] "affilname_2"           "n_affils"              "citations"            
+#>  [7] "journal"               "description"           "title"                
+#> [10] "pii"                   "doi"                   "eid"                  
+#> [13] "cover_date"            "cover_display_date"    "prism_url"            
+#> [16] "dc_identifier"         "dc_creator"            "prism_issn"           
+#> [19] "prism_eIssn"           "prism_pageRange"       "dc_description"       
+#> [22] "prism_aggregationType" "subtype"               "authkeywords"         
+#> [25] "source_id"             "first_name"            "last_name"            
+#> [28] "au_id"
 head(res[, c("title", "journal", "description")])
-#>                                                                                                                                                   title
-#> 1                                                                                            Neuroconductor: An R platform for medical imaging analysis
-#> 2                                         MIMoSA: An Approach to automatically segment T2 hyperintense and T1 hypointense lesions in multiple sclerosis
-#> 3                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 4                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 5 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 6              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#>                                                                                                                                journal
-#> 1                                                                                                                        Biostatistics
-#> 2 Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
-#> 3                                                                                                                   Scientific Reports
-#> 4                                                                                                              Journal of Neuroimaging
-#> 5                                                                                                                       Neuro-Oncology
-#> 6                                                                                                        Journal of Genetic Counseling
-#>        description
-#> 1          Article
-#> 2 Conference Paper
-#> 3          Article
-#> 4          Article
-#> 5          Article
-#> 6          Article
+#>                                                                                                                          title
+#> 1          “The doctor said formula would help me”: Health sector influences on use of infant formula in peri-urban Lima, Peru
+#> 2 Relationship of White Matter Lesions with Intracerebral Hemorrhage Expansion and Functional Outcome: MISTIE II and CLEAR III
+#> 3                                             An improved algorithm of white matter hyperintensity detection in elderly adults
+#> 4                                                                                  Recommendations for Processing Head CT Data
+#> 5                          crsra: A learning analytics tool for understanding student behaviour in massive open online courses
+#> 6                                                                   Neuroconductor: An R platform for medical imaging analysis
+#>                         journal description
+#> 1   Social Science and Medicine     Article
+#> 2            Neurocritical Care     Article
+#> 3          NeuroImage: Clinical     Article
+#> 4 Frontiers in Neuroinformatics     Article
+#> 5 Journal of Learning Analytics     Article
+#> 6                 Biostatistics     Article
 unique(res$au_id)
 #> [1] "40462056100"
 unique(as.character(res$affilname_1))
@@ -113,7 +111,7 @@ unique(as.character(res$affilname_1))
 #> [3] "Departments of Biostatistics"                   
 #> [4] "Kennedy Krieger Institute"                      
 #> [5] "Johns Hopkins Medical Institutions"             
-#> [6] "The Johns Hopkins School of Medicine"
+#> [6] "Johns Hopkins School of Medicine"
 
 all_dat = author_data(last_name = "Muschelli", 
                  first_name = "John", verbose = FALSE, general = TRUE)
@@ -123,27 +121,20 @@ res2 = res2 %>%
          title = `dc:title`,
          description = `dc:description`)
 head(res[, c("title", "journal", "description")])
-#>                                                                                                                                                   title
-#> 1                                                                                            Neuroconductor: An R platform for medical imaging analysis
-#> 2                                         MIMoSA: An Approach to automatically segment T2 hyperintense and T1 hypointense lesions in multiple sclerosis
-#> 3                                  Objective Evaluation of Multiple Sclerosis Lesion Segmentation using a Data Management and Processing Infrastructure
-#> 4                                                  MIMoSA: An Automated Method for Intermodal Segmentation Analysis of Multiple Sclerosis Brain Lesions
-#> 5 Radiomic subtyping improves disease stratification beyond key molecular, clinical, and standard imaging characteristics in patients with glioblastoma
-#> 6              Feasibility of Coping Effectiveness Training for Caregivers of Children with Autism Spectrum Disorder: a Genetic Counseling Intervention
-#>                                                                                                                                journal
-#> 1                                                                                                                        Biostatistics
-#> 2 Lecture Notes in Computer Science (including subseries Lecture Notes in Artificial Intelligence and Lecture Notes in Bioinformatics)
-#> 3                                                                                                                   Scientific Reports
-#> 4                                                                                                              Journal of Neuroimaging
-#> 5                                                                                                                       Neuro-Oncology
-#> 6                                                                                                        Journal of Genetic Counseling
-#>        description
-#> 1          Article
-#> 2 Conference Paper
-#> 3          Article
-#> 4          Article
-#> 5          Article
-#> 6          Article
+#>                                                                                                                          title
+#> 1          “The doctor said formula would help me”: Health sector influences on use of infant formula in peri-urban Lima, Peru
+#> 2 Relationship of White Matter Lesions with Intracerebral Hemorrhage Expansion and Functional Outcome: MISTIE II and CLEAR III
+#> 3                                             An improved algorithm of white matter hyperintensity detection in elderly adults
+#> 4                                                                                  Recommendations for Processing Head CT Data
+#> 5                          crsra: A learning analytics tool for understanding student behaviour in massive open online courses
+#> 6                                                                   Neuroconductor: An R platform for medical imaging analysis
+#>                         journal description
+#> 1   Social Science and Medicine     Article
+#> 2            Neurocritical Care     Article
+#> 3          NeuroImage: Clinical     Article
+#> 4 Frontiers in Neuroinformatics     Article
+#> 5 Journal of Learning Analytics     Article
+#> 6                 Biostatistics     Article
 ```
 
 ## Using an Institution Token
