@@ -33,6 +33,13 @@ bibtex_core_data = function(x) {
   authors = content$`abstracts-retrieval-response`$authors$author
 
   self =  content$`abstracts-retrieval-response`$coredata
+  if (is.null(self)) {
+    self = content$`full-text-retrieval-response`$coredata
+    dc_creator = self$`dc:creator`
+    colnames(dc_creator)[ colnames(dc_creator) == "$"] = "author"
+    self$`dc:creator` = dc_creator
+  }
+  is.null(authors)
   bad_authors = FALSE
   if (is.null(authors)) {
     warning(
