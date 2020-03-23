@@ -63,6 +63,7 @@ bibtex_core_data = function(x) {
   title = self$`dc:title`
   if (!is.null(title)) {
     split_title = strsplit(title, " ")[[1]]
+    split_title = trimws(split_title)
   } else {
     warning("Title is NULL!")
     split_title = NA_character_
