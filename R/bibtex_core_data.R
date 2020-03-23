@@ -62,8 +62,8 @@ bibtex_core_data = function(x) {
   year = substr(self$`prism:coverDate`, 1, 4)
   title = self$`dc:title`
   if (!is.null(title)) {
+    title = trimws(title)
     split_title = strsplit(title, " ")[[1]]
-    split_title = trimws(split_title)
   } else {
     warning("Title is NULL!")
     split_title = NA_character_
