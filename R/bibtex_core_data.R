@@ -37,15 +37,23 @@ bibtex_core_data = function(x) {
     self = content$`full-text-retrieval-response`$coredata
     dc_creator = self$`dc:creator`
     colnames(dc_creator)[ colnames(dc_creator) == "$"] = "author"
-    self$`dc:creator` = dc_creator
+    dc_create_auth = dc_creator$author
+    if (!is.null(dc_create_auth)) {
+      if (is.vector(dc_create_auth)) {
+        dc_create_auth = strsplit(dc_create_auth, split = ", ")
+        dc_create_auth = do.call(rbind, dc_create_auth)
+        colnames(dc_create_auth) = c("ce:surname", "ce:given-name")
+        dc_create_auth = as.data.frame(dc_create_auth,
+                                       stringsAsFactors = FALSE)
+        dc_creator = list(author = dc_create_auth)
+      }
+      self$`dc:creator` = dc_creator
+    }
   }
-  is.null(authors)
   bad_authors = FALSE
   if (is.null(authors)) {
     warning(
-      paste0("Most likely not fully authenticated, see ",
-             "rscopus::elsevier_authenticate() to make ",
-             "sure not GUEST")
+      paste0("Authors are NULL, output should be from abstract_retrieval? ")
     )
     bad_authors = TRUE
     authors = self$`dc:creator`$author
@@ -103,30 +111,31 @@ bibtex_core_data = function(x) {
   # self$`prism:issueIdentifier` = ""
 
   # All information
-  bib = glue::glue(paste(" <key>,",
-                         "  author = {<auth>},",
-                         "  address = {<address>},",
-                         "  title = {<title>},",
-                         "  journal = {<jour>},",
-                         "  year = {<year>},",
-                         "  volume = {<vol>},",
-                         "  number = {<number>},",
-                         "  pages = {<pages>},",
-                         "  doi = {<doi>}",
-                         "  abstract = {<abstract>}",
-                         sep = "\n"),
-                   key=key,
-                   auth=authors,
-                   address=address,
-                   title=title,
-                   year=year,
-                   jour=self$`prism:publicationName`,
-                   vol= self$`prism:volume`,
-                   number=self$`prism:issueIdentifier`,
-                   pages=pages,
-                   doi = self$`prism:doi`,
-                   abstract = abstract,
-                   .open = "<", .close = ">")
+  bib = glue::glue(
+    paste(" <key>,",
+          "  author = {<auth>},",
+          "  address = {<address>},",
+          "  title = {<title>},",
+          "  journal = {<jour>},",
+          "  year = {<year>},",
+          "  volume = {<vol>},",
+          "  number = {<number>},",
+          "  pages = {<pages>},",
+          "  doi = {<doi>}",
+          "  abstract = {<abstract>}",
+          sep = "\n"),
+    key=key,
+    auth=authors,
+    address=address,
+    title=title,
+    year=year,
+    jour=self$`prism:publicationName`,
+    vol= self$`prism:volume`,
+    number=self$`prism:issueIdentifier`,
+    pages=pages,
+    doi = self$`prism:doi`,
+    abstract = abstract,
+    .open = "<", .close = ">")
   bib = paste0("@article{", bib, "}")
 
 }
