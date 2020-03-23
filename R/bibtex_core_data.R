@@ -53,7 +53,8 @@ bibtex_core_data = function(x) {
   bad_authors = FALSE
   if (is.null(authors)) {
     warning(
-      paste0("Authors are NULL, output should be from abstract_retrieval? ")
+      paste0("Authors are NULL, output should be from abstract_retrieval? ",
+             "Author list may not be right!")
     )
     bad_authors = TRUE
     authors = self$`dc:creator`$author
@@ -79,7 +80,7 @@ bibtex_core_data = function(x) {
 
   authors = paste(authors$`ce:given-name`, authors$`ce:surname`)
   authors = paste(authors, collapse = " and ")
-  if (bad_authors) {
+  if (bad_authors && is.null(authors)) {
     authors = ""
   }
 
