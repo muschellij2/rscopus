@@ -11,6 +11,7 @@ citation_retrieval(
   doi = NULL,
   pubmed_id = NULL,
   date_range = NULL,
+  exclude = NULL,
   ...
 )
 
@@ -23,9 +24,11 @@ parse_citation_retrieval(result)
 
 \item{doi}{Scopus Identifier}
 
-\item{pubmed_id}{Scopus Identifier}
+\item{pubmed_id}{PubMed Identifier}
 
 \item{date_range}{date range to specify, must be length 2}
+
+\item{exclude}{either exclude-self or exclude-books for exclusion of citation}
 
 \item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}}
 

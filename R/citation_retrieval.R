@@ -1,10 +1,11 @@
 #' SCOPUS Citation Retrieval
 #'
 #' @param scopus_id Scopus Identifier
-#' @param pubmed_id Scopus Identifier
+#' @param pubmed_id PubMed Identifier
 #' @param pii Scopus Identifier
 #' @param doi Scopus Identifier
 #' @param date_range date range to specify, must be length 2
+#' @param exclude either exclude-self or exclude-books for exclusion of citation
 #' @param ... Arguments to be passed to \code{\link{generic_elsevier_api}}
 #' @export
 #' @seealso \code{\link{generic_elsevier_api}}
@@ -28,6 +29,7 @@ citation_retrieval <- function(
   doi = NULL,
   pubmed_id = NULL,
   date_range = NULL,
+  exclude = NULL,
   ...
 ){
 
@@ -62,6 +64,9 @@ citation_retrieval <- function(
   args$doi = doi
   pubmed_id = func(pubmed_id)
   args$pubmed_id = pubmed_id
+  if (!is.null(exclude)) {
+    args$exclude = match.arg(exclude, choices = c("exclude-self", "exclude-books"))
+  }
   s = do.call(generic_elsevier_api, args = args)
 
   return(s)
@@ -79,10 +84,10 @@ parse_citation_retrieval = function(result) {
   ident = x$`identifier-legend`$identifier
   ident = lapply(ident, function(z) {
     lapply(z, function(r){
-    if (is.null(r)) {
-      r = NA
-    }
-    return(r)
+      if (is.null(r)) {
+        r = NA
+      }
+      return(r)
     })
   })
   ident = lapply(ident, as.data.frame, stringsAsFactors = FALSE)

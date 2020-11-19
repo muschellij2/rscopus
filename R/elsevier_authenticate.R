@@ -51,10 +51,13 @@ elsevier_authenticate = function(
                 hdrs,
                 ...
   )
+  httr::warn_for_status(r)
   cr = httr::content(r)
   L = list(get_statement = r, content = cr)
   token = cr$`authenticate-response`$authtoken
-  class(token) = "token"
+  if (!is.null(token)) {
+    class(token) = "token"
+  }
   L$token = token
   L$auth_type = cr$`authenticate-response`$`@type`
   return(L)
