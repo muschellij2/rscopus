@@ -27,18 +27,21 @@
 #' @return List of entries from SCOPUS
 #' @examples
 #' if (have_api_key()) {
-#' res = scopus_search(query = "all(gene)", max_count = 20,
-#' count = 10)
-#' df = gen_entries_to_df(res$entries)
-#' head(df$df)
-#' sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
-#' max_count = 30, count = 25)
-#' sci_df = gen_entries_to_df(sci_res$entries)
-#' Sys.sleep(2)
-#' nt = sciencedirect_search(query = "title(neurotoxin)", max_count = 20,
-#' count = 10, wait_time = 1)
-#' nt_df = gen_entries_to_df(nt$entries)
-#' nt_df = nt_df$df
+#'   authorized = is_elsevier_authorized()
+#'   if (authorized) {
+#'     res = scopus_search(query = "all(gene)", max_count = 20,
+#'                         count = 10)
+#'     df = gen_entries_to_df(res$entries)
+#'     head(df$df)
+#'     sci_res = sciencedirect_search(query = "heart+attack AND text(liver)",
+#'                                    max_count = 30, count = 25)
+#'     sci_df = gen_entries_to_df(sci_res$entries)
+#'     Sys.sleep(2)
+#'     nt = sciencedirect_search(query = "title(neurotoxin)", max_count = 20,
+#'                               count = 10, wait_time = 1)
+#'     nt_df = gen_entries_to_df(nt$entries)
+#'     nt_df = nt_df$df
+#'   }
 #' }
 scopus_search <- function(
   query, # Author ID number
