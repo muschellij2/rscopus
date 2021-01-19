@@ -1,7 +1,6 @@
-# rscopus 0.6.6
+# rscopus 0.7.0
 
-* Deprecated `entries_to_df`, addresses #27.
-
+* Fixed bug in bibtex core
 
 # rscopus 0.6.6
 

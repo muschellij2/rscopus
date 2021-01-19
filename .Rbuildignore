@@ -19,3 +19,4 @@ sticker\.png
 ^sticker\.png$
 ^revdep$
 ^vignettes/multi_author_cache$
+^dtd_data\.R$
