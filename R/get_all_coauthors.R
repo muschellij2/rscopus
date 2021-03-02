@@ -97,7 +97,7 @@ get_all_coauthors = function(...) {
     x = x[["abstracts-retrieval-response"]]
     out = tibble::as_tibble(
       jsonlite::fromJSON(
-        jsontlie::toJSON(x$affiliation),
+        jsonlite::toJSON(x$affiliation),
         flatten = TRUE)
     )
     out = make_df(out)
