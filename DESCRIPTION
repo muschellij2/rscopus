@@ -1,7 +1,7 @@
 Package: rscopus
 Type: Package
 Title: Scopus Database 'API' Interface
-Version: 0.7.0
+Version: 0.7.1
 Authors@R: person(given = "John", family = "Muschelli", 
     role = c("aut", "cre"), email = "muschellij2@gmail.com")
 Maintainer: John Muschelli <muschellij2@gmail.com>
@@ -30,7 +30,8 @@ Suggests:
     jpeg,
     knitr,
     rmarkdown,
-    purrr
+    purrr,
+    pbapply
 URL: https://dev.elsevier.com/sc_apis.html, 
     https://github.com/muschellij2/rscopus
 BugReports: https://github.com/muschellij2/rscopus/issues
