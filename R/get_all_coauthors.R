@@ -79,7 +79,7 @@ get_all_coauthors = function(...) {
   })
   all_authors$affiliation = lapply(all_authors$affiliation, function(x) {
     if (is.list(x)) {
-      x = tibble::as_tibble(x)
+      x = dplyr::as_tibble(x)
     }
     if (is.data.frame(x)) {
       x = unique(x)
@@ -95,7 +95,7 @@ get_all_coauthors = function(...) {
   affils = lapply(output, function(x) {
     x = x$full_output$content
     x = x[["abstracts-retrieval-response"]]
-    out = tibble::as_tibble(
+    out = dplyr::as_tibble(
       jsonlite::fromJSON(
         jsonlite::toJSON(x$affiliation),
         flatten = TRUE)
@@ -157,8 +157,9 @@ get_all_coauthors = function(...) {
     collaborator_au_ids = collaborators,
     author_data = res,
     all_output = output,
+    affiliation_data = affils,
     author_data = all_authors)
-  out$affiliation_data = affil_df
+  out$author_affiliation_data = affil_df
   out
 }
 
