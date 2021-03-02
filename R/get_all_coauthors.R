@@ -75,7 +75,7 @@ get_all_coauthors = function(...) {
       author_url = "author-url",
       affiliation_id
     ) %>%
-    tibble::as_tibble()
+    dplyr::as_tibble()
   affil_df = make_df(affil_df)
   n_total_affil = max(sapply(affil_df$affiliation_id, length))
   affil_df$affiliation_id = sapply(affil_df$affiliation_id, function(x) {
