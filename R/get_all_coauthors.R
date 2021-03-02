@@ -77,38 +77,79 @@ get_all_coauthors = function(...) {
     stopifnot(length(x) ==1)
     c(x)
   })
-  affilition_number = affiliation_id = au_id = NULL
-  rm(list = c("affiliation_id", "au_id", "affilition_number"))
-  affil_df = all_authors %>%
-    dplyr::select(
-      scopus_id,
-      au_id,
-      author_order = "@seq",
-      indexed_name = "ce:indexed-name",
-      given_name = "ce:given-name",
-      surname = "ce:surname",
-      author_url = "author-url",
-      affiliation_id
-    ) %>%
-    dplyr::as_tibble()
-  affil_df = make_df(affil_df)
-  n_total_affil = max(sapply(affil_df$affiliation_id, length))
-  affil_df$affiliation_id = sapply(affil_df$affiliation_id, function(x) {
-    if (length(x) == 0) x = NA
-    if (all(is.na(x))) return(x)
-    paste(x, collapse = ",")
+  all_authors$affiliation = lapply(all_authors$affiliation, function(x) {
+    if (is.list(x)) {
+      x = tibble::as_tibble(x)
+    }
+    if (is.data.frame(x)) {
+      x = unique(x)
+    }
+    x
   })
+  all_authors$affiliation_id = mapply(function(x, y) {
+    unique(c(x, unlist(y$`@id`)))
+  }, all_authors$`affiliation.@id`, all_authors$affiliation, SIMPLIFY = FALSE)
 
-  affil_cols =  paste0("affil_", 1:n_total_affil)
-  affil_df = affil_df %>%
-    tidyr::separate("affiliation_id",
-                    into = affil_cols,
-                    fill = "right",
-                    extra = "merge",
-                    sep = ",") %>%
-    tidyr::gather("affilition_number", "affilation_id", !!!affil_cols) %>%
-    dplyr::mutate(affilition_number = as.numeric(sub("affil_", "",
-                                                     affilition_number)))
+
+
+  affils = lapply(output, function(x) {
+    x = x$full_output$content
+    x = x[["abstracts-retrieval-response"]]
+    out = tibble::as_tibble(
+      jsonlite::fromJSON(
+        jsontlie::toJSON(x$affiliation),
+        flatten = TRUE)
+    )
+    out = make_df(out)
+    out
+  })
+  affils = dplyr::bind_rows(affils, .id = "scopus_id")
+  affils = affils %>%
+    dplyr::select(affiliation_id = "@id",
+                  affiliation_name = "affilname",
+                  affiliation_scopus_url = "@href",
+                  affiliation_country = "affiliation-country") %>%
+    dplyr::distinct()
+
+
+  run_authors = function(all_authors) {
+    affilition_number = affiliation_id = au_id = NULL
+    rm(list = c("affiliation_id", "au_id", "affilition_number"))
+    affil_df = all_authors %>%
+      dplyr::select(
+        scopus_id,
+        au_id,
+        author_order = "@seq",
+        indexed_name = "ce:indexed-name",
+        given_name = "ce:given-name",
+        surname = "ce:surname",
+        author_url = "author-url",
+        affiliation_id
+      ) %>%
+      dplyr::as_tibble()
+    affil_df = make_df(affil_df)
+    n_total_affil = max(sapply(affil_df$affiliation_id, length))
+    affil_df$affiliation_id = sapply(affil_df$affiliation_id, function(x) {
+      if (length(x) == 0) x = NA
+      if (all(is.na(x))) return(x)
+      paste(x, collapse = ",")
+    })
+
+    affil_cols =  paste0("affil_", 1:n_total_affil)
+    affil_df = affil_df %>%
+      tidyr::separate("affiliation_id",
+                      into = affil_cols,
+                      fill = "right",
+                      extra = "merge",
+                      sep = ",") %>%
+      tidyr::gather("affilition_number", "affilation_id", !!!affil_cols) %>%
+      dplyr::mutate(affilition_number = as.numeric(sub("affil_", "",
+                                                       affilition_number)))
+  }
+  affil_df = try({run_authors(all_authors)})
+  if (inherits(affil_df, "try-error")) {
+    affil_df = NULL
+  }
 
 
   collaborators = sort(unique(all_authors$au_id))
@@ -116,8 +157,8 @@ get_all_coauthors = function(...) {
     collaborator_au_ids = collaborators,
     author_data = res,
     all_output = output,
-    author_data = all_authors,
-    affiliation_data = affil_df
-  )
+    author_data = all_authors)
+  out$affiliation_data = affil_df
+  out
 }
 
