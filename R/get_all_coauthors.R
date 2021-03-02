@@ -156,9 +156,10 @@ get_all_coauthors = function(...) {
   out = list(
     collaborator_au_ids = collaborators,
     author_data = res,
+    all_author_data = all_authors,
     all_output = output,
-    affiliation_data = affils,
-    author_data = all_authors)
+    affiliation_data = affils
+)
   out$author_affiliation_data = affil_df
   out
 }
