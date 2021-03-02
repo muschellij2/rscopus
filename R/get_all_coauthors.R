@@ -39,19 +39,34 @@ get_all_coauthors = function(...) {
   scopus_id = scopus_ids[1]
   get_list = function(scopus_id, verbose = TRUE) {
     out = rscopus::abstract_retrieval(scopus_id, verbose = verbose)
-    author_df = jsonlite::fromJSON(
-      jsonlite::toJSON(out$content$`abstracts-retrieval-response`$authors),
-                         flatten = TRUE)$author
-    list(
-      full_output = out,
-      author_df = author_df
-    )
   }
   if (requireNamespace("pbapply", quietly = TRUE)) {
     output = pbapply::pblapply(scopus_ids, get_list, verbose = FALSE)
   } else {
     output = lapply(scopus_ids, get_list, verbose = TRUE)
   }
+
+  for (i in 1:20) {
+    output = mapply(
+      function(out, scopus_id) {
+        if (httr::status_code(out$get_statement) >= 400) {
+          message("Waiting on rate limit")
+          out = get_list(scopus_id, verbose = TRUE)
+        }
+        out
+      }, output, scopus_ids, SIMPLIFY = FALSE)
+  }
+
+
+  output = lapply(output, function(out) {
+    author_df = jsonlite::fromJSON(
+      jsonlite::toJSON(out$content$`abstracts-retrieval-response`$authors),
+      flatten = TRUE)$author
+    list(
+      full_output = out,
+      author_df = author_df
+    )
+  })
 
 
   names(output) = scopus_ids
