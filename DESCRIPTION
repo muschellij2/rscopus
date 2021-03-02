@@ -20,7 +20,8 @@ Imports:
     tidyr,
     dplyr,
     tools,
-    glue
+    glue,
+    magrittr
 LazyData: TRUE
 Suggests:
     xml2,
