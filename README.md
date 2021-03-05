@@ -16,6 +16,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?b
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rscopus)](https://CRAN.R-project.org/package=rscopus)
 [![](https://cranlogs.r-pkg.org/badges/rscopus)](https://cran.rstudio.com/web/packages/rscopus/index.html)
+[![R-CMD-check](https://github.com/muschellij2/rscopus/workflows/R-CMD-check/badge.svg)](https://github.com/muschellij2/rscopus/actions)
 <!-- badges: end -->
 
 # rscopus
@@ -73,68 +74,22 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(rscopus)
 library(dplyr)
-res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE)
-#> Warning: 'entries_to_df' is deprecated.
-#> Use 'gen_entries_to_df' instead.
-#> See help("Deprecated")
-names(res)
-#>  [1] "auth_order"            "affilname_1"           "n_auth"               
-#>  [4] "affilname_2"           "n_affils"              "citations"            
-#>  [7] "journal"               "description"           "title"                
-#> [10] "pii"                   "doi"                   "eid"                  
-#> [13] "cover_date"            "cover_display_date"    "prism_url"            
-#> [16] "dc_identifier"         "dc_creator"            "prism_issn"           
-#> [19] "prism_eIssn"           "prism_pageRange"       "dc_description"       
-#> [22] "prism_aggregationType" "subtype"               "authkeywords"         
-#> [25] "source_id"             "first_name"            "last_name"            
-#> [28] "au_id"
-head(res[, c("title", "journal", "description")])
-#>                                                                                                                          title
-#> 1          “The doctor said formula would help me”: Health sector influences on use of infant formula in peri-urban Lima, Peru
-#> 2 Relationship of White Matter Lesions with Intracerebral Hemorrhage Expansion and Functional Outcome: MISTIE II and CLEAR III
-#> 3                                             An improved algorithm of white matter hyperintensity detection in elderly adults
-#> 4                                                                                  Recommendations for Processing Head CT Data
-#> 5                          crsra: A learning analytics tool for understanding student behaviour in massive open online courses
-#> 6                                                                   Neuroconductor: An R platform for medical imaging analysis
-#>                         journal description
-#> 1   Social Science and Medicine     Article
-#> 2            Neurocritical Care     Article
-#> 3          NeuroImage: Clinical     Article
-#> 4 Frontiers in Neuroinformatics     Article
-#> 5 Journal of Learning Analytics     Article
-#> 6                 Biostatistics     Article
-unique(res$au_id)
-#> [1] "40462056100"
-unique(as.character(res$affilname_1))
-#> [1] "Johns Hopkins Bloomberg School of Public Health"
-#> [2] "Johns Hopkins University"                       
-#> [3] "Departments of Biostatistics"                   
-#> [4] "Kennedy Krieger Institute"                      
-#> [5] "Johns Hopkins Medical Institutions"             
-#> [6] "Johns Hopkins School of Medicine"
-
-all_dat = author_data(last_name = "Muschelli", 
-                 first_name = "John", verbose = FALSE, general = TRUE)
-res2 = all_dat$df
-res2 = res2 %>% 
-  rename(journal = `prism:publicationName`,
-         title = `dc:title`,
-         description = `dc:description`)
-head(res[, c("title", "journal", "description")])
-#>                                                                                                                          title
-#> 1          “The doctor said formula would help me”: Health sector influences on use of infant formula in peri-urban Lima, Peru
-#> 2 Relationship of White Matter Lesions with Intracerebral Hemorrhage Expansion and Functional Outcome: MISTIE II and CLEAR III
-#> 3                                             An improved algorithm of white matter hyperintensity detection in elderly adults
-#> 4                                                                                  Recommendations for Processing Head CT Data
-#> 5                          crsra: A learning analytics tool for understanding student behaviour in massive open online courses
-#> 6                                                                   Neuroconductor: An R platform for medical imaging analysis
-#>                         journal description
-#> 1   Social Science and Medicine     Article
-#> 2            Neurocritical Care     Article
-#> 3          NeuroImage: Clinical     Article
-#> 4 Frontiers in Neuroinformatics     Article
-#> 5 Journal of Learning Analytics     Article
-#> 6                 Biostatistics     Article
+if (rscopus::is_elsevier_authorized()) {
+  res = author_df(last_name = "Muschelli", first_name = "John", verbose = FALSE, general = FALSE)
+  names(res)
+  head(res[, c("title", "journal", "description")])
+  unique(res$au_id)
+  unique(as.character(res$affilname_1))
+  
+  all_dat = author_data(last_name = "Muschelli", 
+                        first_name = "John", verbose = FALSE, general = TRUE)
+  res2 = all_dat$df
+  res2 = res2 %>% 
+    rename(journal = `prism:publicationName`,
+           title = `dc:title`,
+           description = `dc:description`)
+  head(res[, c("title", "journal", "description")])
+}
 ```
 
 ## Using an Institution Token
