@@ -113,8 +113,8 @@ get_all_coauthors = function(...) {
 
 
   run_authors = function(all_authors) {
-    affilition_number = affiliation_id = au_id = NULL
-    rm(list = c("affiliation_id", "au_id", "affilition_number"))
+    affiliation_number = affiliation_id = au_id = NULL
+    rm(list = c("affiliation_id", "au_id", "affiliation_number"))
     affil_df = all_authors %>%
       dplyr::select(
         scopus_id,
@@ -142,9 +142,9 @@ get_all_coauthors = function(...) {
                       fill = "right",
                       extra = "merge",
                       sep = ",") %>%
-      tidyr::gather("affilition_number", "affilation_id", !!!affil_cols) %>%
-      dplyr::mutate(affilition_number = as.numeric(sub("affil_", "",
-                                                       affilition_number)))
+      tidyr::gather("affiliation_number", "affilation_id", !!!affil_cols) %>%
+      dplyr::mutate(affiliation_number = as.numeric(sub("affil_", "",
+                                                       affiliation_number)))
   }
   affil_df = try({run_authors(all_authors)})
   if (inherits(affil_df, "try-error")) {
