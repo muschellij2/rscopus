@@ -142,7 +142,7 @@ get_all_coauthors = function(...) {
                       fill = "right",
                       extra = "merge",
                       sep = ",") %>%
-      tidyr::gather("affiliation_number", "affilation_id", !!!affil_cols) %>%
+      tidyr::gather("affiliation_number", "affiliation_id", !!!affil_cols) %>%
       dplyr::mutate(affiliation_number = as.numeric(sub("affil_", "",
                                                        affiliation_number)))
   }
