@@ -30,7 +30,7 @@ bibtex_core_data = function(x) {
   # https://github.com/scopus-api/scopus/blob/master/scopus/abstract_retrieval.py#L598
   content = httr::content(x$get_statement, as = "text")
   content = jsonlite::fromJSON(content, flatten = TRUE)
-  authors = content$`abstracts-retrieval-response`$authors$author
+  authors = content$`abstracts-retrieval-response`$coredata$`dc:creator`$author
 
   self =  content$`abstracts-retrieval-response`$coredata
   if (is.null(self)) {
