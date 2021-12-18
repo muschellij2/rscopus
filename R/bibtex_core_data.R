@@ -20,7 +20,7 @@
 #'    verbose = FALSE)
 #'    res = bibtex_core_data(x)
 #'    cat(res)
-#'    x = abstract_retrieval("S1053811915002700", identifier = "pii",
+#'    x = abstract_retrieval("84929707579", identifier = "scopus_id",
 #'    verbose = FALSE)
 #'    res2 = bibtex_core_data(x)
 #'    cat(res2)
@@ -30,9 +30,15 @@ bibtex_core_data = function(x) {
   # https://github.com/scopus-api/scopus/blob/master/scopus/abstract_retrieval.py#L598
   content = httr::content(x$get_statement, as = "text")
   content = jsonlite::fromJSON(content, flatten = TRUE)
-  authors = content$`abstracts-retrieval-response`$coredata$`dc:creator`$author
-
+  authors = content$`abstracts-retrieval-response`$authors$author
+  if (is.null(authors)) {
+    authors = content$`abstracts-retrieval-response`$coredata$`dc:creator`$author
+  }
   self =  content$`abstracts-retrieval-response`$coredata
+  if (is.null(self)) {
+    warning("No coredata given, returning NULL")
+    return(NULL)
+  }
   if (is.null(self)) {
     self = content$`full-text-retrieval-response`$coredata
     dc_creator = self$`dc:creator`
@@ -113,6 +119,21 @@ bibtex_core_data = function(x) {
   # self$`prism:issueIdentifier` = ""
 
   # All information
+  L = list(key=key,
+           auth=authors,
+           address=address,
+           title=title,
+           year=year,
+           jour=self$`prism:publicationName`,
+           vol= self$`prism:volume`,
+           number=self$`prism:issueIdentifier`,
+           pages=pages,
+           doi = self$`prism:doi`,
+           abstract = abstract)
+  L = lapply(L, function(x) {
+    if (is.null(x)) x = ""
+  })
+  L = as.environment(L)
   bib = glue::glue(
     paste(" <key>,",
           "  author = {<auth>},",
@@ -126,17 +147,7 @@ bibtex_core_data = function(x) {
           "  doi = {<doi>},",
           "  abstract = {<abstract>}",
           sep = "\n"),
-    key=key,
-    auth=authors,
-    address=address,
-    title=title,
-    year=year,
-    jour=self$`prism:publicationName`,
-    vol= self$`prism:volume`,
-    number=self$`prism:issueIdentifier`,
-    pages=pages,
-    doi = self$`prism:doi`,
-    abstract = abstract,
+    .envir = L,
     .open = "<", .close = ">")
   bib = paste0("@article{", bib, "}")
 

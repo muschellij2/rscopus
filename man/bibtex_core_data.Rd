@@ -30,7 +30,7 @@ if (!is.null(api_key)){
    verbose = FALSE)
    res = bibtex_core_data(x)
    cat(res)
-   x = abstract_retrieval("S1053811915002700", identifier = "pii",
+   x = abstract_retrieval("84929707579", identifier = "scopus_id",
    verbose = FALSE)
    res2 = bibtex_core_data(x)
    cat(res2)
