@@ -1,8 +1,8 @@
 pandoc: 2.7.3
-pkgdown: 1.6.1
+pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   api_key: api_key.html
   multi_author: multi_author.html
-last_built: 2021-03-23T20:28Z
+last_built: 2021-12-18T00:25Z
 

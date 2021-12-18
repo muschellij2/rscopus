@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rscopus</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -67,7 +63,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/muschellij2/rscopus/">
+  <a href="https://github.com/muschellij2/rscopus/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -86,11 +82,11 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Gathering Multiple Subject Queries with Large Numbers of Authors</h1>
-                        <h4 class="author">John Muschelli and Clarke Iakovakis</h4>
+                        <h4 data-toc-skip class="author">John Muschelli and Clarke Iakovakis</h4>
             
-            <h4 class="date">2021-03-23</h4>
+            <h4 data-toc-skip class="date">2021-12-18</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/muschellij2/rscopus/blob/master/vignettes/multi_author.Rmd"><code>vignettes/multi_author.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/muschellij2/rscopus/blob/HEAD/vignettes/multi_author.Rmd" class="external-link"><code>vignettes/multi_author.Rmd</code></a></small>
       <div class="hidden name"><code>multi_author.Rmd</code></div>
 
     </div>
@@ -98,13 +94,13 @@
     
     
 <p>In <code>rscopus</code> we try to use the Scopus API to present queries about authors and affiliations. Here we will use an example from Clarke Iakovakis.</p>
-<div id="setup" class="section level2">
-<h2 class="hasAnchor">
-<a href="#setup" class="anchor"></a>Setup</h2>
+<div class="section level2">
+<h2 id="setup">Setup<a class="anchor" aria-label="anchor" href="#setup"></a>
+</h2>
 <p>First, let’s load in the packages we’ll need.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dev.elsevier.com/sc_apis.html">"rscopus"</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org">"dplyr"</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dev.elsevier.com/sc_apis.html" class="external-link">"rscopus"</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://dplyr.tidyverse.org" class="external-link">"dplyr"</a></span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Attaching package: 'dplyr'</span>
 <span class="co">#&gt; The following objects are masked from 'package:stats':</span>
@@ -113,7 +109,7 @@
 <span class="co">#&gt; The following objects are masked from 'package:base':</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt;     intersect, setdiff, setequal, union</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org">"tidyr"</a></span><span class="op">)</span></code></pre></div>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://tidyr.tidyverse.org" class="external-link">"tidyr"</a></span><span class="op">)</span></code></pre></div>
 <p>Next, we need to see if we have an API key available. See the API key vignette for more information and how to set the keys up. We will use the <code><a href="../reference/get_api_key.html">have_api_key()</a></code> functionality.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/get_api_key.html">have_api_key</a></span><span class="op">(</span><span class="op">)</span>
@@ -122,9 +118,9 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">authorized</span> <span class="op">=</span> <span class="fu"><a href="../reference/elsevier_authenticate.html">is_elsevier_authorized</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="creating-a-query" class="section level2">
-<h2 class="hasAnchor">
-<a href="#creating-a-query" class="anchor"></a>Creating a query</h2>
+<div class="section level2">
+<h2 id="creating-a-query">Creating a query<a class="anchor" aria-label="anchor" href="#creating-a-query"></a>
+</h2>
 <p>Here we will create a query of a specific affiliation, subject area, publication year, and type of access (OA = open access). Let’s look at the different types of subject areas:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">rscopus</span><span class="fu">::</span><span class="fu"><a href="../reference/subject_areas.html">subject_areas</a></span><span class="op">(</span><span class="op">)</span>
@@ -135,207 +131,207 @@
 <p>The author of this example was analyzing data from OSU (Oklahoma State University), and uses the affiliation ID from that institution (<code>60006514</code>). If you know the institution name, but not the ID, you can use <code>process_affiliation_name</code> to retrieve it. Here we make the queries for each subject area:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># create the query</span>
-<span class="va">Query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"AF-ID(60006514) AND SUBJAREA("</span>, 
+<span class="va">Query</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"AF-ID(60006514) AND SUBJAREA("</span>, 
                 <span class="fu"><a href="../reference/subject_areas.html">subject_areas</a></span><span class="op">(</span><span class="op">)</span>, 
                 <span class="st">") AND PUBYEAR = 2018 AND ACCESSTYPE(OA)"</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="running-the-query" class="section level2">
-<h2 class="hasAnchor">
-<a href="#running-the-query" class="anchor"></a>Running the query</h2>
+<div class="section level2">
+<h2 id="running-the-query">Running the query<a class="anchor" aria-label="anchor" href="#running-the-query"></a>
+</h2>
 <p>Let’s pull the first subject area information. Note, the count may depend on your API key limits. We also are asking for a complete view, rather than the standard view. The <code>max_count</code> is set to <span class="math inline">\(20000\)</span>, so this may not be enough for your query and you need to adjust.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">authorized</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">make_query</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"AF-ID(60006514) AND SUBJAREA("</span>, 
+    <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"AF-ID(60006514) AND SUBJAREA("</span>, 
            <span class="va">subj_area</span>,
            <span class="st">") AND PUBYEAR = 2018 AND ACCESSTYPE(OA)"</span><span class="op">)</span>
   <span class="op">}</span>
   <span class="va">i</span> <span class="op">=</span> <span class="fl">3</span>
   <span class="va">subj_area</span> <span class="op">=</span> <span class="fu"><a href="../reference/subject_areas.html">subject_areas</a></span><span class="op">(</span><span class="op">)</span><span class="op">[</span><span class="va">i</span><span class="op">]</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>
   <span class="va">completeArticle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scopus_search.html">scopus_search</a></span><span class="op">(</span>
     query <span class="op">=</span> <span class="fu">make_query</span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>, 
     view <span class="op">=</span> <span class="st">"COMPLETE"</span>, 
     count <span class="op">=</span> <span class="fl">200</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">completeArticle</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">completeArticle</span><span class="op">)</span><span class="op">)</span>
   <span class="va">total_results</span> <span class="op">=</span> <span class="va">completeArticle</span><span class="op">$</span><span class="va">total_results</span>
-  <span class="va">total_results</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">total_results</span><span class="op">)</span>
+  <span class="va">total_results</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">total_results</span><span class="op">)</span>
 <span class="op">}</span> <span class="kw">else</span> <span class="op">{</span>
   <span class="va">total_results</span> <span class="op">=</span> <span class="fl">0</span>
 <span class="op">}</span></code></pre></div>
 <p>Here we see the total results of the query. This can be useful if the <code>total_results = 0</code> or they are greater than the max count specified (not all records in Scopus are returned).</p>
 </div>
-<div id="getting-the-content" class="section level2">
-<h2 class="hasAnchor">
-<a href="#getting-the-content" class="anchor"></a>Getting the content</h2>
-<p>The <code>gen_entries_to_df</code> function is an attempt at turning the parsed JSON to something more manageable from the API output. You may want to go over the list elements <code>get_statements</code> in the output of <code>completeArticle</code>. The original content can be extracted using <code><a href="https://httr.r-lib.org/reference/content.html">httr::content()</a></code> and the <code>"type"</code> can be specified, such as <code>"text"</code> and then <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">jsonlite::toJSON</a></code> can be used explicitly on the JSON output. Alternatively, any arguments to <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html">jsonlite::toJSON</a></code> can be passed directly into <code><a href="https://httr.r-lib.org/reference/content.html">httr::content()</a></code>, such as <code>flatten</code> or <code>simplifyDataFrame</code>.</p>
+<div class="section level2">
+<h2 id="getting-the-content">Getting the content<a class="anchor" aria-label="anchor" href="#getting-the-content"></a>
+</h2>
+<p>The <code>gen_entries_to_df</code> function is an attempt at turning the parsed JSON to something more manageable from the API output. You may want to go over the list elements <code>get_statements</code> in the output of <code>completeArticle</code>. The original content can be extracted using <code><a href="https://httr.r-lib.org/reference/content.html" class="external-link">httr::content()</a></code> and the <code>"type"</code> can be specified, such as <code>"text"</code> and then <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">jsonlite::toJSON</a></code> can be used explicitly on the JSON output. Alternatively, any arguments to <code><a href="https://rdrr.io/pkg/jsonlite/man/fromJSON.html" class="external-link">jsonlite::toJSON</a></code> can be passed directly into <code><a href="https://httr.r-lib.org/reference/content.html" class="external-link">httr::content()</a></code>, such as <code>flatten</code> or <code>simplifyDataFrame</code>.</p>
 <p>These are all alternative options, but we will use <code>rscopous::gen_entries_to_df</code>. The output is a list of <code>data.frame</code>s after we pass in the <code>entries</code> elements from the list.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">authorized</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="co"># areas = subject_areas()[12:13]  </span>
-  <span class="va">areas</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ENER"</span>, <span class="st">"ENGI"</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">areas</span><span class="op">)</span> <span class="op">=</span> <span class="va">areas</span>
-  <span class="va">results</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span>
+  <span class="va">areas</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ENER"</span>, <span class="st">"ENGI"</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">areas</span><span class="op">)</span> <span class="op">=</span> <span class="va">areas</span>
+  <span class="va">results</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
     <span class="va">areas</span>,
     <span class="kw">function</span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span> <span class="op">{</span>
-      <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>
+      <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>
       <span class="va">completeArticle</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/scopus_search.html">scopus_search</a></span><span class="op">(</span>
         query <span class="op">=</span> <span class="fu">make_query</span><span class="op">(</span><span class="va">subj_area</span><span class="op">)</span>, 
         view <span class="op">=</span> <span class="st">"COMPLETE"</span>, 
         count <span class="op">=</span> <span class="fl">200</span>,
         verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-      <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">completeArticle</span><span class="op">)</span>
+      <span class="kw"><a href="https://rdrr.io/r/base/function.html" class="external-link">return</a></span><span class="op">(</span><span class="va">completeArticle</span><span class="op">)</span>
     <span class="op">}</span><span class="op">)</span>
-  <span class="va">entries</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">results</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">entries</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">results</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">x</span><span class="op">$</span><span class="va">entries</span>
   <span class="op">}</span><span class="op">)</span>
-  <span class="va">total_results</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_dbl</a></span><span class="op">(</span><span class="va">results</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">total_results</span><span class="op">)</span>
+  <span class="va">total_results</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_dbl</a></span><span class="op">(</span><span class="va">results</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="va">total_results</span><span class="op">)</span>
   <span class="op">}</span><span class="op">)</span>  
-  <span class="va">total_results</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">total_results</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+  <span class="va">total_results</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">total_results</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
   
-  <span class="va">df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span><span class="va">entries</span>, <span class="va">gen_entries_to_df</span><span class="op">)</span>
-  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span><span class="va">entries</span>, <span class="va">gen_entries_to_df</span><span class="op">)</span>
+  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">x</span><span class="op">$</span><span class="va">df</span>
   <span class="op">}</span>, .id <span class="op">=</span> <span class="st">"subj_area"</span><span class="op">)</span>
   
-  <span class="va">ddf</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span>
-               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">`author-count.$`</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
-  <span class="kw">if</span> <span class="op">(</span><span class="st">"message"</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">ddf</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
-    <span class="va">ddf</span> <span class="op">=</span>  <span class="va">ddf</span> <span class="op">%&gt;%</span> 
-               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">message</span>, <span class="va">`author-count.$`</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">ddf</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">ddf</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">`author-count.$`</span><span class="op">)</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
+  <span class="kw">if</span> <span class="op">(</span><span class="st">"message"</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">ddf</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+    <span class="va">ddf</span> <span class="op">=</span>  <span class="va">ddf</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+               <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">message</span>, <span class="va">`author-count.$`</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">ddf</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span>
   
-  <span class="va">MainEntry</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-      scopus_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span><span class="op">(</span><span class="st">"SCOPUS_ID:"</span>, <span class="st">""</span>, <span class="va">`dc:identifier`</span><span class="op">)</span>,
-      entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span>,
+  <span class="va">MainEntry</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
+      scopus_id <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">"SCOPUS_ID:"</span>, <span class="st">""</span>, <span class="va">`dc:identifier`</span><span class="op">)</span>,
+      entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span>,
       doi <span class="op">=</span> <span class="va">`prism:doi`</span><span class="op">)</span>    
   <span class="co">#################################</span>
   <span class="co"># remove duplicated entries</span>
   <span class="co">#################################</span>
-  <span class="va">MainEntry</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">scopus_id</span><span class="op">)</span><span class="op">)</span>  
+  <span class="va">MainEntry</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">scopus_id</span><span class="op">)</span><span class="op">)</span>  
   
-  <span class="va">Authors</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">Authors</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">x</span><span class="op">$</span><span class="va">author</span>
   <span class="op">}</span>, .id <span class="op">=</span> <span class="st">"subj_area"</span><span class="op">)</span>  
   <span class="va">Authors</span><span class="op">$</span><span class="va">`afid.@_fa`</span> <span class="op">=</span> <span class="cn">NULL</span>
   
-  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
+  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">df</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
     <span class="va">x</span><span class="op">$</span><span class="va">affiliation</span>
   <span class="op">}</span>, .id <span class="op">=</span> <span class="st">"subj_area"</span><span class="op">)</span>    
   <span class="va">Affiliation</span><span class="op">$</span><span class="va">`@_fa`</span> <span class="op">=</span> <span class="cn">NULL</span>
   
   <span class="co"># keep only these non-duplicated records</span>
-  <span class="va">MainEntry_id</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span><span class="op">)</span>
-  <span class="va">Authors</span> <span class="op">=</span> <span class="va">Authors</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">MainEntry_id</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span><span class="op">)</span>
+  <span class="va">Authors</span> <span class="op">=</span> <span class="va">Authors</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span><span class="op">)</span>
   
-  <span class="va">Affiliation</span> <span class="op">=</span> <span class="va">Affiliation</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span><span class="op">)</span>    
+  <span class="va">Affiliation</span> <span class="op">=</span> <span class="va">Affiliation</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>entry_number <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="va">entry_number</span><span class="op">)</span><span class="op">)</span>    
   
-  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">MainEntry_id</span>, <span class="va">Authors</span><span class="op">)</span>
-  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">MainEntry_id</span>, <span class="va">Affiliation</span><span class="op">)</span>
+  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">MainEntry_id</span>, <span class="va">Authors</span><span class="op">)</span>
+  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">MainEntry_id</span>, <span class="va">Affiliation</span><span class="op">)</span>
   
   
   <span class="co"># first filter to get only OSU authors</span>
-  <span class="va">osuauth</span> <span class="op">&lt;-</span> <span class="va">Authors</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`afid.$`</span> <span class="op">==</span> <span class="st">"60006514"</span><span class="op">)</span>
+  <span class="va">osuauth</span> <span class="op">&lt;-</span> <span class="va">Authors</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">`afid.$`</span> <span class="op">==</span> <span class="st">"60006514"</span><span class="op">)</span>
   
 <span class="op">}</span></code></pre></div>
 <p>At the end of the day, we have the author-level information for each paper. The <code>entry_number</code> will join these <code>data.frame</code>s if necessary. The <code>df</code> element has the paper-level information in this example, the <code>author</code> <code>data.frame</code> has author information, including affiliations. There can be multiple affiliations, even within institution, such as multiple department affiliations within an institution affiliation. The <code>affiliation</code> information relates to the affiliations and can be merged with the author information.</p>
 </div>
-<div id="funding-agencies" class="section level2">
-<h2 class="hasAnchor">
-<a href="#funding-agencies" class="anchor"></a>Funding agencies</h2>
+<div class="section level2">
+<h2 id="funding-agencies">Funding agencies<a class="anchor" aria-label="anchor" href="#funding-agencies"></a>
+</h2>
 <p>Here we look at the funding agencies listed on all the papers. This can show us if there is a pattern in the funding sponsor and the open-access publications. Overall, though, we would like to see the funding of all the papers if a specific funder requires open access. This checking allows libraries and researchers ensure they are following the guidelines of the funding agency.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">total_results</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
-  <span class="va">cn</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">)</span>
-  <span class="va">cn</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html">grep</a></span><span class="op">(</span><span class="st">"fund"</span>, <span class="fu"><a href="https://rdrr.io/r/base/chartr.html">tolower</a></span><span class="op">(</span><span class="va">cn</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">cn</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">)</span>
+  <span class="va">cn</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grep</a></span><span class="op">(</span><span class="st">"fund"</span>, <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">tolower</a></span><span class="op">(</span><span class="va">cn</span><span class="op">)</span><span class="op">)</span><span class="op">]</span>
   
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html">table</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">$</span><span class="va">`fund-sponsor`</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sort.html" class="external-link">sort</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">$</span><span class="va">`fund-sponsor`</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
   
-  <span class="va">funderPoland</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span>
+  <span class="va">funderPoland</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span>
     <span class="va">MainEntry</span>, 
     <span class="va">`fund-sponsor`</span> <span class="op">==</span> <span class="st">"Ministerstwo Nauki i Szkolnictwa Wyższego"</span> <span class="op">)</span>  
-  <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="va">funderPoland</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">funderPoland</span><span class="op">)</span>
   
-  <span class="va">osuFunders</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">`fund-sponsor`</span><span class="op">)</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">osuFunders</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">`fund-sponsor`</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span>
   <span class="va">osuFunders</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="number-of-author-limits" class="section level2">
-<h2 class="hasAnchor">
-<a href="#number-of-author-limits" class="anchor"></a>Number of author limits</h2>
+<div class="section level2">
+<h2 id="number-of-author-limits">Number of author limits<a class="anchor" aria-label="anchor" href="#number-of-author-limits"></a>
+</h2>
 <p>In the Scopus API, if there are <span class="math inline">\(&gt; 100\)</span> authors on a paper, it only will retrieve the first 100 authors. For those cases, we must use the <code>abstract_retrieval</code> to get all the author-level information. Here we make this information into an integer so that we can filter the rows we need to run based on author count.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">total_results</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
 
   <span class="co"># if there are 100+ authors, you have to use the abstract_retrieval function to get the full author data</span>
   <span class="co"># coerce to integer first</span>
-  <span class="va">MainEntry</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>`author-count.$` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html">as.integer</a></span><span class="op">(</span><span class="va">`author-count.$`</span><span class="op">)</span><span class="op">)</span>
-  <span class="va">run_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html">any</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">$</span><span class="va">`author-count.$`</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">run_multi</span><span class="op">)</span>
+  <span class="va">MainEntry</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>`author-count.$` <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">as.integer</a></span><span class="op">(</span><span class="va">`author-count.$`</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">run_multi</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/any.html" class="external-link">any</a></span><span class="op">(</span><span class="va">MainEntry</span><span class="op">$</span><span class="va">`author-count.$`</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">run_multi</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 <p>In this case, we see there are some articles with author counts <span class="math inline">\(&gt; 99\)</span> and we must get all author information for those.</p>
 </div>
-<div id="more-than-100-authors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-than-100-authors" class="anchor"></a>More than 100 authors</h2>
+<div class="section level2">
+<h2 id="more-than-100-authors">More than 100 authors<a class="anchor" aria-label="anchor" href="#more-than-100-authors"></a>
+</h2>
 <p>Now, the <code>abstract_retrieval</code> function can take a number of identifiers for papers, such as DOI, PubMed ID, and Scopus ID. Here we will use the Scopus ID, as it is given for all results, but we could also use DOI.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">total_results</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
   <span class="kw">if</span> <span class="op">(</span><span class="va">run_multi</span><span class="op">)</span> <span class="op">{</span>
     
-    <span class="va">MainEntry_99auth</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span>
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">`author-count.$`</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
+    <span class="va">MainEntry_99auth</span> <span class="op">&lt;-</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span>
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">`author-count.$`</span> <span class="op">&gt;</span> <span class="fl">99</span><span class="op">)</span>
     
-    <span class="va">MainEntry_99auth_id</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span><span class="op">)</span>
-    <span class="va">auth99</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth_id</span>, <span class="va">Authors</span><span class="op">)</span>
-    <span class="va">affil99</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth_id</span>, <span class="va">Affiliation</span><span class="op">)</span>
+    <span class="va">MainEntry_99auth_id</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span><span class="op">)</span>
+    <span class="va">auth99</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth_id</span>, <span class="va">Authors</span><span class="op">)</span>
+    <span class="va">affil99</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth_id</span>, <span class="va">Affiliation</span><span class="op">)</span>
 
     
-    <span class="va">missing_table</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html">mutate_at</a></span><span class="op">(</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">scopus_id</span>, <span class="va">doi</span><span class="op">)</span>, .funs <span class="op">=</span> <span class="va">is.na</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html">summarize_at</a></span><span class="op">(</span>.vars <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html">vars</a></span><span class="op">(</span><span class="va">scopus_id</span>, <span class="va">doi</span><span class="op">)</span>, .funs <span class="op">=</span> <span class="va">sum</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">missing_table</span><span class="op">)</span>
+    <span class="va">missing_table</span> <span class="op">=</span> <span class="va">MainEntry</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate_all.html" class="external-link">mutate_at</a></span><span class="op">(</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">scopus_id</span>, <span class="va">doi</span><span class="op">)</span>, .funs <span class="op">=</span> <span class="va">is.na</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html" class="external-link">summarize_at</a></span><span class="op">(</span>.vars <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/vars.html" class="external-link">vars</a></span><span class="op">(</span><span class="va">scopus_id</span>, <span class="va">doi</span><span class="op">)</span>, .funs <span class="op">=</span> <span class="va">sum</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">missing_table</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="get-all-the-authors" class="section level2">
-<h2 class="hasAnchor">
-<a href="#get-all-the-authors" class="anchor"></a>Get all the authors</h2>
+<div class="section level2">
+<h2 id="get-all-the-authors">Get all the authors<a class="anchor" aria-label="anchor" href="#get-all-the-authors"></a>
+</h2>
 <p>Here we will go through each Scopus ID and get the article information. We will create an affiliation <code>data.frame</code> and an author <code>data.frame</code>. The non-relevant columns will be deleted, such as <code>entry_number</code> since it refers to a different set of elements from a list now. The column names will be harmonized with the <code>Authors</code> and <code>Affiliation</code> data sets. The respective data is removed from the <code>Authors</code> and <code>Affiliation</code> data set and joined with the new data with the richer information.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="va">total_results</span> <span class="op">&gt;</span> <span class="fl">0</span><span class="op">)</span> <span class="op">{</span>
   <span class="co"># ids = MainEntry_99auth$scopus_id[1:3]</span>
   <span class="va">ids</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span><span class="op">$</span><span class="va">scopus_id</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span> <span class="op">=</span> <span class="va">ids</span>
-  <span class="va">big_list</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">ids</span><span class="op">)</span> <span class="op">=</span> <span class="va">ids</span>
+  <span class="va">big_list</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map</a></span><span class="op">(</span>
     <span class="va">ids</span>, 
     <span class="va">abstract_retrieval</span>, 
     identifier <span class="op">=</span> <span class="st">"scopus_id"</span>,
     verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   
-  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span>
+  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span>
     <span class="va">big_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
       <span class="va">d</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_entries_to_df.html">gen_entries_to_df</a></span><span class="op">(</span>
         <span class="va">x</span><span class="op">$</span><span class="va">content</span><span class="op">$</span><span class="va">`abstracts-retrieval-response`</span><span class="op">$</span><span class="va">affiliation</span><span class="op">)</span>
       <span class="va">d</span><span class="op">$</span><span class="va">df</span>
     <span class="op">}</span>, .id <span class="op">=</span> <span class="st">"scopus_id"</span><span class="op">)</span>  
   
-  <span class="va">all_df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span>
+  <span class="va">all_df</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span>
     <span class="va">big_list</span>, <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
       <span class="va">d</span> <span class="op">=</span> <span class="fu"><a href="../reference/gen_entries_to_df.html">gen_entries_to_df</a></span><span class="op">(</span>
         <span class="va">x</span><span class="op">$</span><span class="va">content</span><span class="op">$</span><span class="va">`abstracts-retrieval-response`</span><span class="op">$</span><span class="va">authors</span><span class="op">$</span><span class="va">author</span><span class="op">)</span>
@@ -346,69 +342,69 @@
   <span class="co"># Remove prefix ce: for harmonization</span>
   <span class="co">##########################</span>
   <span class="va">no_ce</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">{</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/grep.html">sub</a></span><span class="op">(</span><span class="st">"^ce:"</span>, <span class="st">""</span>, <span class="va">x</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">sub</a></span><span class="op">(</span><span class="st">"^ce:"</span>, <span class="st">""</span>, <span class="va">x</span><span class="op">)</span>
   <span class="op">}</span>
-  <span class="va">all_df</span> <span class="op">=</span> <span class="va">all_df</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html">rename_all</a></span><span class="op">(</span>.funs <span class="op">=</span> <span class="va">no_ce</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>authid <span class="op">=</span> <span class="st">"@auid"</span>,
+  <span class="va">all_df</span> <span class="op">=</span> <span class="va">all_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select_all.html" class="external-link">rename_all</a></span><span class="op">(</span>.funs <span class="op">=</span> <span class="va">no_ce</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>authid <span class="op">=</span> <span class="st">"@auid"</span>,
            `afid.$` <span class="op">=</span> <span class="va">`affiliation.@id`</span>,
            authname <span class="op">=</span> <span class="st">"indexed-name"</span><span class="op">)</span>
   
   <span class="va">all_df</span><span class="op">$</span><span class="va">entry_number</span> <span class="op">=</span> <span class="cn">NULL</span>
   <span class="va">all_affil_df</span><span class="op">$</span><span class="va">entry_number</span> <span class="op">=</span> <span class="cn">NULL</span>
   
-  <span class="va">author_table</span> <span class="op">=</span> <span class="va">all_df</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">scopus_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html">distinct</a></span><span class="op">(</span><span class="va">authid</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">tally</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">author_table</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html">all</a></span><span class="op">(</span><span class="va">ids</span> <span class="op">%in%</span> <span class="va">author_table</span><span class="op">$</span><span class="va">scopus_id</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">author_table</span> <span class="op">=</span> <span class="va">all_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">scopus_id</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="va">authid</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">tally</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">author_table</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/all.html" class="external-link">all</a></span><span class="op">(</span><span class="va">ids</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">author_table</span><span class="op">$</span><span class="va">scopus_id</span><span class="op">)</span><span class="op">)</span>
   <span class="co"># harmonizing with MainEntry</span>
-  <span class="va">author_table</span> <span class="op">=</span> <span class="va">author_table</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>`author-count.$` <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
+  <span class="va">author_table</span> <span class="op">=</span> <span class="va">author_table</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>`author-count.$` <span class="op">=</span> <span class="va">n</span><span class="op">)</span>
   <span class="va">MainEntry_99auth</span><span class="op">$</span><span class="va">`author-count.$`</span> <span class="op">=</span> <span class="cn">NULL</span>
-  <span class="va">MainEntry_99auth</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth</span>, <span class="va">author_table</span><span class="op">)</span>
+  <span class="va">MainEntry_99auth</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">MainEntry_99auth</span>, <span class="va">author_table</span><span class="op">)</span>
   
   
   <span class="co">#######################</span>
   <span class="co"># Harmonized</span>
   <span class="co">#######################</span>
-  <span class="va">all_df</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span>, <span class="va">scopus_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">all_df</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Authors</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">all_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
+  <span class="va">all_df</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span>, <span class="va">scopus_id</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">all_df</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Authors</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">all_df</span><span class="op">)</span><span class="op">)</span><span class="op">)</span>
   
   <span class="co"># grab only relevant columns</span>
-  <span class="va">all_df</span> <span class="op">=</span> <span class="va">all_df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Authors</span><span class="op">)</span><span class="op">]</span>
+  <span class="va">all_df</span> <span class="op">=</span> <span class="va">all_df</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Authors</span><span class="op">)</span><span class="op">]</span>
   
   <span class="co"># remove the old entries</span>
-  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">Authors</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
+  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="external-link">anti_join</a></span><span class="op">(</span><span class="va">Authors</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
   <span class="co"># put the new data in</span>
-  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">Authors</span>, <span class="va">all_df</span><span class="op">)</span>
+  <span class="va">Authors</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span><span class="op">(</span><span class="va">Authors</span>, <span class="va">all_df</span><span class="op">)</span>
   
   <span class="co">#######################</span>
   <span class="co"># Harmonized</span>
   <span class="co">#######################  </span>
-  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="va">all_affil_df</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>`affiliation-url` <span class="op">=</span> <span class="st">"@href"</span>,
+  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="va">all_affil_df</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>`affiliation-url` <span class="op">=</span> <span class="st">"@href"</span>,
            afid <span class="op">=</span> <span class="st">"@id"</span><span class="op">)</span>
-  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span>, <span class="va">scopus_id</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">all_affil_df</span><span class="op">)</span>  
-  <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">Affiliation</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">colnames</a></span><span class="op">(</span><span class="va">all_affil_df</span><span class="op">)</span><span class="op">)</span>  
+  <span class="va">all_affil_df</span> <span class="op">=</span> <span class="va">MainEntry_99auth</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">entry_number</span>, <span class="va">subj_area</span>, <span class="va">scopus_id</span><span class="op">)</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">all_affil_df</span><span class="op">)</span>  
+  <span class="fu"><a href="https://generics.r-lib.org/reference/setops.html" class="external-link">setdiff</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">Affiliation</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/colnames.html" class="external-link">colnames</a></span><span class="op">(</span><span class="va">all_affil_df</span><span class="op">)</span><span class="op">)</span>  
   
   <span class="co"># remove the old entries</span>
-  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">Affiliation</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
+  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="external-link">anti_join</a></span><span class="op">(</span><span class="va">Affiliation</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
   <span class="co"># put the new data in</span>
-  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">Affiliation</span>, <span class="va">all_affil_df</span><span class="op">)</span>
+  <span class="va">Affiliation</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span><span class="op">(</span><span class="va">Affiliation</span>, <span class="va">all_affil_df</span><span class="op">)</span>
   
-  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html">anti_join</a></span><span class="op">(</span><span class="va">MainEntry</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
-  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">MainEntry</span>, <span class="va">MainEntry_99auth</span><span class="op">)</span>
+  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter-joins.html" class="external-link">anti_join</a></span><span class="op">(</span><span class="va">MainEntry</span>, <span class="va">MainEntry_99auth_id</span><span class="op">)</span>
+  <span class="va">MainEntry</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">full_join</a></span><span class="op">(</span><span class="va">MainEntry</span>, <span class="va">MainEntry_99auth</span><span class="op">)</span>
 <span class="op">}</span></code></pre></div>
 </div>
-<div id="conclusion" class="section level1">
-<h1 class="hasAnchor">
-<a href="#conclusion" class="anchor"></a>Conclusion</h1>
+<div class="section level1">
+<h1 id="conclusion">Conclusion<a class="anchor" aria-label="anchor" href="#conclusion"></a>
+</h1>
 <p>The Scopus API has limits for different searches and calls. Using a combination of APIs, we can gather all the information on authors that we would like. This gives us a full picture of the authors and co-authorship at a specific institution in specific scenarios, such as the open access publications from 2018.</p>
 </div>
   </div>
@@ -424,11 +420,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by John Muschelli.</p>
+  <p></p>
+<p>Developed by John Muschelli.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -436,6 +434,8 @@
 
   
 
+
+  
 
   </body>
 </html>

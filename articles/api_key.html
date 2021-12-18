@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rscopus</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.7.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -67,7 +63,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/muschellij2/rscopus/">
+  <a href="https://github.com/muschellij2/rscopus/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -86,70 +82,70 @@
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Setting up the Scopus API Key</h1>
-                        <h4 class="author">John Muschelli</h4>
+                        <h4 data-toc-skip class="author">John Muschelli</h4>
             
-            <h4 class="date">2021-03-23</h4>
+            <h4 data-toc-skip class="date">2021-12-18</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/muschellij2/rscopus/blob/master/vignettes/api_key.Rmd"><code>vignettes/api_key.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/muschellij2/rscopus/blob/HEAD/vignettes/api_key.Rmd" class="external-link"><code>vignettes/api_key.Rmd</code></a></small>
       <div class="hidden name"><code>api_key.Rmd</code></div>
 
     </div>
 
     
     
-<div id="rscopus" class="section level1">
-<h1 class="hasAnchor">
-<a href="#rscopus" class="anchor"></a>rscopus</h1>
+<div class="section level1">
+<h1 id="rscopus">rscopus<a class="anchor" aria-label="anchor" href="#rscopus"></a>
+</h1>
 <p>The goal of rscopus is to provide an R Scopus Database API Interface.</p>
-<div id="steps-to-get-api-key" class="section level2">
-<h2 class="hasAnchor">
-<a href="#steps-to-get-api-key" class="anchor"></a>Steps to get API key</h2>
-<p>In order to use this package, you need an API key from <a href="https://dev.elsevier.com/sc_apis.html" class="uri">https://dev.elsevier.com/sc_apis.html</a>. You should login from your institution and go to Create API Key. You need to provide a website URL and a label, but the website can be your personal website, and agree to the terms of service.</p>
+<div class="section level2">
+<h2 id="steps-to-get-api-key">Steps to get API key<a class="anchor" aria-label="anchor" href="#steps-to-get-api-key"></a>
+</h2>
+<p>In order to use this package, you need an API key from <a href="https://dev.elsevier.com/sc_apis.html" class="external-link uri">https://dev.elsevier.com/sc_apis.html</a>. You should login from your institution and go to Create API Key. You need to provide a website URL and a label, but the website can be your personal website, and agree to the terms of service.</p>
 <ol style="list-style-type: decimal">
-<li>Go to <a href="https://dev.elsevier.com/user/signin" class="uri">https://dev.elsevier.com/user/signin</a>. Login or create a free account.</li>
-<li>Click “Create API Key”. Put in a label, such as <code>rscopus key</code>. Add a website. <a href="http://example.com" class="uri">http://example.com</a> is fine if you do not have a site.</li>
+<li>Go to <a href="https://dev.elsevier.com/user/signin" class="external-link uri">https://dev.elsevier.com/user/signin</a>. Login or create a free account.</li>
+<li>Click “Create API Key”. Put in a label, such as <code>rscopus key</code>. Add a website. <a href="http://example.com" class="external-link uri">http://example.com</a> is fine if you do not have a site.</li>
 <li>
 <strong>Read</strong> and agree to the TOS if you do indeed agree.</li>
 <li>Add <code>Elsevier_API = "API KEY GOES HERE"</code> to <code>~/.Renviron</code> file, or add <code>export Elsevier_API=API KEY GOES HERE</code> to your <code>~/.bash_profile</code>.</li>
 </ol>
-<p>Alternatively, you you can either set the API key using <code><a href="../reference/set_api_key.html">rscopus::set_api_key</a></code> or by <code><a href="https://rdrr.io/r/base/options.html">options("elsevier_api_key" = api_key)</a></code>. You can access the API key using <code><a href="../reference/get_api_key.html">rscopus::get_api_key</a></code>.</p>
-<p>You should be able to test out the API key using the <a href="https://dev.elsevier.com/scopus.html">interactive Scopus APIs</a>.</p>
-<div id="a-note-about-api-keys-and-ip-addresses" class="section level3">
-<h3 class="hasAnchor">
-<a href="#a-note-about-api-keys-and-ip-addresses" class="anchor"></a>A note about API keys and IP addresses</h3>
+<p>Alternatively, you you can either set the API key using <code><a href="../reference/set_api_key.html">rscopus::set_api_key</a></code> or by <code>options("elsevier_api_key" = api_key)</code>. You can access the API key using <code><a href="../reference/get_api_key.html">rscopus::get_api_key</a></code>.</p>
+<p>You should be able to test out the API key using the <a href="https://dev.elsevier.com/scopus.html" class="external-link">interactive Scopus APIs</a>.</p>
+<div class="section level3">
+<h3 id="a-note-about-api-keys-and-ip-addresses">A note about API keys and IP addresses<a class="anchor" aria-label="anchor" href="#a-note-about-api-keys-and-ip-addresses"></a>
+</h3>
 <p>The API Key is bound to a set of IP addresses, usually bound to your institution. Therefore, if you are using this for a Shiny application, you must host the Shiny application from your institution servers in some way. Also, you cannot access the Scopus API with this key if you are offsite and must VPN into the server or use a computing cluster with an institution IP.</p>
-<p>See <a href="https://dev.elsevier.com/tecdoc_api_authentication.html" class="uri">https://dev.elsevier.com/tecdoc_api_authentication.html</a></p>
+<p>See <a href="https://dev.elsevier.com/tecdoc_api_authentication.html" class="external-link uri">https://dev.elsevier.com/tecdoc_api_authentication.html</a></p>
 </div>
 </div>
-<div id="example" class="section level2">
-<h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
+<div class="section level2">
+<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
+</h2>
 <p>This is a basic example which shows you how to solve a common problem:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dev.elsevier.com/sc_apis.html">rscopus</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dev.elsevier.com/sc_apis.html" class="external-link">rscopus</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
 <span class="va">authorized</span> <span class="op">=</span> <span class="fu"><a href="../reference/elsevier_authenticate.html">is_elsevier_authorized</a></span><span class="op">(</span><span class="op">)</span>
 <span class="kw">if</span> <span class="op">(</span><span class="fu"><a href="../reference/get_api_key.html">have_api_key</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">x</span> <span class="op">=</span> <span class="fu"><a href="../reference/abstract_retrieval.html">abstract_retrieval</a></span><span class="op">(</span><span class="st">"S1053811915002700"</span>, identifier <span class="op">=</span> <span class="st">"pii"</span>,
                          verbose <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
   <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="../reference/bibtex_core_data.html">bibtex_core_data</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-  <span class="fu"><a href="https://rdrr.io/r/base/cat.html">cat</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
   <span class="kw">if</span> <span class="op">(</span><span class="va">authorized</span><span class="op">)</span> <span class="op">{</span>
     
     <span class="va">res</span> <span class="op">=</span> <span class="fu"><a href="../reference/author_df.html">author_df</a></span><span class="op">(</span>last_name <span class="op">=</span> <span class="st">"Muschelli"</span>, first_name <span class="op">=</span> <span class="st">"John"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, general <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">au_id</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">affilname_1</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">au_id</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/character.html" class="external-link">as.character</a></span><span class="op">(</span><span class="va">res</span><span class="op">$</span><span class="va">affilname_1</span><span class="op">)</span><span class="op">)</span>
     
     <span class="va">all_dat</span> <span class="op">=</span> <span class="fu"><a href="../reference/author_df.html">author_data</a></span><span class="op">(</span>last_name <span class="op">=</span> <span class="st">"Muschelli"</span>, 
                           first_name <span class="op">=</span> <span class="st">"John"</span>, verbose <span class="op">=</span> <span class="cn">FALSE</span>, general <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
     <span class="va">res2</span> <span class="op">=</span> <span class="va">all_dat</span><span class="op">$</span><span class="va">df</span>
-    <span class="va">res2</span> <span class="op">=</span> <span class="va">res2</span> <span class="op">%&gt;%</span> 
-      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span><span class="op">(</span>journal <span class="op">=</span> <span class="va">`prism:publicationName`</span>,
+    <span class="va">res2</span> <span class="op">=</span> <span class="va">res2</span> <span class="op"><a href="../reference/pipe.html">%&gt;%</a></span> 
+      <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>journal <span class="op">=</span> <span class="va">`prism:publicationName`</span>,
              title <span class="op">=</span> <span class="va">`dc:title`</span>,
              description <span class="op">=</span> <span class="va">`dc:description`</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"title"</span>, <span class="st">"journal"</span>, <span class="st">"description"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
   <span class="op">}</span>
 <span class="op">}</span></code></pre></div>
 </div>
@@ -167,11 +163,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by John Muschelli.</p>
+  <p></p>
+<p>Developed by John Muschelli.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
       </footer>
@@ -179,6 +177,8 @@
 
   
 
+
+  
 
   </body>
 </html>
