@@ -36,6 +36,6 @@ Suggests:
 URL: https://dev.elsevier.com/sc_apis.html, 
     https://github.com/muschellij2/rscopus
 BugReports: https://github.com/muschellij2/rscopus/issues
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Encoding: UTF-8
 VignetteBuilder: knitr

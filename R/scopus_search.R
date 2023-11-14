@@ -154,7 +154,7 @@ scopus_search <- function(
       }
       start = irun * count + init_start
       cr = get_results(query, start = start, count = count,
-                       verbose = FALSE,
+                       verbose = verbose > 1,
                        headers = headers,
                        ...)
       all_get = c(all_get, cr$get_statement)
