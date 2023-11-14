@@ -100,6 +100,10 @@ scopus_search <- function(
       r$url = httr::build_url(parsed_url)
       print(r)
     }
+    if (httr::status_code(r) >= 400) {
+      print("Error:")
+      print(httr::content(r))
+    }
     stop_for_status(r)
     cr = content(r)$`search-results`
     L = list(get_statement = r, content = cr)
