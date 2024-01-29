@@ -70,6 +70,7 @@ bibtex_core_data = function(x) {
   if (!is.null(title)) {
     title = trimws(title)
     split_title = strsplit(title, " ")[[1]]
+    split_title = gsub("[[:punct:]]", "", split_title)
   } else {
     warning("Title is NULL!")
     split_title = NA_character_
