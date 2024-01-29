@@ -134,7 +134,7 @@ bibtex_core_data = function(x) {
   L = lapply(L, function(x) {
     if (is.null(x)) x = ""
   })
-  L = as.environment(L)
+  L = list2env(L)
   bib = glue::glue(
     paste(" <key>,",
           "  author = {<auth>},",
