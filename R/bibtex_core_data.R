@@ -133,6 +133,7 @@ bibtex_core_data = function(x) {
            abstract = abstract)
   L = lapply(L, function(x) {
     if (is.null(x)) x = ""
+    x
   })
   L = list2env(L)
   bib = glue::glue(
