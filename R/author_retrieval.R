@@ -82,8 +82,8 @@ multi_author_retrieval <- function(
 #' @param first_name first name of author
 #' @param api_key Elsevier API key
 #' @param verbose Print diagnostic messages
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #'
 #' @export
 author_retrieval <- function(

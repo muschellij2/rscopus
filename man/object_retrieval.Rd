@@ -39,7 +39,7 @@ download_objects(url, ...)
 See \code{\link{generic_elsevier_api}}}
 
 \item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}
-or \code{\link{GET}}}
+or \code{\link[httr]{GET}}}
 
 \item{res}{result from \code{\link{object_retrieval}}}
 
@@ -51,8 +51,8 @@ or \code{\link{GET}}}
 
 \item{verbose}{Print messages from specification}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 }
 \value{
 List of elements, similar to \code{\link{generic_elsevier_api}}

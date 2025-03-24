@@ -29,10 +29,10 @@ See \url{https://dev.elsevier.com/tecdoc_api_authentication.html}}
 
 \item{verbose}{Print messages from specification}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 
-\item{...}{Additional arguments to send to \code{\link{GET}}.}
+\item{...}{Additional arguments to send to \code{\link[httr]{GET}}.}
 }
 \value{
 List of content, the \code{GET} request,

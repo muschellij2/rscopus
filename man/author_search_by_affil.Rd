@@ -12,7 +12,7 @@ author_search_by_affil(affil_id, searcher = "AF-ID", ...)
 \item{searcher}{Identifier for Affiliation ID.  Do not change unless you
 know exactly what the API calls for.}
 
-\item{...}{Arguments to be passed to \code{\link{GET}}}
+\item{...}{Arguments to be passed to \code{\link[httr]{GET}}}
 }
 \value{
 List of entries from SCOPUS

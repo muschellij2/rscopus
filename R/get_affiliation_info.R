@@ -5,8 +5,8 @@
 #' @param affil_name name of affiliation
 #' @param affil_id ID of affiliation
 #' @param api_key Elsevier API key
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #' @param verbose Print messages from specification
 #' @export
 #' @return A \code{data.frame} of affiliation information

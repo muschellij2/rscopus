@@ -59,8 +59,8 @@ See \code{\link{generic_elsevier_api}}}
 
 \item{api_key}{Elsevier API key}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 }
 \value{
 List of elements, similar to

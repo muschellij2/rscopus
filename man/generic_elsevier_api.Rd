@@ -32,8 +32,8 @@ See \url{https://dev.elsevier.com/api_docs.html}}
 
 \item{api_key}{Elsevier API key}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 
 \item{content_type}{Is the data content or feedback?}
 
@@ -46,7 +46,7 @@ passed to \code{\link{GET}}}
 
 \item{api_key_error}{Should there be an error if no API key?}
 
-\item{...}{Options passed to queryParam for \code{\link{GET}}}
+\item{...}{Options passed to queryParam for \code{\link[httr]{GET}}}
 }
 \value{
 List of elements, content and the \code{GET} request

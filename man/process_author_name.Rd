@@ -27,8 +27,8 @@ process_author_name(
 
 \item{verbose}{Print diagnostic messages}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 }
 \value{
 List of first/last name and author ID

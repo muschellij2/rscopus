@@ -15,9 +15,9 @@
 #' @param count maximum number of records to retrieve
 #' @param start index to start on.  Only necessary if a large number of
 #' records retrieved
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
-#' @param ... options to pass to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
+#' @param ... options to pass to \code{\link[httr]{GET}}
 #' @importFrom httr GET content
 #' @importFrom utils URLencode
 #' @export

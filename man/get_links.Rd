@@ -48,7 +48,7 @@ from \code{generic_elsevier_api}}
 
 \item{type}{The type of link requested}
 
-\item{...}{Options passed to \code{\link{GET}}}
+\item{...}{Options passed to \code{\link[httr]{GET}}}
 }
 \value{
 A \code{data.frame} or a vector of characters

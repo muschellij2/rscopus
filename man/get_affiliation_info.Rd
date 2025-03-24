@@ -21,8 +21,8 @@ get_affiliation_info(
 
 \item{verbose}{Print messages from specification}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 }
 \value{
 A \code{data.frame} of affiliation information

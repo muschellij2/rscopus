@@ -17,9 +17,9 @@
 #' @param view type of view to give, see
 #' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param headers additional headers to be added to
-#' \code{\link{add_headers}}
+#' \code{\link[httr]{add_headers}}
 #' @param ... Arguments to be passed to the query list for
-#' \code{\link{GET}}
+#' \code{\link[httr]{GET}}
 #' @param wait_time The time in seconds to wait across consecutive
 #' requests of a single search (when records > 25)
 #'

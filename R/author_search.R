@@ -17,11 +17,11 @@
 #' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
 #' @param add_query Things to add to the query parameter for the request
 #' @param headers additional headers to be added to
-#' \code{\link{add_headers}}
+#' \code{\link[httr]{add_headers}}
 #' @param wait_time The time in seconds to wait across consecutive
 #' requests of a single search (when records > 25)
 #' @param ... Arguments to be passed to the query list for
-#' \code{\link{GET}}
+#' \code{\link[httr]{GET}}
 #' @export
 #' @seealso \code{\link{get_author_info}}
 #' @importFrom httr stop_for_status parse_url build_url
@@ -185,7 +185,7 @@ author_search <- function(
 #' @param affil_id Affiliation ID number
 #' @param searcher Identifier for Affiliation ID.  Do not change unless you
 #' know exactly what the API calls for.
-#' @param ... Arguments to be passed to \code{\link{GET}}
+#' @param ... Arguments to be passed to \code{\link[httr]{GET}}
 #' @seealso \code{\link{get_author_info}}
 #' @export
 #' @return List of entries from SCOPUS

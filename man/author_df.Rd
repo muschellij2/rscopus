@@ -74,8 +74,8 @@ way before version 0.5.10.9001}
 
 \item{scrub}{Should `scrub_identifier` be run on the identifier?}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 
 \item{...}{Arguments to be passed to \code{\link{author_search}}}
 }

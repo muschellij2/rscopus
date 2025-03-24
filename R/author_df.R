@@ -23,8 +23,8 @@
 #' way before version 0.5.10.9001
 #' @param scrub Should `scrub_identifier` be run on the identifier?
 #' @param ... Arguments to be passed to \code{\link{author_search}}
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #'
 #' @export
 #' @seealso \code{\link{get_author_info}}
@@ -182,8 +182,8 @@ author_data = function(...,
 #' @param api_key Elsevier API key
 #' @param affil_id ID of affiliation (optional)
 #' @param verbose Print diagnostic messages
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #'
 #' @return List of first/last name and author ID
 #' @note This function is really to avoid duplication

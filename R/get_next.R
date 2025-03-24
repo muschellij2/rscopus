@@ -3,7 +3,7 @@
 #' @param result Object (list) with an element named \code{content}, usually
 #' from \code{generic_elsevier_api}
 #' @param type The type of link requested
-#' @param ... Options passed to \code{\link{GET}}
+#' @param ... Options passed to \code{\link[httr]{GET}}
 #'
 #'
 #' @return A \code{data.frame} or a vector of characters

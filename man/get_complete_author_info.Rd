@@ -45,10 +45,10 @@ records retrieved}
 \item{au_id}{Author ID number, will override first/last combination if
 specified}
 
-\item{headers}{Headers passed to \code{\link{add_headers}},
-passed to \code{\link{GET}}}
+\item{headers}{Headers passed to \code{\link[httr]{add_headers}},
+passed to \code{\link[httr]{GET}}}
 
-\item{...}{options to pass to \code{\link{GET}}}
+\item{...}{options to pass to \code{\link[httr]{GET}}}
 }
 \value{
 List of information

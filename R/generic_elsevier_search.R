@@ -6,15 +6,15 @@
 #' @param search_type Type of search if \code{type = "search"}.
 #' See \url{https://dev.elsevier.com/api_docs.html}
 #' @param api_key Elsevier API key
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #' @param content_type Is the data content or feedback?
 #' @param root_http address to use for query
 #' @param http_end string to add to end of http specification
 #' (done using \code{paste0})
 #' @param verbose Print messages from specification
 #' @param api_key_error Should there be an error if no API key?
-#' @param ... Options passed to queryParam for \code{\link{GET}}
+#' @param ... Options passed to queryParam for \code{\link[httr]{GET}}
 #' @return List of elements, content and the \code{GET} request
 #' @export
 #' @examples \dontrun{

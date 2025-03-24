@@ -9,7 +9,7 @@
 #' @param http_end any additional end to http statement.
 #' See \code{\link{generic_elsevier_api}}
 #' @param ... Arguments to be passed to \code{\link{generic_elsevier_api}}
-#' or \code{\link{GET}}
+#' or \code{\link[httr]{GET}}
 #' @export
 #' @seealso \code{\link{generic_elsevier_api}}
 #' @return List of elements, similar to \code{\link{generic_elsevier_api}}
@@ -102,8 +102,8 @@ process_object_retrieval = function(res) {
 #' @param verbose Print messages from specification
 #' @param api_key Elsevier API key
 #' @param api_key_error Should there be an error if no API key?
-#' @param headers Headers passed to \code{\link{add_headers}},
-#' passed to \code{\link{GET}}
+#' @param headers Headers passed to \code{\link[httr]{add_headers}},
+#' passed to \code{\link[httr]{GET}}
 #' @rdname object_retrieval
 download_object = function(
   url,

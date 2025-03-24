@@ -45,13 +45,13 @@ below 25 for COMPLETE views, see
 \item{http}{Address for scopus API}
 
 \item{headers}{additional headers to be added to
-\code{\link{add_headers}}}
+\code{\link[httr]{add_headers}}}
 
 \item{wait_time}{The time in seconds to wait across consecutive
 requests of a single search (when records > 25)}
 
 \item{...}{Arguments to be passed to the query list for
-\code{\link{GET}}}
+\code{\link[httr]{GET}}}
 }
 \value{
 List of entries from SCOPUS
