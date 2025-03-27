@@ -16,7 +16,7 @@ Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?b
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rscopus)](https://CRAN.R-project.org/package=rscopus)
 [![](https://cranlogs.r-pkg.org/badges/rscopus)](https://cran.rstudio.com/web/packages/rscopus/index.html)
-[![R-CMD-check](https://github.com/muschellij2/rscopus/workflows/R-CMD-check/badge.svg)](https://github.com/muschellij2/rscopus/actions)
+[![R-CMD-check](https://github.com/muschellij2/rscopus/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/muschellij2/rscopus/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 # rscopus
@@ -95,7 +95,7 @@ if (rscopus::is_elsevier_authorized()) {
 ## Using an Institution Token
 
 As per <https://dev.elsevier.com/tecdoc_api_authentication.html>: “Using
-a proprietary token (an”Institutional Token“) created for you by our
+a proprietary token (an”Institutional Token”) created for you by our
 integration support team”, so you need to contact Scopus to get one. If
 you have one and it’s located in an object called `token`, you should be
 able to use it as:
