@@ -45,12 +45,12 @@ SCOPUS Citation Retrieval
 api_key = Sys.getenv("Elsevier_API_Interactive")
 set_api_key(api_key)
 if (!is.null(api_key) & nchar(api_key) > 0){
-   result = citation_retrieval(pii = c("S0140673616324102",
-   "S0014579301033130"),
-   verbose = FALSE)
-   if (httr::status_code(result$get_statement) < 400) {
-      res = parse_citation_retrieval(result)
-   }
+  result = citation_retrieval(pii = c("S0140673616324102",
+                                      "S0014579301033130"),
+                              verbose = FALSE)
+  if (httr::status_code(result$get_statement) < 400) {
+    res = parse_citation_retrieval(result)
+  }
 
 }
 set_api_key(NULL)
