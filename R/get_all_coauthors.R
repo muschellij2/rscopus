@@ -3,7 +3,7 @@
 #'
 #' @param ... arguments to pass to \code{\link{author_df}}
 #'
-#' @return A list of output, incluing a vector of author_ids
+#' @return A list of output, including a vector of author_ids
 #' @export
 #'
 #' @examples

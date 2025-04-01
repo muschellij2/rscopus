@@ -10,7 +10,7 @@ get_all_coauthors(...)
 \item{...}{arguments to pass to \code{\link{author_df}}}
 }
 \value{
-A list of output, incluing a vector of author_ids
+A list of output, including a vector of author_ids
 }
 \description{
 Get all Co-Authors

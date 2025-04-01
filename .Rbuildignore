@@ -21,3 +21,5 @@ sticker\.png
 ^vignettes/multi_author_cache$
 ^dtd_data\.R$
 ^\.github$
+^\.DS_Store$
+^\.*/\.DS_Store$
