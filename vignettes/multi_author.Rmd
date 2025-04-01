@@ -310,7 +310,7 @@ if (total_results > 0) {
   print(setdiff(colnames(Authors), colnames(all_df)))
   
   # grab only relevant columns
-  all_df = all_df[, colnames(Authors)]
+  all_df = all_df[, intersect(colnames(Authors), colnames(all_df))]
   
   # remove the old entries
   Authors = anti_join(Authors, MainEntry_99auth_id)
@@ -335,6 +335,7 @@ if (total_results > 0) {
   
   MainEntry = anti_join(MainEntry, MainEntry_99auth_id)
   MainEntry = full_join(MainEntry, MainEntry_99auth)
+  MainEntry
 }
 ```
 

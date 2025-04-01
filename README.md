@@ -9,10 +9,6 @@ R Package to interface with Elsevier and Scopus APIs
 
 <!-- badges: start -->
 
-[![Travis-CI Build
-Status](https://travis-ci.org/muschellij2/rscopus.svg?branch=master)](https://travis-ci.org/muschellij2/rscopus)
-[![AppVeyor Build
-Status](https://ci.appveyor.com/api/projects/status/github/muschellij2/rscopus?branch=master&svg=true)](https://ci.appveyor.com/project/muschellij2/rscopus)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/rscopus)](https://CRAN.R-project.org/package=rscopus)
 [![](https://cranlogs.r-pkg.org/badges/rscopus)](https://cran.rstudio.com/web/packages/rscopus/index.html)
@@ -90,6 +86,30 @@ if (rscopus::is_elsevier_authorized()) {
            description = `dc:description`)
   head(res[, c("title", "journal", "description")])
 }
+#> Warning in entries_to_df(entries = entries, au_id = au_id, verbose = verbose): 'entries_to_df' is deprecated.
+#> Use 'gen_entries_to_df' instead.
+#> See help("Deprecated")
+#>                                                                                                                                                               title
+#> 1                           Objectively Measured Physical Activity Using Wrist-Worn Accelerometers as a Predictor of Incident Alzheimer’s Disease in the UK Biobank
+#> 2                                             Assessment of Renal Vein Stasis Index by Transesophageal Echocardiography During Cardiac Surgery: A Feasibility Study
+#> 3 Occurrence of Low Cardiac Index During Normotensive Periods in Cardiac Surgery: A Prospective Cohort Study Using Continuous Noninvasive Cardiac Output Monitoring
+#> 4                                                                   NHANES 2011-2014: Objective Physical Activity Is the Strongest Predictor of All-Cause Mortality
+#> 5                                                               Comparing Step Counting Algorithms for High-Resolution Wrist Accelerometry Data in NHANES 2011-2014
+#> 6                                                                          Open Case Studies: Statistics and Data Science Education through Real-World Applications
+#>                                                                       journal
+#> 1 Journals of Gerontology - Series A Biological Sciences and Medical Sciences
+#> 2                                                    Anesthesia and Analgesia
+#> 3                                                    Anesthesia and Analgesia
+#> 4                                 Medicine and Science in Sports and Exercise
+#> 5                                 Medicine and Science in Sports and Exercise
+#> 6                            Journal of Statistics and Data Science Education
+#>   description
+#> 1     Article
+#> 2      Letter
+#> 3     Article
+#> 4     Article
+#> 5     Article
+#> 6     Article
 ```
 
 ## Using an Institution Token
