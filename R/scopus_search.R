@@ -15,7 +15,7 @@
 #' @param verbose Print diagnostic messages
 #' @param max_count Maximum count of records to be returned.
 #' @param view type of view to give, see
-#' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
+#' \url{https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param headers additional headers to be added to
 #' \code{\link[httr]{add_headers}}
 #' @param ... Arguments to be passed to the query list for

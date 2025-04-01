@@ -44,7 +44,7 @@ know exactly what the API calls for.}
 \item{max_count}{Maximum count of records to be returned.}
 
 \item{view}{type of view to give, see
-\url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}}
+\url{https://dev.elsevier.com/documentation/AuthorSearchAPI.wadl}}
 
 \item{add_query}{Things to add to the query parameter for the request}
 

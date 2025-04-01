@@ -73,7 +73,7 @@ retrieval of an author from the Elsevier Author Retrieval API
 }
 \note{
 See
-\url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+\url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
 for documentation
 }
 \examples{

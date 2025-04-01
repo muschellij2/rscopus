@@ -34,7 +34,7 @@ below 25 for COMPLETE views, see
 \url{https://dev.elsevier.com/api_key_settings.html}).}
 
 \item{view}{type of view to give, see
-\url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}
+\url{https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}}
 
 \item{start}{where should the records start gathering}
 

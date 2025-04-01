@@ -64,7 +64,7 @@ author given}
 \item{http}{Address for scopus api}
 
 \item{view}{type of view to give, see
-\url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}}
+\url{https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}}
 
 \item{count}{number of records to retrieve (below 25, see
 \url{https://dev.elsevier.com/api_key_settings.html})}

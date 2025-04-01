@@ -16,7 +16,7 @@
 #' author given
 #' @param http Address for scopus api
 #' @param view type of view to give, see
-#' \url{https://api.elsevier.com/documentation/ScopusSearchAPI.wadl}
+#' \url{https://dev.elsevier.com/documentation/ScopusSearchAPI.wadl}
 #' @param count number of records to retrieve (below 25, see
 #' \url{https://dev.elsevier.com/api_key_settings.html})
 #' @param general Should \code{\link{gen_entries_to_df}} instead of the

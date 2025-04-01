@@ -14,7 +14,7 @@
 #' know exactly what the API calls for.
 #' @param max_count Maximum count of records to be returned.
 #' @param view type of view to give, see
-#' \url{https://api.elsevier.com/documentation/AuthorSearchAPI.wadl}
+#' \url{https://dev.elsevier.com/documentation/AuthorSearchAPI.wadl}
 #' @param add_query Things to add to the query parameter for the request
 #' @param headers additional headers to be added to
 #' \code{\link[httr]{add_headers}}

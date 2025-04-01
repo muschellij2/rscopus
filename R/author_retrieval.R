@@ -11,7 +11,7 @@
 #' @param ... Arguments to be passed to
 #' \code{\link{generic_elsevier_api}}
 #' @note See
-#' \url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+#' \url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
 #' for documentation
 #' @seealso \code{\link{generic_elsevier_api}}
 #' @return List of elements, similar to
