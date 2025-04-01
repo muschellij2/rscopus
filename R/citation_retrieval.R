@@ -95,12 +95,24 @@ parse_citation_retrieval = function(result) {
   ident = bind_rows(ident, .id = "identifier")
   cinfo = x$citeInfoMatrix$citeInfoMatrixXML$citationMatrix$citeInfo
   hdr = x$citeColumnTotalXML$citeCountHeader
-  authors = lapply(cinfo, function(r) {
+  json_as_data_frame = function(x) {
+    jsonlite::fromJSON(jsonlite::toJSON(x), simplifyVector = TRUE, flatten = TRUE)
+  }
+  make_na = function(r) {
+    if (length(r) == 0) {
+      return(NA)
+    }
+    r
+  }
+  authors = purrr::map(cinfo, function(r) {
     if (is.null(r$author)) {
       return(NULL)
     }
-    auth = bind_rows(lapply(r$author, as.data.frame,
-                            stringsAsFactors = FALSE))
+    r$author = lapply(r$author, function(z) lapply(z, make_na))
+    r$author = lapply(r$author, json_as_data_frame)
+    r$author = lapply(r$author, as.data.frame,
+                      stringsAsFactors = FALSE)
+    auth = bind_rows(r$author)
   })
   names(authors) =  1:length(authors)
   authors = bind_rows(authors, .id = "identifier")
