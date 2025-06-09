@@ -67,15 +67,19 @@ multi_author_retrieval <- function(
   id = gsub("AUTHOR_ID:", "", id, fixed = TRUE)
   id = paste(id, collapse = ",")
 
-  s = generic_elsevier_api(
+  identifier = match.arg(identifier)
+  args = list(
     type = "author",
-    http_end = http_end, ...)
+    http_end = http_end,
+    ...
+  )
+    s = do.call(generic_elsevier_api, args = args)
   return(s)
 }
 
 #' @rdname author_retrieval
 #' @param view Which view to see.  See
-#' \url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
+#' \url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}
 #' @param self_cite Should self-citations be included?
 #' @param au_id Author ID number. Overrides any first/last name argument
 #' @param last_name last name of author

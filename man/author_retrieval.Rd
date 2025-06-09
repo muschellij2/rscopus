@@ -51,7 +51,7 @@ See \code{\link{generic_elsevier_api}}}
 \item{first_name}{first name of author}
 
 \item{view}{Which view to see.  See
-\url{https://api.elsevier.com/documentation/AuthorRetrievalAPI.wadl}}
+\url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}}
 
 \item{self_cite}{Should self-citations be included?}
 

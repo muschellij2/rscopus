@@ -23,3 +23,4 @@ sticker\.png
 ^\.github$
 ^\.DS_Store$
 ^\.*/\.DS_Store$
+^CRAN-SUBMISSION$
