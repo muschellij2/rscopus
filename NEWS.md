@@ -1,3 +1,7 @@
+# rscopus 0.9.0
+
+* Fixing `multi_author_retrieval` to actually work.
+
 # rscopus 0.8.0
 
 * Fixing the \link issues with packages.
