@@ -16,6 +16,7 @@ author_retrieval_id(
 multi_author_retrieval(
   id,
   identifier = c("author_id", "eid"),
+  view = c("LIGHT", "STANDARD", "ENHANCED", "METRICS", "ENTITLED"),
   http_end = NULL,
   ...
 )
@@ -44,14 +45,14 @@ See \code{\link{generic_elsevier_api}}}
 \item{...}{Arguments to be passed to
 \code{\link{generic_elsevier_api}}}
 
+\item{view}{Which view to see.  See
+\url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}}
+
 \item{au_id}{Author ID number. Overrides any first/last name argument}
 
 \item{last_name}{last name of author}
 
 \item{first_name}{first name of author}
-
-\item{view}{Which view to see.  See
-\url{https://dev.elsevier.com/documentation/AuthorRetrievalAPI.wadl}}
 
 \item{self_cite}{Should self-citations be included?}
 
