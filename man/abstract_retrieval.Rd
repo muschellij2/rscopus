@@ -8,6 +8,7 @@ abstract_retrieval(
   id,
   identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id", "pui", "group_id"),
   http_end = NULL,
+  view = c("META", "META_ABS", "FULL", "REF", "ENTITLED", "BASIC"),
   ...
 )
 }
@@ -18,6 +19,11 @@ abstract_retrieval(
 
 \item{http_end}{any additional end to http statement.
 See \code{\link{generic_elsevier_api}}}
+
+\item{view}{the amount of information to view, see
+\url{https://dev.elsevier.com/sc_abstract_retrieval_views.html} for more info.
+There is a mismatch between these docs and the API, so `"BASIC"` and
+`"ENTITLED"` may have issues.}
 
 \item{...}{Arguments to be passed to \code{\link{generic_elsevier_api}}}
 }
