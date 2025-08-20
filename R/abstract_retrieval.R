@@ -27,7 +27,7 @@ abstract_retrieval <- function(
   id, # Identifier for abstract
   identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id", "pui", "group_id"), # type of identifier
   http_end = NULL, # any additional end to http statement.  See \code{\link{generic_elsevier_api}}
-  view = c("META", "META_ABS", "FULL", "REF", "ENTITLED", "BASIC"),
+  view = c("META", "META_ABS", "FULL", "REF", "ENTITLED"),
   ...
 ){
 

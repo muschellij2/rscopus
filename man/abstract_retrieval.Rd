@@ -8,7 +8,7 @@ abstract_retrieval(
   id,
   identifier = c("scopus_id", "eid", "doi", "pii", "pubmed_id", "pui", "group_id"),
   http_end = NULL,
-  view = c("META", "META_ABS", "FULL", "REF", "ENTITLED", "BASIC"),
+  view = c("META", "META_ABS", "FULL", "REF", "ENTITLED"),
   ...
 )
 }
