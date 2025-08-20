@@ -36,6 +36,10 @@ abstract_retrieval <- function(
   id = gsub("DOI:", "", id, fixed = TRUE)
   ender = paste0("/", paste(identifier, id, sep = "/"))
   ender = gsub("//", "/", ender)
+  if (all(view == "COMPLETE")) {
+    warning("COMPLETE is not a view for abstract retrieval, using FULL")
+    view = "FULL"
+  }
   view = match.arg(view)
 
   if (!is.null(http_end)) {
