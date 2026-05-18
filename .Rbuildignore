@@ -24,3 +24,5 @@ sticker\.png
 ^\.DS_Store$
 ^\.*/\.DS_Store$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$

@@ -1,7 +1,7 @@
 #' @title Search Author Content on SCOPUS
 #'
 #' @description Searches SCOPUS to get information about documents on an author.
-#' @param affil_id Affiliation ID number
+#' @param affil_id Affiliation ID number.  If general query, set `searcher = NULL`
 #' @param searcher Identifier for Affiliation ID.  Do not change unless you
 #' know exactly what the API calls for.
 #' @param http Address for scopus api

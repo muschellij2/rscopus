@@ -65,8 +65,14 @@ author_search <- function(
                          count = count,
                          verbose = TRUE,
                          headers = NULL, ...){
+    query = au_id
+    if (!is.null(searcher)) {
+      query = paste(searcher, "(", query, ")")
+    }
+    query = pasete(query, add_query)
+
     q = list(
-      query = paste0(searcher, "(", au_id, ")", add_query),
+      query = query,
       "APIKey" = api_key,
       count = count,
       start = start,
@@ -139,7 +145,7 @@ author_search <- function(
   if (n_runs > 1) {
     if (verbose) {
       message(paste0(n_runs, " runs need to be ",
-                     "sent with curent count"))
+                     "sent with current count"))
       pb = txtProgressBar(min = ifelse(n_runs == 2, 0, 1), max = n_runs - 1,
                           initial = 1, style = 3)
     }

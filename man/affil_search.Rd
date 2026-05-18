@@ -14,7 +14,7 @@ affil_search(
 )
 }
 \arguments{
-\item{affil_id}{Affiliation ID number}
+\item{affil_id}{Affiliation ID number.  If general query, set `searcher = NULL`}
 
 \item{searcher}{Identifier for Affiliation ID.  Do not change unless you
 know exactly what the API calls for.}
