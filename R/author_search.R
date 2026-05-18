@@ -70,6 +70,7 @@ author_search <- function(
       query = paste0(searcher, "(", query, ")")
     }
     query = paste(query, add_query)
+    query = trimws(query)
 
     q = list(
       query = query,
