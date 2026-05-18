@@ -67,9 +67,9 @@ author_search <- function(
                          headers = NULL, ...){
     query = au_id
     if (!is.null(searcher)) {
-      query = paste(searcher, "(", query, ")")
+      query = paste0(searcher, "(", query, ")")
     }
-    query = pasete(query, add_query)
+    query = paste(query, add_query)
 
     q = list(
       query = query,
